@@ -75,8 +75,9 @@ Give it what you have — one photo and three sentences, or a full video session
 Every tool in the pipeline is a discrete, independently callable API. Each one makes the next one better. Each one stands on its own.
 
 ```
-/bcs/score       → scores the full listing (story + photos + video) — 0 to 20
-                   high bar: outcome-informed scoring that gets smarter with every adoption
+/bcs/score       → AI-driven scoring on day one — story, photos, and video analyzed
+                   high bar: outcome-informed weighting — only achievable by platforms
+                   that track adoption outcomes and feed them back
 
 /photos/curate   → selects + orders the strongest photos from raw uploads
 
