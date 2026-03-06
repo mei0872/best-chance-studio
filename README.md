@@ -25,13 +25,23 @@ Existing dog adoption platforms are digital dumping grounds.
 
 A rescue creates a listing. The platform accepts it. No quality bar. No freshness enforcement. No coaching, no feedback, no follow-up. The platform gets its traffic whether the dog goes home or not.
 
-Here's what a typical listing looks like:
+But the platform isn't the only gap.
+
+**The rescue world has never had a standard for what great looks like at adoption time.**
+
+Rescues care deeply — that's not the problem. The people doing this work got into it because they love dogs. Not because they love marketing. Nobody in the rescue world came up through sales or real estate. Nobody taught them how to help an adopter picture that dog at the end of their bed.
+
+A realtor doesn't list square footage. They help you see your life there. That skill is learned — and the rescue world has never had the infrastructure to teach it.
+
+No coaching. No benchmark. No feedback loop. A foster writes the best description they can and hopes it's enough. Most of the time, they have no idea it isn't.
+
+Here's what that looks like:
 
 > *"DOB: 1/22/2016. He is a very sweet boy, loves people; wants to be a lap dog. He is gentle, well mannered, house/leash trained, obeys basic commands."*
 
-Fifty-five words. No name with personality behind it. No story. No voice. No chance.
+Fifty-five words. Written by someone who loves this dog. No standard to measure against. No coaching to do better. No chance.
 
-One coaching session changes that. A specific detail that only this dog has. Three photos with eye contact. A note that reveals his sneaky morning kisses during coffee. That's not a hope — that's what the research shows.
+One session with BCS changes that. A specific detail that only this dog has. Three photos with eye contact. A note that reveals his sneaky morning kisses during coffee. That's not a hope — that's what the research shows.
 
 ---
 
