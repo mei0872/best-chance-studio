@@ -13,7 +13,7 @@ We're building tools that get dogs adopted.
 
 For the dogs that need help most — seniors, large breeds, dogs with behavioral notes, dogs that don't photograph well — the industry average is 4–6 months. Puppies and doodles move fast. We're not building for them.
 
-The talent to move the harder dogs faster already exists inside every rescue organization. It just needs better coaching, better tools, and a platform that turns a midnight foster into someone who can change a dog's outcome.
+The talent to move the harder dogs faster already exists inside every rescue organization. It just needs better coaching, better tools, and a platform that lets every foster immediately tell the story only they know.
 
 One metric. Everything is downstream of it.
 
@@ -21,7 +21,7 @@ One metric. Everything is downstream of it.
 
 ## The Problem
 
-These platforms are digital dumping grounds.
+Existing dog adoption platforms are digital dumping grounds.
 
 A rescue creates a listing. The platform accepts it. No quality bar. No freshness enforcement. No coaching, no feedback, no follow-up. The platform gets its traffic whether the dog goes home or not.
 
@@ -31,7 +31,7 @@ Here's what a typical listing looks like:
 
 Fifty-five words. No name with personality behind it. No story. No voice. No chance.
 
-One coaching session changes that. A specific detail that only this dog has. Three photos with eye contact. A note that says he can come to you. That's not a hope — that's what the research shows.
+One coaching session changes that. A specific detail that only this dog has. Three photos with eye contact. A note that reveals his sneaky morning kisses during coffee. That's not a hope — that's what the research shows.
 
 ---
 
