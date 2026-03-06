@@ -37,7 +37,9 @@ One coaching session changes that. A specific detail that only this dog has. Thr
 
 ## What Best Chance Studio™ Is
 
-Best Chance Studio™ is an open source coaching layer — tools that score a listing, build a story, curate photos, and produce a video. Give it what you have and get the best presentation back.
+Best Chance Studio™ is the reference implementation for open source dog adoption coaching — a set of discrete APIs that score a listing, build a story, curate photos, and produce a video. Give it what you have and get the best presentation back.
+
+The APIs are open source primitives. Any platform can use them. Best Chance Studio™ is the first to combine them into a complete coaching workflow — and Wag On Home is built on top of it, with a proprietary intelligence layer that makes every score smarter with every adoption.
 
 The vision is a platform that runs itself, guided by and for the needs of rescues, and connects every dog to the family that's already looking for them.
 
