@@ -90,6 +90,18 @@ You're building infrastructure that redistributes value back to the mission inde
 
 ---
 
+## Why Open Source — And Where It Goes
+
+The BCS rubric is a starting hypothesis — grounded in peer-reviewed research, refined by real rescue experience. The goal is for the community to improve it over time: better scoring dimensions, sharper coaching rules, new signal types. Every contribution makes the tools more useful for every rescue that uses them.
+
+The tools are MIT licensed. Fork them, deploy them, use them standalone. Any rescue anywhere can run BCS without connecting to the platform.
+
+The `platform_hints` layer is what connects community tools to real adoption outcome data — what worked for dogs like this, in this region, this season. The open tools get smarter as the platform accumulates outcomes. You can fork the tools. You can't fork the data — but your tools benefit from it.
+
+Your contribution compounds. A dimension you help define today gets refined by every adoption that follows.
+
+---
+
 ## The Pipeline
 
 Every tool is a step in one story, and each step is independently useful:
