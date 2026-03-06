@@ -137,6 +137,8 @@ The `platform_hints` layer is an open standard — we define it, anyone can impl
 
 Your contribution compounds. A dimension you help define today gets refined by every adoption that follows.
 
+The goal is simple: our open APIs become the Linux of the rescue world.
+
 ---
 
 ## The Pipeline
