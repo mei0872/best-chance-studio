@@ -66,16 +66,24 @@ Give it what you have — one photo and three sentences, or a full video session
 Every tool in the pipeline is a discrete, independently callable API. Each one makes the next one better. Each one stands on its own.
 
 ```
-/bcs/score         → scores the full listing (story + photos + video) — 0 to 20
-/photos/curate     → selects + orders the strongest photos from raw uploads
-/story/build       → produces the full coached story and coaching packet
-/video/direct      → real-time AI coaching during live capture
-/video/coach       → analyzes footage post-capture; returns improvement notes
-/video/produce     → produces the highlight reel (cuts, music, pacing)
-/video/export      → YouTube-ready output (format, thumbnail, title, tags)
-```
+/bcs/score       → scores the full listing (story + photos + video) — 0 to 20
+                   high bar: outcome-informed scoring that gets smarter with every adoption
 
-The high bar: an AI Director live on your phone during the shoot — telling you where to stand, what angle, when you've got the shot. A production engine that cuts the garbage, finds the magic, adds music. YouTube-ready output, automatically. The dog's best possible presentation without a production team.
+/photos/curate   → selects + orders the strongest photos from raw uploads
+
+/story/build     → produces the full coached story and coaching packet
+
+/video/direct    → real-time coaching during live capture
+                   high bar: AI Director live on your phone — where to stand, what angle, when you've got the shot
+
+/video/coach     → analyzes footage post-capture; returns improvement notes
+
+/video/produce   → produces the highlight reel (cuts, music, pacing)
+                   high bar: cuts the garbage, finds the magic, adds music — no production team needed
+
+/video/export    → YouTube-ready output (format, thumbnail, title, tags)
+                   high bar: fully automated — dog's best presentation ready to share in one step
+```
 
 ---
 
