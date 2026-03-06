@@ -138,3 +138,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to claim a task, what "done" look
 *Wag On Home™ · Best Chance Studio™ · The Sniff Test™*
 
 *[wag-on-home.com](https://wag-on-home.com) · KipMeierhofer@gmail.com*
+
+---
+
+## Get in Touch
+
+- **Questions on a task** → comment on the issue
+- **Everything else** → KipMeierhofer@gmail.com
+- **Community** → use [GitHub Discussions](https://github.com/mei0872/best-chance-studio/discussions) to ask questions, share ideas, or introduce yourself
+
