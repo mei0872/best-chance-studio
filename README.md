@@ -60,10 +60,7 @@ The vision is a platform that runs itself, guided by and for the needs of rescue
 **Where we are:** BCS is in active design — the concept is defined, the rubric is research-backed, the API contracts are written, and the architecture is hardening every day. The tools are being built now through an open pull list. This is the ground floor.
 
 **For any rescue, any platform.**
-A better story is a better story wherever it lives. BCS is designed to improve a listing before it goes anywhere — AdoptAPet, Petfinder, Chewy, Facebook, anywhere a rescue posts. The rescue wins. The dog wins. The platform they're already using gets better listings without doing anything.
-
-**For any platform that adopts the standard.**
-As the BCS score becomes a recognized quality signal, other adoption platforms can build against it. A BCS score on a listing tells adopters this dog has been coached, this story has been reviewed, this presentation is the real thing.
+A better story is a better story wherever it lives. BCS is designed to improve a listing before it goes anywhere — AdoptAPet, Petfinder, Chewy, Facebook, anywhere a rescue posts. The rescue wins. The dog wins. The platform they're already using gets better listings without doing anything. BCS gives rescues the standard and coaching to stop waiting for the right adopter to find them — and start driving dogs home.
 
 **For the AI-native adoption platforms being built right now.**
 The platforms of the next decade are AI-first and data-centric. BCS is designed to be the open source foundation they build on — the coaching APIs, the scoring rubric, the quality signal — all open, all composable, all improving as adoption outcome data accumulates.
