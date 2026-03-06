@@ -3,7 +3,7 @@
 *Last updated: March 6, 2026*
 
 Every day a rescue dog waits is a day the tools failed them.
-We're building the tools.
+We're building tools that get dogs adopted.
 
 ---
 
@@ -11,7 +11,7 @@ We're building the tools.
 
 **Dogs going home in under 13 days.**
 
-The industry average is 4–6 months. We believe that's a design problem — not a supply problem.
+The industry average is 4–6 months.
 The talent to move dogs faster already exists inside every rescue organization.
 It just needs better coaching, better tools, and a platform that turns a midnight foster into someone who can change a dog's outcome.
 
@@ -19,17 +19,19 @@ One metric. Everything is downstream of it.
 
 ---
 
-## Meet Toba
+## The Problem
 
-Toba is a Shepherd. He's been listed for 3,366 days — over nine years.
+These platforms are digital dumping grounds.
 
-His description is 55 words. It reads like a vet record.
+A rescue creates a listing. The platform accepts it. No quality bar. No freshness enforcement. No coaching, no feedback, no follow-up. The platform gets its traffic whether the dog goes home or not.
 
-> *"DOB: 1/22/2016. Toba is a very sweet boy..."*
+Here's what a typical listing looks like:
 
-No story. No voice. No chance.
+> *"DOB: 1/22/2016. He is a very sweet boy, loves people; wants to be a lap dog. He is gentle, well mannered, house/leash trained, obeys basic commands."*
 
-One coaching session changes that. 100+ words in a warm voice, three photos with eye contact, and a transport note that says he can come to you — and Toba stops being invisible. That's not a hope. That's what the data shows.
+Fifty-five words. No name with personality behind it. No story. No voice. No chance.
+
+One coaching session changes that. A specific detail that only this dog has. Three photos with eye contact. A note that says he can come to you. That's not a hope — that's what the research shows.
 
 ---
 
@@ -44,18 +46,22 @@ Give it what you have — one photo and three sentences, or a full video session
 Every tool in the pipeline is a discrete, independently callable API. Each one makes the next one better. Each one stands on its own.
 
 ```
+/bcs/score         → scores the full listing (story + photos + video) — 0 to 20
 /photos/curate     → selects + orders the strongest photos from raw uploads
 /story/build       → produces the full coached story and coaching packet
 /video/direct      → real-time AI coaching during live capture
 /video/coach       → analyzes footage post-capture; returns improvement notes
 /video/produce     → produces the highlight reel (cuts, music, pacing)
+/video/export      → YouTube-ready output (format, thumbnail, title, tags)
 ```
+
+The high bar: an AI Director live on your phone during the shoot — telling you where to stand, what angle, when you've got the shot. A production engine that cuts the garbage, finds the magic, adds music. YouTube-ready output, automatically. The dog's best possible presentation without a production team.
 
 ---
 
 ## The Research Backing
 
-We pulled 33,240 active rescue listings and scored the 25 longest-waiting dogs. Here's what the data says:
+We pulled 33,240 rescue listings and analyzed listing quality. Here's what the data shows:
 
 | Finding | What it means |
 |---|---|
@@ -63,7 +69,7 @@ We pulled 33,240 active rescue listings and scored the 25 longest-waiting dogs. 
 | 100+ word descriptions outperform shorter ones | The 70,733-dog study shows specific adjectives change outcomes — "eager," "clever," "gentle" win; "dominant," "trainable," "energetic" lose |
 | Word choice predicts adoption speed | "Energetic" signals high maintenance. "Lively" signals joy. Same dog. Different outcome. |
 | 0 of 25 longest-listed dogs had transport listed | Zero. Transport turns a local dog into a national candidate in one checkbox. |
-| Average listing last updated: 9.4 years ago | Most dogs aren't failing to get adopted because they're unadoptable. They're failing because their listings are invisible. |
+| Platform data quality | We pulled 33,240 listings. Most hadn't been updated in years — almost certainly because dogs were adopted and nobody removed the listing. The platforms have zero accountability mechanism. |
 
 > *"The dogs are waiting. The data tells us exactly what to do. BCS is how we do it."*
 
