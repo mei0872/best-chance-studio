@@ -47,16 +47,18 @@ The vision is a platform that runs itself, guided by and for the needs of rescue
 
 ## Who Uses BCS
 
-**Right now — any rescue, any platform.**
-A better story is a better story wherever it lives. BCS coaching improves a listing before it goes anywhere — AdoptAPet, Petfinder, Chewy, Facebook, anywhere a rescue posts. The rescue wins. The dog wins. The platform they're already using gets better listings without doing anything.
+**Where we are:** BCS is in active design — the concept is defined, the rubric is research-backed, the API contracts are written, and the architecture is hardening every day. The tools are being built now through an open pull list. This is the ground floor.
 
-**Tomorrow — any platform that adopts the standard.**
-As the BCS score becomes a recognized quality signal, other adoption platforms can build against it. A BCS score on a listing is like a verified credential — it tells adopters this dog has been coached, this story has been reviewed, this presentation is the real thing.
+**For any rescue, any platform.**
+A better story is a better story wherever it lives. BCS is designed to improve a listing before it goes anywhere — AdoptAPet, Petfinder, Chewy, Facebook, anywhere a rescue posts. The rescue wins. The dog wins. The platform they're already using gets better listings without doing anything.
 
-**Future — the AI-native adoption platforms being built right now.**
-The platforms of the next decade are AI-first and data-centric. BCS is the open source foundation they can build on. The coaching APIs, the scoring rubric, the quality signal — all open, all composable, all improving as adoption outcome data accumulates.
+**For any platform that adopts the standard.**
+As the BCS score becomes a recognized quality signal, other adoption platforms can build against it. A BCS score on a listing tells adopters this dog has been coached, this story has been reviewed, this presentation is the real thing.
 
-BCS doesn't compete with where rescues post today. It makes everything they post better.
+**For the AI-native adoption platforms being built right now.**
+The platforms of the next decade are AI-first and data-centric. BCS is designed to be the open source foundation they build on — the coaching APIs, the scoring rubric, the quality signal — all open, all composable, all improving as adoption outcome data accumulates.
+
+BCS doesn't compete with where rescues post today. It's designed to make everything they post better.
 
 
 **Not a database. Not a platform. A tool.**
