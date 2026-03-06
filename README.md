@@ -11,9 +11,9 @@ We're building tools that get dogs adopted.
 
 **Dogs going home in under 13 days.**
 
-The industry average is 4–6 months.
-The talent to move dogs faster already exists inside every rescue organization.
-It just needs better coaching, better tools, and a platform that turns a midnight foster into someone who can change a dog's outcome.
+For the dogs that need help most — seniors, large breeds, dogs with behavioral notes, dogs that don't photograph well — the industry average is 4–6 months. Puppies and doodles move fast. We're not building for them.
+
+The talent to move the harder dogs faster already exists inside every rescue organization. It just needs better coaching, better tools, and a platform that turns a midnight foster into someone who can change a dog's outcome.
 
 One metric. Everything is downstream of it.
 
@@ -37,7 +37,9 @@ One coaching session changes that. A specific detail that only this dog has. Thr
 
 ## What Best Chance Studio™ Is
 
-Best Chance Studio™ is an open source set of coaching tools that give every rescue dog their best possible story.
+Best Chance Studio™ is an open source coaching layer — tools that score a listing, build a story, curate photos, and produce a video. Give it what you have and get the best presentation back.
+
+The vision is a platform that runs itself, guided by and for the needs of rescues, and connects every dog to the family that's already looking for them.
 
 **Not a database. Not a platform. A tool.**
 
