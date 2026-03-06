@@ -43,6 +43,22 @@ The APIs are open source primitives. Any platform can use them. Best Chance Stud
 
 The vision is a platform that runs itself, guided by and for the needs of rescues, and connects every dog to the family that's already looking for them.
 
+---
+
+## Who Uses BCS
+
+**Right now — any rescue, any platform.**
+A better story is a better story wherever it lives. BCS coaching improves a listing before it goes anywhere — AdoptAPet, Petfinder, Chewy, Facebook, anywhere a rescue posts. The rescue wins. The dog wins. The platform they're already using gets better listings without doing anything.
+
+**Tomorrow — any platform that adopts the standard.**
+As the BCS score becomes a recognized quality signal, other adoption platforms can build against it. A BCS score on a listing is like a verified credential — it tells adopters this dog has been coached, this story has been reviewed, this presentation is the real thing.
+
+**Future — the AI-native adoption platforms being built right now.**
+The platforms of the next decade are AI-first and data-centric. BCS is the open source foundation they can build on. The coaching APIs, the scoring rubric, the quality signal — all open, all composable, all improving as adoption outcome data accumulates.
+
+BCS doesn't compete with where rescues post today. It makes everything they post better.
+
+
 **Not a database. Not a platform. A tool.**
 
 Give it what you have — one photo and three sentences, or a full video session and a storyline — and get the best story back. The tool meets you where you are. It assumes heart. It never requires a production team.
