@@ -76,8 +76,8 @@ Every tool in the pipeline is a discrete, independently callable API. Each one m
 
 ```
 /bcs/score       → AI-driven scoring on day one — story, photos, and video analyzed
-                   high bar: outcome-informed weighting — only achievable by platforms
-                   that track adoption outcomes and feed them back
+                   high bar: full multi-modal AI analysis + outcome-informed weighting
+                   via platform_hints — an open standard any platform can implement
 
 /photos/curate   → selects + orders the strongest photos from raw uploads
 
@@ -92,7 +92,9 @@ Every tool in the pipeline is a discrete, independently callable API. Each one m
                    high bar: cuts the garbage, finds the magic, adds music — no production team needed
 
 /video/export    → YouTube-ready output (format, thumbnail, title, tags)
-                   high bar: fully automated — dog's best presentation ready to share in one step
+                   high bar: multi-platform in one pass — YouTube, Instagram, TikTok,
+                   Facebook each optimized simultaneously; outcome-informed thumbnail
+                   and title selection via platform_hints
 ```
 
 ---
@@ -132,7 +134,7 @@ The Best Chance Studio™ rubric is a starting hypothesis — grounded in peer-r
 
 The tools are MIT licensed. Fork them, deploy them, use them standalone. Any rescue anywhere can run Best Chance Studio™ without connecting to the platform.
 
-The `platform_hints` layer is what connects community tools to real adoption outcome data — what worked for dogs like this, in this region, this season. The open tools get smarter as the platform accumulates outcomes. You can fork the tools. You can't fork the data — but your tools benefit from it.
+The `platform_hints` layer is an open standard — we define it, anyone can implement it. Any platform that tracks adoption outcomes can provide `platform_hints` to the APIs and reach full high bar capability. Wag On Home provides the richest implementation because we track what happens after every adoption. But the standard is open. The data that flows through it belongs to whoever collects it.
 
 Your contribution compounds. A dimension you help define today gets refined by every adoption that follows.
 
