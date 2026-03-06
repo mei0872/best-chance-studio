@@ -41,7 +41,7 @@ Here's what that looks like:
 
 Fifty-five words. Written by someone who loves this dog. No standard to measure against. No coaching to do better. No chance.
 
-One session with BCS changes that. A specific detail that only this dog has. Three photos with eye contact. A note that reveals his sneaky morning kisses during coffee. That's not a hope — that's what the research shows.
+One session with Best Chance Studio™ changes that. A specific detail that only this dog has. Three photos with eye contact. A note that reveals his sneaky morning kisses during coffee. That's not a hope — that's what the research shows.
 
 ---
 
@@ -55,17 +55,17 @@ The vision is a platform that runs itself, guided by and for the needs of rescue
 
 ---
 
-## Who Uses BCS
+## Who Uses Best Chance Studio™
 
-**Where we are:** BCS is in active design — the concept is defined, the rubric is research-backed, the API contracts are written, and the architecture is hardening every day. The tools are being built now through an open pull list. This is the ground floor.
+**Where we are:** Best Chance Studio™ is in active design — the concept is defined, the rubric is research-backed, the API contracts are written, and the architecture is hardening every day. The tools are being built now through an open pull list. This is the ground floor.
 
 **For any rescue, any platform.**
-A better story is a better story wherever it lives. BCS is designed to improve a listing before it goes anywhere — AdoptAPet, Petfinder, Chewy, Facebook, anywhere a rescue posts. The rescue wins. The dog wins. The platform they're already using gets better listings without doing anything. BCS gives rescues the standard and coaching to stop waiting for the right adopter to find them — and start driving dogs home.
+A better story is a better story wherever it lives. Best Chance Studio™ is designed to improve a listing before it goes anywhere — AdoptAPet, Petfinder, Chewy, Facebook, anywhere a rescue posts. The rescue wins. The dog wins. The platform they're already using gets better listings without doing anything. Best Chance Studio™ gives rescues the standard and coaching to stop waiting for the right adopter to find them — and start driving dogs home.
 
 **For the AI-native adoption platforms being built right now.**
-The platforms of the next decade are AI-first and data-centric. BCS is designed to be the open source foundation they build on — the coaching APIs, the scoring rubric, the quality signal — all open, all composable, all improving as adoption outcome data accumulates.
+The platforms of the next decade are AI-first and data-centric. Best Chance Studio™ is designed to be the open source foundation they build on — the coaching APIs, the scoring rubric, the quality signal — all open, all composable, all improving as adoption outcome data accumulates.
 
-BCS doesn't compete with where rescues post today. It's designed to make everything they post better.
+Best Chance Studio™ doesn't compete with where rescues post today. It's designed to make everything they post better.
 
 
 **Not a database. Not a platform. A tool.**
@@ -108,7 +108,7 @@ We pulled 33,240 rescue listings and analyzed listing quality. Here's what the d
 | 0 of 25 longest-listed dogs had transport listed | Zero. Transport turns a local dog into a national candidate in one checkbox. |
 | Platform data quality | We pulled 33,240 listings. Most hadn't been updated in years — almost certainly because dogs were adopted and nobody removed the listing. The platforms have zero accountability mechanism. |
 
-> *"The dogs are waiting. The data tells us exactly what to do. BCS is how we do it."*
+> *"The dogs are waiting. The data tells us exactly what to do. Best Chance Studio™ is how we do it."*
 
 ---
 
@@ -127,9 +127,9 @@ You're building infrastructure that redistributes value back to the mission inde
 
 ## Why Open Source — And Where It Goes
 
-The BCS rubric is a starting hypothesis — grounded in peer-reviewed research, refined by real rescue experience. The goal is for the community to improve it over time: better scoring dimensions, sharper coaching rules, new signal types. Every contribution makes the tools more useful for every rescue that uses them.
+The Best Chance Studio™ rubric is a starting hypothesis — grounded in peer-reviewed research, refined by real rescue experience. The goal is for the community to improve it over time: better scoring dimensions, sharper coaching rules, new signal types. Every contribution makes the tools more useful for every rescue that uses them.
 
-The tools are MIT licensed. Fork them, deploy them, use them standalone. Any rescue anywhere can run BCS without connecting to the platform.
+The tools are MIT licensed. Fork them, deploy them, use them standalone. Any rescue anywhere can run Best Chance Studio™ without connecting to the platform.
 
 The `platform_hints` layer is what connects community tools to real adoption outcome data — what worked for dogs like this, in this region, this season. The open tools get smarter as the platform accumulates outcomes. You can fork the tools. You can't fork the data — but your tools benefit from it.
 
@@ -161,7 +161,7 @@ See the shared platform_hints schema → [`docs/platform-hints-schema.md`](docs/
 ### Grab something from the pull list
 No application. No commitment. Just pick a task, build it, and ship something real.
 
-Every item has a dog on the other side of it. A BCS scoring tool that ships means the next coordinator evaluates her 40 dogs faster. That's not abstract.
+Every item has a dog on the other side of it. A Best Chance Studio™ scoring tool that ships means the next coordinator evaluates her 40 dogs faster. That's not abstract.
 
 → [Browse open issues](../../issues)
 
