@@ -115,14 +115,13 @@ We pulled 33,240 rescue listings and analyzed listing quality. Here's what the d
 
 ---
 
-## The Aligned Incentive
+## Want to Go Deeper?
 
-Your equity grows when dogs go home. Not as a side effect — as the mechanism.
+Pull list tasks are self-contained — no commitment, no coordination. Ship something and walk away. That's a completely valid way to contribute.
 
-The platform generates revenue by getting dogs adopted. The better it works, the more dogs go home, the more revenue flows, the more your equity is worth. Long term, that revenue funds rescue wish lists automatically — no humans in the loop.
+But if you ship something and can't stop thinking about what comes next — there are deeper ways to get involved. We're building something that matters, and we're looking for people who feel that.
 
-You're not building a company that does good on the side.
-You're building infrastructure that redistributes value back to the mission indefinitely.
+→ KipMeierhofer@gmail.com
 
 > *"A platform that runs itself, guided by and for the needs of rescues, and connects every dog to the family that's already looking for them."*
 
