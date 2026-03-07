@@ -48,6 +48,8 @@ Coaching that gives every rescue dog their best chance — better photos, better
 
 The APIs are open source primitives. Any platform can use them. MIT licensed. Free forever.
 
+**Session history is a core requirement.** Every API reads prior session history before running and writes its output back. Nothing is ever lost. Nothing is ever repeated without knowing it's a repeat. The story compounds — and that only works if history is always there.
+
 ---
 
 ## Start Here Before Picking an API

@@ -580,7 +580,11 @@ A few things worth internalizing before you build:
 
 **The gap context is what makes the coaching specific.** When BCS passes `score_context` to `/story/build`, the story it gets back is targeted. Without that context, you get generic improvement. With it, you get a story built around the three exact dimensions that scored zero. That specificity is the product.
 
-**Version tracking is built in.** Every coaching session is `v1`. When new photos come in, that's `v2`. When the video lands, `v3`. The story evolves, scores climb, and nothing from prior sessions is lost. Coordinators can see the full arc.
+**Session history is a core requirement — not optional.** Every API that touches a dog's story must read prior session history before running and write its output back to that history when done. This is not a nice-to-have. It's the mechanism that makes BCS get smarter with every session.
+
+Every coaching session is `v1`. When new photos come in, that's `v2`. When the video lands, `v3`. `/story/represent` in Step 9 only works because it can see what Session 1 tried, what signals came back, and what's still missing. If an API operates without session history, it's starting from scratch every time — and so is the dog.
+
+The rule: **nothing is ever lost. Nothing is ever repeated without knowing it's a repeat.** The story compounds. The gaps close. That only happens if history is always present, always written to, and always passed forward.
 
 **The coaching packet is the output contract.** Whatever the front-end displays — the coached description, the shot list, the presenter brief, the next steps — it all comes from the packet. Build your API, return the right fields, and the packet assembles itself correctly. That's the north star every endpoint is pointing at.
 
