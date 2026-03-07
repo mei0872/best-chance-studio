@@ -37,6 +37,7 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months
 
 **After BCS:**
 > *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
+> The video coached from that shot list? Two people watched it, called each other into the room, and said *"that's our dog."*
 > BCS score: **14 / 18** · Shot list generated · YouTube-ready video produced
 
 ---
