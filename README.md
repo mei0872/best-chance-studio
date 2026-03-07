@@ -7,15 +7,17 @@ Open source coaching tools that give every rescue dog their best chance at adopt
 
 ---
 
-## A Note from Kip & Michele
+## A Note from Kip, Michele & Beth
 
-We've been fostering dogs since 2019. Seven dogs of our own. Around 100 fosters a year out of our house in Tennessee.
+We've been fostering dogs since 2009 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. Honestly? We're hooked on fostering.
 
-We started building this because we were tired of sitting down to write descriptions for dogs who deserved better — and having nothing to work with. No tools. No feedback. No coaching. Just a blank text box and a dog who needed their story told right.
+But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
 
-Best Chance Studio will always be free for every rescue. Petfinder, AdoptAPet, Instagram, their own website — doesn't matter where they post. The coaching methodology belongs to the rescue community, not to us. That's not a business decision. It's a promise.
+Here's the honest version: Kip is absolutely terrible at writing dog descriptions. Always has been. But fostering is a community — everybody pitches in — so he keeps sitting down and doing it anyway. We both know there's a better way. We've known it for years. We just finally decided to build it.
 
-— Kip & Michele
+What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. And we can't do it without you.
+
+— Kip, Michele & Beth
 
 ---
 
