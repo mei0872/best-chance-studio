@@ -28,7 +28,7 @@ The code is yours. Fork it, use it, build on it, ship it. If Wag On Home disappe
 
 ## The WAH / BCS Relationship
 
-Wag On Home built Best Chance Studio. WAH runs a proprietary adoption platform built on top of it. Here's what that means in practice:
+Wag On Home is building Best Chance Studio — and running a proprietary adoption platform on top of it. Here's what that means in practice:
 
 **What WAH commits to:**
 - BCS stays free. Forever. For every rescue. No matter what platform they post on.
