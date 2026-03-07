@@ -58,6 +58,7 @@ Pick a task, build it, ship something real. Every API done well will help hundre
 We have more ideas than we have hands. We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.
 
 → KipMeierhofer@gmail.com
+→ [How the project is governed — GOVERNANCE.md](GOVERNANCE.md)
 
 ---
 
