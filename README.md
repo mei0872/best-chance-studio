@@ -33,11 +33,11 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months
 
 **Before BCS:**
 > *"Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch. He is looking for his forever home."*
-> BCS score: **4 / 20**
+> BCS score: **3 / 18**
 
 **After BCS:**
 > *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
-> BCS score: **9 / 20** · Shot list generated · YouTube-ready video produced
+> BCS score: **14 / 18** · Shot list generated · YouTube-ready video produced
 
 ---
 

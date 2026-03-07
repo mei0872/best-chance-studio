@@ -1,12 +1,11 @@
 # BCS in Action — Input to Output
 *Last updated: March 7, 2026*
 
-> This is a composite example built from real listings we've pulled and analyzed.
-> It's representative of what BCS does — not a specific dog.
+> Composite example built from real listings we've pulled and analyzed.
 
 ---
 
-## The Input
+## The Raw Input
 
 **What a foster submits:**
 
@@ -14,30 +13,26 @@
 > He is good with other dogs and kids. He is house trained and knows basic commands.
 > He loves to play fetch. He is looking for his forever home."
 
-**Photo submitted:** Single front-facing shelter photo. Fluorescent lighting. No eye contact.
-
+**Photos:** Single front-facing shelter shot. Fluorescent lighting. No eye contact.
 **Video:** None.
-
-**Transport listed:** No.
 
 ---
 
-## BCS Score: 4 / 12
+## BCS Score: 3 / 18
+
+*Scored across 9 story and presentation dimensions (0–2 each)*
 
 | Dimension | Score | Gap |
 |---|---|---|
-| Photo quality | 0/2 | Fluorescent lighting, no eye contact, single angle |
-| Description — length | 1/2 | 47 words. Needs 100+. |
-| Description — voice | 0/2 | Generic. No personality. No story. |
-| Word choice | 0/1 | "Looking for his forever home" = filler that every dog has |
-| Video | 0/2 | Missing entirely |
-| Transport | 0/1 | Not listed — invisible to out-of-state adopters |
-| Foster availability | 1/2 | Listed but no response window given |
-
-**BCS gap analysis output:**
-- *"This dog has no story. An adopter reads this and feels nothing. Moose could be any dog."*
-- *"No video means no personality. Fetch is a behavior — show it, don't say it."*
-- *"Transport missing = you just eliminated every adopter outside driving distance."*
+| Personality Hook | 0/2 | "Loves to play fetch" — could describe any lab. No specific moment, no memorable detail. |
+| Visual Impact — Photos | 0/2 | Single shot, fluorescent lighting, no eye contact |
+| Video Presence | 0/2 | Missing entirely |
+| Compatibility Clarity | 1/2 | "Good with other dogs and kids" — mentioned but vague |
+| Foster Voice | 0/2 | Reads like a form. No warmth, no relationship visible. |
+| Honest Needs | 1/2 | Energy level not communicated — adopter has no idea what they're getting |
+| Story-First Gate | 0/2 | No intro video — adopter arrives cold |
+| Presenter Readiness | 0/2 | No coached story, no strong asset identified |
+| Family Vision | 0/2 | Nothing forms. Can't picture this dog anywhere. |
 
 ---
 
@@ -61,35 +56,34 @@ He's three, fully house-trained, great with other dogs and kids. He's been patie
 
 He needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.
 
-*Transport available: Memphis → Chicago (weekly run) · DC, Philadelphia, NYC, Boston (bi-weekly)*
-
 ---
 
-## BCS Score After Coaching: 9 / 12
+## BCS Score After Coaching: 14 / 18
 
 | Dimension | Before | After |
 |---|---|---|
-| Photo quality | 0/2 | 2/2 ✅ (new shots pending) |
-| Description — length | 1/2 | 2/2 ✅ |
-| Description — voice | 0/2 | 2/2 ✅ |
-| Word choice | 0/1 | 1/1 ✅ |
-| Video | 0/2 | 0/2 ⬜ (still needed) |
-| Transport | 0/1 | 1/1 ✅ |
-| Foster availability | 1/2 | 1/2 ⬜ (response window TBD) |
+| Personality Hook | 0/2 | 2/2 ✅ "Moose has a move" — specific, memorable, only this dog |
+| Visual Impact — Photos | 0/2 | 1/2 ⬜ New shots coached, not yet taken |
+| Video Presence | 0/2 | 1/2 ⬜ Video coaching begun, not yet produced |
+| Compatibility Clarity | 1/2 | 2/2 ✅ "Needs a family who'll actually let him tire them out" |
+| Foster Voice | 0/2 | 2/2 ✅ Warm, personal, you can feel the relationship |
+| Honest Needs | 1/2 | 2/2 ✅ Energy level front and center, framed positively |
+| Story-First Gate | 0/2 | 2/2 ✅ Story ready — adopter arrives warm |
+| Presenter Readiness | 0/2 | 2/2 ✅ Strong asset identified, coached and ready |
+| Family Vision | 0/2 | 2/2 ✅ "He will find the tennis ball. He will drop it in your lap." You can see it. |
 
-**Still needs:** Video. That's the next coaching prompt.
+**Still needs:** Photos and video. Those are the next two coaching prompts.
 
 ---
 
 ## What the Platform Needs to Do This
 
-- **Intake form** — captures foster's raw input (text, photos, video clips)
+- **Story submission** — foster shares what they have: text, photos, video clips, whatever they've got
 - **Scoring engine** — runs each dimension against the rubric, returns gaps
 - **Gap analysis output** — plain-language coaching, not a score report
 - **Shot list generator** — based on what's missing, breed/color/situation
 - **Description rewrite assist** — takes raw input, coaches toward personality-led copy
 - **Version tracking** — v1 vs. v2 vs. v3. The story evolves. Nothing gets lost.
-- **Transport integration** — rescue enters their route once; every eligible dog surfaces it automatically
 
 The rubric is designed. The methodology is ready. The engineering problem is building the interface that makes all of this feel like a conversation — not a form.
 
