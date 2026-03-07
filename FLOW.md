@@ -481,6 +481,8 @@ The rescue's existing workflow stays intact. No new logins, no platform switchin
 
 → Building these? See [G-05] and [G-06] in the pull list.
 
+**Note on YouTube delivery:** `/video/export` produces the YouTube-ready file and metadata but does not handle upload directly. It passes a `destination` object to the platform layer, which uses the rescue's stored YouTube credentials to complete the upload. YouTube OAuth is handled at rescue registration — not here. See the Wag On Home pull list for the rescue registration task.
+
 ---
 
 ## Step 9: `/story/represent` — If the Dog Doesn't Place
