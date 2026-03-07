@@ -89,8 +89,6 @@ These APIs work together as a system. An API built without understanding how the
                    TikTok, Facebook each optimized simultaneously
 ```
 
-→ See how all of these work together: [FLOW.md](FLOW.md)
-
 → [See the full input/output breakdown](bcs-example.md)
 
 ---
