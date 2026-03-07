@@ -467,6 +467,16 @@ Platforms: `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegro
 
 No native integration with legacy platforms — manual copy/paste by design. BCS builds the story. The foster carries it.
 
+Once the story is formatted and the card is downloaded, the foster copies it to wherever their rescue lists dogs:
+
+> *Copy description → paste into Petfinder listing.*
+> *Copy description → paste into AdoptAPet.*
+> *Copy description → paste into ShelterLuv.*
+> *Save card → post to Facebook, Instagram, rescue group chats.*
+> *Paste YouTube URL → anywhere video is accepted.*
+
+The rescue's existing workflow stays intact. No new logins, no platform switching inside BCS. We hand them something great — they post it where their adopters already are.
+
 → Building these? See [G-05] and [G-06] in the pull list.
 
 ---
