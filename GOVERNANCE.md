@@ -43,7 +43,7 @@ Wag On Home is building Best Chance Studio — and running a proprietary adoptio
 - Rescue relationships and adoption platform integrations
 
 **The clean line:**
-BCS is the open source coaching and scoring layer. WAH is the platform that connects dogs to families. They work together. They're governed separately.
+BCS is the open source coaching and scoring layer. WAH is the platform being built to connect dogs to families. They work together. They're governed separately.
 
 ---
 
@@ -70,7 +70,7 @@ Rubric updates are governed differently from code contributions — because they
 The rubric is the scientific core of BCS. A weight change that says "personality_hook matters 40% more than we thought" isn't an engineering decision — it's a research claim. It needs to be backed by data and validated by the community.
 
 **Who can propose a rubric update:**
-Any platform or researcher with real adoption outcome data. WAH will be the primary contributor at first — we have the outcome data. But this is explicitly designed for others to contribute as they build platforms with real data.
+Any platform or researcher with real adoption outcome data. WAH will be the primary contributor at first — we'll generate outcome data as the platform grows. But this is explicitly designed for others to contribute as they build platforms with real data.
 
 **How a rubric proposal works:**
 1. Open a `Rubric Proposal` issue with:
@@ -94,7 +94,7 @@ Every `/bcs/score` response includes `rubric_version`. You can pin to any prior 
 
 ### `platform_hints` schema updates
 
-`platform_hints` is the open schema through which any platform can pass intelligence into BCS tools. The schema is community-owned. WAH proposes extensions (because we use it most), but any platform can propose new fields.
+`platform_hints` is the open schema through which any platform can pass intelligence into BCS tools. The schema is community-owned. WAH will be its primary user at launch and will lead early schema proposals — but any platform can propose new fields.
 
 Rules:
 - New fields are always additive — nothing removed, nothing renamed
@@ -120,7 +120,7 @@ Rules:
 
 The MIT license is the answer. The community owns the code. Fork it, continue it, build on it — no permission required.
 
-We're not planning for that scenario. We're being transparent that the license protects you regardless.
+We're not planning for that scenario. The license protects you regardless.
 
 ---
 
