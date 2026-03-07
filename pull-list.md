@@ -1,4 +1,4 @@
-# Best Chance Studio™ — Pull List
+# Best Chance Studio — Pull List
 *Last updated: March 6, 2026*
 
 > Not a job. Not a commitment. Grab something interesting, ship something real.
@@ -8,7 +8,7 @@
 
 ## The One-Liner
 
-We're building Best Chance Studio™ — open source coaching tools that give every rescue dog their best chance at adoption. Real problem. Real dogs. Pull list is open.
+We're building Best Chance Studio — open source coaching tools that give every rescue dog their best chance at adoption. Real problem. Real dogs. Pull list is open.
 
 ---
 
@@ -40,7 +40,7 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 
 ### [G-01] BCS Scoring Tool
 **What:** A simple tool — rescuer inputs a dog's profile across key dimensions, tool outputs a score, grade, and top gaps to improve.
-**Why it matters:** This is the heart of Best Chance Studio™. Every rescue uses this before every presentation. The score tells them exactly where to focus.
+**Why it matters:** This is the heart of Best Chance Studio. Every rescue uses this before every presentation. The score tells them exactly where to focus.
 **Stack:** Plain HTML + vanilla JS. No framework. Works offline.
 **Deliverable:** `bcs-scorer.html` — self-contained, no build step.
 
@@ -189,7 +189,7 @@ Output: exported_url, thumbnail_url, suggested_title, suggested_tags, duration_s
 
 ## Background
 
-**Best Chance Studio™** is the open source coaching layer of Wag On Home — a platform that gets rescue dogs adopted faster by giving every dog their best possible story, and every presenter the coaching they need to tell it.
+**Best Chance Studio** is the open source coaching layer of Wag On Home — a platform that gets rescue dogs adopted faster by giving every dog their best possible story, and every presenter the coaching they need to tell it.
 
 The full pipeline:
 ```

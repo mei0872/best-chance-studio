@@ -1,4 +1,4 @@
-# Contributing to Best Chance Studio™
+# Contributing to Best Chance Studio
 
 *Last updated: March 7, 2026*
 
@@ -68,7 +68,7 @@ If your build would be confusing, slow, or broken for the solo midnight foster �
 
 ## The platform_hints Schema
 
-Every API in the Best Chance Studio™ pipeline accepts a shared `platform_hints` object. This is the channel through which the platform's intelligence talks to the tools — carrying learned parameters like what music tone is converting for dogs like this one, how long the video should be, and which shot to lead with.
+Every API in the Best Chance Studio pipeline accepts a shared `platform_hints` object. This is the channel through which the platform's intelligence talks to the tools — carrying learned parameters like what music tone is converting for dogs like this one, how long the video should be, and which shot to lead with.
 
 **The rules:**
 - Every API must accept `platform_hints` as an optional input object

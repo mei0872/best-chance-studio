@@ -1,4 +1,4 @@
-# Governance — Best Chance Studio™
+# Governance — Best Chance Studio
 
 *Last updated: March 7, 2026*
 

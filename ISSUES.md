@@ -1,4 +1,4 @@
-# Best Chance Studio™ — Pull List Issues
+# Best Chance Studio — Pull List Issues
 
 *Last updated: March 6, 2026*
 
@@ -31,7 +31,7 @@ gh issue create --title "[G-01] BCS Scoring Tool" --body-file .github/issues/G-0
 A rescuer inputs a dog's profile across key BCS dimensions. The tool outputs a score (0–12), a grade, and the top gaps to fix before the next presentation.
 
 **Why it matters:**
-This is the heart of Best Chance Studio™. Every rescue uses this before every presentation. The score tells a coordinator like Beth exactly where to focus for each of her 40 dogs — without carrying it all in her head.
+This is the heart of Best Chance Studio. Every rescue uses this before every presentation. The score tells a coordinator like Beth exactly where to focus for each of her 40 dogs — without carrying it all in her head.
 
 **Stack:**
 Plain HTML + vanilla JS. No framework. Must work offline. No build step.
