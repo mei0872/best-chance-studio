@@ -485,25 +485,76 @@ The rescue's existing workflow stays intact. No new logins, no platform switchin
 
 Moose went through the full pipeline. He got presented. He didn't place. This isn't failure — it's the next session starting.
 
-`/story/represent` generates a fresh coaching brief based on what's already been tried, what near-miss adopters said was missing, and what top performers do differently for dogs like Moose.
+`/story/represent` generates a fresh coaching brief based on what's been tried and what's missing. **What it knows depends on who's calling it.**
+
+---
+
+### Path A — Smart AI platform (e.g. WAH)
+
+A platform with real adoption outcome data calls `/story/represent` automatically when a dog stalls. It passes the full picture: session history, near-miss signals from real adopters, and learned patterns from similar dogs.
 
 ```json
 POST /story/represent
 {
   "dog_info": { "name": "Moose", ... },
   "session_history": [
-    { "story_version": 1, "coaching_tips_tried": ["personality hook", "fetch video"], "near_miss_signals": ["3 adopters asked about apartment living"] }
-  ]
+    { "story_version": 1, "coaching_tips_tried": ["personality hook", "fetch video"] }
+  ],
+  "platform_hints": {
+    "learned": {
+      "near_miss_signals":     ["3 adopters asked about apartment living"],
+      "top_performer_pattern": "lab mixes in urban corridors convert faster with compatibility-led descriptions"
+    },
+    "dog_context": {
+      "days_in_care":      11,
+      "escalation_risk":   "high"
+    }
+  }
 }
+```
 
+The platform knows what adopters said. It knows how long Moose has been waiting. It knows what's worked for similar dogs in this market. `/story/represent` uses all of it:
+
+```json
 → {
     "new_angle":        "Lead with the apartment question — Moose does fine in smaller spaces with enough walks. Three adopters almost said yes over this exact concern.",
     "what_was_tried":   ["Fetch hook", "Eye contact photo", "60-second reel"],
     "what_was_missing": ["Apartment compatibility not addressed"],
-    "try_this_next":    ["Add one sentence about Moose's daily walk routine", "Reshoot with city/outdoor background to signal urban dog"],
+    "try_this_next":    ["Add one sentence about Moose's daily walk routine", "Reshoot with city/outdoor background — signals urban dog"],
     "new_shot_agenda":  [...]
   }
 ```
+
+The foster didn't have to figure any of this out. The platform surfaced it, called the API, and handed them a brief.
+
+---
+
+### Path B — Standalone / no platform intelligence
+
+A rescue not on a smart platform can still call `/story/represent` — but they're the ones supplying the context. No automatic near-miss signals. No learned patterns. Just what the foster observed and what they know was missing.
+
+```json
+POST /story/represent
+{
+  "dog_info": { "name": "Moose", ... },
+  "session_history": [
+    {
+      "story_version": 1,
+      "coaching_tips_tried": ["personality hook", "fetch video"],
+      "near_miss_signals":   ["foster noticed several inquiries dropped off — reason unknown"]
+    }
+  ]
+  // no platform_hints — standalone mode
+}
+```
+
+The output is still useful — it reviews what was tried and suggests a fresh angle based on BCS best practices. But it's working from general principles, not real adopter signal. The brief is good. It's not as targeted.
+
+> *"Standalone mode gives you a fresh coaching approach. Platform-connected mode gives you the reason three real adopters walked away."*
+
+---
+
+**The design principle:** `/story/represent` degrades gracefully. Thin input → solid general coaching. Rich platform input → targeted brief built from real signal. The API never fails because `platform_hints` is absent — it just works harder to infer from what it has.
 
 Session 2 knows what Session 1 tried. The story never resets — it compounds.
 
