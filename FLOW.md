@@ -14,6 +14,20 @@ BCS is an orchestration layer. It doesn't just call one API — it reads the gap
 
 No form to fill out. No checklist. The foster drops in what they have — a paragraph of text, a photo or two, some notes from the past few months — and BCS takes it from there.
 
+**`/voice/transcribe` — before anything else, words become text**
+If the foster has voice notes — observations about the dog, things they've been meaning to write down — they record them in-app. `/voice/transcribe` converts audio to text via Whisper and feeds it directly into the session alongside the written notes. No typing required.
+
+```json
+POST /voice/transcribe
+{ "audio": "note_001.m4a" }
+
+→ { "transcript": "Moose has this thing he does every morning — finds a tennis ball and brings it to whoever's having coffee. Been doing it since week one." }
+```
+
+That transcript becomes `foster_notes` in the submission. The detail that ends up driving the whole story may start as 15 seconds of audio on a phone.
+
+→ Building this? See [G-03] in the pull list.
+
 This is Moose. Three years old, black lab mix, four months in foster care. Here's what came in:
 
 ```json
@@ -122,6 +136,30 @@ Here's the key orchestration decision: BCS doesn't work down the list mechanical
 BCS calls `/story/build` next.
 
 → Building this API? See [P-04] in the pull list. · [Full scoring rubric →](https://wag-on-home.com/bcs-review.html)
+
+---
+
+## Step 2b: `/word/check` — Clear the Description Before Building
+
+Before `/story/build` runs, BCS passes the raw description through `/word/check`. This catches language that measurably hurts adoption speed — not based on opinion, but on a 70,733-dog study.
+
+```json
+POST /word/check
+{ "description": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months." }
+
+→ {
+    "flagged": [
+      { "word": "good with", "reason": "vague — doesn't signal anything specific", "suggested_replacement": "great with" },
+      { "word": "house trained", "reason": "neutral — expected, not a selling point", "suggested_replacement": "move this fact into context, not as a lead" }
+    ],
+    "impact_score": 34,
+    "clean_version": "Moose is a 3-year-old lab mix — great with other dogs and kids, fully settled at home, four months in foster care."
+  }
+```
+
+BCS passes both the `flagged` list and the `clean_version` into `/story/build` as context. The story that comes back is built on top of language that's already been cleared — and the coaching packet tells the foster exactly which words to avoid in future sessions.
+
+→ Building this? See [G-04] in the pull list.
 
 ---
 
@@ -235,28 +273,87 @@ Notice shot #2: "Mid-fetch action shot." `/photos/curate` read the story that `/
 
 ---
 
-## Step 5: No Video → Generate Coaching Prompt
+## Step 5: The Video Pipeline
 
-BCS sees `"video": null` in the original submission. It doesn't error. It doesn't skip. It doesn't ask the foster to "please upload a video."
-
-It generates a coaching prompt — specific, actionable, tied directly to Moose's story. The foster gets a direction, not a blank ask.
-
-This happens at the logic layer. No external API call required.
+### No video yet → coaching prompt + shot agenda
+BCS sees `"video": null`. It doesn't error. It generates a coaching prompt and a `shot_agenda` — specific, actionable, tied directly to Moose's story. The foster (and Pat) get a direction, not a blank ask.
 
 ```json
-// BCS generates coaching prompt (no API call needed — logic layer)
 {
   "prompt_type": "video_absent",
-  "priority": "high",
   "coaching": "Fetch is Moose's superpower — and it doesn't exist yet on camera. A 60-second video of the tennis ball drop is worth more than any description we can write.",
-  "shot_direction": "Start sitting on the floor. Wait for Moose to bring the ball. Let it happen naturally. Don't stage it — just capture what he already does every day.",
+  "shot_agenda": [
+    { "id": "fetch_drop",  "description": "Tennis ball drop — sit on the floor, wait for it", "priority": "high" },
+    { "id": "eye_contact", "description": "Face-close, eye contact, natural light",           "priority": "high" },
+    { "id": "calm_moment", "description": "Resting or settling — the dog they bring home",    "priority": "medium" }
+  ],
   "estimated_score_impact": "+4 on video_presence and story_first_gate"
 }
 ```
 
-The foster gets exactly what to do next. Four points sitting on the table, waiting for a 60-second video on a phone.
+### `/video/direct` — Pat gets a director in his ear
+Before Pat hits record, the AI Director briefs him using the `shot_agenda`. Then it watches the live feed and coaches in real-time — quality *and* coverage.
 
-→ Building the video coaching API? See [H-02] in the pull list.
+```
+Pre-session: "For Moose we need: (1) the tennis ball drop, (2) eye contact shot, (3) one calm moment. Let's go."
+
+Live:  "Nice — that's the eye contact. Get lower, lose the shadow."
+       "Tennis ball moment still needed — wait for him to bring it naturally."
+       "Hold that — this is the calm moment we needed."
+```
+
+→ Building this? See [H-01] in the pull list.
+
+### `/video/coach` — what was captured vs. what's still missing
+After filming, BCS passes the footage to `/video/coach` with the original `shot_agenda`. It scores what was captured and flags what's still needed.
+
+```json
+POST /video/coach
+{ "video_url": "moose_session1.mp4", "shot_agenda": [...], "dog_context": { "name": "Moose", ... } }
+
+→ {
+    "what_landed":  ["Eye contact moment — strong. Natural light, clear personality."],
+    "what_to_improve": ["Tennis ball drop was staged — wait for him to initiate it naturally."],
+    "agenda_coverage": [
+      { "id": "eye_contact", "captured": true  },
+      { "id": "fetch_drop",  "captured": false, "note": "Staged — reshoot naturally" },
+      { "id": "calm_moment", "captured": true  }
+    ],
+    "next_session_priority": "Reshoot fetch drop — let Moose initiate. That's the personality hook."
+  }
+```
+
+→ Building this? See [H-02] in the pull list.
+
+### `/video/produce` — the highlight reel
+Raw footage becomes a produced reel — edited, music matched to Moose's personality, paced to hold attention and make the viewer feel something.
+
+```json
+POST /video/produce
+{ "footage_url": "moose_session1.mp4", "dog_info": { "name": "Moose", "energy": "playful" }, "platform_hints": { "video": { "length_seconds": 63, "music_tone": "warm", "open_with": "action" } } }
+
+→ { "reel_url": "moose_reel_v1.mp4", "duration_seconds": 63, "music": "warm_acoustic_01" }
+```
+
+→ Building this? See [H-03] in the pull list.
+
+### `/video/export` — YouTube-ready
+The reel gets formatted for platform delivery — correct resolution, thumbnail generated, title and tags written.
+
+```json
+POST /video/export
+{ "video_url": "moose_reel_v1.mp4", "dog_info": { "name": "Moose", ... }, "target": "youtube" }
+
+→ {
+    "exported_url":    "https://youtube.com/...",
+    "thumbnail_url":   "moose_thumb.jpg",
+    "suggested_title": "Moose — the dog who brings you a tennis ball before you even ask",
+    "suggested_tags":  ["lab mix", "adoption", "Memphis", "Blues City Rescue"],
+    "duration_seconds": 63
+  }
+```
+
+→ Building this? See [H-04] in the pull list.
 
 ---
 
@@ -319,6 +416,91 @@ Moose went from a 3 to an 11 without any new photos or video. When the shot list
 
 ---
 
+## Step 7: `/story/refine` — The Human Gate
+
+Nothing leaves BCS without the foster's approval. `review_required: true` is always present in the coaching packet. The foster sees a full preview — description, photos, video — and has exactly three paths:
+
+| Action | When | What happens |
+|---|---|---|
+| ✅ **Accept** | "This is right. Use it." | Story locked. `review_status: approved`. Export enabled. |
+| ✏️ **Tweak** | "I like the direction — adjust X." | Quick-tap or free text. BCS regenerates. Loop repeats. |
+| 🔄 **Start over** | "Doesn't feel like this dog." | Back to intake pre-filled, or fresh generation — UX decision TBD. |
+
+**Quick-tap options:** `Shorter` · `Longer` · `More playful` · `Emphasize calm` · `Less jargon` · `Different title`
+
+```json
+POST /story/refine
+{ "session_id": "bcs-moose-001", "story_id": "s_001", "refine_instruction": "shorter — and lead with the tennis ball drop, not the breed stats" }
+
+→ { "story_id": "s_001_r1", "description": "...", "review_status": "pending_approval", "refine_count": 1 }
+```
+
+`refine_count` is tracked. If a dog consistently needs 4+ refinements, it's a signal the intake data was thin — a coaching opportunity for the foster.
+
+→ Building this? See [P-02] in the pull list.
+
+---
+
+## Step 8: `/story/card` + `/story/format` — Take It Anywhere
+
+Once approved, the story is export-ready. Two final tools make it portable.
+
+**`/story/card`** generates a shareable image card — the kind a foster posts to Facebook or texts to a friend. No link required.
+
+```json
+POST /story/card
+{ "dog_name": "Moose", "hook": "The dog who brings you a tennis ball before you even ask.", "photo_url": "moose_eye.jpg", "rescue_name": "Blues City Animal Rescue" }
+
+→ { "card_url": "moose_card_1x1.png", "card_url_portrait": "moose_card_4x5.png" }
+```
+
+**`/story/format`** reformats the approved description for each platform's character limits — no manual trimming.
+
+```json
+POST /story/format
+{ "description": "...", "target": "petfinder" }
+
+→ { "formatted": "...", "char_count": 847, "limit": 4000, "status": "within_limit" }
+```
+
+Platforms: `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegroups`
+
+No native integration with legacy platforms — manual copy/paste by design. BCS builds the story. The foster carries it.
+
+→ Building these? See [G-05] and [G-06] in the pull list.
+
+---
+
+## Step 9: `/story/represent` — If the Dog Doesn't Place
+
+Moose went through the full pipeline. He got presented. He didn't place. This isn't failure — it's the next session starting.
+
+`/story/represent` generates a fresh coaching brief based on what's already been tried, what near-miss adopters said was missing, and what top performers do differently for dogs like Moose.
+
+```json
+POST /story/represent
+{
+  "dog_info": { "name": "Moose", ... },
+  "session_history": [
+    { "story_version": 1, "coaching_tips_tried": ["personality hook", "fetch video"], "near_miss_signals": ["3 adopters asked about apartment living"] }
+  ]
+}
+
+→ {
+    "new_angle":        "Lead with the apartment question — Moose does fine in smaller spaces with enough walks. Three adopters almost said yes over this exact concern.",
+    "what_was_tried":   ["Fetch hook", "Eye contact photo", "60-second reel"],
+    "what_was_missing": ["Apartment compatibility not addressed"],
+    "try_this_next":    ["Add one sentence about Moose's daily walk routine", "Reshoot with city/outdoor background to signal urban dog"],
+    "new_shot_agenda":  [...]
+  }
+```
+
+Session 2 knows what Session 1 tried. The story never resets — it compounds.
+
+→ Building this? See [P-06] in the pull list.
+
+---
+
 ## What This Means for Engineers
 
 A few things worth internalizing before you build:
@@ -336,6 +518,55 @@ A few things worth internalizing before you build:
 ---
 
 Pick any API from the pull list. Build it to spec. The coaching packet is the north star — everything flows toward it.
+
+---
+
+## How the Rubric Gets Better Over Time
+
+The BCS rubric ships as a fixed set of dimensions and weights. But it's designed to improve — and the mechanism is deliberate.
+
+**The rubric is versionable.** Every `/bcs/score` call returns `rubric_version: "1.0.0"`. Engineers can pin to a version. Platforms know exactly which rubric produced a given score. When the rubric updates, scores are comparable across versions.
+
+**WAH's periodic contribution to the BCS community is the rubric.**
+Wag On Home runs a real adoption platform. It captures real outcome data — days-to-home, near-miss signals, what changed between story v1 and v2 that made the difference, which BCS dimensions actually predicted faster adoption. The open source community doesn't have that data. WAH does.
+
+Periodically, WAH analyzes correlations between BCS dimension scores and adoption outcomes and proposes a rubric update:
+
+```
+Rubric v1.0 ships — based on research + lived rescue experience
+    ↓
+WAH runs the platform — captures outcome data across real dogs
+    ↓
+WAH analysis: "personality_hook scored 0 → median 34 days to adoption.
+               personality_hook scored 2 → median 9 days."
+    ↓
+WAH proposes: raise personality_hook weight · add new dimension: transport_clarity
+    ↓
+BCS community reviews → rubric v1.1 ships
+    ↓
+Every tool using BCS gets smarter automatically
+```
+
+**What this means for engineers:**
+- Dimension weights must be configurable — not hardcoded. Store them in a config object, not scattered through scoring logic.
+- The rubric config should be the single source of truth for all weight and dimension definitions.
+- When WAH ships a rubric update, it ships as a config change — no API contract changes, no breaking updates.
+
+```json
+// rubric-config.json (versionable, community-owned)
+{
+  "version": "1.1.0",
+  "dimensions": [
+    { "id": "personality_hook", "max": 2, "weight": 1.4 },
+    { "id": "visual_impact",    "max": 2, "weight": 1.0 },
+    { "id": "video_presence",   "max": 2, "weight": 1.2 },
+    { "id": "transport_clarity","max": 2, "weight": 1.3 }
+    // ...
+  ]
+}
+```
+
+**The governance question (open):** WAH proposes rubric updates. The BCS community reviews. Anyone can pin to a prior version. This is the reciprocal relationship — WAH contributes intelligence, the community validates it, everyone benefits. Formal governance process TBD as the community grows.
 
 ---
 
