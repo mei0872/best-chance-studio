@@ -47,6 +47,8 @@ BCS receives this and immediately knows what it's working with: one photo, no vi
 
 ## Step 2: `/bcs/score` — Read the Gaps
 
+→ **[Read the full BCS rubric first](https://wag-on-home.com/bcs-review.html)** — every dimension, what it means, what good looks like, how it gets better over time. Takes 5 minutes. Makes everything below make sense.
+
 Before doing anything else, BCS needs a map.
 
 The score isn't a grade — it's a diagnostic. It tells BCS where the gaps are, how serious each one is, and which ones to tackle first. Without this step, every subsequent API call is flying blind. With it, every call knows exactly what it's solving for.
@@ -135,7 +137,7 @@ Here's the key orchestration decision: BCS doesn't work down the list mechanical
 
 BCS calls `/story/build` next.
 
-→ Building this API? See [P-04] in the pull list. · [Full scoring rubric →](https://wag-on-home.com/bcs-review.html)
+→ Building this API? See [P-04] in the pull list.
 
 ---
 
