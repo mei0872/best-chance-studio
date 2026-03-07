@@ -12,21 +12,7 @@ BCS is an orchestration layer. It doesn't just call one API — it reads the gap
 
 ## Step 1: The Foster Submits What They Have
 
-No form to fill out. No checklist. The foster drops in what they have — a paragraph of text, a photo or two, some notes from the past few months — and BCS takes it from there.
-
-**`/voice/transcribe` — before anything else, words become text**
-If the foster has voice notes — observations about the dog, things they've been meaning to write down — they record them in-app. `/voice/transcribe` converts audio to text via Whisper and feeds it directly into the session alongside the written notes. No typing required.
-
-```json
-POST /voice/transcribe
-{ "audio": "note_001.m4a" }
-
-→ { "transcript": "Moose has this thing he does every morning — finds a tennis ball and brings it to whoever's having coffee. Been doing it since week one." }
-```
-
-That transcript becomes `foster_notes` in the submission. The detail that ends up driving the whole story may start as 15 seconds of audio on a phone.
-
-→ Building this? See [G-03] in the pull list.
+No form to fill out. No checklist. The foster drops in what they have — text, photos, videos, voice notes, written observations — and BCS takes it from there. Whatever they've got. BCS figures out the rest.
 
 This is Moose. Three years old, black lab mix, four months in foster care. Here's what came in:
 
@@ -36,12 +22,26 @@ This is Moose. Three years old, black lab mix, four months in foster care. Here'
   "raw_text": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
   "photos": ["photo_001.jpg", "photo_002.jpg"],  // array — Moose submitted 2 raw shots
   "videos": [],                                   // array — empty, no video yet
+  "voice_notes": ["note_001.m4a"],               // array — audio observations from the foster
   "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
   "rescue_id": "blues-city-memphis"
 }
 ```
 
-BCS receives this and immediately knows what it's working with: one photo, no video, a thin raw description, and foster notes that are — quietly — full of gold. The orchestration starts now.
+BCS receives this and immediately knows what it's working with: two raw photos, no video, a thin written description, voice notes, and foster notes that are — quietly — full of gold. The orchestration starts now.
+
+**`/voice/transcribe` — voice notes become text before scoring begins**
+
+Before BCS runs the score, voice notes are converted to text. A foster who records 15 seconds of observations on their phone instead of typing them out gets the same outcome — and often more honest detail.
+
+```json
+POST /voice/transcribe
+{ "audio": "note_001.m4a" }
+
+→ { "transcript": "Moose has this thing he does every morning — finds a tennis ball and brings it to whoever's having coffee. Been doing it since week one." }
+```
+
+That transcript merges into `foster_notes`. The detail that drives the whole story may start as a voice memo at 6am.
 
 ---
 
