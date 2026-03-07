@@ -35,14 +35,6 @@ The rescue world has never had a standard for what great looks like at adoption 
 
 Rescues care deeply — that's not the problem. The people doing this work got into it because they love dogs. Not because they love marketing. Nobody taught them to think like a realtor. A realtor doesn't list square footage — they help you picture your life there. That skill is learned. The rescue world has never had the infrastructure to teach it.
 
-Here's what that gap looks like in a real listing:
-
-> *"DOB: 1/22/2016. He is a very sweet boy, loves people; wants to be a lap dog. He is gentle, well mannered, house/leash trained, obeys basic commands."*
-
-Fifty-five words. Written by someone who loves this dog. No standard to measure against. No coaching to do better. No chance.
-
-Best Chance Studio is the infrastructure that was never there. Not a correction of what rescues are doing wrong — a gift of the coaching they never had access to.
-
 ---
 
 ## What it looks like in practice
@@ -54,8 +46,6 @@ Best Chance Studio is the infrastructure that was never there. Not a correction 
 **After BCS:**
 > *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
 > BCS score: **9 / 20** · Shot list generated · YouTube-ready video produced
-
-→ [See the full input/output breakdown](bcs-example.md)
 
 ---
 
@@ -105,6 +95,8 @@ If you ship something and can't stop thinking about what comes next — let's ta
                    high bar: multi-platform in one pass — YouTube, Instagram,
                    TikTok, Facebook each optimized simultaneously
 ```
+
+→ [See the full input/output breakdown](bcs-example.md)
 
 ---
 
