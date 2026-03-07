@@ -197,7 +197,7 @@ POST /story/build
 
 // Response
 {
-  "coached_description": "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.\n\nHe's three, fully house-trained, great with other dogs and kids. He's been patient in a way that honestly shouldn't be possible — four months in rescue, and every day he keeps showing up.\n\nHe needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.",
+  "coached_description": "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.\n\nHe's three, fully house-trained, great with other dogs and kids. He's been patient in a way that shouldn't be possible — four months in rescue, and every day he keeps showing up.\n\nHe needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.",
   "coaching_packet": {
     "what_changed": "Pulled the fetch behavior from foster notes and made it the personality hook. Rewrote in first-person foster voice. Closed with the family vision — the adopter can picture this dog in their living room.",
     "dimensions_improved": [

@@ -2,7 +2,7 @@
 
 *Last updated: March 7, 2026*
 
-> We're being transparent about how this project is governed — including the parts that are still being figured out. We'd rather be honest about where we are than overstate a governance structure we haven't built yet.
+> We're being transparent about how this project is governed — including the parts that are still being figured out. We'd rather be clear about where we are than overstate a governance structure we haven't built yet.
 
 ---
 
@@ -126,7 +126,7 @@ We're not planning for that scenario. We're being transparent that the license p
 
 ## Open Questions (Being Figured Out)
 
-We'd rather list these honestly than pretend they're resolved:
+These are open. We'd rather name them plainly than pretend they're resolved:
 
 - [ ] **Formal steering committee** — when does the community get a formal governance role? What does that look like?
 - [ ] **Rubric proposal process** — the model above is v1. It'll be refined as real proposals come in.

@@ -52,7 +52,7 @@
 
 Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.
 
-He's three, fully house-trained, great with other dogs and kids. He's been patient in a way that honestly shouldn't be possible — four months in rescue, and every single day he just keeps showing up.
+He's three, fully house-trained, great with other dogs and kids. He's been patient in a way that shouldn't be possible — four months in rescue, and every single day he just keeps showing up.
 
 He needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.
 
