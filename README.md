@@ -9,13 +9,13 @@ Open source coaching tools that give every rescue dog their best chance at adopt
 
 ## A Note from Kip, Michele & Beth
 
-We've been fostering dogs since 2009 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. Honestly? We're hooked on fostering.
+We've been fostering dogs since 2009 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
 
 But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
 
-Here's the honest version: Kip is absolutely terrible at writing dog descriptions. Always has been. But fostering is a community — everybody pitches in — so he keeps sitting down and doing it anyway. We both know there's a better way. We've known it for years. We just finally decided to build it.
+Here's the thing: Kip is absolutely terrible at writing dog descriptions. Always has been. But fostering is a community — everybody pitches in — so he keeps sitting down and doing it anyway. We both know there's a better way. We've known it for years. We just finally decided to build it.
 
-What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. And we can't do it without you.
+What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. And we will do it with you.
 
 — Kip, Michele & Beth
 
