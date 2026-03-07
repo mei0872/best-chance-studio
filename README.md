@@ -23,25 +23,9 @@ What we build here is going to be loved by rescues. It's going to help them get 
 
 ## tl;dr
 
-Every day a rescue dog waits is a day the tools failed them.
-
 The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
 
 **Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free forever.**
-
----
-
-## What it looks like in practice
-
-**Before BCS:**
-> *"Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch. He is looking for his forever home."*
-> BCS score: **4 / 12**
-
-**After BCS:**
-> *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
-> BCS score: **9 / 20** · Shot list generated · YouTube-ready video produced
-
-→ [See the full input/output breakdown](bcs-example.md)
 
 ---
 
@@ -61,11 +45,46 @@ Best Chance Studio is the infrastructure that was never there. Not a correction 
 
 ---
 
+## What it looks like in practice
+
+**Before BCS:**
+> *"Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch. He is looking for his forever home."*
+> BCS score: **4 / 20**
+
+**After BCS:**
+> *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
+> BCS score: **9 / 20** · Shot list generated · YouTube-ready video produced
+
+→ [See the full input/output breakdown](bcs-example.md)
+
+---
+
 ## What Best Chance Studio Is
 
 A 10-dimension rubric (scored out of 20) that evaluates a dog's story: photos, description, video, personality hook, compatibility, foster voice, and more. Gap analysis tells the presenter exactly what to fix. Coached dogs move faster.
 
 The APIs are open source primitives. Any platform can use them.
+
+→ [Why we open sourced this](WHY.md)
+→ [The research behind the rubric](bcs-example.md)
+
+---
+
+## Two Ways In
+
+### Grab something from the pull list
+No application. No commitment. Pick a task, build it, ship something real. Every item has a dog on the other side of it.
+
+→ [Browse open issues](../../issues)
+
+### Go deeper
+If you ship something and can't stop thinking about what comes next — let's talk.
+
+→ KipMeierhofer@gmail.com
+
+---
+
+## The APIs
 
 ```
 /bcs/score       → AI-driven scoring — story, photos, and video analyzed
@@ -89,50 +108,9 @@ The APIs are open source primitives. Any platform can use them.
 
 ---
 
-## The Research Backing
-
-We analyzed 33,240+ rescue listings. Here's what the data shows:
-
-| Finding | What it means |
-|---|---|
-| Eye contact photos → shorter time to adoption | A great photo is the difference between a scroll-past and a heartbeat |
-| 100+ word descriptions outperform shorter ones | Specific adjectives change outcomes — "eager," "clever," "gentle" win |
-| Word choice predicts adoption speed | "Energetic" signals high maintenance. "Lively" signals joy. Same dog. Different outcome. |
-
-
----
-
-## Why Open Source
-
-The BCS rubric is a starting hypothesis — grounded in peer-reviewed research, refined by real rescue experience. The goal is for the community to improve it over time: better scoring dimensions, sharper coaching rules, new signal types.
-
-The tools are MIT licensed. Fork them, deploy them, use them standalone. Any rescue anywhere can run Best Chance Studio without connecting to any platform.
-
-The `platform_hints` layer is an open standard — we define it, anyone can implement it. Any platform that tracks adoption outcomes can feed signal back into the APIs. The standard is open.
-
-Our goal: these open APIs become the standard the rescue world builds on.
-
----
-
-## Two Ways In
-
-### Grab something from the pull list
-No application. No commitment. Pick a task, build it, ship something real. Every item has a dog on the other side of it.
-
-→ [Browse open issues](../../issues)
-
-### Go deeper
-If you ship something and can't stop thinking about what comes next — let's talk.
-
-One lead engineer role on the Wag On Home platform. Own the architecture. Design the foundation. Equity. The real conversation.
-
-→ KipMeierhofer@gmail.com
-
----
-
 ## The People
 
-**Kip Meierhofer** — Co-founder. 25 years building enterprise systems (Northwestern Mutual). 7 dogs at home. ~100 fosters a year. Built this because the tools that should have existed didn't.
+**Kip Meierhofer** — Co-founder. 25 years building enterprise systems (Northwestern Mutual). Fostering since 2009. 7 dogs at home. Hundreds of fosters alongside Beth at Blues City. Built this because he's been sitting down to write dog descriptions for 15 years and he's still terrible at it — and there was never anything to help. Building the thing that should have existed years ago.
 
 **Michele Meierhofer** — Co-founder. 20+ years marketing leadership. She might be the most dedicated foster mom in the rescue world — she's loved every dog that's come through their door. The brand, the voice, and the heart of everything we build.
 
