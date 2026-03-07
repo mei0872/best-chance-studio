@@ -215,7 +215,7 @@ POST /story/build
 
 Four dimensions improved. One API call.
 
-→ Building this API? See [P-02] Story Builder Session UI in the pull list.
+→ Building this API? See [P-05] Story Builder API in the pull list. Building the UI that wraps it? See [P-02].
 
 ---
 

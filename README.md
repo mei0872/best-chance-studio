@@ -78,6 +78,9 @@ BCS              → the complete assembled application — all APIs below work 
 
 /bcs/score       → AI-driven scoring — story, photos, and video analyzed
 
+/coaching/packet → dog score + profile → full coaching brief for the presenter
+                   what to fix, shot list (shot_agenda), description draft, live meet tips
+
 /word/check      → paste a description → flagged words + adoption-proven replacements
                    backed by a 70,733-dog study on what language moves adoptions
 
