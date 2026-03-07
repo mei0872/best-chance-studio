@@ -29,14 +29,6 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months
 
 ---
 
-## The Problem
-
-The rescue world has never had a standard for what great looks like at adoption time.
-
-Rescues care deeply — that's not the problem. The people doing this work got into it because they love dogs. Not because they love marketing. Nobody taught them to think like a realtor. A realtor doesn't list square footage — they help you picture your life there. That skill is learned. The rescue world has never had the infrastructure to teach it.
-
----
-
 ## What it looks like in practice
 
 **Before BCS:**
