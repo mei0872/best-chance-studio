@@ -531,7 +531,9 @@ The foster didn't have to figure any of this out. The platform surfaced it, call
 
 ### Path B — Standalone / no platform intelligence
 
-A rescue not on a smart platform can still call `/story/represent` — but they're the ones supplying the context. No automatic near-miss signals. No learned patterns. Just what the foster observed and what they know was missing.
+A rescue not on a smart platform can still call `/story/represent` — but they're the ones supplying the context. No automatic near-miss signals. No learned patterns.
+
+However, a rescue coordinator who's paying attention can pass in a lot. An adopter who emailed a question and didn't apply. A comment someone left on the Facebook post. Something Beth noticed during a conversation. None of this is automated — but it can be manually added to `near_miss_signals` and the API will use it just as it would a platform-generated signal.
 
 ```json
 POST /story/represent
@@ -541,16 +543,20 @@ POST /story/represent
     {
       "story_version": 1,
       "coaching_tips_tried": ["personality hook", "fetch video"],
-      "near_miss_signals":   ["foster noticed several inquiries dropped off — reason unknown"]
+      "near_miss_signals": [
+        "email inquiry asked if he'd be okay in an apartment — never followed up",
+        "Facebook comment: 'love him but we have a cat'",
+        "Beth's note: two people asked about his energy level at the event"
+      ]
     }
   ]
-  // no platform_hints — standalone mode
+  // no platform_hints — but human-supplied signal is real signal
 }
 ```
 
-The output is still useful — it reviews what was tried and suggests a fresh angle based on BCS best practices. But it's working from general principles, not real adopter signal. The brief is good. It's not as targeted.
+A smart rescue coordinator using standalone mode can get surprisingly close to platform-quality output — they're just doing manually what a smart platform does automatically. The API doesn't care where the signal came from. It uses what it's given.
 
-> *"Standalone mode gives you a fresh coaching approach. Platform-connected mode gives you the reason three real adopters walked away."*
+> *"Standalone mode with no signal: solid general coaching. Standalone mode with manually-logged adopter notes: nearly as targeted as platform-connected. Smart platform: fully automatic — no human in the loop."*
 
 ---
 
