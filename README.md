@@ -59,7 +59,7 @@ These APIs work together as a system. An API built without understanding how the
 
 ```
 BCS              → the complete assembled application — all APIs below work together as one tool
-                   start here if you want to build the whole thing: see [BCS-01] in pull-list.md
+                   start here if you want to build the whole thing: see [BCS-01] in TASKS.md
 
 /bcs/score       → AI-driven scoring — story, photos, and video analyzed
 
@@ -109,7 +109,7 @@ BCS              → the complete assembled application — all APIs below work 
 ### Grab something from the pull list
 Pick a task, build it, ship something real. Every API done well will help hundreds — if not thousands — of dogs get to their homes faster. The rescue world thanks you.
 
-→ [See the full pull list — pull-list.md](pull-list.md)
+→ [See the full pull list — TASKS.md](TASKS.md)
 
 ### Help us build more tools
 We have more ideas than we have hands. We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.

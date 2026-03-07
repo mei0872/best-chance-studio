@@ -53,7 +53,7 @@ BCS is the open source coaching and scoring layer. WAH is the platform being bui
 
 Standard open source process:
 
-1. Pick a task from [pull-list.md](pull-list.md) or open an issue
+1. Pick a task from [TASKS.md](TASKS.md) or open an issue
 2. Fork the repo, build to spec
 3. Open a PR with a clear description of what you built and how you tested it
 4. A maintainer reviews — feedback within a week for active tasks
