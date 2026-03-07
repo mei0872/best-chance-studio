@@ -51,12 +51,9 @@ Rescues care deeply — that's not the problem. The people doing this work got i
 
 ## What Best Chance Studio Is
 
-A 10-dimension rubric (scored out of 20) that evaluates a dog's story: photos, description, video, personality hook, compatibility, foster voice, and more. Gap analysis tells the presenter exactly what to fix. Coached dogs move faster.
+Coaching that gives every rescue dog their best chance — better photos, better descriptions, better video, and a clear picture of what each dog needs to go home. The scoring rubric is one piece of it. So is the shot list, the video coaching, the story rewrite, and the presenter prep. All of it together moves dogs faster.
 
-The APIs are open source primitives. Any platform can use them.
-
-→ [Why we open sourced this](WHY.md)
-→ [The research behind the rubric](bcs-example.md)
+The APIs are open source primitives. Any platform can use them. MIT licensed. Free forever.
 
 ---
 
