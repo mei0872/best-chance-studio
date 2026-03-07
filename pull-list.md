@@ -44,7 +44,7 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 **Stack:** Plain HTML + vanilla JS. No framework. Works offline.
 **Scoring source:** Read from `rubric-config.json` — do not hardcode dimension definitions or weights. The config is the single source of truth. When the rubric updates, only the config changes.
 **Dependency note:** G-01 should eventually call `/bcs/score` (P-04) rather than implement scoring logic locally. For now, implement scoring directly using `rubric-config.json` as your spec. When P-04 ships, G-01 swaps the local logic for an API call — no UI changes needed.
-**Session history:** Every score run must be written to session history with a timestamp and rubric version. See FLOW.md for the history requirement.
+**Inventory logging:** When a dog's profile is published, log it to the dog inventory — coached story, final score, rubric version, publish date. See FLOW.md for the inventory requirement.
 **Deliverable:** `bcs-scorer.html` — self-contained, no build step.
 
 ---

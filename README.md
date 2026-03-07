@@ -48,7 +48,7 @@ Coaching that gives every rescue dog their best chance — better photos, better
 
 The APIs are open source primitives. Any platform can use them. MIT licensed. Free forever.
 
-**Session history is a core requirement.** Every API reads prior session history before running and writes its output back. Nothing is ever lost. Nothing is ever repeated without knowing it's a repeat. The story compounds — and that only works if history is always there.
+**Published dog inventory is a core requirement.** Every dog that completes BCS and gets published must be logged — coached story, final score, publish date. Every coached dog is a real dog ready to be matched. Don't discard it.
 
 ---
 
