@@ -1,0 +1,122 @@
+{
+  "_comment": "BCS Rubric Configuration — v1.0.0. This is the single source of truth for all dimension definitions and weights. /bcs/score reads from here. When the rubric updates, only this file changes — no API contract changes, no breaking updates.",
+  "version": "1.0.0",
+  "max_score": 18,
+  "dimensions": [
+    {
+      "id": "personality_hook",
+      "label": "Personality Hook",
+      "description": "Does the adopter know who this dog IS — not just breed and age, but personality? Is there one specific moment or detail that makes this dog stick in someone's mind?",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Specific, memorable, only-this-dog detail. Makes you feel something.",
+        "1": "Some warmth, but generic. Could describe any dog of this breed.",
+        "0": "Age, breed, sex. That's it."
+      }
+    },
+    {
+      "id": "visual_impact",
+      "label": "Visual Impact — Photos",
+      "description": "Do the photos make someone stop scrolling? Dog's face visible? Real light, real expression, real life?",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "3+ photos: face-on with eye contact, full body, in motion or with a human.",
+        "1": "1–2 photos, decent quality, but limited angles or expression.",
+        "0": "Single shot, blurry, kennel background, dog facing away."
+      }
+    },
+    {
+      "id": "video_presence",
+      "label": "Video Presence",
+      "description": "Does a video exist? Does it make you feel something in the first 10 seconds?",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Video exists, dog's personality is visible, authentic not staged, emotionally engaging.",
+        "1": "Video exists but opens on a wall, or is low-energy, or too long with no hook.",
+        "0": "No video."
+      }
+    },
+    {
+      "id": "compatibility_clarity",
+      "label": "Compatibility Clarity",
+      "description": "Can the RIGHT adopter self-identify immediately? And the wrong adopter self-select out? Kids, other dogs, cats, energy level, home type — stated clearly and honestly.",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Clear, honest, specific. Right adopter knows immediately. Wrong adopter knows too.",
+        "1": "Some compatibility noted, but incomplete or vague.",
+        "0": "Nothing stated — adopter has to guess."
+      }
+    },
+    {
+      "id": "foster_voice",
+      "label": "Foster Voice",
+      "description": "Does this listing feel like a real person who knows and loves this dog — or does it feel like a form was filled out?",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Personal, warm, specific details only the foster would know. You can feel the relationship.",
+        "1": "Some personality in the writing, but still leans generic or template-like.",
+        "0": "Clinical, factual, vet-record language. No human warmth."
+      }
+    },
+    {
+      "id": "no_surprises",
+      "label": "No Surprises",
+      "description": "Are any challenges or special needs communicated clearly — without being scary or unnecessarily disqualifying?",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Honest, specific, reframed positively. Right home recognizes themselves.",
+        "1": "Challenges mentioned but framed in a way that sounds worse than it is.",
+        "0": "Challenges omitted entirely, OR framed so negatively the dog sounds unadoptable."
+      }
+    },
+    {
+      "id": "story_first_gate",
+      "label": "Story-First Gate",
+      "description": "Is a coached intro video ready? Can someone feel this dog before they ever request a live meet?",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Short, coached, warm intro video ready — dog's personality visible in under 60 seconds.",
+        "1": "Some intro video exists but uncoached, low energy, or too long.",
+        "0": "No intro video — adopters arrive cold."
+      }
+    },
+    {
+      "id": "presenter_readiness",
+      "label": "Presenter Readiness",
+      "description": "Does the presenter know this dog? Have they read the coaching packet? Do they know the strongest asset and the likely questions?",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Presenter can speak to specific moments, addresses compatibility naturally, knows what to lead with.",
+        "1": "Presenter knows the basics but is likely to read from the bio or get caught off guard.",
+        "0": "Presenter meeting this dog for the first time on camera."
+      }
+    },
+    {
+      "id": "family_vision",
+      "label": "Family Vision",
+      "description": "After seeing this listing — photos, video, description — can the adopter picture this dog in their life? Not 'this seems like a nice dog' but 'that's my dog.'",
+      "max": 2,
+      "weight": 1.0,
+      "scores": {
+        "2": "Listing creates a picture. You can see the dog at the end of your bed, in your car, on your couch.",
+        "1": "Listing is warm but stays abstract. Describes the dog without making you feel the dog.",
+        "0": "Listing is invisible. No image forms. No feeling."
+      }
+    }
+  ],
+  "grade_thresholds": {
+    "A+": { "min": 16, "max": 18, "label": "Broadcast ready. Present this dog now." },
+    "A":  { "min": 12, "max": 15, "label": "Strong. Minor gaps — coach on 1–2 dimensions before live." },
+    "B":  { "min": 8,  "max": 11, "label": "Decent foundation. Real coaching needed on 3–4 dimensions." },
+    "C":  { "min": 5,  "max": 7,  "label": "Significant gaps. Don't present yet — story needs work." },
+    "D":  { "min": 0,  "max": 4,  "label": "Start over. This dog is invisible right now." }
+  }
+}
