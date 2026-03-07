@@ -49,21 +49,6 @@ The APIs are open source primitives. Any platform can use them. MIT licensed. Fr
 
 ---
 
-## Ways Engineers Can Help the Rescue Community
-
-### Grab something from the pull list
-Pick a task, build it, ship something real. Every API done well will help hundreds — if not thousands — of dogs get to their homes faster. The rescue world thanks you.
-
-→ [See the full pull list — pull-list.md](pull-list.md)
-
-### Help us build more tools
-We have more ideas than we have hands. We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.
-
-→ KipMeierhofer@gmail.com
-→ [How the project is governed — GOVERNANCE.md](GOVERNANCE.md)
-
----
-
 ## Start Here Before Picking an API
 
 These APIs work together as a system. An API built without understanding how the pieces connect will fit the spec but miss the point.
@@ -116,6 +101,21 @@ BCS              → the complete assembled application — all APIs below work 
 ```
 
 → [See the full input/output breakdown](bcs-example.md)
+
+---
+
+## Ways Engineers Can Help the Rescue Community
+
+### Grab something from the pull list
+Pick a task, build it, ship something real. Every API done well will help hundreds — if not thousands — of dogs get to their homes faster. The rescue world thanks you.
+
+→ [See the full pull list — pull-list.md](pull-list.md)
+
+### Help us build more tools
+We have more ideas than we have hands. We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.
+
+→ KipMeierhofer@gmail.com
+→ [How the project is governed — GOVERNANCE.md](GOVERNANCE.md)
 
 ---
 
