@@ -102,7 +102,7 @@ Rules:
 - No field is ever required — `platform_hints` absent = standalone mode, always works
 - Proposals follow the same PR process as code
 
-→ Full schema: [platform-hints-schema.md](https://github.com/mei0872/wag-on-home-workspace)
+→ Full schema: [platform-hints-schema.md](docs/platform-hints-schema.md)
 
 ---
 

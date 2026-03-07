@@ -54,6 +54,8 @@ The APIs are open source primitives. Any platform can use them. MIT licensed. Fr
 ### Grab something from the pull list
 Pick a task, build it, ship something real. Every API done well will help hundreds — if not thousands — of dogs get to their homes faster. The rescue world thanks you.
 
+→ [See the full pull list — pull-list.md](pull-list.md)
+
 ### Help us build more tools
 We have more ideas than we have hands. We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.
 

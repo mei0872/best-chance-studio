@@ -1,6 +1,6 @@
 # Contributing to Best Chance Studio™
 
-*Last updated: March 6, 2026*
+*Last updated: March 7, 2026*
 
 Welcome. Every item on the pull list has a real dog on the other side of it.
 Here's how to show up for them.
@@ -34,12 +34,14 @@ For APIs: a test UI or clear `curl` examples. A developer reading the PR should 
 
 For UIs: LocalStorage is fine for v1. No backend required unless the spec says otherwise.
 
-### High Bar Tasks (H-01, H-02, H-03)
+### High Bar Tasks (H-01, H-02, H-03, H-04)
 Working proof of concept. The hard technical problem is solved — it doesn't have to be polished.
 
-For AI Director (H-01): live camera → real-time output. Latency is the hard problem. If it's 3 seconds late, it doesn't count.
+For AI Director (H-01): live camera → real-time output. Pre-session briefing and shot agenda tracking included. Latency is the hard problem. If it's 3 seconds late, it doesn't count.
 
 For Video Production (H-03): raw footage in → produced reel out. Music, cuts, and pacing that reflect the dog.
+
+For Video Export (H-04): reel in → platform-ready output. YouTube first, multi-platform at high bar.
 
 ---
 
@@ -75,7 +77,7 @@ Every API in the Best Chance Studio™ pipeline accepts a shared `platform_hints
 - Treat hints as guidance, not commands — they are the platform's best current guess
 - Document which field groups your API consumes
 
-Full schema → [`docs/platform-hints-schema.md`](docs/platform-hints-schema.md)
+Full schema → [`docs/platform-hints-schema.md`](docs/platform-hints-schema.md) — lives in this repo, read it before building any H-series task.
 
 Without this: five APIs, five hint formats, nothing connects.
 With this: the AI Director knows what the Story Builder knows. The platform's intelligence flows through one consistent channel to every tool in the pipeline.
@@ -95,5 +97,6 @@ No formal code review process yet. If it runs and does what it says, we're mergi
 ## Questions
 
 → KipMeierhofer@gmail.com
+→ [How the project is governed — GOVERNANCE.md](GOVERNANCE.md)
 
 If you're unsure whether something is in scope, just ask. If you're deep in a build and something doesn't add up in the spec — ask. The spec is a starting point, not a cage.

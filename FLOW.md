@@ -645,7 +645,7 @@ BCS is designed to be standalone — it works without any external intelligence.
 
 The bridge is `platform_hints` — an optional input object every BCS API accepts. When absent, BCS uses sensible defaults. When present, BCS uses the platform's learned outcome data to make every coaching decision sharper.
 
-Full schema: [`strategy/feature-specs/platform-hints-schema.md`](https://github.com/mei0872/wag-on-home-workspace) — the constitution every API signs.
+Full schema: [`strategy/feature-specs/platform-hints-schema.md`](docs/platform-hints-schema.md) — the constitution every API signs.
 
 ---
 
