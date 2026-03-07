@@ -336,3 +336,134 @@ A few things worth internalizing before you build:
 ---
 
 Pick any API from the pull list. Build it to spec. The coaching packet is the north star — everything flows toward it.
+
+---
+
+## For Future AI-Native Adoption Platforms
+
+BCS is designed to be standalone — it works without any external intelligence. But it's also designed to receive intelligence from a platform that has it. This section describes what becomes possible when a platform with real adoption outcome data connects to BCS.
+
+The bridge is `platform_hints` — an optional input object every BCS API accepts. When absent, BCS uses sensible defaults. When present, BCS uses the platform's learned outcome data to make every coaching decision sharper.
+
+Full schema: [`strategy/feature-specs/platform-hints-schema.md`](https://github.com/mei0872/wag-on-home-workspace) — the constitution every API signs.
+
+---
+
+### 1. Outcome-Informed Coaching
+
+A standalone BCS call tells Moose: *"Use a personality hook. Eye contact photo. 60-second video."* That's good coaching.
+
+A platform-connected BCS call tells Moose: *"Black labs in the Memphis corridor with this profile convert 3x faster when the opening line is a specific anecdote from the first week. The platform saw this across 847 dogs. Lead with the tennis ball story."*
+
+That's not coaching — that's a pattern the platform learned from real outcomes and fed back in.
+
+```json
+"platform_hints": {
+  "story": {
+    "opening_style": "anecdote",
+    "tone": "warm"
+  },
+  "learned": {
+    "top_performer_pattern": "leads with first-week anecdote for black labs in transport corridors",
+    "what_worked_last_time": "close face shot + 60-second fetch video drove 3 applications in 4 days"
+  }
+}
+```
+
+The BCS tools don't need to understand where this came from. They receive it, apply it, and produce better output. The platform's intelligence travels through one consistent channel to every tool in the pipeline.
+
+---
+
+### 2. Near-Miss Signal Loops
+
+A near-miss happens: an adopter spends 4 minutes on Moose's profile, favorites him, and doesn't apply. The platform captures that signal and asks one warm question: *"What would help you feel more confident about Moose?"*
+
+Answer: *"I wasn't sure how he'd do with my other dog."*
+
+The platform routes that signal back into the open BCS session as new context:
+
+```json
+"platform_hints": {
+  "learned": {
+    "near_miss_signals": ["asked about dog compatibility — 3 adopters this week"]
+  }
+}
+```
+
+The next `/story/build` call knows to address dog compatibility directly — not because a human reviewed the signal and updated the profile, but because the platform closed the loop automatically.
+
+Every near-miss makes the next story version better. Every version makes the next adopter's experience stronger. The story compounds — until the dog finds their family.
+
+---
+
+### 3. Adopter Profile Awareness
+
+When a platform knows who's looking for a dog like Moose — their living situation, family composition, energy level, experience with large dogs — it can pass that context into BCS:
+
+```json
+"platform_hints": {
+  "story": {
+    "opening_style": "compatibility",
+    "tone": "playful"
+  },
+  "dog_context": {
+    "strongest_asset": "personality",
+    "similar_dog_outcome": "median_days_to_adoption: 9"
+  }
+}
+```
+
+BCS builds the story toward the adopter who's already looking for this dog. The platform knows who that is. BCS knows how to talk to them. That connection — adopter profile informing story voice — is what turns a listing into a match.
+
+---
+
+### 4. AI Director Calibrated to Outcomes
+
+The AI Director (`/video/direct`) in standalone mode coaches on universal principles: natural light, eye contact, the right moment. Good coaching for any dog.
+
+With platform hints, the Director knows what's converting for dogs like Moose in this market right now:
+
+```json
+"platform_hints": {
+  "director": {
+    "shot_priority": ["face-close", "action", "human-interaction"],
+    "energy_match": "playful"
+  },
+  "video": {
+    "length_seconds": 63,
+    "open_with": "action",
+    "hook_window_seconds": 8
+  }
+}
+```
+
+The Director doesn't guess at the optimal hook window — the platform measured it. 63 seconds, open with action, within 8 seconds. That's what drove applications for dogs like Moose last month in this corridor. The open source tool is now calibrated to real-world outcomes.
+
+---
+
+### 5. The Zero-Person Vision
+
+The end state for a platform that implements this well:
+
+```
+Dog arrives
+  → BCS scores the submission automatically
+  → Story built, coached, platform-hints-informed
+  → Shot agenda generated, AI Director briefed
+  → Video captured with real-time guidance
+  → Reel produced, YouTube-ready, published
+  → Adopter browses → near-miss signal captured
+  → Platform closes the loop → Story v2 built automatically
+  → Dog goes home
+
+No human touches the workflow.
+Humans touch the dog.
+```
+
+The platform doesn't just connect to BCS — it continuously feeds outcome data back into it. Every adoption closes a loop. Every loop makes the next dog's story sharper. The platform learns what works. BCS applies it. The cycle runs itself.
+
+**BCS is the open source foundation. The platform's intelligence is what makes it compound.**
+
+Any platform that captures real adoption outcomes — days-to-home, near-miss signals, match quality, return rates — can implement this loop. The interface is `platform_hints`. The schema is open. The tools are MIT licensed.
+
+Build the platform. Feed the loop. The dogs get home faster.
