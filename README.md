@@ -62,8 +62,6 @@ The APIs are open source primitives. Any platform can use them. MIT licensed. Fr
 ### Grab something from the pull list
 No application. No commitment. Pick a task, build it, ship something real. Every item has a dog on the other side of it.
 
-→ [Browse open issues](../../issues)
-
 ### Go deeper
 If you ship something and can't stop thinking about what comes next — let's talk.
 
@@ -103,13 +101,12 @@ If you ship something and can't stop thinking about what comes next — let's ta
 
 **Michele Meierhofer** — Co-founder. 20+ years marketing leadership. She might be the most dedicated foster mom in the rescue world — she's loved every dog that's come through their door. The brand, the voice, and the heart of everything we build.
 
-**Beth Aversa** — Blues City Animal Rescue, Memphis. ~500 dogs a year. Weekly transport to 7 East Coast cities. Our first real partner.
+**Beth Aversa** — Blues City Animal Rescue, Memphis. ~500 dogs a year. Weekly transport to Chicago, Denver, and 7 East Coast cities. Our first real partner.
 
 ---
 
 ## Contact
 
-KipMeierhofer@gmail.com · wag-on-home.com
+→ [Browse open issues](../../issues)
 
-Questions on a task → comment on the issue
-Everything else → KipMeierhofer@gmail.com
+KipMeierhofer@gmail.com · wag-on-home.com
