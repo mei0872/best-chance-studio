@@ -9,7 +9,7 @@ Open source coaching tools that give every rescue dog their best chance at adopt
 
 ## A Note from Kip, Michele & Beth
 
-We've been fostering dogs since 2009 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
+We've been fostering dogs since 2019 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
 
 But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
 
@@ -121,7 +121,7 @@ We have more ideas than we have hands. We're looking for full-time help to build
 
 ## The People
 
-**Kip Meierhofer** — Co-founder. 25 years building enterprise systems (Northwestern Mutual). Fostering since 2009. 7 dogs at home. Hundreds of fosters alongside Beth at Blues City. Built this because he's been sitting down to write dog descriptions for 15 years and he's still terrible at it — and there was never anything to help. Building the thing that should have existed years ago.
+**Kip Meierhofer** — Co-founder. 25 years building enterprise systems (Northwestern Mutual). Fostering since 2019. 7 dogs at home. Hundreds of fosters alongside Beth at Blues City. Built this because he's been sitting down to write dog descriptions for 15 years and he's still terrible at it — and there was never anything to help. Building the thing that should have existed years ago.
 
 **Michele Meierhofer** — Co-founder. 20+ years marketing leadership. She might be the most dedicated foster mom in the rescue world — she's loved every dog that's come through their door. The brand, the voice, and the heart of everything we build.
 
