@@ -65,7 +65,7 @@ Best Chance Studio is the infrastructure that was never there. Not a correction 
 
 A 10-dimension rubric (scored out of 20) that evaluates a dog's story: photos, description, video, personality hook, compatibility, foster voice, and more. Gap analysis tells the presenter exactly what to fix. Coached dogs move faster.
 
-The APIs are open source primitives. Any platform can use them. Best Chance Studio is the reference implementation — and [Wag On Home](https://github.com/mei0872/wag-on-home) is built on top of it, with a proprietary intelligence layer that gets smarter with every adoption outcome.
+The APIs are open source primitives. Any platform can use them.
 
 ```
 /bcs/score       → AI-driven scoring — story, photos, and video analyzed
@@ -108,7 +108,7 @@ The BCS rubric is a starting hypothesis — grounded in peer-reviewed research, 
 
 The tools are MIT licensed. Fork them, deploy them, use them standalone. Any rescue anywhere can run Best Chance Studio without connecting to any platform.
 
-The `platform_hints` layer is an open standard — we define it, anyone can implement it. Any platform that tracks adoption outcomes can feed signal back into the APIs. Wag On Home provides the richest implementation because we track what happens after every adoption. But the standard is open.
+The `platform_hints` layer is an open standard — we define it, anyone can implement it. Any platform that tracks adoption outcomes can feed signal back into the APIs. The standard is open.
 
 Our goal: these open APIs become the standard the rescue world builds on.
 
@@ -134,15 +134,9 @@ One lead engineer role on the Wag On Home platform. Own the architecture. Design
 
 **Kip Meierhofer** — Co-founder. 25 years building enterprise systems (Northwestern Mutual). 7 dogs at home. ~100 fosters a year. Built this because the tools that should have existed didn't.
 
-**Michele Meierhofer** — Co-founder. 20+ years marketing leadership. Brand, voice, and the person who will tell you when something sounds corporate and needs to be torn down.
+**Michele Meierhofer** — Co-founder. 20+ years marketing leadership. She might be the most dedicated foster mom in the rescue world — she's loved every dog that's come through their door. The brand, the voice, and the heart of everything we build.
 
 **Beth Aversa** — Blues City Animal Rescue, Memphis. ~500 dogs a year. Weekly transport to 7 East Coast cities. Our first real partner.
-
----
-
-## Built On Top of BCS
-
-**[Wag On Home](https://github.com/mei0872/wag-on-home)** — the adoption platform built on the BCS coaching layer. Proprietary intelligence on top of an open standard.
 
 ---
 
