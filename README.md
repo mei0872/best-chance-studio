@@ -61,6 +61,12 @@ We have more ideas than we have hands. We're looking for full-time help to build
 
 ---
 
+## Start Here Before Picking an API
+
+These APIs work together as a system. An API built without understanding how the pieces connect will fit the spec but miss the point.
+
+→ **[Read FLOW.md first](FLOW.md)** — it shows exactly how BCS orchestrates every API, what each one receives, and what it's expected to return. Takes 10 minutes. Saves hours of building in the wrong direction.
+
 ## The APIs
 
 ```
@@ -82,6 +88,8 @@ We have more ideas than we have hands. We're looking for full-time help to build
                    high bar: multi-platform in one pass — YouTube, Instagram,
                    TikTok, Facebook each optimized simultaneously
 ```
+
+→ See how all of these work together: [FLOW.md](FLOW.md)
 
 → [See the full input/output breakdown](bcs-example.md)
 

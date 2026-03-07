@@ -6,6 +6,8 @@
 
 BCS is an orchestration layer. It doesn't just call one API — it reads the gaps, decides what to tackle first, calls the right tools in the right order, and assembles everything into one coaching packet. A foster submits whatever they have. BCS figures out what's missing, what matters most, and what to fix first. Here's exactly how it works.
 
+→ New here? Read the [README](README.md) first for mission and context. Then come back here before picking a task from the pull list.
+
 ---
 
 ## Step 1: The Foster Submits What They Have
@@ -18,8 +20,8 @@ This is Moose. Three years old, black lab mix, four months in foster care. Here'
 {
   "dog_name": "Moose",
   "raw_text": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
-  "photos": ["photo_001.jpg"],
-  "video": null,
+  "photos": ["photo_001.jpg", "photo_002.jpg"],  // array — Moose submitted 2 raw shots
+  "videos": [],                                   // array — empty, no video yet
   "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
   "rescue_id": "blues-city-memphis"
 }
@@ -119,6 +121,8 @@ Here's the key orchestration decision: BCS doesn't work down the list mechanical
 
 BCS calls `/story/build` next.
 
+→ Building this API? See [P-04] in the pull list. · [Full scoring rubric →](https://wag-on-home.com/bcs-review.html)
+
 ---
 
 ## Step 3: `/story/build` — Find the Story
@@ -171,11 +175,13 @@ POST /story/build
 
 Four dimensions improved. One API call.
 
+→ Building this API? See [P-02] Story Builder Session UI in the pull list.
+
 ---
 
 ## Step 4: `/photos/curate` — Work With What's There
 
-BCS doesn't wait for perfect photos. It works with what the foster submitted, selects the best available frame, identifies exactly what's wrong with it, and generates a specific shot list for what to retake.
+BCS doesn't wait for perfect photos. It passes all submitted photos to /photos/curate, which does three things: picks the strongest images from what's there, identifies specifically what's wrong with each one, and generates a targeted shot list for what needs to be reshot — built around both the visual gaps AND the story that /story/build just produced. The shot list isn't generic. It's Moose-specific.
 
 The gap context travels with this call too. `/photos/curate` isn't curating in a vacuum — it knows the visual impact dimension scored 0 and why.
 
@@ -184,7 +190,7 @@ The gap context travels with this call too. `/photos/curate` isn't curating in a
 POST /photos/curate
 {
   "dog_name": "Moose",
-  "photos": ["photo_001.jpg"],
+  "photos": ["photo_001.jpg", "photo_002.jpg"],
   "score_context": {
     "visual_impact": {
       "score": 0,
@@ -225,6 +231,8 @@ POST /photos/curate
 
 Notice shot #2: "Mid-fetch action shot." `/photos/curate` read the story that `/story/build` just built and aligned the shot list to it. The fetch behavior is now threaded through every asset — description, photos, and (next) video. That's the coaching packet telling a consistent story.
 
+→ Building this API? See [P-03] Photo Curation API in the pull list.
+
 ---
 
 ## Step 5: No Video → Generate Coaching Prompt
@@ -247,6 +255,8 @@ This happens at the logic layer. No external API call required.
 ```
 
 The foster gets exactly what to do next. Four points sitting on the table, waiting for a 60-second video on a phone.
+
+→ Building the video coaching API? See [H-02] in the pull list.
 
 ---
 
