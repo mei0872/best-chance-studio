@@ -1,0 +1,26 @@
+{
+  "_description": "Example: good photos and video, but description is a form-fill. Coaching focuses on story gap.",
+  "_dog": "Duke — 5yr German Shepherd, protective, needs experienced home",
+  "bcs_score": {
+    "total": 7,
+    "max": 18,
+    "dimensions": [
+      { "id": "personality_hook", "score": 0, "gap": "No specific moment. 'Loyal and protective' describes every GSD ever written." },
+      { "id": "visual_impact", "score": 2, "gap": null },
+      { "id": "video_presence", "score": 2, "gap": null },
+      { "id": "compatibility_clarity", "score": 1, "gap": "'Needs experienced home' stated but not defined — what does that actually mean for Duke?" },
+      { "id": "foster_voice", "score": 0, "gap": "Clinical. No warmth. Reads like a vet record." },
+      { "id": "no_surprises", "score": 0, "gap": "Challenges framed negatively — 'protective' and 'experienced home only' without reframing reads as a warning, not a match." },
+      { "id": "story_first_gate", "score": 1, "gap": "Video exists but doesn't open with Duke's personality — starts on a wall." },
+      { "id": "presenter_readiness", "score": 1, "gap": "Presenter knows Duke but hasn't been coached on how to address the 'experienced home' question." },
+      { "id": "family_vision", "score": 0, "gap": "Nothing forms. The description pushes adopters away instead of pulling them in." }
+    ],
+    "priority_gaps": ["personality_hook", "foster_voice", "no_surprises"],
+    "coaching_summary": "Duke's photos and video are doing real work — but the description is losing every adopter the visuals attract. The story needs a complete rewrite. What does Duke actually DO that only his foster knows? That's the opening line."
+  },
+  "coaching_actions_triggered": [
+    "Ask the foster: 'What does this dog do every single morning?'",
+    "Write one sentence only you could write about this dog.",
+    "Reframe 'experienced home': 'Duke needs someone who speaks dog — someone who gets that confidence and loyalty are the same thing in a GSD.'"
+  ]
+}

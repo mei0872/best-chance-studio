@@ -13,6 +13,19 @@
         "2": "Specific, memorable, only-this-dog detail. Makes you feel something.",
         "1": "Some warmth, but generic. Could describe any dog of this breed.",
         "0": "Age, breed, sex. That's it."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "Ask the foster: 'What does this dog do every single morning?'",
+          "Ask: 'What's the first thing this dog does when you walk in the door?'",
+          "Ask: 'What's something this dog does that you've never seen another dog do?'",
+          "Ask: 'Tell me about the last time this dog made you laugh.'"
+        ],
+        "score_1": [
+          "The detail is there — make it the opening line, not buried later",
+          "Replace the breed description with the behavior. Lead with the moment.",
+          "Name the behavior. 'He does this thing...' is the hook."
+        ]
       }
     },
     {
@@ -25,6 +38,18 @@
         "2": "3+ photos: face-on with eye contact, full body, in motion or with a human.",
         "1": "1–2 photos, decent quality, but limited angles or expression.",
         "0": "Single shot, blurry, kennel background, dog facing away."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "Get on the floor — eye level with the dog, not looking down",
+          "Go outside or near a window. Fluorescent light kills personality.",
+          "Wait for eye contact. Don't take the shot until the dog is looking at the camera.",
+          "Take at least 3: face-on, full body, one in motion or with a human"
+        ],
+        "score_1": [
+          "The photos are decent — add one action shot that shows personality",
+          "Reshoot the lead photo in natural light with eye contact"
+        ]
       }
     },
     {
@@ -37,6 +62,17 @@
         "2": "Video exists, dog's personality is visible, authentic not staged, emotionally engaging.",
         "1": "Video exists but opens on a wall, or is low-energy, or too long with no hook.",
         "0": "No video."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "Record 60 seconds of the behavior you described in the story — show it, don't say it",
+          "Start the camera before the dog knows it's rolling. Capture what they actually do.",
+          "You don't need editing. One uncut authentic moment beats a produced clip."
+        ],
+        "score_1": [
+          "The video exists but needs a hook in the first 5 seconds — lead with the behavior",
+          "Trim to under 90 seconds. If it doesn't make you feel something, cut it."
+        ]
       }
     },
     {
@@ -49,6 +85,17 @@
         "2": "Clear, honest, specific. Right adopter knows immediately. Wrong adopter knows too.",
         "1": "Some compatibility noted, but incomplete or vague.",
         "0": "Nothing stated — adopter has to guess."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "State clearly: good with kids? Other dogs? Cats? Energy level? Home type?",
+          "Think about who SHOULDN'T adopt this dog — say that honestly too",
+          "A wrong adopter who self-selects out saves everyone time"
+        ],
+        "score_1": [
+          "Good start — add energy level. High/medium/low. Adopters need to picture their life.",
+          "Add home type preference if relevant — apartment vs. yard, active vs. quiet"
+        ]
       }
     },
     {
@@ -61,6 +108,17 @@
         "2": "Personal, warm, specific details only the foster would know. You can feel the relationship.",
         "1": "Some personality in the writing, but still leans generic or template-like.",
         "0": "Clinical, factual, vet-record language. No human warmth."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "Write one sentence only you could write about this dog",
+          "What would you tell a friend who asked what this dog is really like?",
+          "Read it back out loud. If it sounds like a brochure, start over."
+        ],
+        "score_1": [
+          "Warmer — but one more specific detail from your time with this dog makes it land",
+          "What's something this dog did this week that made you smile?"
+        ]
       }
     },
     {
@@ -73,6 +131,16 @@
         "2": "Honest, specific, reframed positively. Right home recognizes themselves.",
         "1": "Challenges mentioned but framed in a way that sounds worse than it is.",
         "0": "Challenges omitted entirely, OR framed so negatively the dog sounds unadoptable."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "List any challenges honestly — and then reframe each one positively",
+          "The right adopter for a high-energy dog is excited by that, not scared. Frame for them.",
+          "'Only dog' is not a flaw — it's a match requirement. Own it."
+        ],
+        "score_1": [
+          "The challenge is mentioned — now reframe it. What kind of home would actually love this about the dog?"
+        ]
       }
     },
     {
@@ -85,6 +153,16 @@
         "2": "Short, coached, warm intro video ready — dog's personality visible in under 60 seconds.",
         "1": "Some intro video exists but uncoached, low energy, or too long.",
         "0": "No intro video — adopters arrive cold."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "Record a 60-second intro video before any live meets — adopters should feel this dog before they meet them",
+          "Open the camera. Say the dog's name. Let them come to you. That's the video.",
+          "This doesn't need to be good. It needs to be real."
+        ],
+        "score_1": [
+          "The video exists — coach the presenter to use it as their opening in every live meet"
+        ]
       }
     },
     {
@@ -97,6 +175,16 @@
         "2": "Presenter can speak to specific moments, addresses compatibility naturally, knows what to lead with.",
         "1": "Presenter knows the basics but is likely to read from the bio or get caught off guard.",
         "0": "Presenter meeting this dog for the first time on camera."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "Read the coaching packet before the live meet — know the strongest moment, lead with it",
+          "Practice the opening line out loud: 'The first thing you should know about [name] is...'",
+          "Know the likely compatibility questions before they're asked"
+        ],
+        "score_1": [
+          "Ready — remind the presenter to let the adopter talk. Listen for near-miss signals."
+        ]
       }
     },
     {
@@ -109,6 +197,16 @@
         "2": "Listing creates a picture. You can see the dog at the end of your bed, in your car, on your couch.",
         "1": "Listing is warm but stays abstract. Describes the dog without making you feel the dog.",
         "0": "Listing is invisible. No image forms. No feeling."
+      },
+      "coaching_actions": {
+        "score_0": [
+          "Close the description with a picture — the dog in the adopter's specific life, not a generic home",
+          "End with a scene: morning coffee, end of the bed, hiking trail, couch on Sunday",
+          "If the adopter can't picture the dog in their life after reading this, the story isn't done"
+        ],
+        "score_1": [
+          "The picture is forming — sharpen the scene. Specific beats generic every time."
+        ]
       }
     }
   ],
