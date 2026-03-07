@@ -49,13 +49,13 @@ The APIs are open source primitives. Any platform can use them. MIT licensed. Fr
 
 ---
 
-## Two Ways In
+## Ways Engineers Can Help the Rescue Community
 
 ### Grab something from the pull list
 No application. No commitment. Pick a task, build it, ship something real. Every item has a dog on the other side of it.
 
-### Go deeper
-If you ship something and can't stop thinking about what comes next — let's talk.
+### Help us build more tools
+We have more ideas than we have hands. We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.
 
 → KipMeierhofer@gmail.com
 
