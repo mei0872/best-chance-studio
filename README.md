@@ -72,15 +72,32 @@ These APIs work together as a system. An API built without understanding how the
 ```
 /bcs/score       → AI-driven scoring — story, photos, and video analyzed
 
+/word/check      → paste a description → flagged words + adoption-proven replacements
+                   backed by a 70,733-dog study on what language moves adoptions
+
+/voice/transcribe → record a voice note in-app → Whisper transcription → text into session
+                   no typing required — speak what you know about the dog
+
 /photos/curate   → selects + orders the strongest photos from raw uploads
 
 /story/build     → produces the full coached story and coaching packet
 
+/story/refine    → foster tweaks the generated story until it's right
+                   accept · tweak · start over — nothing publishes without approval
+
+/story/represent → dog didn't place → fresh coaching approach based on what's been tried
+
+/story/card      → approved story → shareable image card for social (1:1 and 4:5)
+
+/story/format    → approved story → platform-formatted output
+                   Petfinder · AdoptAPet · Instagram · Facebook — character limits handled
+
 /video/direct    → real-time coaching during live capture
-                   high bar: AI Director live on your phone — where to stand,
-                   what angle, when you've got the shot
+                   high bar: AI Director live on your phone — pre-session briefing,
+                   shot agenda tracking, where to stand, when you've got the shot
 
 /video/coach     → analyzes footage post-capture; returns improvement notes
+                   + agenda coverage report: what was captured vs. still missing
 
 /video/produce   → produces the highlight reel (cuts, music, pacing)
 
