@@ -25,7 +25,7 @@ What we build here is going to be loved by rescues. It's going to help them get 
 
 Every day a rescue dog waits is a day the tools failed them.
 
-The average rescue dog waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
+The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
 
 **Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free forever.**
 
@@ -39,7 +39,7 @@ The average rescue dog waits 4–6 months for a home. The talent to move them fa
 
 **After BCS:**
 > *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
-> BCS score: **9 / 12** · Shot list generated · Transport listed · YouTube-ready video produced
+> BCS score: **9 / 20** · Shot list generated · YouTube-ready video produced
 
 → [See the full input/output breakdown](bcs-example.md)
 
@@ -63,7 +63,7 @@ Best Chance Studio is the infrastructure that was never there. Not a correction 
 
 ## What Best Chance Studio Is
 
-A 12-point rubric that scores a dog's presentation: photos, description, video, transport, foster availability, and more. Gap analysis tells the presenter exactly what to fix. Coached dogs move faster.
+A 10-dimension rubric (scored out of 20) that evaluates a dog's story: photos, description, video, personality hook, compatibility, foster voice, and more. Gap analysis tells the presenter exactly what to fix. Coached dogs move faster.
 
 The APIs are open source primitives. Any platform can use them. Best Chance Studio is the reference implementation — and [Wag On Home](https://github.com/mei0872/wag-on-home) is built on top of it, with a proprietary intelligence layer that gets smarter with every adoption outcome.
 
@@ -98,7 +98,7 @@ We analyzed 33,240+ rescue listings. Here's what the data shows:
 | Eye contact photos → shorter time to adoption | A great photo is the difference between a scroll-past and a heartbeat |
 | 100+ word descriptions outperform shorter ones | Specific adjectives change outcomes — "eager," "clever," "gentle" win |
 | Word choice predicts adoption speed | "Energetic" signals high maintenance. "Lively" signals joy. Same dog. Different outcome. |
-| 0 of 25 longest-listed dogs had transport listed | Zero. Transport turns a local dog into a national candidate in one checkbox. |
+
 
 ---
 
