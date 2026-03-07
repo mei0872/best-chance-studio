@@ -70,6 +70,9 @@ These APIs work together as a system. An API built without understanding how the
 ## The APIs
 
 ```
+BCS              → the complete assembled application — all APIs below work together as one tool
+                   start here if you want to build the whole thing: see [BCS-01] in pull-list.md
+
 /bcs/score       → AI-driven scoring — story, photos, and video analyzed
 
 /word/check      → paste a description → flagged words + adoption-proven replacements
