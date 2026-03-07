@@ -491,7 +491,7 @@ Moose went through the full pipeline. He got presented. He didn't place. This is
 
 ---
 
-### Path A — Smart AI platform (e.g. WAH)
+### Path A — Smart AI platform (e.g. a platform with adoption outcome data)
 
 A platform with real adoption outcome data calls `/story/represent` automatically when a dog stalls. It passes the full picture: session history, near-miss signals from real adopters, and learned patterns from similar dogs.
 
@@ -596,20 +596,20 @@ The BCS rubric ships as a fixed set of dimensions and weights. But it's designed
 
 **The rubric is versionable.** Every `/bcs/score` call returns `rubric_version: "1.0.0"`. Engineers can pin to a version. Platforms know exactly which rubric produced a given score. When the rubric updates, scores are comparable across versions.
 
-**WAH's periodic contribution to the BCS community is the rubric.**
-Wag On Home runs a real adoption platform. It captures real outcome data — days-to-home, near-miss signals, what changed between story v1 and v2 that made the difference, which BCS dimensions actually predicted faster adoption. The open source community doesn't have that data. WAH does.
+**Adoption platforms that track outcomes contribute rubric improvements back to the community.**
+A platform running real adoptions captures data the open source community can't generate on its own — days-to-home, near-miss signals, which BCS dimensions actually predicted faster adoption. That outcome data is how the rubric gets smarter over time.
 
-Periodically, WAH analyzes correlations between BCS dimension scores and adoption outcomes and proposes a rubric update:
+Periodically, a platform analyzes correlations between BCS scores and real adoption outcomes and proposes a rubric update:
 
 ```
 Rubric v1.0 ships — based on research + lived rescue experience
     ↓
-WAH runs the platform — captures outcome data across real dogs
+Platform runs — captures outcome data across real adoptions
     ↓
-WAH analysis: "personality_hook scored 0 → median 34 days to adoption.
-               personality_hook scored 2 → median 9 days."
+Platform analysis: "personality_hook scored 0 → median 34 days to adoption.
+                   personality_hook scored 2 → median 9 days."
     ↓
-WAH proposes: raise personality_hook weight · add new dimension: transport_clarity
+Platform proposes: raise personality_hook weight based on outcome correlation
     ↓
 BCS community reviews → rubric v1.1 ships
     ↓
@@ -619,7 +619,7 @@ Every tool using BCS gets smarter automatically
 **What this means for engineers:**
 - Dimension weights must be configurable — not hardcoded. Store them in a config object, not scattered through scoring logic.
 - The rubric config should be the single source of truth for all weight and dimension definitions.
-- When WAH ships a rubric update, it ships as a config change — no API contract changes, no breaking updates.
+- When a rubric update ships, it ships as a config change — no API contract changes, no breaking updates.
 
 ```json
 // rubric-config.json (versionable, community-owned)
@@ -629,13 +629,12 @@ Every tool using BCS gets smarter automatically
     { "id": "personality_hook", "max": 2, "weight": 1.4 },
     { "id": "visual_impact",    "max": 2, "weight": 1.0 },
     { "id": "video_presence",   "max": 2, "weight": 1.2 },
-    { "id": "transport_clarity","max": 2, "weight": 1.3 }
     // ...
   ]
 }
 ```
 
-**The governance question (open):** WAH proposes rubric updates. The BCS community reviews. Anyone can pin to a prior version. This is the reciprocal relationship — WAH contributes intelligence, the community validates it, everyone benefits. Formal governance process TBD as the community grows.
+**The governance question (open):** Platforms with outcome data propose rubric updates. The BCS community reviews. Anyone can pin to a prior version. This is the reciprocal relationship — outcome intelligence flows back to the standard, the community validates it, every rescue benefits. Formal governance process TBD as the community grows.
 
 ---
 
