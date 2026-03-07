@@ -580,7 +580,11 @@ A few things worth internalizing before you build:
 
 **The gap context is what makes the coaching specific.** When BCS passes `score_context` to `/story/build`, the story it gets back is targeted. Without that context, you get generic improvement. With it, you get a story built around the three exact dimensions that scored zero. That specificity is the product.
 
-**Session history is a core requirement — not optional.** Every API that touches a dog's story must read prior session history before running and write its output back to that history when done. This is not a nice-to-have. It's the mechanism that makes BCS get smarter with every session.
+**Session history is a core requirement — not optional, and not something that starts at launch.** Every API that touches a dog's story must read prior session history before running and write its output back to that history when done.
+
+**Why this matters before day one:** BCS is designed to run with real rescues before the adoption platform goes live. The goal is 30 days of real coaching sessions accumulated — real dogs, real fosters, real outcomes — so that when the platform launches, it already has a foundation of history to build from. An adoption platform that launches with zero history is starting blind. One that launches with 30 days of BCS sessions already in it is meaningfully smarter on day one.
+
+**History is the head start. Build every API to accumulate it.** This is not a nice-to-have. It's the mechanism that makes BCS get smarter with every session.
 
 Every coaching session is `v1`. When new photos come in, that's `v2`. When the video lands, `v3`. `/story/represent` in Step 9 only works because it can see what Session 1 tried, what signals came back, and what's still missing. If an API operates without session history, it's starting from scratch every time — and so is the dog.
 
