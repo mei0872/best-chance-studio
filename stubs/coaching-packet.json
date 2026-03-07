@@ -1,0 +1,65 @@
+{
+  "_description": "The final assembled coaching packet — the output contract BCS returns after running the full pipeline. Everything the frontend needs comes from here.",
+  "_flow_reference": "See Step 6 in FLOW.md",
+  "request": {
+    "_note": "The coaching packet is assembled by BCS after orchestrating the full pipeline. There is no direct POST to a single endpoint — this is the output of the full BCS run for session bcs-moose-001.",
+    "session_id": "bcs-moose-001",
+    "dog_name": "Moose",
+    "rescue_id": "blues-city-memphis"
+  },
+  "response": {
+    "dog_name": "Moose",
+    "rescue_id": "blues-city-memphis",
+    "session_id": "bcs-moose-001",
+    "version": 1,
+    "rubric_version": "1.0.0",
+    "score_before": 3,
+    "score_after": 11,
+    "score_max": 18,
+    "coached_description": "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.\n\nHe's three, fully house-trained, great with other dogs and kids. He's been patient in a way that shouldn't be possible — four months in rescue, and every day he keeps showing up.\n\nHe needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.",
+    "photo_selection": ["photo_001.jpg"],
+    "shot_list": [
+      {
+        "priority": 1,
+        "description": "Eye-level, natural light. Get on the floor. Moose looks at the camera, not past it.",
+        "why": "Eye contact in natural light is the single strongest predictor of faster adoption."
+      },
+      {
+        "priority": 2,
+        "description": "Mid-fetch action shot. Ball in the air, Moose in motion.",
+        "why": "Fetch is his personality hook — show it, don't say it."
+      },
+      {
+        "priority": 3,
+        "description": "Calm moment on the couch or floor with foster.",
+        "why": "This is the dog people actually bring home. The one who fits into a life."
+      }
+    ],
+    "video_coaching": {
+      "status": "pending",
+      "prompt": "Fetch is Moose's superpower — and it doesn't exist yet on camera. A 60-second video of the tennis ball drop is worth more than any description we can write.",
+      "estimated_score_impact": "+4"
+    },
+    "next_steps": [
+      {
+        "priority": 1,
+        "action": "Retake photos using shot list",
+        "impact": "+2 on visual_impact"
+      },
+      {
+        "priority": 2,
+        "action": "Record the tennis ball drop — 60 seconds",
+        "impact": "+4 on video_presence + story_first_gate"
+      }
+    ],
+    "presenter_brief": "Lead with the tennis ball move. Every time. It's the moment that makes people call each other into the room.",
+    "review_required": true,
+    "review_status": "pending_foster_approval",
+    "dimensions_improved": [
+      "personality_hook",
+      "foster_voice",
+      "family_vision",
+      "compatibility_clarity"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "_description": "Reviews captured footage against the original shot agenda, scoring what landed and flagging what still needs to be reshot.",
+  "_flow_reference": "See Step 5 in FLOW.md",
+  "request": {
+    "video_url": "moose_session1.mp4",
+    "rescue_id": "blues-city-memphis",
+    "dog_context": {
+      "name": "Moose",
+      "rescue_id": "blues-city-memphis",
+      "personality_hook": "Brings a tennis ball to whoever sits on the floor — has done it since day one",
+      "energy": "playful"
+    },
+    "shot_agenda": [
+      {
+        "id": "fetch_drop",
+        "description": "Tennis ball drop — sit on the floor, wait for it",
+        "priority": "high"
+      },
+      {
+        "id": "eye_contact",
+        "description": "Face-close, eye contact, natural light",
+        "priority": "high"
+      },
+      {
+        "id": "calm_moment",
+        "description": "Resting or settling — the dog they bring home",
+        "priority": "medium"
+      }
+    ]
+  },
+  "response": {
+    "what_landed": [
+      "Eye contact moment — strong. Natural light, clear personality."
+    ],
+    "what_to_improve": [
+      "Tennis ball drop was staged — wait for him to initiate it naturally."
+    ],
+    "agenda_coverage": [
+      {
+        "id": "eye_contact",
+        "captured": true
+      },
+      {
+        "id": "fetch_drop",
+        "captured": false,
+        "note": "Staged — reshoot naturally"
+      },
+      {
+        "id": "calm_moment",
+        "captured": true
+      }
+    ],
+    "next_session_priority": "Reshoot fetch drop — let Moose initiate. That's the personality hook.",
+    "estimated_score_impact": "+2 on video_presence once fetch drop is captured naturally"
+  }
+}

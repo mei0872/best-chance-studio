@@ -1,0 +1,75 @@
+{
+  "_description": "Scores a dog's current submission across 9 dimensions to produce a gap diagnostic — telling BCS where to focus coaching first.",
+  "_flow_reference": "See Step 2 in FLOW.md",
+  "request": {
+    "dog_name": "Moose",
+    "rescue_id": "blues-city-memphis",
+    "text": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
+    "photo_count": 1,
+    "video_present": false,
+    "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids."
+  },
+  "response": {
+    "rubric_version": "1.0.0",
+    "total_score": 3,
+    "max_score": 18,
+    "dimensions": [
+      {
+        "id": "personality_hook",
+        "score": 0,
+        "max": 2,
+        "gap": "No specific moment or memorable detail. Could describe any lab."
+      },
+      {
+        "id": "visual_impact",
+        "score": 0,
+        "max": 2,
+        "gap": "Single shot, fluorescent lighting, no eye contact."
+      },
+      {
+        "id": "video_presence",
+        "score": 0,
+        "max": 2,
+        "gap": "No video present."
+      },
+      {
+        "id": "compatibility_clarity",
+        "score": 1,
+        "max": 2,
+        "gap": "Mentions kids and other dogs but vague — no specifics about home type or energy needs."
+      },
+      {
+        "id": "foster_voice",
+        "score": 0,
+        "max": 2,
+        "gap": "Reads like a form. No warmth, no relationship visible."
+      },
+      {
+        "id": "no_surprises",
+        "score": 1,
+        "max": 2,
+        "gap": "Energy level not communicated — adopter doesn't know what they're getting."
+      },
+      {
+        "id": "story_first_gate",
+        "score": 0,
+        "max": 2,
+        "gap": "No intro video. Adopter arrives cold."
+      },
+      {
+        "id": "presenter_readiness",
+        "score": 0,
+        "max": 2,
+        "gap": "No coached story. No strong asset identified."
+      },
+      {
+        "id": "family_vision",
+        "score": 0,
+        "max": 2,
+        "gap": "Nothing forms. Can't picture this dog anywhere."
+      }
+    ],
+    "priority_gaps": ["personality_hook", "foster_voice", "family_vision"],
+    "coaching_summary": "Moose has no story yet. An adopter reads this and feels nothing. Start with the personality hook — find the specific moment only this foster knows."
+  }
+}

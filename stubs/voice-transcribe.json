@@ -1,0 +1,10 @@
+{
+  "_description": "Converts a foster's voice note audio file into a text transcript before scoring begins.",
+  "_flow_reference": "See Step 1 in FLOW.md",
+  "request": {
+    "audio": "note_001.m4a"
+  },
+  "response": {
+    "transcript": "Moose has this thing he does every morning — finds a tennis ball and brings it to whoever's having coffee. Been doing it since week one."
+  }
+}

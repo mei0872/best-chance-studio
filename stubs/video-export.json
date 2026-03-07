@@ -1,0 +1,31 @@
+{
+  "_description": "Formats a produced reel for platform delivery — correct resolution, generated thumbnail, and written title and tags. Does not upload; passes a destination object to the platform layer which handles upload using stored rescue credentials.",
+  "_flow_reference": "See Step 5 in FLOW.md",
+  "request": {
+    "video_url": "moose_reel_v1.mp4",
+    "rescue_id": "blues-city-memphis",
+    "dog_info": {
+      "name": "Moose",
+      "rescue_id": "blues-city-memphis",
+      "personality_hook": "Brings a tennis ball to whoever sits on the floor",
+      "breed": "lab mix",
+      "age_years": 3,
+      "location": "Memphis, TN"
+    },
+    "target": "youtube"
+  },
+  "response": {
+    "exported_url": "https://storage.bcs.wagonhome.com/exports/moose_reel_v1_yt.mp4",
+    "thumbnail_url": "https://storage.bcs.wagonhome.com/exports/moose_thumb.jpg",
+    "suggested_title": "Moose — the dog who brings you a tennis ball before you even ask",
+    "suggested_tags": ["lab mix", "adoption", "Memphis", "Blues City Rescue", "rescue dog", "adopt don't shop"],
+    "duration_seconds": 63,
+    "destination": {
+      "platform": "youtube",
+      "upload_ready": true,
+      "note": "Platform layer handles upload using rescue's stored YouTube OAuth credentials. /video/export does not upload directly.",
+      "rescue_id": "blues-city-memphis",
+      "credential_key": "youtube_oauth_blues-city-memphis"
+    }
+  }
+}

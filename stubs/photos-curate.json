@@ -1,0 +1,42 @@
+{
+  "_description": "Selects the strongest photos from what was submitted, identifies specific visual gaps, and generates a targeted shot list aligned to the dog's story.",
+  "_flow_reference": "See Step 4 in FLOW.md",
+  "request": {
+    "dog_name": "Moose",
+    "rescue_id": "blues-city-memphis",
+    "photos": ["photo_001.jpg", "photo_002.jpg"],
+    "score_context": {
+      "visual_impact": {
+        "score": 0,
+        "gap": "Single shot, fluorescent lighting, no eye contact."
+      }
+    }
+  },
+  "response": {
+    "selected": ["photo_001.jpg"],
+    "ordering": [1],
+    "photo_gaps": [
+      "No eye contact — dog is looking away from camera",
+      "Fluorescent shelter lighting — removes warmth and personality",
+      "Single angle — no full body, no action, no human connection"
+    ],
+    "shot_list": [
+      {
+        "priority": 1,
+        "description": "Eye-level, natural light. Get on the floor. Moose looks at the camera, not past it.",
+        "why": "Eye contact in natural light is the single strongest predictor of faster adoption."
+      },
+      {
+        "priority": 2,
+        "description": "Mid-fetch action shot. Ball in the air, Moose in motion.",
+        "why": "Fetch is his personality hook — show it, don't say it."
+      },
+      {
+        "priority": 3,
+        "description": "Calm moment on the couch or floor with foster.",
+        "why": "This is the dog people actually bring home. The one who fits into a life."
+      }
+    ],
+    "coaching_note": "Three photos. 20 minutes. Completely changes this listing."
+  }
+}
