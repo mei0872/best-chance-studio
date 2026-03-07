@@ -25,7 +25,7 @@ What we build here is going to be loved by rescues. It's going to help them get 
 
 Every day a rescue dog waits is a day the tools failed them.
 
-The average rescue dog waits 4–6 months for a home. We think that's a design problem — not a supply problem. The talent to move dogs faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
+The average rescue dog waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
 
 **Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free forever.**
 
@@ -39,7 +39,7 @@ The average rescue dog waits 4–6 months for a home. We think that's a design p
 
 **After BCS:**
 > *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
-> BCS score: **9 / 12** · Shot list generated · Transport surfaced · Video prompt sent
+> BCS score: **9 / 12** · Shot list generated · Transport listed · YouTube-ready video produced
 
 → [See the full input/output breakdown](bcs-example.md)
 
