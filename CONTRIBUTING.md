@@ -106,7 +106,7 @@ How to contribute feedback:
 - **General ideas or observations** → [GitHub Discussions](https://github.com/mei0872/best-chance-studio/discussions)
 - **Bugs or clear spec errors** → [GitHub Issues](https://github.com/mei0872/best-chance-studio/issues)
 
-Feedback from WAH's own implementation will be shared with the community as aggregate findings — not raw data, but patterns worth acting on. We expect the same from other implementors over time.
+Implementors are encouraged to share aggregate findings from their own usage back with the community — patterns worth acting on, not raw data.
 
 ---
 

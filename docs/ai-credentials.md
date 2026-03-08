@@ -65,7 +65,7 @@ Actual cost varies by provider, model selection, and pipeline depth. Use the est
 
 ## Platform Implementations
 
-A platform (like Wag On Home) may choose to manage AI credentials server-side, making them invisible to the end user. In that case:
+A platform may choose to manage AI credentials server-side, making them invisible to the end user. In that case:
 
 - The rescue or adopter never sees an API key or a per-session bill
 - The platform absorbs AI costs as part of its service model

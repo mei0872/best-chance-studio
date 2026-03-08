@@ -47,7 +47,7 @@ That transcript merges into `foster_notes`. The detail that drives the whole sto
 
 ## Step 2: `/bcs/score` — Read the Gaps
 
-→ **[Read the full BCS rubric first](https://wag-on-home.com/bcs-review.html)** — every dimension, what it means, what good looks like, how it gets better over time. Takes 5 minutes. Makes everything below make sense.
+→ **[Read the full BCS rubric first — TASKS.md G-02](TASKS.md)** — every dimension, what it means, what good looks like, how it gets better over time. Takes 5 minutes. Makes everything below make sense.
 
 Before doing anything else, BCS needs a map.
 
@@ -481,7 +481,7 @@ The rescue's existing workflow stays intact. No new logins, no platform switchin
 
 → Building these? See [G-05] and [G-06] in the pull list.
 
-**Note on YouTube delivery:** `/video/export` produces the YouTube-ready file and metadata but does not handle upload directly. It passes a `destination` object to the platform layer, which uses the rescue's stored YouTube credentials to complete the upload. YouTube OAuth is handled at rescue registration — not here. See the Wag On Home pull list for the rescue registration task.
+**Note on YouTube delivery:** `/video/export` produces the YouTube-ready file and metadata but does not handle upload directly. It passes a `destination` object to the platform layer, which uses the rescue's stored YouTube credentials to complete the upload. YouTube OAuth is handled at rescue registration — not here. Rescue registration is outside the BCS spec — handled at the platform layer by the implementor.
 
 ---
 

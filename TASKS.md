@@ -275,7 +275,7 @@ Output: exported_url, thumbnail_url, suggested_title, suggested_tags, duration_s
 
 ## Background
 
-**Best Chance Studio** is the open source coaching layer of Wag On Home — a platform that gets rescue dogs adopted faster by giving every dog their best possible story, and every presenter the coaching they need to tell it.
+**Best Chance Studio** is an open source coaching and scoring layer that gives every rescue dog their best possible story, and every presenter the coaching they need to tell it.
 
 The full pipeline:
 ```
