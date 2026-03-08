@@ -1,8 +1,8 @@
 # DEC-003: Cross-Rescue Dog Identity
 
-**Status:** Open
-**Date:** 2026-03-07
-**Decider:** Stakeholder
+**Status:** Decided
+**Date:** 2026-03-08
+**Decider:** mei0872 (via GitHub Discussion #12)
 **Model(s):** Data, Security
 
 ---
@@ -106,15 +106,23 @@ This avoids building global identity infrastructure before the use case demands 
 
 ## Decision
 
-[Awaiting stakeholder input]
+**Option C: Rescue-scoped with optional linking.** Confirmed by stakeholder.
+
+Stakeholder notes:
+- Rescue-scoped is the default that works for 90% of dogs. Simple, fast, no coordination overhead.
+- Microchip as the optional linking token is the right choice — it's already the universal dog identifier.
+- Manual session export/import (per DEC-002) handles the transfer case for now.
+- The door to Option B stays open — the ID format upgrades cleanly if outcome data later justifies it.
+
+**Stakeholder addition:** When a transfer happens and a new rescue creates a new entry, the receiving rescue should see a clear **"Import session from prior rescue"** prompt — not just a blank intake form. This UX detail is what makes Option C work in the field.
 
 ---
 
 ## Consequences
 
-If Option C:
 - Dog ID format: `{rescue_id}-{name_slug}-{sequence}` (rescue-scoped by default)
 - Entity model includes optional `linked_ids[]` field for cross-rescue references
 - Session export/import (DEC-002) becomes the transport corridor mechanism
 - Published dog inventory supports optional merging of linked entries
+- **Transfer UX: "Import session from prior rescue" prompt on new dog entry** (stakeholder requirement)
 - Future: global registry could be built on top without breaking existing IDs

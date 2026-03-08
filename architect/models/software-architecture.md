@@ -1,7 +1,7 @@
 # Software Architecture — Best Chance Studio
 
-*Last updated: March 7, 2026*
-*Status: Foundation established. Component map updated with all task specs. Key assumptions resolved.*
+*Last updated: March 8, 2026*
+*Status: Foundation established. Component map updated with all task specs (including G-04/G-05/G-06/P-05/P-06). All 6 decisions decided.*
 
 ---
 
@@ -18,22 +18,22 @@ Per owner task specs: all G-series tools are single HTML files, vanilla JS, no f
 | BCS Scorer | G-01 | Dog profile across dimensions | Score, grade, top gaps | — |
 | Rubric Reference | G-02 | `rubric-config.json` | Read-only dimension display | — |
 | Voice Transcription | G-03 | Audio file (m4a) | Text transcript | — |
-| Word Check | G-04 | Raw description text | Flagged words + clean version | Future: `learned` |
-| Story Card Generator | G-05 | Approved story + photo | Shareable image card | `photos.lead_shot` |
-| Platform Formatter | G-06 | Approved description + target | Formatted text within char limits | `dog_context.urgency` |
+| Word Check | G-04 | Raw description text | Flagged words + replacements + clean version. Hardcoded word list from 70,733-dog study. | Future: `learned` |
+| Story Card Generator | G-05 | Dog name, hook line, photo URL, rescue name | Shareable image card (1:1 Instagram + 4:5 portrait). Canvas API. | `photos.lead_shot` |
+| Platform Formatter | G-06 | Approved description + target platform (petfinder/adoptapet/instagram/facebook/rescuegroups) | Formatted text within platform char limits + count + status | `dog_context.urgency` |
 
 **Project (P-series) — Working prototypes**
 
-Per owner task specs: P-01 is rule-based v1, no AI, single HTML file. P-02 is HTML + JS with LocalStorage. P-03 diverges — it's a **standalone API** (Python or Node) with a computer vision model and test UI.
+Per owner task specs: P-01 is rule-based v1, no AI, single HTML file. P-02 is HTML + JS with LocalStorage. P-03/P-04/P-05/P-06 are **standalone APIs** (Python or Node). Full Story Builder spec: `strategy/feature-specs/story-builder.md`.
 
 | Component | Pull List | Stack | Input | Output | platform_hints |
 |-----------|-----------|-------|-------|--------|----------------|
 | Coaching Packet Generator | P-01 | HTML + JS (rule-based) | BCS score + dog profile | One-page coaching brief (shot list, description draft, presenter guidance) | — (v1 rule-based) |
-| Story Builder Session | P-02 | HTML + JS, LocalStorage | Photos, videos, notes, dog profile | Coached story + coaching packet | Optional |
+| Story Builder Session | P-02 | HTML + JS, LocalStorage | Photos, videos, notes, dog profile. Full spec: `strategy/feature-specs/story-builder.md` | Coached story (portable + enriched layers) + coaching packet. Two-layer output: portable (char-limit-aware) and enriched (full). | Optional |
 | Photo Curation API | P-03 | Python or Node + CV model | photos[], dog_info | selected[] (url, order, reason) + rejected[] (url, reason) | Optional |
-| BCS Score API | P-04 | Python or Node | dog_info, story?, photos?, video? | score (0-18), grade, by_dimension[], summary | — |
-| Story Builder | P-05 | Text + foster_notes + gaps | Coached description | `story`, `learned` |
-| Re-Presentation Engine | P-06 | Session history + signals | Fresh coaching brief | `learned`, `dog_context`, `director` |
+| BCS Score API | P-04 | Python or Node | dog_info, story?, photos?[], video? — receives full listing package, does its own analysis | score (0–18), grade (A+/A/B/C/D), by_dimension[] (name, score 0–2, gap), summary | — |
+| Story Builder API | P-05 | Python or Node + LLM (GPT-4o recommended) | dog_name, raw_text, foster_notes, priority_gaps[], score_context{} | coached_description, coaching_packet {what_changed, dimensions_improved[], estimated_score_delta}, review_required: true | `story`, `learned` |
+| Re-Presentation Engine | P-06 | Python or Node + LLM | dog_info, session_history[], platform_hints (optional) | new_angle, what_was_tried[], what_was_missing[], try_this_next[], new_shot_agenda[] | `learned` (near_miss_signals, top_performer_pattern), `dog_context` (days_in_care, escalation_risk) |
 
 **High Bar (H-series) — Technical proof of concepts**
 
@@ -48,7 +48,7 @@ Per owner task specs: P-01 is rule-based v1, no AI, single HTML file. P-02 is HT
 
 ## 2. Orchestration Design
 
-*Resolved: server-side orchestrator for full pipeline (Q-S1), client-side tools standalone (DEC-004).*
+*Decided: Isomorphic orchestration (DEC-004 confirmed by stakeholder). Server-side orchestrator for full pipeline, client-side tools standalone. Offline path must never return errors for Tier 3 features — always fall back to rubric-based coaching.*
 
 ### Two Layers of Orchestration
 
@@ -88,14 +88,30 @@ The tools are separate HTML files. How does data flow between them?
 - **Combined tool:** G-01 and P-01 merge into one file that scores and generates the brief in one flow
 
 **P-02 (Story Builder Session):**
-P-02 is the first multi-step tool. Per owner spec:
+P-02 is the first multi-step tool. Full spec: `strategy/feature-specs/story-builder.md`. Per owner spec:
 - Takes whatever the foster brings (photos, videos, notes) — the "atomic unit of BCS work"
 - Uses **LocalStorage for prototype** persistence
 - Accepts **platform_hints** as optional input (first tool to do so)
-- Outputs coached story + coaching packet
+- **Two-layer output:** Portable layer (char-limit-aware for listing platforms) and Enriched layer (full version with presenter brief)
+- Sessions are versioned (v1 text only → v2 after photos → v3 after video). Nothing resets.
+- Human gate: `review_required: true` is hardcoded. Three paths: Accept, Tweak, Start Over.
+- Quick-tap tweak options: `Shorter · Longer · More playful · Emphasize calm · Less jargon · Different opening`
+- `refine_count` tracked per session — 4+ refinements signals thin intake data
 - Deliverable: `story-builder-session.html`
 
-P-02 is where the individual tools start converging into a session-based workflow. It likely consumes G-01's scoring logic internally rather than requiring a separate scoring step.
+P-02 is where the individual tools start converging into a session-based workflow. It orchestrates BCS APIs in sequence per FLOW.md (voice/transcribe → word/check → bcs/score → story/build → photos/curate → story/refine → story/card + story/format).
+
+**P-05 (Story Builder API):**
+P-05 is the core AI story generation endpoint. Per owner spec:
+- Receives `priority_gaps[]` and `score_context{}` from P-04 — coaching is gap-specific, not generic
+- Produces `coached_description` + `coaching_packet` with `what_changed`, `dimensions_improved[]`, `estimated_score_delta`
+- Test against Moose example in FLOW.md: input 3/18 profile, verify output hits personality_hook, foster_voice, family_vision
+
+**P-06 (Re-Presentation Engine):**
+P-06 reads what was tried and builds the next approach. Per owner spec:
+- Degrades gracefully: no `platform_hints` → general coaching from session history. With hints → targeted brief from real adopter signal.
+- Output: `new_angle`, `what_was_tried[]`, `what_was_missing[]`, `try_this_next[]`, `new_shot_agenda[]`
+- Test against both Path A (platform-connected) and Path B (standalone with manual signals) per FLOW.md
 
 **H-03 → H-04 (video produce → video export):**
 Per H-04 spec: `/video/produce` calls `/video/export` internally as its final step. H-04 is also callable standalone on any existing video — not just BCS pipeline output. This makes H-04 a general-purpose utility, not just a pipeline component.
@@ -111,7 +127,8 @@ This creates a dependency chain: G-01 → P-04, P-01 → P-04, P-02 → P-04 (vi
 These data flow questions should be resolved before P-01 and P-02 are built.
 
 ### Key Design Decisions (Layer 2)
-- **Server-side orchestrator** (Q-S1): A separate backend service owns pipeline sequencing, context threading, and error recovery. Client-side tools don't go through it — they're standalone.
+- **Server-side orchestrator** (Q-S1, DEC-004 decided): A separate backend service owns pipeline sequencing, context threading, and error recovery. Client-side tools don't go through it — they're standalone.
+- **Graceful degradation** (stakeholder requirement): Offline path always produces *something* for Tier 3 features. If backend is unreachable, return coaching actions from rubric-config.json — never an error.
 - **Context threading**: The orchestrator carries `score_context`, `priority_gaps`, and `platform_hints` through the entire pipeline. No API re-fetches context.
 - **platform_hints delivery** (Q-S3): Optional object in the request body. Absent = standalone mode.
 - **Partial failure**: If `/photos/curate` fails but `/story/build` succeeds, the coaching packet still assembles with what it has.

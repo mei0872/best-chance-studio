@@ -35,7 +35,7 @@ Dog    ──1:1──→ PublishedInventoryEntry (when approved + published)
 ```
 
 ### Resolved Questions
-- **Dog identity across rescues** — See `DEC-003-dog-identity.md`. Rescue-scoped by default with optional linking.
+- **Dog identity across rescues** — See `DEC-003-dog-identity.md`. **Decided:** Rescue-scoped by default with optional linking via microchip number. Transfer UX must include "Import session from prior rescue" prompt.
 - **Foster as entity** — Yes. Per Q-P3, fosters and coordinators are distinct user roles with different permissions. Foster is a first-class entity with identity and role-based access.
 
 ### Updated Entity: Foster
@@ -104,7 +104,7 @@ Required access:
 
 ## 4. Storage Strategy
 
-*DEC-002 partially resolved: LocalStorage for v1 prototype (per P-02 spec). Long-term strategy (IndexedDB + file export) recommended but awaiting stakeholder decision.*
+*DEC-002 fully decided: LocalStorage for v1 prototype (per P-02 spec). IndexedDB + file export for production (confirmed by stakeholder). Export prompt must be unavoidable before storage-clearing actions.*
 
 ### Data Categories
 

@@ -153,11 +153,11 @@ Multi-rescue support required (Q-X1). Self-serve registration (Q-P2). Distinct f
 | YouTube OAuth | `token.json` per rescue | Auto-refresh via OAuth flow |
 | Platform API key | Backend config (platform-connected mode) | Platform-managed |
 
-### Key Concern: Standalone API Key Exposure
-In standalone mode, if AI features require API keys, those keys are exposed in the browser. Options:
-1. **No AI in standalone** — rule-based scoring only (aligns with DEC-001 Option A)
-2. **User provides own key** — foster/rescue enters their API key (UX burden, security risk)
-3. **Proxy service** — lightweight backend that holds keys (no longer truly standalone)
-4. **Rate-limited public key** — BCS provides a key with strict per-session rate limits (cost risk)
+### Standalone API Key Management (Resolved — DEC-005)
+Stakeholder added `docs/ai-credentials.md` which resolves this:
 
-This is a fundamental tension. See DEC-001 and DEC-004.
+- **Standalone tools:** BYOK (Bring Your Own Key). Provider selection, key entry, validation. Setup in under 3 minutes.
+- **Platform implementations:** Credentials managed server-side.
+- **Contributors:** Ollama for zero-cost local development.
+
+Every BCS implementation that uses AI-powered APIs must provide a setup flow that collects valid AI provider credentials before any AI feature is invoked. Keys are stored securely per the credential spec. Graceful failure when credentials are missing or invalid.

@@ -1,8 +1,8 @@
 # DEC-006: Offline Media Boundary
 
-**Status:** Open
-**Date:** 2026-03-07
-**Decider:** Stakeholder
+**Status:** Decided
+**Date:** 2026-03-08
+**Decider:** mei0872 (via GitHub Discussion #16)
 **Model(s):** Technical, Software, Security
 
 ---
@@ -133,16 +133,22 @@ Option C's queue can be added later if user research shows fosters want auto-pro
 
 ## Decision
 
-[Awaiting stakeholder input]
+**Option B: Capture + guidance offline.** Confirmed by stakeholder.
+
+Stakeholder notes:
+- The media operation classification table is the right way to think about the boundary.
+- Option B is the lowest-complexity path that passes the "something useful" test.
+- Auto-sync queue (Option C) is the right "later" — add it when fosters tell us the manual "Process" tap is friction.
+
+**Stakeholder note on photo checks:** Client-side canvas image analysis for brightness/orientation checks is well-supported and fast. Worth implementing in v1 — catches the most common photo problems (dog facing away, too dark, portrait vs landscape) before the foster thinks they're done.
 
 ---
 
 ## Consequences
 
-If Option B:
 - Offline UI includes: rubric display, generic shot list, coaching actions, basic photo checks
-- Client-side image processing needed for resolution/orientation/brightness checks
+- **Client-side brightness/orientation check worth implementing in v1** (stakeholder confirmed)
 - Voice notes stored as raw audio files, transcription deferred
 - No Service Worker requirement for v1 (optional enhancement later)
 - "Process now" button visible when connectivity detected
-- All offline-captured data stored per DEC-002 persistence strategy
+- All offline-captured data stored per DEC-002 persistence strategy (IndexedDB + file export)

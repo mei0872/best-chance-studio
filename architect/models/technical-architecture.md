@@ -100,11 +100,15 @@ Tier 1 + Tier 2 must satisfy this test. The foster should get:
 | `/story/card` | Partial | Image generation/layout | Low-Medium |
 | `/story/format` | No | Text reformatting to platform limits | Low — deterministic |
 
-### Provider Strategy (Resolved — Q-T2)
-Provider abstraction required from day 1. Target providers: OpenAI, Anthropic (Claude), and local models (Ollama). Build `AICapability` interface with adapters per provider. See DEC-005.
+### Provider Strategy (Decided — DEC-005)
+Provider abstraction required from day 1. Target providers: OpenAI, Anthropic (Claude), and local models (Ollama). Build `AICapability` interface with adapters per provider.
+
+Spec docs from stakeholder:
+- `docs/ai-credentials.md` — BYOK credential flow required for standalone tools. Setup in under 3 minutes for non-technical coordinator. Provider selection (OpenAI/Anthropic/Ollama), key validation before save, secure storage (not localStorage plaintext), graceful failure when missing. Cost transparency in setup UI ($0.25–$0.50/dog estimate).
+- `docs/ai-usage-logging.md` — Per-call usage logging (SHOULD, not MUST). Schema: api, model, tokens_in/out, estimated_cost, duration_ms, complexity_hint, rubric_version, timestamp. Data stays with implementor — no telemetry. Community feedback loop: implementors share findings → spec updates with cheaper recommendations. Key cost levers identified: /photos/curate (vision model), /story/refine (prompt tightening), /bcs/score (rule-based for easy dims), /video/coach (frame sampling rate).
 
 ### Cost Concerns
-See `DEC-005-ai-cost-model.md`. Target: < $0.50 per dog for full pipeline (excluding video direction).
+DEC-005 decided: < $0.50 per dog for full pipeline (excluding video direction). BCS spec is silent on who pays — that's the implementor's concern. H-01 video direction cost TBD via prototype.
 
 ---
 

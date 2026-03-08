@@ -1,8 +1,8 @@
 # DEC-004: Orchestration Engine Location
 
-**Status:** Open
-**Date:** 2026-03-07
-**Decider:** Stakeholder
+**Status:** Decided
+**Date:** 2026-03-08
+**Decider:** mei0872 (via GitHub Discussion #14)
 **Model(s):** Software, Technical
 
 ---
@@ -125,16 +125,26 @@ The transition is simple: if the backend is reachable, use it. If not, run local
 
 ## Decision
 
-[Awaiting stakeholder input]
+**Option C: Isomorphic orchestration, implemented pragmatically.** Confirmed by stakeholder.
+
+Stakeholder notes:
+- The task specs already reveal this split naturally. The architecture was converging on Option C before this decision was written.
+- Two simple code paths, not a framework. Offline orchestrator is vanilla JS, online orchestrator is a thin backend.
+- Routing decision is a single connectivity check.
+
+**Stakeholder requirement — graceful degradation:** The offline path should always produce *something* even for Tier 3 features. If `/story/build` can't reach the backend, the offline path should return rule-based coaching actions from rubric-config.json for each gap dimension — **not an error**. Degraded ≠ broken.
+
+**Stakeholder note on P-02:** The "single HTML file" philosophy still holds for G-series and P-01. P-02 (Story Builder Session) is where the split first appears — that's the right place to implement the connectivity check for the first time.
 
 ---
 
 ## Consequences
 
-If Option C:
 - Two orchestration modules: `orchestrate-offline.js` (browser) and `orchestrate-online.js` (backend)
 - Shared: session state format, coaching packet schema, rubric config loader
 - Frontend needs a connectivity check + routing decision at pipeline start
 - Backend is optional — BCS works (degraded) without it
+- **Offline path must never return an error for Tier 3 features** — always fall back to rubric-based coaching actions (stakeholder requirement)
+- P-02 is where the connectivity check is first implemented
 - Contributor workflow: develop offline path first, online path when ready
 - Deployment: static files for offline, single container for backend

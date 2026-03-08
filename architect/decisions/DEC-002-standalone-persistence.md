@@ -1,8 +1,8 @@
 # DEC-002: Standalone Persistence Strategy
 
-**Status:** Open
-**Date:** 2026-03-07
-**Decider:** Stakeholder
+**Status:** Decided
+**Date:** 2026-03-08
+**Decider:** mei0872 (via GitHub Discussion #13)
 **Model(s):** Data, Technical
 
 ---
@@ -146,16 +146,24 @@ The implementation order should be: IndexedDB first (covers 90% of use), file ex
 
 ## Decision
 
-[Awaiting stakeholder input]
+**Option D: IndexedDB + File Export.** Confirmed by stakeholder.
+
+Stakeholder notes:
+- LocalStorage is the decided v1 prototype strategy (per P-02 spec). Option D governs what replaces it as the system matures.
+- The 5MB LocalStorage ceiling is a real wall — IndexedDB's storage, blob support, and indexed queries are what the full pipeline needs.
+- File export is the durability layer, not a workaround. "Clear browsing data" will make fosters lose coaching history.
+- Export also doubles as the transport corridor mechanism (DEC-003).
+
+**Stakeholder requirement on Safari:** Make the export prompt **unavoidable** before any action that would clear storage. Don't make it optional UI buried in settings — make it the natural end-of-session step.
 
 ---
 
 ## Consequences
 
-If Option D:
 - Data layer needs an abstraction over IndexedDB (object stores: sessions, dogs, media, inventory)
 - Export format needs a documented schema (JSON manifest + media files in ZIP)
 - Import needs conflict detection (same dog_id, different versions)
-- UI needs export/import controls (prominent enough fosters actually use them)
+- **Export prompt must be unavoidable before storage-clearing actions** — not optional, not buried in settings (stakeholder requirement)
 - Mobile Safari storage eviction must be tested and documented
 - Published dog inventory needs periodic auto-export as safety net
+- File export doubles as transport corridor mechanism (DEC-003)

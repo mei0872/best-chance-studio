@@ -1,8 +1,8 @@
 # DEC-005: AI Cost Model
 
-**Status:** Open
-**Date:** 2026-03-07
-**Decider:** Stakeholder
+**Status:** Decided
+**Date:** 2026-03-08
+**Decider:** mei0872 (via GitHub Discussion #15)
 **Model(s):** Technical, Software
 
 ---
@@ -124,16 +124,29 @@ Target: **< $0.50 per dog** for a full pipeline run (excluding video direction).
 
 ## Decision
 
-[Awaiting stakeholder input]
+**Option B: Provider abstraction layer. Target: < $0.50/dog.** Confirmed by stakeholder.
+
+Stakeholder notes:
+- `AICapability` interface shape confirmed: `generateText(prompt, complexity)`, `analyzeImage(image, prompt)`, `transcribeAudio(audio)`
+- Complexity hints (`simple` / `standard` / `complex`) rather than explicit tiers — cleaner and more flexible
+- < $0.50/dog is the right ceiling. For a rescue running 40 dogs, $20/week is trivially justifiable.
+- H-01 (video direction) cost is genuinely TBD — needs its own cost analysis as part of prototype work.
+
+**Cost ownership (stakeholder clarification):** BCS is free. The AI it runs on is not — and that cost belongs to the implementor. BCS spec is silent on pricing models. Each implementor decides how to handle AI costs for their users.
+
+**New spec docs added by stakeholder:**
+- `docs/ai-credentials.md` — AI credential management. Every BCS implementation must provide a setup flow for AI provider credentials. Reference BYOK (Bring Your Own Key) pattern included for standalone tools.
+- `docs/ai-usage-logging.md` — Implementations SHOULD log AI usage per call (api, model, tokens in/out, estimated cost, duration). Logs stay with implementor. Findings contributed back to community to refine cost estimates.
 
 ---
 
 ## Consequences
 
-If Option B:
 - Define `AICapability` interface: `generateText(prompt, complexity)`, `analyzeImage(image, prompt)`, `transcribeAudio(audio)`
 - Implement at least two adapters: cloud provider + Ollama
 - Config file maps provider + model per capability
 - Prompts stored as templates (hardprompts/) — adapter injects model-specific formatting
-- Cost tracking: each AI call logs estimated cost for monitoring
+- Cost tracking: each AI call logs estimated cost for monitoring (per `docs/ai-usage-logging.md`)
+- **BYOK credential flow required** for standalone tools (per `docs/ai-credentials.md`)
 - Contributors documented: "run Ollama locally for zero-cost development"
+- BCS spec is silent on who pays — implementor's concern

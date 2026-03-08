@@ -1,6 +1,6 @@
 # Architecture Tasks — Best Chance Studio
 
-*Living document. Last updated: March 7, 2026.*
+*Living document. Last updated: March 8, 2026.*
 
 This tracks every architecture task across all 4 models. Tasks are organized by phase — foundation first, then decisions, then validation.
 
@@ -15,7 +15,7 @@ Legend: `[ ]` not started | `[~]` in progress | `[x]` done
 - [~] **Entity model** — Define all entities (Dog, Session, Rescue, Foster, CoachingPacket, Score, Media, ShotAgenda) with attributes and relationships. *Entities and relationships defined. Foster elevated to first-class entity (Q-P3). Dog identity resolved as rescue-scoped (DEC-003).*
 - [~] **State machine** — Map session lifecycle: intake → scored → coached → reviewed → approved → published → re-presented. *States defined. Terminal gate clarified: only approved+published dogs enter inventory (Q-D2).*
 - [~] **Versioning strategy** — How coaching packets, scores, and stories version across sessions (v1 → v2 → v3). *Strategy outlined. All session history retained with no truncation (Q-D1).*
-- [~] **Storage strategy** — What lives where: client-side (LocalStorage/IndexedDB), file export, server DB, published dog inventory. *Categories defined. LocalStorage for v1 prototype (P-02 spec). BCS is source of record for media (Q-D3). Long-term strategy pending DEC-002 finalization.*
+- [~] **Storage strategy** — What lives where: client-side (LocalStorage/IndexedDB), file export, server DB, published dog inventory. *Categories defined. LocalStorage for v1 prototype (P-02 spec). IndexedDB + file export for production (DEC-002 decided). BCS is source of record for media (Q-D3).*
 - [~] **Published dog inventory schema** — Schema for the persistent record of every dog that completes BCS (profile, story, score, publish date). *Minimum schema defined. Scope clarified: approved+published only (Q-D2). Foster PII stripped by default (Q-X2).*
 - [~] **Session history model** — How `/story/represent` accesses prior sessions, what signals compound across versions. *History contract defined. All sessions retained (Q-D1).*
 
@@ -53,11 +53,11 @@ Legend: `[ ]` not started | `[~]` in progress | `[x]` done
 Each decision blocks some part of implementation. Ordered by dependency.
 
 - [x] **DEC-001: Offline scoring** — Two-tier (rule-based offline + AI online). **Decided.** G-01 is Tier 1 (offline), P-04 is Tier 2 (authoritative API). 9 dimensions, max 18 confirmed.
-- [~] **DEC-002: Standalone persistence** — LocalStorage for v1 prototype (per P-02 spec). **v1 decided.** Long-term strategy (IndexedDB + file export) recommended, awaiting stakeholder.
-- [ ] **DEC-003: Dog identity** — Rescue-scoped vs global dog ID for transport corridors. **Recommendation: rescue-scoped with optional linking.** Awaiting stakeholder.
-- [~] **DEC-004: Orchestration location** — Isomorphic: client-side tools standalone, server-side orchestrator for AI pipeline. **Largely resolved** by task specs + Q-S1. Formal decision pending.
-- [~] **DEC-005: AI cost model** — Provider abstraction required day 1 (Q-T2). Target < $0.50/dog. **Recommendation in place.** Awaiting stakeholder.
-- [~] **DEC-006: Offline media boundary** — Capture + guidance offline, AI processing online. **Recommendation confirmed** by task specs. Awaiting formal decision.
+- [x] **DEC-002: Standalone persistence** — IndexedDB + file export for production. LocalStorage for v1 prototype. **Decided.** Export prompt must be unavoidable before storage-clearing actions. File export doubles as transport corridor mechanism.
+- [x] **DEC-003: Dog identity** — Rescue-scoped with optional linking via microchip number. **Decided.** Transfer UX must include "Import session from prior rescue" prompt.
+- [x] **DEC-004: Orchestration location** — Isomorphic: client-side tools standalone, server-side orchestrator for AI pipeline. **Decided.** Offline path must never return errors — always fall back to rubric-based coaching.
+- [x] **DEC-005: AI cost model** — Provider abstraction required day 1. Target < $0.50/dog. BYOK credential flow. **Decided.** Per-call usage logging required. BCS spec silent on who pays.
+- [x] **DEC-006: Offline media boundary** — Capture + guidance offline, AI processing online. **Decided.** Client-side brightness/orientation check in v1. Auto-sync queue is "later."
 
 ---
 
@@ -77,13 +77,13 @@ Each decision blocks some part of implementation. Ordered by dependency.
 Phase 1 Foundation ──→ Phase 2 Decisions ──→ Phase 3 Validation
         │                      │
         │  DEC-001 ←── DECIDED (G-01 + P-04)
-        │  DEC-002 ←── v1 DECIDED (LocalStorage), long-term open
-        │  DEC-003 ←── Recommendation ready, awaiting stakeholder
-        │  DEC-004 ←── Largely resolved (task specs + Q-S1)
-        │  DEC-005 ←── Recommendation ready (Q-T2 confirms abstraction)
-        │  DEC-006 ←── Recommendation confirmed by task specs
+        │  DEC-002 ←── DECIDED (IndexedDB + file export)
+        │  DEC-003 ←── DECIDED (rescue-scoped + optional linking)
+        │  DEC-004 ←── DECIDED (isomorphic)
+        │  DEC-005 ←── DECIDED (provider abstraction + BYOK)
+        │  DEC-006 ←── DECIDED (capture + guidance offline)
         │                      │
         └──────────────────────└──→ Implementation (pull list tasks)
 ```
 
-Phase 1 is substantially complete — most tasks are in progress with key sections filled. DEC-001 is decided. DEC-002/004 are partially decided. DEC-003/005/006 have recommendations awaiting stakeholder sign-off. Phase 3 validation can begin once remaining decisions are finalized.
+**All 6 decisions are now decided.** Phase 1 is substantially complete — most tasks are in progress with key sections filled. Phase 2 is complete. Phase 3 validation can begin immediately — no remaining blockers.
