@@ -555,7 +555,14 @@ The rescue's existing workflow stays intact. No new logins, no platform switchin
 
 → Building these? See [G-05] and [G-06] in the pull list.
 
-**Note on YouTube delivery:** `/video/export` produces the YouTube-ready file and metadata but does not handle upload directly. It passes a `destination` object to the platform layer, which uses the rescue's stored YouTube credentials to complete the upload. YouTube OAuth is handled at rescue registration — not here. Rescue registration is outside the BCS spec — handled at the platform layer by the implementor.
+**On YouTube delivery:** `/video/export` produces the YouTube-ready file and metadata, then uploads directly to the rescue's connected YouTube channel and returns the published URL. YouTube OAuth is connected once during BCS setup — after that, upload and URL generation are fully automated.
+
+The YouTube URL does real work once published:
+- Inserted into Petfinder and AdoptAPet listings alongside the coached description
+- Used as the "What's Your Story" video on WAH dog profiles
+- Shared directly by the foster to Facebook, Instagram, and group chats
+
+**The promise:** the foster shoots the video. BCS coaches it, uploads it, and delivers a URL ready for every platform. No manual YouTube steps after initial setup.
 
 ---
 

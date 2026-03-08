@@ -310,6 +310,7 @@ Output:
 ### [H-04] Video Export Engine — YouTube-Ready Output
 **What:** Takes any produced video and outputs a YouTube-ready file — correct format, resolution, audio, thumbnail, and suggested title/tags.
 **Why it matters:** /video/produce creates the best possible story. /video/export makes sure it lands correctly everywhere it's shared. Callable independently on any existing video — not just BCS pipeline output.
+**YouTube OAuth note:** Rescues connect their YouTube channel once during BCS setup. After that, /video/export uploads directly and returns the published URL — no manual steps. The URL then travels to Petfinder, AdoptAPet, WAH dog profiles, and social. This is a BCS setup requirement, not a WAH-only concern.
 **API shape:**
 ```
 POST /video/export
