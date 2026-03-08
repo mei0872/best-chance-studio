@@ -3,3 +3,4 @@ CLAUDE.md
 build_app.md
 SETUP_GUIDE.md
 memory/*
+.env
