@@ -3,7 +3,7 @@
 
 Open source coaching tools that give every rescue dog their best chance at adoption.
 
-**Free for every rescue. Forever. No matter what platform they post on.**
+**Free for every rescue. AI features run on your own AI account (~$5–10/month, paid directly to your provider — we never see it). No matter what platform they post on.**
 
 ---
 
@@ -25,7 +25,7 @@ What we build here is going to be loved by rescues. It's going to help them get 
 
 The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
 
-**Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free forever.**
+**Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free to use — AI features run on your own AI account, paid directly to your provider.**
 
 ---
 
