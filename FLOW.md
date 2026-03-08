@@ -467,7 +467,81 @@ POST /story/format
 
 Platforms: `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegroups`
 
-No native integration with legacy platforms — manual copy/paste by design. BCS builds the story. The foster carries it.
+---
+
+**Rescue Template Library — `/rescue/templates`**
+
+Rescues maintain a library of reusable paragraphs — boilerplate they append to listings. Each paragraph is named, selectable, and independent. At export time, the rescue (or the session UI) chooses which to include. The selected paragraphs append to the portable description after the coached story.
+
+**Why this matters for standalone BCS:** Rescues using Petfinder, AdoptAPet, or RescueGroups currently paste their org boilerplate manually into every single listing. This defines it once and appends it automatically — saving meaningful time per dog across a rescue's full volume.
+
+**WAH platform note:** WAH handles rescue branding, application links, and transport information natively — the template library is not needed there. This feature is designed for standalone BCS users.
+
+```json
+GET /rescue/templates
+→ {
+    "rescue_id": "blues-city-memphis",
+    "templates": [
+      {
+        "id": "transport-east-coast",
+        "label": "East Coast Transport",
+        "text": "Transport is available! We transport 3–4 times monthly up the East Coast from Memphis with convenience stops in Nashville, Knoxville, Bristol, Roanoke, Richmond, and Washington DC. Transport cost is $250, paid separately from the rescue adoption fee. Reach out to ask about your nearest stop.",
+        "default_include": false,
+        "tags": ["transport", "situational"]
+      },
+      {
+        "id": "org-blurb",
+        "label": "About Our Rescue",
+        "text": "Blues City Animal Rescue is a 501(c)(3) foster-based rescue serving the Memphis metro area. All dogs are spayed or neutered, up to date on vaccines, and heartworm tested before adoption.",
+        "default_include": true,
+        "tags": ["org", "always"]
+      },
+      {
+        "id": "apply",
+        "label": "How to Apply",
+        "text": "To apply, visit [rescue application URL]. Applications are reviewed within 48 hours.",
+        "default_include": true,
+        "tags": ["application", "always"]
+      },
+      {
+        "id": "foster-to-adopt",
+        "label": "Foster-to-Adopt Available",
+        "text": "Not sure yet? We offer foster-to-adopt for the right match. Ask us how it works.",
+        "default_include": false,
+        "tags": ["fta", "situational"]
+      }
+    ]
+  }
+```
+
+**`/story/format` with templates:**
+
+```json
+POST /story/format
+{
+  "description": "...",
+  "target": "petfinder",
+  "rescue_id": "blues-city-memphis",
+  "include_templates": ["org-blurb", "apply", "transport-east-coast"]
+}
+
+→ {
+    "formatted": "...[coached story]...\n\n[About Our Rescue paragraph]\n\n[How to Apply paragraph]\n\n[East Coast Transport paragraph]",
+    "char_count": 1247,
+    "limit": 4000,
+    "status": "within_limit",
+    "templates_included": ["org-blurb", "apply", "transport-east-coast"]
+  }
+```
+
+**Design rules:**
+- Templates append after the coached story — never before
+- Order follows the `include_templates` array — rescue controls sequencing
+- Character count includes appended templates — platform limits enforced on the full output
+- If appending templates would exceed a platform's character limit, the API returns a warning with the offending template identified — it does not silently truncate
+- Templates are rescue-owned and locally stored — BCS does not maintain a central template registry
+
+No native integration with legacy platforms — manual copy/paste by design. BCS builds the story and assembles the full listing text. The foster carries it.
 
 Once the story is formatted and the card is downloaded, the foster copies it to wherever their rescue lists dogs:
 

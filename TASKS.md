@@ -72,11 +72,59 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 ---
 
 ### [G-06] Story Formatter — `/story/format`
-**What:** Takes an approved coached description and reformats it for a specific platform — character limits handled, no manual trimming.
+**What:** Takes an approved coached description and reformats it for a specific platform — character limits handled, no manual trimming. Supports the Rescue Template Library (see below) — selected templates append after the coached story before formatting.
 **Why it matters:** Petfinder, AdoptAPet, Instagram, and Facebook all have different character limits and conventions. This tool does the reformatting so the foster just copies and pastes.
 **Platforms:** `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegroups`
 **Stack:** Plain HTML + vanilla JS. Rule-based character limits per platform.
-**Deliverable:** `story-formatter.html` — paste description, pick platform, get formatted output with character count and status.
+**Deliverable:** `story-formatter.html` — paste description, pick platform, select templates to append, get formatted output with character count and status.
+
+---
+
+### [G-07] Rescue Template Library — `/rescue/templates`
+**What:** A rescue-owned library of reusable paragraphs — org boilerplate, transport info, application links, foster-to-adopt offers — that append to listings at export time. Defined once, selected per dog.
+**Why it matters:** Rescues using Petfinder, AdoptAPet, or RescueGroups manually paste the same boilerplate into every listing. This defines it once and appends it automatically. For a rescue placing 100 dogs a year, that's real time saved — and it makes BCS meaningfully more attractive to rescues that aren't on our platform.
+**Platform note:** WAH handles rescue branding natively. This feature is for standalone BCS users.
+**Design rules:**
+- Templates append after the coached story — never before
+- Order follows the `include_templates` array — rescue controls sequencing
+- Character count includes appended templates — platform limits enforced on the full output
+- If appending templates would exceed a platform's character limit, return a warning with the offending template identified — never silently truncate
+- Templates are locally stored — no central registry
+**Sample templates (use these as the reference implementation):**
+```json
+[
+  {
+    "id": "transport-east-coast",
+    "label": "East Coast Transport",
+    "text": "Transport is available! We transport 3–4 times monthly up the East Coast from Memphis with convenience stops in Nashville, Knoxville, Bristol, Roanoke, Richmond, and Washington DC. Transport cost is $250, paid separately from the rescue adoption fee. Reach out to ask about your nearest stop.",
+    "default_include": false,
+    "tags": ["transport", "situational"]
+  },
+  {
+    "id": "org-blurb",
+    "label": "About Our Rescue",
+    "text": "We are a 501(c)(3) foster-based rescue. All dogs are spayed or neutered, up to date on vaccines, and heartworm tested before adoption.",
+    "default_include": true,
+    "tags": ["org", "always"]
+  },
+  {
+    "id": "apply",
+    "label": "How to Apply",
+    "text": "To apply, visit [your application URL]. Applications are reviewed within 48 hours.",
+    "default_include": true,
+    "tags": ["application", "always"]
+  },
+  {
+    "id": "foster-to-adopt",
+    "label": "Foster-to-Adopt Available",
+    "text": "Not sure yet? We offer foster-to-adopt for the right match. Ask us how it works.",
+    "default_include": false,
+    "tags": ["fta", "situational"]
+  }
+]
+```
+**Stack:** Plain HTML + vanilla JS + localStorage. Add/edit/delete templates in the UI. Toggle which are included per export.
+**Deliverable:** `rescue-templates.html` — manage library + preview assembled listing output before copying.
 
 ---
 
