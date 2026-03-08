@@ -1,6 +1,6 @@
 # Governance — Best Chance Studio
 
-*Last updated: March 7, 2026*
+*Last updated: March 8, 2026*
 
 > We're being transparent about how this project is governed — including the parts that are still being figured out. We'd rather be clear about where we are than overstate a governance structure we haven't built yet.
 
@@ -121,6 +121,26 @@ Rules:
 The MIT license is the answer. The community owns the code. Fork it, continue it, build on it — no permission required.
 
 We're not planning for that scenario. The license protects you regardless.
+
+---
+
+## Feedback Loop — How BCS Improves
+
+The spec is a living document. It improves through use.
+
+**The principle:** Implementors are responsible for collecting feedback from their users and contributing findings back to the open source community. BCS belongs to the community — and so does the knowledge gained from running it in the real world.
+
+**How WAH contributes feedback:**
+- Aggregate findings from rescue and adopter usage (never raw personal data)
+- Rubric proposals backed by outcome data as the platform grows
+- API and spec improvements surfaced through real implementation experience
+
+**How the community contributes:**
+- [RFC Discussion](https://github.com/mei0872/best-chance-studio/discussions/17) — open thread for API design and spec review
+- Rubric proposals via issues (process in the Governance section above)
+- Implementation notes, edge cases, and usage patterns via Discussions
+
+No one is required to share everything. But if you find something that would help other implementors — or that would make the spec better — contribute it. That's how this gets better for every dog on every platform.
 
 ---
 

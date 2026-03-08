@@ -1,6 +1,6 @@
 # Contributing to Best Chance Studio
 
-*Last updated: March 7, 2026*
+*Last updated: March 8, 2026*
 
 Welcome. Every item on the pull list has a real dog on the other side of it.
 Here's how to show up for them.
@@ -91,6 +91,22 @@ Open a PR with:
 - **Description:** which dog it helps — literally, if you can. "This means Beth can score all 40 dogs before Saturday instead of doing it by feel." is the kind of PR description that belongs here.
 
 No formal code review process yet. If it runs and does what it says, we're merging it.
+
+---
+
+## Feedback on BCS Itself
+
+BCS improves when the people using it tell us what's not working.
+
+**Implementors are responsible for collecting feedback from their users and contributing findings back to the community.** This is how the spec, rubric, and API design stay grounded in real use — not just the assumptions we started with.
+
+How to contribute feedback:
+- **API design or spec gaps** → [RFC: API Design & Spec Review](https://github.com/mei0872/best-chance-studio/discussions/17)
+- **Rubric improvements** → open a `Rubric Proposal` issue (see [GOVERNANCE.md](GOVERNANCE.md))
+- **General ideas or observations** → [GitHub Discussions](https://github.com/mei0872/best-chance-studio/discussions)
+- **Bugs or clear spec errors** → [GitHub Issues](https://github.com/mei0872/best-chance-studio/issues)
+
+Feedback from WAH's own implementation will be shared with the community as aggregate findings — not raw data, but patterns worth acting on. We expect the same from other implementors over time.
 
 ---
 
