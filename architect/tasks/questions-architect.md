@@ -1,76 +1,74 @@
-# Architect's Questions — Blocking
+# Architect's Questions — Resolved
 
-*These questions must be resolved before the architecture models can be finalized. Organized by model.*
-
-*Last updated: March 7, 2026*
+*All questions resolved with working assumptions on March 7, 2026. These are assumptions, not final decisions — we can pivot if any change, but they unblock architecture work now.*
 
 ---
 
 ## Data Architecture
 
-### Q-D1: Session history depth
-How many prior sessions should `/story/represent` have access to? All of them? Last N? Does history get summarized/compressed after a threshold?
+### Q-D1: Session history depth — RESOLVED
+**Assumption:** All prior sessions are available to `/story/represent`. No compression, no truncation.
 
-**Why it blocks:** Determines storage requirements and the session history model schema.
+**Implication:** Storage must accommodate unbounded session history per dog. May need indexing for performance as history grows.
 
-### Q-D2: Published dog inventory scope
-FLOW.md says "every coached dog that goes through BCS before launch is a real dog ready to be matched." Does the inventory include dogs that were coached but never approved by the foster? Or only approved+published?
+### Q-D2: Published dog inventory scope — RESOLVED
+**Assumption:** Only approved + published dogs enter the inventory. Coached-but-unapproved sessions are retained in session history but not in the published inventory.
 
-**Why it blocks:** Defines the terminal states in the session state machine.
+**Implication:** The session state machine has a clear terminal gate: `approved → published → inventory`. Unapproved sessions stay in session storage but don't graduate.
 
-### Q-D3: Media storage ownership
-Who stores the actual photo/video files? BCS (standalone), the rescue's existing storage, or a platform? The stubs reference filenames (`photo_001.jpg`) but not URLs or storage locations.
+### Q-D3: Media storage ownership — RESOLVED
+**Assumption:** BCS is the source of record for media. Rescues may keep copies, but BCS's system is the canonical store.
 
-**Why it blocks:** Media entity design, security model for access control.
+**Implication:** BCS needs a durable media storage layer (object storage or equivalent). Media entity model needs URLs, not just filenames. Backup and retention policies required. Security model must protect media access per-rescue.
 
 ---
 
 ## Technical Architecture
 
-### Q-T1: Target environments
-Is BCS deployed as: (a) a static site a rescue self-hosts, (b) a hosted service rescues sign up for, (c) a downloadable tool that runs locally, or (d) all of the above?
+### Q-T1: Target environments — RESOLVED
+**Assumption:** All of the above — static site, hosted service, downloadable tool. The solution must be something anyone can run.
 
-**Why it blocks:** Drives the entire infrastructure model and offline strategy.
+**Implication:** Architecture must support multiple deployment modes without code changes. Configuration-driven deployment. Docker/container packaging for hosted mode, static file export for self-host, downloadable package for local.
 
-### Q-T2: AI provider assumption
-FLOW.md describes AI-powered APIs (story/build, photos/curate, video/direct) but doesn't specify which LLM/vision provider. Is there a target provider? Is provider abstraction a requirement from day 1?
+### Q-T2: AI provider assumption — RESOLVED
+**Assumption:** OpenAI, Claude, or local models are all likely. Provider abstraction is required from day 1.
 
-**Why it blocks:** DEC-005 (AI cost model), service catalog, credential management.
+**Implication:** Confirms DEC-005 recommendation (Option B). Build the `AICapability` abstraction interface with adapters for cloud providers and local models (Ollama). Prompts stored as templates, adapter handles model-specific formatting.
 
-### Q-T3: Video processing location
-Video production (H-03) and export (H-04) are compute-heavy. Can these run client-side (WASM/WebCodecs) or do they require server-side processing?
+### Q-T3: Video processing location — RESOLVED
+**Assumption:** Server-side by default. Client-side as an option for users with sufficient local hardware. BCS should offer server-side post-processing for those who need it.
 
-**Why it blocks:** DEC-006 (offline media boundary), infrastructure cost model.
+**Implication:** Video pipeline (H-03, H-04) must support both execution environments. Server-side is the primary path. Confirms DEC-006 — video production is firmly "online required" with an optional local processing mode.
 
 ---
 
 ## Software Architecture
 
-### Q-S1: Orchestration engine ownership
-FLOW.md describes BCS as "the orchestration layer" that sequences API calls. Is this orchestration logic: (a) a single coordinator module, (b) distributed across the UI, or (c) a separate backend service?
+### Q-S1: Orchestration engine ownership — RESOLVED
+**Assumption:** A separate backend service (single coordinator module) owns the full pipeline orchestration. Client-side tools (G-01, P-01, P-02) remain standalone for offline use and don't go through the orchestrator. When online, P-02 calls the orchestrator rather than calling individual APIs directly.
 
-**Why it blocks:** DEC-004, component boundaries, error recovery strategy.
+**Implication:** Confirms DEC-004 isomorphic model. The orchestrator is a server-side service that sequences API calls, threads context, handles partial failures, and assembles the coaching packet. Client-side tools are independent offline utilities.
 
-### Q-S2: Single-file constraint scope
-CONTRIBUTING.md says "self-contained HTML file" for Core tasks (G-series). Does this constraint apply to Project tasks (P-series) and High Bar tasks (H-series) too?
+### Q-S2: Single-file constraint scope — RESOLVED
+**Assumption:** Single-file HTML constraint applies to G-series and some P-series (P-01, P-02). Not a universal constraint. P-03, P-04 are standalone APIs. H-series is mixed (H-02 is HTML, H-01/H-03/H-04 are contributor's choice).
 
-**Why it blocks:** Component packaging, dependency management, build tooling decisions.
+**Implication:** No universal build system needed. G-series and early P-series are zero-dependency HTML files. Server-side components (P-03+, H-series) can use whatever tooling the contributor chooses.
 
-### Q-S3: platform_hints delivery mechanism
-The schema is defined but: how does a platform actually deliver hints to the tools? HTTP header? Wrapper object in the request body? Injected config? The stubs don't show hints in requests.
+### Q-S3: platform_hints delivery mechanism — RESOLVED
+**Assumption:** Optional object in the request body, consistent with the stubs and platform-hints-schema.md.
 
-**Why it blocks:** API contract finalization, integration testing strategy.
+**Implication:** No special headers or injection mechanisms. APIs accept `platform_hints` as a top-level optional field in the POST body. Absent = standalone mode. Present = platform-connected mode.
 
 ---
 
 ## Security Architecture
 
-### Q-X1: Rescue isolation
-In standalone mode, can multiple rescues use the same BCS instance? Or is each instance single-rescue?
+### Q-X1: Rescue isolation — RESOLVED
+**Assumption:** Multiple rescues may share the same BCS instance (partner rescues using a shared system).
 
-**Why it blocks:** Auth model, data isolation, multi-tenancy design.
+**Implication:** Multi-tenancy required. Data must be isolated per-rescue at the storage layer. Auth model needs rescue-scoped access. Session history, media, and coaching packets are rescue-private by default. Cross-rescue visibility only through explicit linking (see DEC-003).
 
-### Q-X2: Foster PII handling
-Foster names appear in coaching packets and session history. What's the PII classification? Is anonymization required for the published dog inventory?
+### Q-X2: Foster PII handling — RESOLVED
+**Assumption:** Dog names are not PII. Standard human PII protections apply to foster names, contact info, and other human-identifying data.
 
-**Why it blocks:** Data retention policy, GDPR/privacy considerations, export format.
+**Implication:** Foster names in coaching packets and session history require standard PII handling — access control, no unnecessary exposure, anonymization in published inventory unless foster consents. Published dog inventory uses dog name only; foster identity is stripped by default.

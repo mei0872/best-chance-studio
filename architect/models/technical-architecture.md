@@ -1,7 +1,7 @@
 # Technical Architecture — Best Chance Studio
 
 *Last updated: March 7, 2026*
-*Status: Section headers and key concerns established. Detail to be filled as Phase 1 tasks complete.*
+*Status: Foundation established. Key assumptions resolved — see questions-architect.md.*
 
 ---
 
@@ -61,7 +61,7 @@ Key data that flows between APIs:
 
 ## 2. Offline Tier Definitions
 
-*Blocked by DEC-001 (offline scoring) and DEC-006 (offline media boundary).*
+*DEC-001 decided (two-tier scoring). DEC-006 recommendation confirmed by task specs.*
 
 ### Proposed Classification
 
@@ -100,31 +100,35 @@ Tier 1 + Tier 2 must satisfy this test. The foster should get:
 | `/story/card` | Partial | Image generation/layout | Low-Medium |
 | `/story/format` | No | Text reformatting to platform limits | Low — deterministic |
 
+### Provider Strategy (Resolved — Q-T2)
+Provider abstraction required from day 1. Target providers: OpenAI, Anthropic (Claude), and local models (Ollama). Build `AICapability` interface with adapters per provider. See DEC-005.
+
 ### Cost Concerns
-See `DEC-005-ai-cost-model.md`. Key question: what's the target cost-per-dog for a full pipeline run?
+See `DEC-005-ai-cost-model.md`. Target: < $0.50 per dog for full pipeline (excluding video direction).
 
 ---
 
 ## 4. Infrastructure Options
 
-*Blocked by DEC-004 (orchestration location).*
+*Resolved: Q-T1 (all deployment modes), Q-S1 (server-side orchestrator), DEC-004 (isomorphic).*
 
-### Option A: Static Site (Standalone)
-- Single HTML files served from any web server or opened locally
-- AI calls go directly from browser to provider APIs (CORS, API key exposure concerns)
-- Storage: LocalStorage / IndexedDB / file export
-- Deployment: GitHub Pages, Netlify, or local file://
+### Deployment Model: All of the Above (Q-T1)
+The solution must be something anyone can run. Architecture supports:
 
-### Option B: Thin Backend
-- Static frontend + lightweight API proxy (handles auth, rate limiting, key management)
-- AI calls proxied through backend (keys stay server-side)
-- Storage: Server-side DB + client cache
-- Deployment: Single container or serverless functions
+| Mode | How It Works | Who Uses It |
+|------|-------------|-------------|
+| **Static files (local)** | Open HTML files directly. G-series tools work offline. | Solo foster, zero setup |
+| **Self-hosted** | Rescue deploys static files + backend on their own infrastructure | Tech-savvy rescue |
+| **Hosted service** | BCS runs the backend, rescues register self-serve (Q-P2) | Most rescues |
+| **Platform-connected** | Full pipeline with outcome data, platform_hints | Rescues on a smart platform |
 
-### Option C: Hybrid
-- Core features (Tier 1, Tier 2) work as static files
-- AI-powered features (Tier 3) route through a backend when available
-- Progressive enhancement: offline-first with online superpowers
+### Architecture: Isomorphic (DEC-004 + Q-S1)
+- **Client-side:** G-series and P-01/P-02 work as standalone HTML files with no backend
+- **Server-side:** Orchestrator service sequences the full AI pipeline (P-03, P-04, P-05, P-06, H-series)
+- **Progressive:** If backend is reachable, use it. If not, run offline with rule-based tools.
+
+### Video Processing (Resolved — Q-T3)
+Server-side by default. Client-side option for users with sufficient local hardware. BCS offers server-side post-processing for those who need it.
 
 ---
 
@@ -150,17 +154,15 @@ From CONTRIBUTING.md: "Mobile-friendly at 375px."
 
 ## 6. Deployment Model
 
-*Depends on DEC-004 outcome.*
+*Resolved — see Infrastructure Options above.*
 
-### Environments
-| Environment | Purpose | Who uses it |
-|-------------|---------|-------------|
-| **Local/file** | Solo foster, zero setup | Foster opens HTML file |
-| **Hosted demo** | Evaluation, contributor testing | Contributors, potential rescues |
-| **Rescue instance** | Single rescue deployment | Rescue coordinator |
-| **Platform-connected** | Full pipeline with outcome data | Rescues on a smart platform |
+### Connectivity Assumption (Q-O3)
+Systems will need some form of internet connectivity for updates. Not fully dark/offline-only. Opt-in error reporting or telemetry is a future possibility.
+
+### Multi-Language (Q-P1)
+Multi-language support required. Text processing, word-check rules, LLM prompts, and coaching actions must be designed for i18n from the start.
 
 ### Build Constraints
 - Core tasks: No build step. HTML file works as-is.
-- Project tasks: Minimal build acceptable if documented.
+- Project tasks: Minimal build acceptable if documented (Q-S2).
 - High bar tasks: Build tooling expected (video processing, real-time AI).

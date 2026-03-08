@@ -1,7 +1,7 @@
 # Security Architecture — Best Chance Studio
 
 *Last updated: March 7, 2026*
-*Status: Section headers and key concerns established. Detail to be filled as Phase 1 tasks complete.*
+*Status: Foundation established. Key assumptions resolved — see questions-architect.md.*
 
 ---
 
@@ -20,12 +20,12 @@ BCS operates in two distinct modes with different threat profiles:
 
 | Threat | Standalone Risk | Platform Risk | Mitigation |
 |--------|----------------|---------------|------------|
-| **Spoofing** | Low — single user, no auth | Medium — rescue identity, foster identity | [ ] TBD |
+| **Spoofing** | Low — single user, no auth | Medium — rescue identity, foster identity, distinct roles (Q-P3) | [ ] TBD |
 | **Tampering** | Low — local data only | Medium — session history, scores could be modified | [ ] TBD |
 | **Repudiation** | Low — no audit requirement | Medium — who approved which story? | [ ] TBD |
 | **Information Disclosure** | Medium — API keys in browser | Medium — PII in transit, stored sessions | [ ] TBD |
 | **Denial of Service** | Low — local only | Medium — AI API rate limits, cost attacks | [ ] TBD |
-| **Elevation of Privilege** | Low | Medium — rescue A accessing rescue B's data | [ ] TBD |
+| **Elevation of Privilege** | Low | Medium — rescue A accessing rescue B's data, foster vs coordinator role escalation | [ ] TBD |
 
 ---
 
@@ -35,9 +35,9 @@ BCS operates in two distinct modes with different threat profiles:
 
 | Data | Where It Appears | Classification | Offline? |
 |------|------------------|---------------|----------|
-| Dog name | Everywhere | Low sensitivity | Yes |
-| Dog photos/videos | Media pipeline | Medium — may contain humans | Yes |
-| Foster name | Coaching packet, presenter brief | Medium — PII | Yes |
+| Dog name | Everywhere | **Not PII** (Q-X2) | Yes |
+| Dog photos/videos | Media pipeline | Medium — may contain humans. BCS is source of record (Q-D3). Photographer retains rights, BCS license via ToS (Q-L1). | Yes |
+| Foster name | Coaching packet, presenter brief | **PII — standard protections** (Q-X2). Stripped from published inventory by default. | Yes |
 | Foster voice notes | Transcription pipeline | Medium — biometric adjacent | Yes |
 | Rescue name + location | Rescue registration, exports | Low-Medium | Yes |
 | Rescue coordinator contact | Registration | Medium — PII | No |
@@ -48,6 +48,7 @@ BCS operates in two distinct modes with different threat profiles:
 - Foster voice notes contain biometric-adjacent data (voice recordings). These should be transcribed and the audio discarded unless explicitly retained.
 - Photos may contain identifiable humans (foster families, children). No face detection or PII extraction should occur.
 - Near-miss signals from platforms may contain adopter behavioral data. BCS tools should treat these as opaque signals — no attempt to identify individual adopters.
+- **AI-generated content must be labeled as AI-assisted** (Q-L2). Coaching packets and exported descriptions carry disclosure.
 
 ---
 
@@ -63,9 +64,12 @@ Foster captures → submitted to BCS → processed (curate/coach/produce) → ex
                                    (disposable, never retained)
 ```
 
-### Concerns
-- **Storage**: Where do raw and processed media files live? (See Q-D3 in questions-architect.md)
-- **Access control**: Who can view a dog's media? Only the submitting rescue? Any BCS user?
+### Resolved (Q-D3, Q-L1)
+- **Storage**: BCS is the source of record for media. Durable object storage required.
+- **Ownership**: Photographer retains rights. BCS usage license granted via terms of service.
+- **Access control**: Per-rescue. Multi-rescue instances (Q-X1) require rescue-scoped media access.
+
+### Remaining Concerns
 - **Retention**: How long are raw submissions kept after the dog is adopted?
 - **Produced reels**: Once exported to YouTube, is the local copy retained?
 - **Thumbnails/cards**: Generated images may be shared publicly — ensure no embedded metadata (EXIF stripping)
@@ -90,16 +94,22 @@ Foster captures → submitted to BCS → processed (curate/coach/produce) → ex
 - Adopter behavioral data
 - YouTube OAuth credentials per rescue
 
-### Auth Model Options
-*Depends on DEC-004 (orchestration location) and Q-X1 (rescue isolation).*
+### Auth Model (Resolved — Q-X1, Q-P2, Q-P3)
+
+Multi-rescue support required (Q-X1). Self-serve registration (Q-P2). Distinct foster vs coordinator roles with different permissions (Q-P3).
 
 | Mode | Auth Approach |
 |------|--------------|
-| Standalone single-rescue | None — trust the browser user |
-| Standalone multi-rescue | Client-side rescue selection (no real security) |
-| Hosted single-rescue | API key or simple password |
-| Hosted multi-rescue | OAuth or token-based auth, rescue-scoped data |
+| Standalone (offline tools) | No auth — G-series tools are stateless, no rescue context |
+| Hosted | Self-serve registration, OAuth or token-based auth, rescue-scoped data |
+| Multi-rescue hosted | Role-based access control (foster vs coordinator), rescue-scoped data isolation |
 | Platform-connected | Platform handles auth, passes rescue context to BCS |
+
+### Role-Based Access Control (Q-P3)
+| Role | Can Do | Cannot Do |
+|------|--------|-----------|
+| **Foster** | Submit content, approve stories, view own dogs | View other rescues' data, manage rescue settings |
+| **Coordinator** | Everything foster can + review all dogs, manage presenters, trigger re-presentation | Access other rescues' data |
 
 ---
 

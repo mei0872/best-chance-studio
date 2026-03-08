@@ -1,8 +1,8 @@
 # DEC-001: Offline Scoring Strategy
 
-**Status:** Open
+**Status:** Decided
 **Date:** 2026-03-07
-**Decider:** Stakeholder
+**Decider:** App owner (via G-01 task spec)
 **Model(s):** Technical, Software
 
 ---
@@ -14,6 +14,18 @@
 CONTRIBUTING.md says: "One photo + one sentence → still produces something useful." The scoring engine is the gateway to "something useful."
 
 The rubric (`rubric-config.json`) defines 9 dimensions with clear scoring criteria (0/1/2 per dimension) and deterministic coaching actions per score level. This means a rule-based scorer could produce a reasonable diagnostic without any AI — but an AI scorer could catch nuance a rule-based system misses.
+
+### G-01 Task Spec (Owner-Defined)
+
+The app owner has already spec'd the core scorer as task G-01:
+
+- **Tier:** Core — Grab & Go (2-4 hours)
+- **Stack:** Plain HTML + vanilla JS. No framework. Works offline.
+- **Deliverable:** `bcs-scorer.html` — self-contained, no build step.
+- **What it does:** Rescuer inputs a dog's profile across key dimensions, tool outputs a score, grade, and top gaps to improve.
+- **Why it matters:** "This is the heart of Best Chance Studio. Every rescue uses this before every presentation."
+
+This spec confirms the rule-based offline scorer is not a theoretical option — it is the defined first deliverable. The scorer must work as a single HTML file with no connectivity, no API calls, and no build step. AI-enhanced scoring is a separate, additive capability.
 
 ---
 
@@ -95,15 +107,30 @@ The coaching actions from `rubric-config.json` are deterministic regardless of t
 
 ## Decision
 
-[Awaiting stakeholder input]
+**Option A: Two-tier scoring.** Confirmed by G-01 + P-04 task specs together.
+
+- **Tier 1 (G-01):** `bcs-scorer.html` — self-contained, offline, vanilla JS. Rule-based scoring for offline use.
+- **Tier 2 (P-04):** `/bcs/score` API — the authoritative scorer. Receives the full listing package (story text, actual photos, actual video) and does AI-powered analysis across all dimensions.
+
+Per P-04 spec: "G-01 should call this API rather than implement scoring logic directly." This means G-01 has two modes:
+1. **Offline:** Rule-based fallback scoring (deterministic, zero-cost)
+2. **Online:** Delegates to P-04 API for authoritative AI-enhanced scoring
+
+The two tiers share the same rubric dimensions and output the same score format. P-04 is the single source of truth when available.
+
+### Rubric Contract (Resolved)
+
+P-04 spec referenced "10 dimensions, max score 20" — confirmed as a typo. The canonical source is `rubric-config.json`: **9 dimensions, max score 18**. Grade thresholds per rubric-config.json:
+- 16-18 → A+ | 12-15 → A | 8-11 → B | 5-7 → C | 0-4 → D
 
 ---
 
 ## Consequences
 
-If Option A:
-- Scoring engine needs a `ScoringStrategy` interface with two implementations
-- `rubric-config.json` needs rule definitions added (thresholds, keyword lists)
-- Coaching packet includes `scoring_tier` field
-- Test suite must validate both tiers produce valid coaching packets
-- UX must handle score refinement when connectivity returns
+- **G-01 (`bcs-scorer.html`) is the Tier 1 (offline fallback) implementation.** Rule-based, deterministic, single HTML file. Delegates to P-04 when available.
+- **P-04 (`/bcs/score` API) is the Tier 2 (authoritative) implementation.** AI-powered, receives full listing package (text + photos + video), returns structured score.
+- `rubric-config.json` (9 dimensions, max 18) is the single source of truth for all scoring tools.
+- P-01 (Coaching Packet Generator) calls P-04 for scoring — or falls back to G-01's rule-based logic if offline.
+- `/story/build` calls P-04 internally — scoring is always consistent across the pipeline.
+- Coaching packet includes `scoring_tier` field (`"rule-based"` or `"ai-enhanced"`) so downstream tools know what produced the score.
+- The "two paths to maintain" con is mitigated: G-01 contains lightweight fallback logic, P-04 is the real scorer. Not two parallel implementations.

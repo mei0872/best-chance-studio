@@ -15,6 +15,24 @@ FLOW.md requires session history: "/story/represent only works because it can se
 
 In standalone mode (no backend), persistence lives entirely in the browser or as exported files. The question is which browser storage mechanism — and whether file export is a backup or the primary strategy.
 
+### Scope Clarification from G-01 and G-02 Task Specs
+
+The Core tier (G-series) tools are **stateless, self-contained HTML files**:
+
+- **G-01 (`bcs-scorer.html`):** Rescuer inputs a dog's profile, tool outputs a score, grade, and top gaps. Plain HTML + vanilla JS. No storage implied — it's an input→output tool.
+- **G-02 (`bcs-rubric.html`):** Read-only reference showing each BCS dimension. Plain HTML + CSS. No state at all.
+
+This means persistence is **not a Core tier concern**. The G-series tools are grab-and-go utilities — open, use, close.
+
+### P-01 and P-02 Task Specs
+
+- **P-01 (`coaching-packet-generator.html`):** Takes BCS score + dog profile, generates a one-page coaching brief. Rule-based, no AI. HTML + JS. The spec doesn't mention persistence — it's an input→output tool like G-01.
+- **P-02 (`story-builder-session.html`):** A Story Builder session UI — bring in videos, photos, notes, receive a coached story + coaching packet. **Explicitly specifies "LocalStorage for prototype."** Accepts `platform_hints` as optional input.
+
+P-02 is the first tool that requires persistence. The owner has already chosen the mechanism for v1: **LocalStorage**. This is the prototype storage strategy — simple, synchronous, sufficient for a single-session workflow.
+
+This narrows the scope of this decision: **LocalStorage is decided for v1 prototype** (per P-02 spec). The remaining question is what persistence strategy replaces LocalStorage as the system matures — when session history, multi-dog management, and the published dog inventory outgrow the 5MB limit.
+
 ---
 
 ## Options

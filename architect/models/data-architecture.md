@@ -1,7 +1,7 @@
 # Data Architecture — Best Chance Studio
 
 *Last updated: March 7, 2026*
-*Status: Section headers and key concerns established. Detail to be filled as Phase 1 tasks complete.*
+*Status: Foundation established. Key assumptions resolved — see questions-architect.md.*
 
 ---
 
@@ -34,9 +34,23 @@ Session ──1:1──→ ShotAgenda
 Dog    ──1:1──→ PublishedInventoryEntry (when approved + published)
 ```
 
-### Open Questions
-- **Dog identity across rescues** — See `DEC-003-dog-identity.md`. Transport corridor dogs may move between rescues.
-- **Foster as entity** — Currently implicit (foster_notes, voice_notes). Does Foster need to be a first-class entity with identity?
+### Resolved Questions
+- **Dog identity across rescues** — See `DEC-003-dog-identity.md`. Rescue-scoped by default with optional linking.
+- **Foster as entity** — Yes. Per Q-P3, fosters and coordinators are distinct user roles with different permissions. Foster is a first-class entity with identity and role-based access.
+
+### Updated Entity: Foster
+
+| Entity | Description | Key Attributes | Source |
+|--------|-------------|----------------|--------|
+| **Foster** | Person caring for the dog and submitting content | foster_id, name (PII), rescue_id, role | Registration |
+
+### Updated Relationships
+```
+Rescue ──1:N──→ Foster
+Foster ──1:N──→ Dog (fostering)
+```
+
+Per Q-X2: Foster names are PII with standard protections. Dog names are not PII. Published dog inventory strips foster identity by default.
 
 ---
 
@@ -77,8 +91,10 @@ From FLOW.md: "Every coaching session is v1. When new photos come in, that's v2.
 - **Score**: Before/after per session. Tied to `rubric_version`.
 - **rubric-config.json**: Semantic versioned (`1.0.0`). Scores reference which rubric produced them.
 
-### History Contract
-`/story/represent` requires access to:
+### History Contract (Resolved — Q-D1)
+`/story/represent` has access to **all** prior sessions for a dog. No compression, no truncation. Storage must accommodate unbounded session history per dog.
+
+Required access:
 - All prior session versions for a dog
 - Coaching tips tried per session
 - Near-miss signals (platform-supplied or manually entered)
@@ -88,7 +104,7 @@ From FLOW.md: "Every coaching session is v1. When new photos come in, that's v2.
 
 ## 4. Storage Strategy
 
-*Blocked by DEC-002 (standalone persistence). Options outlined here.*
+*DEC-002 partially resolved: LocalStorage for v1 prototype (per P-02 spec). Long-term strategy (IndexedDB + file export) recommended but awaiting stakeholder decision.*
 
 ### Data Categories
 
@@ -104,6 +120,13 @@ From FLOW.md: "Every coaching session is v1. When new photos come in, that's v2.
 
 ### Storage Location Options
 See `DEC-002-standalone-persistence.md` for the full analysis.
+
+### Media Storage (Resolved — Q-D3)
+BCS is the source of record for media. Rescues may keep copies, but BCS's system is the canonical store. This means:
+- Media entity model uses URLs, not just filenames
+- BCS needs durable object storage (or equivalent)
+- Access control is per-rescue (Q-X1: multi-rescue instances supported)
+- Photographer retains rights; BCS usage license granted via terms of service (Q-L1)
 
 ---
 
@@ -128,6 +151,9 @@ From FLOW.md: "Every dog that completes the BCS process and gets published must 
 }
 ```
 
-### Open Questions
+### Scope (Resolved — Q-D2)
+Only **approved + published** dogs enter the inventory. Coached-but-unapproved sessions remain in session history but do not graduate to the published inventory.
+
+### Remaining Questions
 - Does `outcome` (adopted, returned, transferred, euthanized) belong here? See `questions-stakeholder.md` Q-O2.
-- Is this inventory per-rescue or global? Depends on DEC-003.
+- Per-rescue by default (DEC-003 recommendation). Cross-rescue merging via optional linking.

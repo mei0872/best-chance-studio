@@ -15,6 +15,19 @@ The question is where this brain runs. Client-side (browser), server-side (backe
 
 CONTRIBUTING.md says: "self-contained HTML file. No build step. Works offline." — for Core tasks. But the full pipeline (14 APIs, some requiring LLMs) may not fit that constraint.
 
+### Emerging Pattern from Task Specs
+
+The owner's task specs reveal a natural split:
+
+| Task | Stack | Connectivity | Nature |
+|------|-------|-------------|--------|
+| G-01, G-02 | HTML + vanilla JS | Offline | Stateless, input→output |
+| P-01 | HTML + JS (rule-based) | Offline | Stateless, input→output |
+| P-02 | HTML + JS, LocalStorage | Offline (v1) | Session-based, accepts `platform_hints` |
+| P-03 | Python or Node + CV model | Online (API) | Standalone API + test UI |
+
+The stack naturally splits at P-03: everything up to P-02 is client-side HTML. P-03 and beyond require server-side compute (CV models, LLMs). This suggests the architecture is already converging on **Option C (isomorphic)** — client-side tools for the rule-based foundation, server-side APIs for AI-powered features.
+
 ---
 
 ## Options

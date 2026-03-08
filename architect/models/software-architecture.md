@@ -1,7 +1,7 @@
 # Software Architecture — Best Chance Studio
 
 *Last updated: March 7, 2026*
-*Status: Section headers and key concerns established. Detail to be filled as Phase 1 tasks complete.*
+*Status: Foundation established. Component map updated with all task specs. Key assumptions resolved.*
 
 ---
 
@@ -9,25 +9,29 @@
 
 ### Components by Pull List Category
 
-**Core (G-series) — Self-contained, offline-capable**
+**Core (G-series) — Self-contained, offline-capable, stateless**
+
+Per owner task specs: all G-series tools are single HTML files, vanilla JS, no framework, no build step, work offline. They are input→output tools — no session persistence, no storage.
 
 | Component | Pull List | Input | Output | platform_hints |
 |-----------|-----------|-------|--------|----------------|
-| BCS Score UI | G-01 | Dog submission | Score diagnostic + coaching actions | — |
-| Rubric Config Loader | G-02 | `rubric-config.json` | Parsed config object | — |
+| BCS Scorer | G-01 | Dog profile across dimensions | Score, grade, top gaps | — |
+| Rubric Reference | G-02 | `rubric-config.json` | Read-only dimension display | — |
 | Voice Transcription | G-03 | Audio file (m4a) | Text transcript | — |
 | Word Check | G-04 | Raw description text | Flagged words + clean version | Future: `learned` |
 | Story Card Generator | G-05 | Approved story + photo | Shareable image card | `photos.lead_shot` |
 | Platform Formatter | G-06 | Approved description + target | Formatted text within char limits | `dog_context.urgency` |
 
-**Project (P-series) — Working prototypes, may need connectivity**
+**Project (P-series) — Working prototypes**
 
-| Component | Pull List | Input | Output | platform_hints |
-|-----------|-----------|-------|--------|----------------|
-| Coaching Packet Assembler | P-01 | All API responses | Complete coaching packet | `story`, `dog_context`, `learned` |
-| Story Review + Refine UI | P-02 | Coached description | Approved/tweaked story | `story`, `campaign` |
-| Photo Curation Engine | P-03 | Photos + score_context | Selected photos + shot list | `photos`, `director` |
-| Scoring Engine | P-04 | Dog submission | Score response (per `bcs-score.json` stub) | `dog_context` |
+Per owner task specs: P-01 is rule-based v1, no AI, single HTML file. P-02 is HTML + JS with LocalStorage. P-03 diverges — it's a **standalone API** (Python or Node) with a computer vision model and test UI.
+
+| Component | Pull List | Stack | Input | Output | platform_hints |
+|-----------|-----------|-------|-------|--------|----------------|
+| Coaching Packet Generator | P-01 | HTML + JS (rule-based) | BCS score + dog profile | One-page coaching brief (shot list, description draft, presenter guidance) | — (v1 rule-based) |
+| Story Builder Session | P-02 | HTML + JS, LocalStorage | Photos, videos, notes, dog profile | Coached story + coaching packet | Optional |
+| Photo Curation API | P-03 | Python or Node + CV model | photos[], dog_info | selected[] (url, order, reason) + rejected[] (url, reason) | Optional |
+| BCS Score API | P-04 | Python or Node | dog_info, story?, photos?, video? | score (0-18), grade, by_dimension[], summary | — |
 | Story Builder | P-05 | Text + foster_notes + gaps | Coached description | `story`, `learned` |
 | Re-Presentation Engine | P-06 | Session history + signals | Fresh coaching brief | `learned`, `dog_context`, `director` |
 
@@ -35,18 +39,30 @@
 
 | Component | Pull List | Input | Output | platform_hints |
 |-----------|-----------|-------|--------|----------------|
-| AI Director | H-01 | Live camera feed + shot_agenda | Real-time coaching prompts | `director`, `campaign` |
-| Video Coach | H-02 | Recorded footage + shot_agenda | Coverage analysis + next steps | `video`, `director` |
-| Video Producer | H-03 | Raw footage + dog_info | Produced reel | `video`, `campaign` |
-| Video Exporter | H-04 | Produced reel + target platform | Platform-ready file + metadata | `video` |
+| AI Director | H-01 | Contributor's choice (mobile camera API + real-time vision) | Live camera feed + shot_agenda → real-time coaching prompts | `director`, `campaign` |
+| Video Coach | H-02 | HTML + JS + GPT-4o vision | Upload/link video → shot-by-shot coaching card | `platform_hints` (required) |
+| Video Producer | H-03 | Contributor's choice (ffmpeg + music library + AI editing) | Raw footage → produced highlight reel | `video` (length_seconds, music_tone, pacing, open_with) |
+| Video Exporter | H-04 | Contributor's choice (ffmpeg + vision + LLM) | video_url, dog_info?, target (youtube\|instagram\|web) → exported_url, thumbnail, title, tags | `platform_hints` (optional) |
 
 ---
 
 ## 2. Orchestration Design
 
-*Blocked by DEC-004 (orchestration location).*
+*Resolved: server-side orchestrator for full pipeline (Q-S1), client-side tools standalone (DEC-004).*
 
-### Orchestration Responsibilities (from FLOW.md)
+### Two Layers of Orchestration
+
+The P-01 spec reveals that orchestration happens at two levels:
+
+**Layer 1: Rule-based coaching packet (P-01, v1)**
+- Input: BCS score (from G-01) + dog profile
+- Output: One-page coaching brief — shot list, description draft, presenter guidance, top gaps
+- Stack: HTML + JS, rule-based, no AI, single file (`coaching-packet-generator.html`)
+- This is **deterministic assembly** — reads the score, applies rubric coaching actions, generates a brief
+- No API calls, no connectivity, no orchestration of external services
+
+**Layer 2: AI-enhanced pipeline (FLOW.md vision, future)**
+The full FLOW.md pipeline (14 APIs, context threading, AI story building) is a later layer that builds on top of the rule-based foundation:
 1. Receive intake submission
 2. Transcribe voice notes (if present)
 3. Call `/bcs/score` — always first
@@ -61,10 +77,47 @@
 12. Export on approval (card, format, publish)
 13. Log to published dog inventory
 
-### Key Design Decisions
-- **Context threading**: The orchestrator must carry `score_context`, `priority_gaps`, and `platform_hints` through the entire pipeline. No API should have to re-fetch context.
-- **Partial failure**: If `/photos/curate` fails but `/story/build` succeeds, the coaching packet should still assemble with what it has.
+### Data Flow Between Tools
+
+The tools are separate HTML files. How does data flow between them?
+
+**G-01 → P-01 (score → coaching packet):**
+- **Manual:** Foster copies score values into P-01 (simple, but friction)
+- **URL params:** G-01 generates a link to P-01 with score data encoded
+- **LocalStorage handoff:** G-01 writes score to localStorage, P-01 reads it (lightweight, same-origin)
+- **Combined tool:** G-01 and P-01 merge into one file that scores and generates the brief in one flow
+
+**P-02 (Story Builder Session):**
+P-02 is the first multi-step tool. Per owner spec:
+- Takes whatever the foster brings (photos, videos, notes) — the "atomic unit of BCS work"
+- Uses **LocalStorage for prototype** persistence
+- Accepts **platform_hints** as optional input (first tool to do so)
+- Outputs coached story + coaching packet
+- Deliverable: `story-builder-session.html`
+
+P-02 is where the individual tools start converging into a session-based workflow. It likely consumes G-01's scoring logic internally rather than requiring a separate scoring step.
+
+**H-03 → H-04 (video produce → video export):**
+Per H-04 spec: `/video/produce` calls `/video/export` internally as its final step. H-04 is also callable standalone on any existing video — not just BCS pipeline output. This makes H-04 a general-purpose utility, not just a pipeline component.
+
+**P-04 (BCS Score API) — the unifying scorer:**
+P-04 is the authoritative scoring source. Per owner spec, the relationships are:
+- **G-01** should call P-04 rather than implement scoring logic directly
+- **P-01** calls P-04 to know what to coach
+- **`/story/build`** calls P-04 internally and returns the score in its response
+
+This creates a dependency chain: G-01 → P-04, P-01 → P-04, P-02 → P-04 (via `/story/build`). But G-01 is offline/vanilla JS and P-04 is a server-side API. Resolution: G-01 contains fallback rule-based scoring for offline use, delegates to P-04 when available (see DEC-001 two-tier model).
+
+These data flow questions should be resolved before P-01 and P-02 are built.
+
+### Key Design Decisions (Layer 2)
+- **Server-side orchestrator** (Q-S1): A separate backend service owns pipeline sequencing, context threading, and error recovery. Client-side tools don't go through it — they're standalone.
+- **Context threading**: The orchestrator carries `score_context`, `priority_gaps`, and `platform_hints` through the entire pipeline. No API re-fetches context.
+- **platform_hints delivery** (Q-S3): Optional object in the request body. Absent = standalone mode.
+- **Partial failure**: If `/photos/curate` fails but `/story/build` succeeds, the coaching packet still assembles with what it has.
 - **Idempotency**: Re-running the same session with the same inputs should produce the same coaching packet (modulo LLM non-determinism).
+- **AI disclosure** (Q-L2): All AI-coached content labeled as AI-assisted in the coaching packet and exports.
+- **Multi-language** (Q-P1): Text processing, prompts, and coaching actions designed for i18n.
 
 ---
 
@@ -148,3 +201,9 @@ The coaching packet (`stubs/coaching-packet.json`) is the single output contract
 | `review_required` | Always `true` | Yes |
 | `review_status` | Review UI | Yes |
 | `dimensions_improved` | Score comparison | Yes |
+| `ai_assisted` | Always `true` when AI was used (Q-L2) | Yes |
+
+### Export Formats (Q-P5)
+- **v1 minimum:** PDF (printable). The coaching packet renders as a one-page brief.
+- **Future:** Email, Word, other formats via pluggable export system.
+- JSON remains the internal format. PDF is the human-facing export.
