@@ -1,5 +1,5 @@
 # Best Chance Studio
-*Last updated: March 7, 2026*
+*Last updated: March 8, 2026*
 
 Open source coaching tools that give every rescue dog their best chance at adoption.
 
@@ -129,6 +129,27 @@ We have more ideas than we have hands. We're looking for full-time help to build
 **Michele Meierhofer** — Co-founder. 20+ years marketing leadership. She might be the most dedicated foster mom in the rescue world — she's loved every dog that's come through their door. The brand, the voice, and the heart of everything we build.
 
 **Beth Aversa** — Blues City Animal Rescue, Memphis. ~500 dogs a year. Weekly transport to Chicago, Denver, and 7 East Coast cities. Our first real partner.
+
+---
+
+## How Feedback Gets Back to the Community
+
+BCS improves through use — but only if what's learned in the field comes back.
+
+**The principle:** Implementors are responsible for collecting feedback from their users and contributing findings back to the open source community. This is how the spec, rubric, and API design stay grounded in real use rather than assumptions.
+
+**What implementors are encouraged to share back:**
+- Aggregate findings from real rescue and adopter usage — patterns worth acting on, not raw data
+- Rubric proposals backed by adoption outcome data
+- AI cost findings so the spec gets cheaper over time
+
+**How to contribute feedback:**
+- API design or spec gaps → [RFC: API Design & Spec Review](https://github.com/mei0872/best-chance-studio/discussions/17)
+- Rubric improvements → open a `Rubric Proposal` issue
+- General observations → [GitHub Discussions](https://github.com/mei0872/best-chance-studio/discussions)
+- Bugs or spec errors → [GitHub Issues](https://github.com/mei0872/best-chance-studio/issues)
+
+→ Full detail: [CONTRIBUTING.md](CONTRIBUTING.md) · [GOVERNANCE.md](GOVERNANCE.md) · [docs/ai-usage-logging.md](docs/ai-usage-logging.md)
 
 ---
 

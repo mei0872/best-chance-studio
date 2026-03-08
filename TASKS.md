@@ -1,5 +1,5 @@
 # Best Chance Studio — Pull List
-*Last updated: March 6, 2026*
+*Last updated: March 8, 2026*
 
 > Not a job. Not a commitment. Grab something interesting, ship something real.
 > Every item here moves dogs home faster. That's the only metric that matters.
@@ -54,13 +54,39 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 
 ---
 
+### [G-04] Word Check Tool — `/word/check`
+**What:** A simple tool — paste a dog description, get back flagged words with adoption-proven replacements and a cleaned version.
+**Why it matters:** Language measurably affects adoption speed. This tool surfaces the specific words that hurt and shows exactly what to replace them with. Backed by a 70,733-dog study.
+**Stack:** Plain HTML + vanilla JS. Hardcode the word list from the study — no API call needed for v1.
+**Deliverable:** `word-check.html` — self-contained, no build step. Input field, flagged word list with replacements, cleaned output version.
+
+---
+
+### [G-05] Story Card Generator — `/story/card`
+**What:** Takes an approved dog description and a photo and produces a shareable image card for social — the kind a foster posts to Facebook or texts to a friend.
+**Why it matters:** Most adopters see a dog first on social, not on a listing site. A story card gives the coached story a format that travels — no link required.
+**Stack:** Plain HTML + canvas API. Two formats: 1:1 (Instagram) and 4:5 (portrait/stories).
+**Inputs:** Dog name, hook line (one sentence), photo URL, rescue name.
+**Deliverable:** `story-card-generator.html` — upload photo + enter hook → download card. Both formats in one tool.
+
+---
+
+### [G-06] Story Formatter — `/story/format`
+**What:** Takes an approved coached description and reformats it for a specific platform — character limits handled, no manual trimming.
+**Why it matters:** Petfinder, AdoptAPet, Instagram, and Facebook all have different character limits and conventions. This tool does the reformatting so the foster just copies and pastes.
+**Platforms:** `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegroups`
+**Stack:** Plain HTML + vanilla JS. Rule-based character limits per platform.
+**Deliverable:** `story-formatter.html` — paste description, pick platform, get formatted output with character count and status.
+
+---
+
 ## 🟡 PROJECT — Bigger Scope
 *1–2 weekends. A quick spec call if needed.*
 
 ---
 
 ### [P-04] BCS Score API — `/bcs/score`
-**What:** The authoritative scoring API. Input a dog's profile and available media — get back a structured BCS score (0–20), grade (A+ through D), per-dimension breakdown, and a one-line summary.
+**What:** The authoritative scoring API. Input a dog's profile and available media — get back a structured BCS score (0–18), grade (A+ through D), per-dimension breakdown, and a one-line summary.
 **Why it matters:** Right now BCS scoring logic would live in two places (G-01 frontend + /story/build). One API is the single source of truth. Every tool calls it. The score is always consistent.
 **API contract:**
 ```
@@ -74,7 +100,7 @@ POST /bcs/score
 
 → Returns:
 {
-  score:         number    // 0–20
+  score:         number    // 0–18
   grade:         string    // "A+" | "A" | "B" | "C" | "D"
   by_dimension:  [ { name, score: 0|1|2, gap: string } ]
   summary:       string    // one plain-language line
@@ -85,7 +111,7 @@ The API receives the full listing package as published (or about to be). It does
 - G-01 should call this rather than implement scoring logic directly
 - P-01 calls this to know what to coach
 - /story/build calls this internally and returns the score in its response
-**Deliverable:** Working API endpoint + unit tests against all 10 dimensions.
+**Deliverable:** Working API endpoint + unit tests against all 9 dimensions.
 
 ---
 
@@ -128,6 +154,66 @@ Output: selected[ { url, order, reason } ]
 ```
 **Stack:** Python or Node. Computer vision model of your choice.
 **Deliverable:** Standalone API + simple test UI.
+
+---
+
+### [P-05] Story Builder API — `/story/build`
+**What:** The core AI story generation API. Given a dog profile, foster notes, and gap context from `/bcs/score`, produce a coached description and coaching packet.
+**Why it matters:** This is where the raw submission becomes a story. The gap context is what makes coaching specific — not "make this better" but "fix these three exact dimensions." See FLOW.md Step 3 for the full orchestration context.
+**API shape:**
+```
+POST /story/build
+Input:
+  dog_name, raw_text, foster_notes
+  priority_gaps[]          // from /bcs/score response
+  score_context{}          // per-dimension gap detail from /bcs/score
+  platform_hints{}         // optional — platform intelligence layer
+
+Output:
+  coached_description      // the coached story, ready for review
+  coaching_packet {
+    what_changed           // plain-language summary of what was improved
+    dimensions_improved[]  // which BCS dimensions this story addresses
+    estimated_score_delta  // e.g. "+8"
+  }
+  review_required: true    // always — nothing publishes without foster approval
+```
+**Stack:** Python or Node + LLM of your choice (GPT-4o recommended).
+**Full spec:** `strategy/feature-specs/story-builder.md`
+**Deliverable:** Standalone API endpoint. Test against the Moose example in FLOW.md — input the 3/18 profile, verify the output hits personality_hook, foster_voice, and family_vision.
+
+---
+
+### [P-06] Story Represent API — `/story/represent`
+**What:** Given a dog's session history and near-miss signals, generate a fresh coaching brief for a dog who didn't place. The next session knows what the last session tried.
+**Why it matters:** Dogs that don't place on first presentation need a new angle — not a repeat of what already didn't work. This API reads what was tried, what signals came back, and builds the next approach from there. See FLOW.md Step 9 for the full orchestration context.
+**API shape:**
+```
+POST /story/represent
+Input:
+  dog_info{}
+  session_history[]        // prior coaching sessions, what was tried
+  platform_hints{          // optional — richer output when present
+    learned {
+      near_miss_signals[]  // adopter signals that didn't convert
+      top_performer_pattern
+    }
+    dog_context {
+      days_in_care
+      escalation_risk
+    }
+  }
+
+Output:
+  new_angle                // what to try next, and why
+  what_was_tried[]         // summary of prior attempts
+  what_was_missing[]       // gaps that prior sessions didn't close
+  try_this_next[]          // specific, actionable coaching prompts
+  new_shot_agenda[]        // updated shot list if visual assets need work
+```
+**Design principle:** Degrades gracefully. No `platform_hints` → solid general coaching based on session history. With `platform_hints` → targeted brief built from real adopter signal. The API never fails because context is absent — it uses what it's given.
+**Stack:** Python or Node + LLM of your choice.
+**Deliverable:** Standalone API endpoint. Test against both Path A (platform-connected) and Path B (standalone with manually logged signals) as described in FLOW.md.
 
 ---
 
@@ -189,7 +275,7 @@ Output: exported_url, thumbnail_url, suggested_title, suggested_tags, duration_s
 
 ## Background
 
-**Best Chance Studio** is the open source coaching layer of Wag On Home — a platform that gets rescue dogs adopted faster by giving every dog their best possible story, and every presenter the coaching they need to tell it.
+**Best Chance Studio** is an open source coaching and scoring layer that gives every rescue dog their best possible story, and every presenter the coaching they need to tell it.
 
 The full pipeline:
 ```
