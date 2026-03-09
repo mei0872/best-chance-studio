@@ -1,6 +1,16 @@
 # AI Credential Management — BCS Spec
 
-*Last updated: March 8, 2026*
+*Last updated: March 9, 2026*
+
+---
+
+## The Commitment
+
+BCS is built for rescues. AI-powered features should never be a cost burden on the organizations doing the work.
+
+For rescues using any BCS tool, this means zero setup, zero billing, zero friction — regardless of which platform or implementation they're using. The charity pool is for rescues, not tied to any single platform.
+
+How that commitment is fulfilled depends on the implementation — but the commitment itself is universal.
 
 ---
 
@@ -27,7 +37,11 @@ Running BCS with AI-powered features requires valid credentials from an AI provi
 
 ---
 
-## Reference Implementation — BYOK Setup
+## For Standalone Implementations — BYOK
+
+This section is for **developers and implementors building BCS tools** — not for rescues who are end users.
+
+If you're a rescue using a BCS tool, you should never need to set up your own API key. That's the developer/implementor path.
 
 For implementors building standalone BCS tools, the recommended pattern is **Bring Your Own Key (BYOK)**:
 
@@ -49,7 +63,7 @@ The "Get a free key" link goes directly to the provider's API key page. The setu
 ### Step 3 — Validation + storage
 Test the key with a minimal API call before saving. Store in browser's secure storage (not localStorage). Show a clear success state before proceeding.
 
-**Target:** A rescue coordinator with no technical background should complete setup in under 3 minutes.
+**Target:** A developer or implementor should complete setup in under 3 minutes.
 
 ---
 
@@ -71,7 +85,19 @@ A platform may choose to manage AI credentials server-side, making them invisibl
 - The platform absorbs AI costs as part of its service model
 - The BCS spec requirement is still satisfied — credentials exist, are secure, and failures are handled gracefully — just managed at the platform layer instead of the user layer
 
+Our commitment is that any rescue using BCS — on any platform or tool — should never pay for AI out of pocket. The charity pool is the mechanism. Platform implementations that draw from it satisfy this commitment automatically.
+
 This is the implementor's business decision. The spec is silent on pricing models.
+
+---
+
+## The Charity Funding Model
+
+BCS maintains a charity AI pool funded through platform partnerships and contributions. When live, this pool will cover AI costs for rescues using BCS tools — on any platform, through any implementation. Free for rescues means free everywhere.
+
+This pool is not a platform feature. It's a commitment to the rescue community that exists independent of any specific implementation or partner. Implementors who draw from the pool on behalf of their rescue users are fulfilling the BCS mission.
+
+Details on pool access and eligibility will be published separately.
 
 ---
 
