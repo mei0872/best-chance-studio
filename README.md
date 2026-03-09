@@ -46,7 +46,9 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months
 
 Coaching that gives every rescue dog their best chance — better photos, better descriptions, better video, and a clear picture of what each dog needs to go home. The scoring rubric is one piece of it. So is the shot list, the video coaching, the story rewrite, and the presenter prep. All of it together moves dogs faster.
 
-**The starting point is always what's published right now.** Bring in the listing as it exists today — the description on Petfinder, the photos on ShelterLuv, the YouTube link, a screenshot of the published post. BCS scores what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there. Not a theoretical dog profile. The real presentation.
+**The starting point is always what's published right now.** BCS is designed to score your existing presentation — not ask you to fill out a form. Bring in what's already out there: paste the Petfinder description, upload the photos from ShelterLuv, drop in the YouTube link, take a screenshot of the published post. You can even record a quick video of your shelter profile screen and upload that. BCS reads what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there.
+
+Then bring in anything new — fresh photos, new video clips, foster notes, voice observations — and BCS builds the next version of the story from there. Going from version 0.1 to version 2.0 of a dog's presentation is what BCS is designed to make easy.
 
 The APIs are open source primitives. Any platform can use them. MIT licensed. Free forever.
 
@@ -103,7 +105,7 @@ BCS              → the complete assembled application — all APIs below work 
                    TikTok, Facebook each optimized simultaneously
 ```
 
-→ [See the full input/output breakdown](bcs-example.md)
+→ [See the full orchestration walkthrough — FLOW.md](FLOW.md)
 
 ---
 
@@ -115,7 +117,9 @@ Pick a task, build it, ship something real. Every API done well will help hundre
 → [See the full pull list — TASKS.md](TASKS.md)
 
 ### Help us build more tools
-We have more ideas than we have hands. We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.
+We have more ideas than we have hands.
+
+> **We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.**
 
 → KipMeierhofer@gmail.com
 → [How the project is governed — GOVERNANCE.md](GOVERNANCE.md)
