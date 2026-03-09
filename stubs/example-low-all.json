@@ -1,29 +1,70 @@
 {
   "_description": "Example: D-grade listing. Everything needs work. Shows how BCS prioritizes when gaps are everywhere.",
-  "_dog": "Shadow — 7yr black lab mix, 6 months in rescue, black dog syndrome risk",
+  "_dog": "Shadow \u2014 7yr black lab mix, 6 months in rescue, black dog syndrome risk",
   "bcs_score": {
-    "total": 2,
+    "total_score": 2,
     "max": 18,
+    "grade": "D",
+    "grade_label": "Needs Work",
     "dimensions": [
-      { "id": "personality_hook", "score": 0, "gap": "No personality. 'Sweet and gentle' — every dog in every rescue in the country." },
-      { "id": "visual_impact", "score": 0, "gap": "Single kennel photo. Black dog on gray floor under fluorescent light. Invisible." },
-      { "id": "video_presence", "score": 0, "gap": "No video." },
-      { "id": "compatibility_clarity", "score": 1, "gap": "Good with dogs mentioned. Nothing else." },
-      { "id": "foster_voice", "score": 0, "gap": "Zero warmth. Form-fill language throughout." },
-      { "id": "no_surprises", "score": 0, "gap": "Age (7) not reframed. Black dog not acknowledged. 6 months in rescue not addressed — adopter will wonder why." },
-      { "id": "story_first_gate", "score": 0, "gap": "No intro video." },
-      { "id": "presenter_readiness", "score": 0, "gap": "No coached story. No strong asset identified." },
-      { "id": "family_vision", "score": 1, "gap": "Faint picture — not enough to close." }
+      {
+        "id": "personality_hook",
+        "score": 0,
+        "gap": "No personality. 'Sweet and gentle' \u2014 every dog in every rescue in the country."
+      },
+      {
+        "id": "visual_impact",
+        "score": 0,
+        "gap": "Single kennel photo. Black dog on gray floor under fluorescent light. Invisible."
+      },
+      {
+        "id": "video_presence",
+        "score": 0,
+        "gap": "No video."
+      },
+      {
+        "id": "compatibility_clarity",
+        "score": 1,
+        "gap": "Good with dogs mentioned. Nothing else."
+      },
+      {
+        "id": "foster_voice",
+        "score": 0,
+        "gap": "Zero warmth. Form-fill language throughout."
+      },
+      {
+        "id": "no_surprises",
+        "score": 0,
+        "gap": "Age (7) not reframed. Black dog not acknowledged. 6 months in rescue not addressed \u2014 adopter will wonder why."
+      },
+      {
+        "id": "story_first_gate",
+        "score": 0,
+        "gap": "No intro video."
+      },
+      {
+        "id": "presenter_readiness",
+        "score": 0,
+        "gap": "No coached story. No strong asset identified."
+      },
+      {
+        "id": "family_vision",
+        "score": 1,
+        "gap": "Faint picture \u2014 not enough to close."
+      }
     ],
-    "priority_gaps": ["visual_impact", "personality_hook", "no_surprises"],
-    "coaching_summary": "Shadow is invisible right now. Black dog, kennel photo, fluorescent light — this listing is working against her. The photo is the emergency. Get her outside, get her eye contact, and find the one thing only her foster knows. Everything else follows.",
-    "grade": "D"
+    "priority_gaps": [
+      "visual_impact",
+      "personality_hook",
+      "no_surprises"
+    ],
+    "coaching_summary": "Shadow is invisible right now. Black dog, kennel photo, fluorescent light \u2014 this listing is working against her. The photo is the emergency. Get her outside, get her eye contact, and find the one thing only her foster knows. Everything else follows."
   },
   "coaching_actions_triggered": [
     "Go outside or near a window. Fluorescent light kills personality.",
     "Wait for eye contact. Don't take the shot until the dog is looking at the camera.",
     "Ask the foster: 'Tell me about the last time Shadow made you laugh.'",
-    "Reframe the age: 'Shadow is seven — which means she's done with the chaos and ready to just be your dog.'",
+    "Reframe the age: 'Shadow is seven \u2014 which means she's done with the chaos and ready to just be your dog.'",
     "Address the 6 months: 'She's been patient. She deserves a sentence that says so.'"
   ]
 }
