@@ -4,8 +4,8 @@
   "bcs_score": {
     "total_score": 7,
     "max": 18,
-    "grade": "D",
-    "grade_label": "Needs Work",
+    "grade": "C",
+    "grade_label": "Fair",
     "dimensions": [
       {
         "id": "personality_hook",

@@ -4,8 +4,8 @@
   "bcs_score": {
     "total_score": 10,
     "max": 18,
-    "grade": "C",
-    "grade_label": "Fair",
+    "grade": "B",
+    "grade_label": "Good",
     "dimensions": [
       {
         "id": "personality_hook",

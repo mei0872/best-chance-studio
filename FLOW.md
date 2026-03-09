@@ -16,15 +16,36 @@ No form to fill out. No checklist. The foster drops in what they have — text, 
 
 This is Moose. Three years old, black lab mix, four months in foster care. Here's what came in:
 
+Two input streams — both optional, both useful for different things:
+
+**`story{}`** — the current published presentation. Whatever is in front of adopters right now.
+Two ways to provide it:
+- **Screen recording:** record a video of the ShelterLuv or Petfinder profile screen. BCS extracts description, photos, YouTube URLs, and attributes from the recording via vision model. No copy-paste needed.
+- **Individual elements:** paste the description, upload photos directly, drop in the YouTube URL, or upload screenshots. Any combination works.
+
+**`new_content{}`** — new raw material for building the next version of the story. New photos, new video clips, foster notes, voice observations. This is what gets used alongside the gap analysis to produce the improved story.
+
+BCS accepts whatever is provided and works from there.
+
 ```json
 {
-  "dog_name": "Moose",
-  "raw_text": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
-  "photos": ["photo_001.jpg", "photo_002.jpg"],  // array — Moose submitted 2 raw shots
-  "videos": [],                                   // array — empty, no video yet
-  "voice_notes": ["note_001.m4a"],               // array — audio observations from the foster
-  "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
-  "rescue_id": "blues-city-memphis"
+  "story": {
+    "description": "Moose is a 3 year old lab mix. He is good with other dogs and kids...",
+    "photos": [{"url": "petfinder-photo-001.jpg"}, {"url": "petfinder-photo-002.jpg"}],
+    "video": null,
+    "source": "petfinder"
+  },
+  "new_content": {
+    "photos": [],
+    "videos": [],
+    "voice_notes": ["note_001.m4a"],
+    "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids."
+  },
+  "dog_info": {
+    "name": "Moose",
+    "breed": "lab mix",
+    "age": "3 years"
+  }
 }
 ```
 
@@ -47,7 +68,18 @@ That transcript merges into `foster_notes`. The detail that drives the whole sto
 
 ## Step 2: `/bcs/score` — Read the Gaps
 
-→ **[Read the full BCS rubric first — TASKS.md G-02](TASKS.md)** — every dimension, what it means, what good looks like, how it gets better over time. Takes 5 minutes. Makes everything below make sense.
+→ **[See the full rubric — rubric-config.json](rubric-config.json)** — 9 dimensions, 0–2 scoring, grade thresholds. (A human-friendly reference is coming via [G-02](https://github.com/mei0872/best-chance-studio/issues) — that's the first task worth claiming.)
+
+**The 9 dimensions BCS scores (0–2 each, 18 points total):**
+- **personality_hook** — does this dog have a specific, memorable moment that makes them real?
+- **visual_impact_photos** — photo quality, composition, eye contact, emotional connection
+- **video_presence** — does video exist? Does it show the dog alive and real?
+- **compatibility_clarity** — are energy level and household needs communicated clearly?
+- **foster_voice** — does the story feel human? Can you sense a real relationship?
+- **honest_needs** — are the dog's real requirements stated without apology?
+- **presenter_readiness** — does the presenter have a coached story and a strong asset to lead with?
+- **family_vision** — can the reader picture this dog in their home?
+- **story_structure** — does the description have a hook, a middle, and a landing?
 
 Before doing anything else, BCS needs a map.
 
@@ -70,6 +102,9 @@ POST /bcs/score
 {
   "total_score": 3,
   "max_score": 18,
+  "grade": "D",
+  "grade_label": "Needs Work",
+  "rubric_version": "1.0.0",
   "dimensions": [
     {
       "id": "personality_hook",
@@ -127,9 +162,12 @@ POST /bcs/score
     }
   ],
   "priority_gaps": ["personality_hook", "foster_voice", "family_vision"],
-  "coaching_summary": "Moose has no story yet. An adopter reads this and feels nothing. Start with the personality hook — find the specific moment only this foster knows."
+  "coaching_summary": "Moose has no story yet. An adopter reads this and feels nothing. Start with the personality hook — find the specific moment only this foster knows.",
+  "detected_boilerplate": []
 }
 ```
+
+`detected_boilerplate[]` is returned whenever the submitted description contains content that isn't actually about the dog — transport logistics, underwriting rules, application links, org boilerplate, foster-to-adopt offers. When non-story content is detected, `/bcs/score` identifies it by type and excerpt so it can be surfaced to the rescue user and — if they're ready — reformatted into the Rescue Template Library via `/story/build`. In Moose's case, the description is thin but clean — no boilerplate detected.
 
 BCS now has its map. Score: 3 out of 18. Three priority gaps: `personality_hook`, `foster_voice`, `family_vision`. 
 
@@ -175,9 +213,18 @@ The foster notes are the gold here. "Loves fetch" — three words buried in a fr
 // Request
 POST /story/build
 {
-  "dog_name": "Moose",
-  "raw_text": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
-  "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
+  "story": {
+    "description": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
+    "photos": [{"url": "petfinder-photo-001.jpg"}, {"url": "petfinder-photo-002.jpg"}],
+    "video": null,
+    "source": "petfinder"
+  },
+  "new_content": {
+    "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
+    "voice_notes": [],
+    "photos": [],
+    "videos": []
+  },
   "priority_gaps": ["personality_hook", "foster_voice", "family_vision"],
   "score_context": {
     "personality_hook": {
@@ -197,7 +244,7 @@ POST /story/build
 
 // Response
 {
-  "coached_description": "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.\n\nHe's three, fully house-trained, great with other dogs and kids. He's been patient in a way that shouldn't be possible — four months in rescue, and every day he keeps showing up.\n\nHe needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.",
+  "coached_story": "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.\n\nHe's three, fully house-trained, great with other dogs and kids. He's been patient in a way that shouldn't be possible — four months in rescue, and every day he keeps showing up.\n\nHe needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.",
   "coaching_packet": {
     "what_changed": "Pulled the fetch behavior from foster notes and made it the personality hook. Rewrote in first-person foster voice. Closed with the family vision — the adopter can picture this dog in their living room.",
     "dimensions_improved": [
@@ -207,7 +254,9 @@ POST /story/build
       "compatibility_clarity"
     ],
     "estimated_score_delta": "+8"
-  }
+  },
+  "reformatted_boilerplate": [],
+  "review_required": true
 }
 ```
 
@@ -374,7 +423,7 @@ This is the output contract. Everything the front-end needs comes from here.
   "score_before": 3,
   "score_after": 11,
   "score_max": 18,
-  "coached_description": "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play...",
+  "coached_story": "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play...",
   "photo_selection": ["photo_001.jpg"],
   "shot_list": [
     {

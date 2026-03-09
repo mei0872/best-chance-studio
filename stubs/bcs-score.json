@@ -2,19 +2,40 @@
   "_description": "Scores a dog's current submission across 9 dimensions to produce a gap diagnostic \u2014 telling BCS where to focus coaching first.",
   "_flow_reference": "See Step 2 in FLOW.md",
   "request": {
-    "dog_name": "Moose",
-    "rescue_id": "blues-city-memphis",
-    "text": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
-    "photo_count": 1,
-    "video_present": false,
-    "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids."
+    "story": {
+      "description": "Moose is a 3 year old lab mix. He is good with other dogs and kids. He is house trained. He has been in foster care for 4 months.",
+      "photos": [
+        {
+          "url": "petfinder-photo-001.jpg"
+        },
+        {
+          "url": "petfinder-photo-002.jpg"
+        }
+      ],
+      "video": null,
+      "source": "petfinder"
+    },
+    "new_content": {
+      "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
+      "voice_notes": [
+        "note_001.m4a"
+      ],
+      "photos": [],
+      "videos": []
+    },
+    "dog_info": {
+      "name": "Moose",
+      "breed": "lab mix",
+      "age": "3 years"
+    },
+    "rescue_id": "blues-city-memphis"
   },
   "response": {
     "rubric_version": "1.0.0",
     "total_score": 3,
     "max_score": 18,
-    "grade": "B",
-    "grade_label": "Good",
+    "grade": "D",
+    "grade_label": "Needs Work",
     "dimensions": [
       {
         "id": "personality_hook",
@@ -76,6 +97,7 @@
       "foster_voice",
       "family_vision"
     ],
-    "coaching_summary": "Moose has no story yet. An adopter reads this and feels nothing. Start with the personality hook \u2014 find the specific moment only this foster knows."
+    "coaching_summary": "Moose has no story yet. An adopter reads this and feels nothing. Start with the personality hook \u2014 find the specific moment only this foster knows.",
+    "detected_boilerplate": []
   }
 }

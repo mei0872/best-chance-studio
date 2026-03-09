@@ -29,6 +29,20 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months
 
 ---
 
+---
+
+## How BCS Talks About This
+
+A few terms used throughout this spec — worth understanding before diving in:
+
+**Story** — everything currently published that represents a dog: the description, photos, video, all of it together. Not just the words. The whole presentation. This is what BCS scores and improves.
+
+**Session** — a BCS work session to improve a dog's story. Starts with the current story, ends with a better one and a coaching packet.
+
+**Score** — a diagnostic, not a grade. Tells you where the story is now, which of the 9 dimensions are missing, and what to fix first.
+
+**Coaching packet** — the output of a session: gap analysis, shot list, improvement plan, description draft. What a rescue coordinator reads before Saturday's adoption event.
+
 ## What it looks like in practice
 
 **Before BCS:**
@@ -37,14 +51,16 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months
 
 **After BCS:**
 > *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
-> The video coached from that shot list? Two people watched it, called each other into the room, and said *"that's our dog."*
 > BCS score: **14 / 18** · Shot list generated · YouTube-ready video produced
+> The video coached from that shot list? Two people watched it, called each other into the room, and said *"that's our dog."*
 
 ---
 
 ## What Best Chance Studio Is
 
 Coaching that gives every rescue dog their best chance — better photos, better descriptions, better video, and a clear picture of what each dog needs to go home. The scoring rubric is one piece of it. So is the shot list, the video coaching, the story rewrite, and the presenter prep. All of it together moves dogs faster.
+
+This design is backed by peer-reviewed research — including a 2019 study of 70,733 dogs linking specific language choices to adoption speed, and a 2020 study on how photo attributes affect how fast dogs get adopted.
 
 **The starting point is always what's published right now.** BCS is designed to score your existing presentation — not ask you to fill out a form. Bring in what's already out there: paste the Petfinder description, upload the photos from ShelterLuv, drop in the YouTube link, take a screenshot of the published post. You can even record a quick video of your shelter profile screen and upload that. BCS reads what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there.
 

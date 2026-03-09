@@ -23,16 +23,6 @@ No coordination overhead. No standups. No pressure.
 
 ---
 
-## The Aligned Incentive
-
-Your equity grows when dogs go home. Not as a side effect — as the mechanism. The platform generates revenue by getting dogs adopted. The better the platform works, the more dogs go home, the more revenue flows, the more your equity is worth.
-
-Long term, that revenue doesn't just build equity — it funds the rescues that earned it. Automatically. No humans in the loop. You're not building a company that does good on the side. You're building infrastructure that redistributes value back to the mission indefinitely.
-
-> *"A platform that runs itself, guided by and for the needs of rescues, and connects every dog to the family that's already looking for them."*
-
----
-
 ## 🟢 CORE — Grab & Go
 *Self-contained. 2–4 hours. No dependencies. Start here.*
 
@@ -57,7 +47,7 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 ### [G-04] Word Check Tool — `/word/check`
 **What:** A simple tool — paste a dog description, get back flagged words with adoption-proven replacements and a cleaned version.
 **Why it matters:** Language measurably affects adoption speed. This tool surfaces the specific words that hurt and shows exactly what to replace them with. Backed by a 70,733-dog study.
-**Stack:** Plain HTML + vanilla JS. Hardcode the word list from the study — no API call needed for v1.
+**Stack:** Plain HTML + vanilla JS. Hardcode the word list from the study. The tool logic is also designed to be callable as `POST /word/check` in the BCS pipeline — G-04 builds the UI; the same logic serves both purposes.
 **Deliverable:** `word-check.html` — self-contained, no build step. Input field, flagged word list with replacements, cleaned output version.
 
 ---
@@ -128,6 +118,22 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 
 ---
 
+### [G-08] Voice Transcription — `/voice/transcribe`
+**What:** Record a voice note in-app — Whisper transcription returns text into the session. A foster who records 15 seconds of observations on their phone gets the same quality input as someone who types it out.
+**Why it matters:** The best observations about a dog come in the moment — while playing in the yard, during a walk, when the foster notices something specific. This tool captures that signal before it's lost. No typing required.
+**Stack:** Python or Node + OpenAI Whisper API (or local Whisper for offline-capable builds).
+**API shape:**
+```
+POST /voice/transcribe
+Input:  { audio: "path/to/note.m4a" }
+Output: { transcript: "string" }
+```
+**Deliverable:** Standalone API endpoint. Test with a 15-second voice note describing a dog. Output should be clean text ready to pass into a Story Builder session.
+
+> Grab this task: comment below to claim it. Questions? Start a Discussion.
+
+---
+
 ## 🟡 PROJECT — Bigger Scope
 *1–2 weekends. A quick spec call if needed.*
 
@@ -139,22 +145,49 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 **API contract:**
 ```
 POST /bcs/score
-{
-  dog_info:  { name, breed, age, size }
-  story?:    { portable?, enriched? }    // full story text — API reads and scores
-  photos?:   [ { url, caption? } ]       // actual photos — API assesses quality + count
-  video?:    { url }                     // actual video — API analyzes quality + engagement
-}
 
-→ Returns:
-{
-  score:         number    // 0–18
-  grade:         string    // "A+" | "A" | "B" | "C" | "D"
-  by_dimension:  [ { name, score: 0|1|2, gap: string } ]
-  summary:       string    // one plain-language line
-}
+Input:
+  story {                        // the dog's current published presentation
+    description?:  string        // text description as published (paste from Petfinder etc.)
+    photos?:       [ { url } ]   // actual photos — API assesses quality, composition, count
+    video?:        { url }       // actual video URL — API analyzes engagement quality
+    screen_recording?: { url }   // video of profile screen — API extracts all elements
+    source?:       string        // "petfinder" | "shelterluv" | "adoptapet" | "other"
+  }
+  new_content? {                 // optional — new raw material for building next version
+    photos?:       [ { url } ]
+    videos?:       [ { url } ]
+    voice_notes?:  [ { url } ]   // pre-transcribed via /voice/transcribe
+    foster_notes?: string
+  }
+  dog_info? {                    // optional supplementary info
+    name?:   string
+    breed?:  string
+    age?:    string
+  }
+
+Output:
+  total_score:    number          // 0–18
+  max_score:      18
+  grade:          string          // "A+" | "A" | "B" | "C" | "D"
+  grade_label:    string          // e.g. "Good"
+  rubric_version: string
+  dimensions: [
+    { id: string, score: 0|1|2, max: 2, gap: string }
+  ]
+  priority_gaps:  [ string ]      // top gaps, ordered by impact; consumed directly by /story/build and /photos/curate
+  coaching_summary: string        // one plain-language line
+  detected_boilerplate: [         // present when non-story content found
+    { type: string, excerpt: string }
+    // type: "transport_info" | "uw_rules" | "apply_link" | "org_blurb" | "fta_offer"
+  ]
 ```
 The API receives the full listing package as published (or about to be). It does the analysis. No pre-computation before calling.
+
+**Three call patterns:** (1) story{} only → score + gaps, no new story built. (2) story{} + new_content{} → score existing, build improved version. (3) new_content{} only → build from scratch, no baseline score.
+
+**Related:** Discussion [#27](https://github.com/mei0872/best-chance-studio/discussions/27) — non-story content detection design
+
 **Relationship to other tasks:**
 - G-01 should call this rather than implement scoring logic directly
 - P-01 calls this to know what to coach
