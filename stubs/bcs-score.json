@@ -1,5 +1,5 @@
 {
-  "_description": "Scores a dog's current submission across 9 dimensions to produce a gap diagnostic — telling BCS where to focus coaching first.",
+  "_description": "Scores a dog's current submission across 9 dimensions to produce a gap diagnostic \u2014 telling BCS where to focus coaching first.",
   "_flow_reference": "See Step 2 in FLOW.md",
   "request": {
     "dog_name": "Moose",
@@ -13,6 +13,8 @@
     "rubric_version": "1.0.0",
     "total_score": 3,
     "max_score": 18,
+    "grade": "B",
+    "grade_label": "Good",
     "dimensions": [
       {
         "id": "personality_hook",
@@ -36,7 +38,7 @@
         "id": "compatibility_clarity",
         "score": 1,
         "max": 2,
-        "gap": "Mentions kids and other dogs but vague — no specifics about home type or energy needs."
+        "gap": "Mentions kids and other dogs but vague \u2014 no specifics about home type or energy needs."
       },
       {
         "id": "foster_voice",
@@ -48,7 +50,7 @@
         "id": "no_surprises",
         "score": 1,
         "max": 2,
-        "gap": "Energy level not communicated — adopter doesn't know what they're getting."
+        "gap": "Energy level not communicated \u2014 adopter doesn't know what they're getting."
       },
       {
         "id": "story_first_gate",
@@ -69,7 +71,11 @@
         "gap": "Nothing forms. Can't picture this dog anywhere."
       }
     ],
-    "priority_gaps": ["personality_hook", "foster_voice", "family_vision"],
-    "coaching_summary": "Moose has no story yet. An adopter reads this and feels nothing. Start with the personality hook — find the specific moment only this foster knows."
+    "priority_gaps": [
+      "personality_hook",
+      "foster_voice",
+      "family_vision"
+    ],
+    "coaching_summary": "Moose has no story yet. An adopter reads this and feels nothing. Start with the personality hook \u2014 find the specific moment only this foster knows."
   }
 }
