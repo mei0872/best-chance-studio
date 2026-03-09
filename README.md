@@ -48,8 +48,6 @@ Coaching that gives every rescue dog their best chance — better photos, better
 
 The APIs are open source primitives. Any platform can use them. MIT licensed. Free forever.
 
-**Published dog inventory is a core requirement.** Every dog that completes BCS and gets published must be logged — coached story, final score, publish date. Every coached dog is a real dog ready to be matched. Don't discard it.
-
 ---
 
 ## Start Here Before Picking an API
