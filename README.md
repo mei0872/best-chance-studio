@@ -46,6 +46,8 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months
 
 Coaching that gives every rescue dog their best chance — better photos, better descriptions, better video, and a clear picture of what each dog needs to go home. The scoring rubric is one piece of it. So is the shot list, the video coaching, the story rewrite, and the presenter prep. All of it together moves dogs faster.
 
+**The starting point is always what's published right now.** Bring in the listing as it exists today — the description on Petfinder, the photos on ShelterLuv, the YouTube link, a screenshot of the published post. BCS scores what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there. Not a theoretical dog profile. The real presentation.
+
 The APIs are open source primitives. Any platform can use them. MIT licensed. Free forever.
 
 ---
