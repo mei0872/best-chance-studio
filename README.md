@@ -124,16 +124,17 @@ We have more ideas than we have hands. We're looking for full-time help to build
 
 ## How BCS Stays Free
 
-BCS is MIT licensed. The code costs nothing. But AI features cost something to run — and that cost should never land on a rescue.
+BCS is MIT licensed. The code costs nothing. AI features — scoring, story coaching, video analysis — cost something to run. That cost should never land on a rescue.
 
-**Our commitment:**
-- **Charity funding pool** — we're building a funded AI token pool through [Open Collective](https://opencollective.com), supported by foundations and animal welfare donors. Any rescue using any BCS tool — on any platform, through any implementation — can draw from this pool. Zero setup, zero billing.
-- **For developers and implementors** — if you're building a BCS tool and need to handle AI costs yourself, see `docs/ai-credentials.md` for the BYOK reference implementation.
+**For rescues:** Any rescue using any BCS tool draws from a community-funded AI pool — supported by foundations and animal welfare donors through [Open Collective](https://opencollective.com/best-chance-studio). Zero setup, zero billing, regardless of which platform or tool they're using.
 
-If you're a **charity or foundation** that cares about rescue dogs: your donation funds AI directly for rescues using BCS tools, wherever they use them.
+**For charities and foundations:** Your donation funds AI compute directly for rescues using BCS tools. Open Collective handles your representation preferences — anonymous, named, or with your logo — entirely under your control. BCS implementations show a simple "Community-funded" acknowledgment and link back to Open Collective. Nothing more.
 
-The charity funding pool is in progress. We'll update this section when it's live.
+**For engineers:** Any implementation drawing from the pool adds one line: a "Community-funded" badge linking to Open Collective. That's the only funding requirement the spec imposes. Full details in [`docs/funding.md`](docs/funding.md).
 
+The charity pool is in progress. We'll update this when it's live.
+
+→ [Full funding model and spec — docs/funding.md](docs/funding.md)
 → [Support BCS on Open Collective](https://opencollective.com/best-chance-studio) *(coming soon)*
 
 ---
