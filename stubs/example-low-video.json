@@ -1,25 +1,66 @@
 {
   "_description": "Example: strong story and photos, but zero video. Coaching focuses on video gap.",
-  "_dog": "Roux — 4yr cattle dog mix, 3 legs, foster 2 months",
+  "_dog": "Roux \u2014 4yr cattle dog mix, 3 legs, foster 2 months",
   "bcs_score": {
-    "total": 10,
+    "total_score": 10,
     "max": 18,
+    "grade": "C",
+    "grade_label": "Fair",
     "dimensions": [
-      { "id": "personality_hook", "score": 2, "gap": null },
-      { "id": "visual_impact", "score": 2, "gap": null },
-      { "id": "video_presence", "score": 0, "gap": "No video. Roux's personality doesn't exist on camera yet." },
-      { "id": "compatibility_clarity", "score": 2, "gap": null },
-      { "id": "foster_voice", "score": 2, "gap": null },
-      { "id": "no_surprises", "score": 1, "gap": "Three legs mentioned but not reframed — could read as a concern instead of a non-issue." },
-      { "id": "story_first_gate", "score": 0, "gap": "No intro video." },
-      { "id": "presenter_readiness", "score": 1, "gap": "Story is ready but presenter hasn't been briefed on the three-leg question." },
-      { "id": "family_vision", "score": 2, "gap": null }
+      {
+        "id": "personality_hook",
+        "score": 2,
+        "gap": null
+      },
+      {
+        "id": "visual_impact",
+        "score": 2,
+        "gap": null
+      },
+      {
+        "id": "video_presence",
+        "score": 0,
+        "gap": "No video. Roux's personality doesn't exist on camera yet."
+      },
+      {
+        "id": "compatibility_clarity",
+        "score": 2,
+        "gap": null
+      },
+      {
+        "id": "foster_voice",
+        "score": 2,
+        "gap": null
+      },
+      {
+        "id": "no_surprises",
+        "score": 1,
+        "gap": "Three legs mentioned but not reframed \u2014 could read as a concern instead of a non-issue."
+      },
+      {
+        "id": "story_first_gate",
+        "score": 0,
+        "gap": "No intro video."
+      },
+      {
+        "id": "presenter_readiness",
+        "score": 1,
+        "gap": "Story is ready but presenter hasn't been briefed on the three-leg question."
+      },
+      {
+        "id": "family_vision",
+        "score": 2,
+        "gap": null
+      }
     ],
-    "priority_gaps": ["video_presence", "story_first_gate"],
-    "coaching_summary": "Roux's story is excellent — the description and photos will make people stop scrolling. But she doesn't exist on video yet. A 60-second clip of her running (yes, running — three legs and fearless) closes this listing."
+    "priority_gaps": [
+      "video_presence",
+      "story_first_gate"
+    ],
+    "coaching_summary": "Roux's story is excellent \u2014 the description and photos will make people stop scrolling. But she doesn't exist on video yet. A 60-second clip of her running (yes, running \u2014 three legs and fearless) closes this listing."
   },
   "coaching_actions_triggered": [
-    "Record 60 seconds of the behavior you described in the story — show it, don't say it",
+    "Record 60 seconds of the behavior you described in the story \u2014 show it, don't say it",
     "Record a 60-second intro video before any live meets",
     "Reframe the three-leg mention: 'Roux runs. Full speed. Three legs and she doesn't know it.'"
   ]
