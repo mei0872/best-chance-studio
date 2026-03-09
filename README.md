@@ -156,6 +156,7 @@ The charity pool is in progress. We'll update this when it's live.
 → Support BCS on Open Collective *(coming soon — opencollective.com/best-chance-studio)*
 → [Scoring rubric reference — docs/rubric.md](docs/rubric.md)
 → [How BCS gets smarter over time — docs/intelligence.md](docs/intelligence.md)
+→ [Field reference — docs/data-dictionary.md](docs/data-dictionary.md)
 
 ---
 
