@@ -22,7 +22,7 @@ AI credentials must be collected before AI features run and stored securely. Nev
 BCS failures must be handled gracefully. No raw API errors shown to rescue users. If a session fails, the user gets a clear, human message — not a stack trace.
 
 **Community-funded acknowledgment**
-Any implementation drawing from the BCS community AI pool must display a visible "Community-funded" acknowledgment linking to [opencollective.com/best-chance-studio](https://opencollective.com/best-chance-studio). One line or badge is sufficient.
+Any implementation drawing from the BCS community AI pool must display a visible "Community-funded" acknowledgment linking to opencollective.com/best-chance-studio *(coming soon)*. One line or badge is sufficient.
 
 ---
 
