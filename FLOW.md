@@ -1,6 +1,6 @@
 # How BCS Works — The Full Flow
 
-*Last updated: March 7, 2026*
+*Last updated: March 9, 2026*
 
 *A technical walkthrough with real inputs and outputs*
 
@@ -475,7 +475,7 @@ Rescues maintain a library of reusable paragraphs — boilerplate they append to
 
 **Why this matters for standalone BCS:** Rescues using Petfinder, AdoptAPet, or RescueGroups currently paste their org boilerplate manually into every single listing. This defines it once and appends it automatically — saving meaningful time per dog across a rescue's full volume.
 
-**WAH platform note:** WAH handles rescue branding, application links, and transport information natively — the template library is not needed there. This feature is designed for standalone BCS users.
+**Platform note:** Platforms that handle rescue branding, application links, and transport information natively won't need the template library. This feature is designed for standalone BCS users.
 
 ```json
 GET /rescue/templates
@@ -559,7 +559,7 @@ The rescue's existing workflow stays intact. No new logins, no platform switchin
 
 The YouTube URL does real work once published:
 - Inserted into Petfinder and AdoptAPet listings alongside the coached description
-- Used as the "What's Your Story" video on WAH dog profiles
+- Used as the "What's Your Story" video on platform dog profiles
 - Shared directly by the foster to Facebook, Instagram, and group chats
 
 **The promise:** the foster shoots the video. BCS coaches it, uploads it, and delivers a URL ready for every platform. No manual YouTube steps after initial setup.

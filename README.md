@@ -1,9 +1,9 @@
 # Best Chance Studio
-*Last updated: March 8, 2026*
+*Last updated: March 9, 2026*
 
 Open source coaching tools that give every rescue dog their best chance at adoption.
 
-**Free for every rescue. AI features run on your own AI account (~$5–10/month, paid directly to your provider — we never see it). No matter what platform they post on.**
+**Free for every rescue. That includes the AI. We're building a charity-funded pool — supported by foundations and donors — so rescue orgs never pay for the AI that helps their dogs get adopted. No matter where they post, no matter which tools they use.**
 
 ---
 
@@ -25,7 +25,7 @@ What we build here is going to be loved by rescues. It's going to help them get 
 
 The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
 
-**Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free to use — AI features run on your own AI account, paid directly to your provider.**
+**Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free for rescues — including the AI.**
 
 ---
 
@@ -122,6 +122,22 @@ We have more ideas than we have hands. We're looking for full-time help to build
 
 ---
 
+## How BCS Stays Free
+
+BCS is MIT licensed. The code costs nothing. But AI features cost something to run — and that cost should never land on a rescue.
+
+**Our commitment:**
+- **Charity funding pool** — we're building a funded AI token pool through [Open Collective](https://opencollective.com), supported by foundations and animal welfare donors. Any rescue using any BCS tool — on any platform, through any implementation — can draw from this pool. Zero setup, zero billing.
+- **For developers and implementors** — if you're building a BCS tool and need to handle AI costs yourself, see `docs/ai-credentials.md` for the BYOK reference implementation.
+
+If you're a **charity or foundation** that cares about rescue dogs: your donation funds AI directly for rescues using BCS tools, wherever they use them. Not for any company. For the dogs.
+
+The charity funding pool is in progress. We'll update this section when it's live.
+
+→ [Support BCS on Open Collective](https://opencollective.com/best-chance-studio) *(coming soon)*
+
+---
+
 ## The People
 
 **Kip Meierhofer** — Co-founder. 25 years building enterprise systems (Northwestern Mutual). Fostering since 2019. 7 dogs at home. Hundreds of fosters alongside Beth at Blues City. Built this because he's been sitting down to write dog descriptions for 15 years and he's still terrible at it — and there was never anything to help. Building the thing that should have existed years ago.
@@ -157,4 +173,4 @@ BCS improves through use — but only if what's learned in the field comes back.
 
 → [Browse open issues](../../issues)
 
-KipMeierhofer@gmail.com · wag-on-home.com
+KipMeierhofer@gmail.com

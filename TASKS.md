@@ -83,7 +83,7 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 ### [G-07] Rescue Template Library — `/rescue/templates`
 **What:** A rescue-owned library of reusable paragraphs — org boilerplate, transport info, application links, foster-to-adopt offers — that append to listings at export time. Defined once, selected per dog.
 **Why it matters:** Rescues using Petfinder, AdoptAPet, or RescueGroups manually paste the same boilerplate into every listing. This defines it once and appends it automatically. For a rescue placing 100 dogs a year, that's real time saved — and it makes BCS meaningfully more attractive to rescues that aren't on our platform.
-**Platform note:** WAH handles rescue branding natively. This feature is for standalone BCS users.
+**Platform note:** Platforms that manage rescue branding natively won't need this feature. This is for standalone BCS users.
 **Design rules:**
 - Templates append after the coached story — never before
 - Order follows the `include_templates` array — rescue controls sequencing
@@ -310,7 +310,7 @@ Output:
 ### [H-04] Video Export Engine — YouTube-Ready Output
 **What:** Takes any produced video and outputs a YouTube-ready file — correct format, resolution, audio, thumbnail, and suggested title/tags.
 **Why it matters:** /video/produce creates the best possible story. /video/export makes sure it lands correctly everywhere it's shared. Callable independently on any existing video — not just BCS pipeline output.
-**YouTube OAuth note:** Rescues connect their YouTube channel once during BCS setup. After that, /video/export uploads directly and returns the published URL — no manual steps. The URL then travels to Petfinder, AdoptAPet, WAH dog profiles, and social. This is a BCS setup requirement, not a WAH-only concern.
+**YouTube OAuth note:** Rescues connect their YouTube channel once during BCS setup. After that, /video/export uploads directly and returns the published URL — no manual steps. The URL then travels to Petfinder, AdoptAPet, platform dog profiles, and social. This is a BCS setup requirement, not limited to any single platform.
 **API shape:**
 ```
 POST /video/export
