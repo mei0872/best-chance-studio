@@ -82,57 +82,25 @@ Output:
   template_warning?: string  // present if any template pushed output over char limit — names offending template
 ```
 **Template handling:** When `templates[]` are provided (by a platform passing rescue-defined boilerplate), they are appended after the coached story before character limits are enforced. Standalone BCS omits `templates[]` — coached story only. Same API, both use cases.
+**Character limit logic:** When `templates[]` are provided, BCS uses reserve-and-allocate: `story_budget = platform_limit - template_length`. The coached story is formatted to fit `story_budget`; templates append after. If templates leave fewer than ~300 chars for the dog story, `template_warning` fires. The dog story always gets priority — templates are logistics, not the reason anyone adopts.
 **Stack:** Plain HTML + vanilla JS. Rule-based character limits per platform.
 **Deliverable:** `story-formatter.html` — paste description, pick platform, select templates to append, get formatted output with character count and status.
 
 ---
 
-### [G-07] Rescue Template Library — `/rescue/templates`
-**What:** A rescue-owned library of reusable paragraphs — org boilerplate, transport info, application links, foster-to-adopt offers — that append to listings at export time. Defined once, selected per dog.
-**Why it matters:** Rescues using Petfinder, AdoptAPet, or RescueGroups manually paste the same boilerplate into every listing. This defines it once and appends it automatically. For a rescue placing 100 dogs a year, that's real time saved — and it makes BCS meaningfully more attractive to rescues that aren't on our platform.
-**Platform note:** Platforms that manage rescue branding natively won't need this feature. This is for standalone BCS users.
-**Scope note:** The template library — storing, managing, selecting, and auto-appending rescue templates — is a platform-layer feature. Standalone BCS does not register rescues or persist templates between sessions. What standalone BCS provides: when non-story content is detected in a submitted story, it reformats and returns it cleanly via `reformatted_boilerplate[]` — a natural candidate for a rescue's template library. The platform decides what to do with it.
-**Design rules:**
-- Templates append after the coached story — never before
-- Order follows the `include_templates` array — rescue controls sequencing
-- Character count includes appended templates — platform limits enforced on the full output
-- If appending templates would exceed a platform's character limit, return a warning with the offending template identified — never silently truncate
-- Templates are locally stored — no central registry
-**Sample templates (use these as the reference implementation):**
-```json
-[
-  {
-    "id": "transport-east-coast",
-    "label": "East Coast Transport",
-    "text": "Transport is available! We transport 3–4 times monthly up the East Coast from Memphis with convenience stops in Nashville, Knoxville, Bristol, Roanoke, Richmond, and Washington DC. Transport cost is $250, paid separately from the rescue adoption fee. Reach out to ask about your nearest stop.",
-    "default_include": false,
-    "tags": ["transport", "situational"]
-  },
-  {
-    "id": "org-blurb",
-    "label": "About Our Rescue",
-    "text": "We are a 501(c)(3) foster-based rescue. All dogs are spayed or neutered, up to date on vaccines, and heartworm tested before adoption.",
-    "default_include": true,
-    "tags": ["org", "always"]
-  },
-  {
-    "id": "apply",
-    "label": "How to Apply",
-    "text": "To apply, visit [your application URL]. Applications are reviewed within 48 hours.",
-    "default_include": true,
-    "tags": ["application", "always"]
-  },
-  {
-    "id": "foster-to-adopt",
-    "label": "Foster-to-Adopt Available",
-    "text": "Not sure yet? We offer foster-to-adopt for the right match. Ask us how it works.",
-    "default_include": false,
-    "tags": ["fta", "situational"]
-  }
-]
-```
-**Stack:** Plain HTML + vanilla JS + localStorage. Add/edit/delete templates in the UI. Toggle which are included per export.
-**Deliverable:** `rescue-templates.html` — manage library + preview assembled listing output before copying.
+### [G-07] Rescue Template Library *(Platform implementation — not a standalone grab-and-go task)*
+
+**What:** Persistent storage and management of rescue-defined boilerplate templates (UW rules, transport logistics, adoption process info, links). Rescues define their standard paragraphs once and select them per dog at export. The coached story stays focused on the dog; logistics append cleanly afterward.
+
+**Why it matters:** Rescues using Petfinder, AdoptAPet, or RescueGroups manually paste the same boilerplate into every listing. The full library experience defines it once and appends automatically — real time saved at scale.
+
+**Scope note:** This is a platform-layer feature. Standalone BCS does not register rescues, store templates, or persist data between sessions.
+
+**What standalone BCS provides:** `/bcs/score` detects non-story content and returns `detected_boilerplate[]`. `/story/build` reformats it and returns `reformatted_boilerplate[]` — a clean, copy-ready logistics paragraph. The P-02 session UI displays `reformatted_boilerplate[]` with a copy button. No storage, no library, no accounts.
+
+**Platform implementation:** A platform builds on this foundation — store the reformatted output as a template, let rescues manage a library, auto-append at export via `templates[]` in `/story/format`. The `templates[]` parameter in `/story/format` is the integration point between the platform's library and the BCS formatting step.
+
+> **This task is not in the open source pull list.** Platform builders: use `reformatted_boilerplate[]` as your template seed and build the library layer from there.
 
 ---
 
@@ -218,9 +186,31 @@ The API receives the full listing package as published (or about to be). It does
 **What:** Given a dog's BCS score and profile, generate a one-page coaching brief for the presenter — what to improve, shot list, description draft, what to watch for in the live meet.
 **Why it matters:** Presenters shouldn't have to figure out improvements from scratch. The platform tells them exactly what to do. This is what Savannah reads Saturday morning.
 **Spec:**
-- Input: dog name, breed, age, BCS score by dimension, existing description (optional)
-- Output: top gaps with specific actions, shot list, description draft, live meet tips
-- Printable / shareable
+```
+POST /coaching/packet
+Input:
+  score_context{}              // from /bcs/score — gaps, dimension scores
+  behavior_notes[]             // foster observations — structured, timestamped
+  adopter_feedback[]           // questions/hesitations from meet & greet sessions
+  failed_adoption_notes[]      // post-failed discussion notes — why it didn't work, what was said
+  concern_flags[]              // coordinator notes, vet flags, known challenges
+  platform_hints {             // optional — platform passes accumulated learning here
+    similar_dog_patterns {}    // what worked for dogs with similar profile/gaps
+    adopter_signals {}         // what questions adopters typically ask for this type
+    failed_adoption_learnings []  // concerns from failed adoptions for similar dogs
+    top_performer_framing {}   // story angle that drove fastest placement for similar dogs
+    concern_mitigation {}      // known concerns for this profile + what addressed them
+  }
+
+Output: (coaching packet — gap coaching, priority actions, platform-specific notes)
+  top_gaps[]                   // gaps ranked by impact, with specific actions for each
+  shot_list[]                  // prioritized shot agenda tied to gap context
+  description_draft            // suggested rewrite, scoped to priority gaps
+  live_meet_tips[]             // what to watch for, what to lead with
+  presenter_brief              // the one-liner the presenter says first
+```
+
+**Intelligence:** `platform_hints{}` is the return channel for accumulated platform learning. Standalone BCS omits it — coaching is effective without it. Platforms populate it from outcome data over time. See [`docs/intelligence.md`](docs/intelligence.md).
 **Stack:** HTML + JS. Rule-based for v1 — no AI required.
 **Deliverable:** `coaching-packet-generator.html`
 
