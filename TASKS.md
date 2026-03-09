@@ -206,28 +206,37 @@ Output: selected[ { url, order, reason } ]
 ---
 
 ### [P-05] Story Builder API — `/story/build`
-**What:** The core AI story generation API. Given a dog profile, foster notes, and gap context from `/bcs/score`, produce a coached description and coaching packet.
+**What:** The core AI story generation API. Given a dog's current story and gap context from `/bcs/score`, produce a coached description, a coaching packet, and — when boilerplate is detected — a reformatted version of that boilerplate ready for the Rescue Template Library.
 **Why it matters:** This is where the raw submission becomes a story. The gap context is what makes coaching specific — not "make this better" but "fix these three exact dimensions." See FLOW.md Step 3 for the full orchestration context.
 **API shape:**
 ```
 POST /story/build
 Input:
-  dog_name, raw_text, foster_notes
+  story{}                  // current published presentation (see /bcs/score input)
+  new_content{}            // optional — new raw material for this version
   priority_gaps[]          // from /bcs/score response
   score_context{}          // per-dimension gap detail from /bcs/score
   platform_hints{}         // optional — platform intelligence layer
 
 Output:
-  coached_description      // the coached story, ready for review
+  coached_story            // the coached dog description, ready for review
   coaching_packet {
     what_changed           // plain-language summary of what was improved
     dimensions_improved[]  // which BCS dimensions this story addresses
     estimated_score_delta  // e.g. "+8"
   }
+  reformatted_boilerplate[] {  // present only when non-story content was detected
+    type                   // "transport_info" | "uw_rules" | "apply_link" | "org_blurb" | "fta_offer"
+    original               // what was in the submitted story
+    reformatted            // cleaned, consistently structured version
+    template_hint          // "Consider saving this as a Rescue Template Library entry"
+  }
   review_required: true    // always — nothing publishes without foster approval
 ```
+**Boilerplate handling:** When `/bcs/score` detects non-story content (UW rules, transport logistics, org blurb, apply links), `/story/build` receives that context and reformats it — cleaned up and consistently structured — returned alongside the coached story. The rescue sees the clean split immediately. No forced workflow change; the reformatted content becomes a natural candidate for G-07 when they're ready.
 **Stack:** Python or Node + LLM of your choice (GPT-4o recommended).
 **Full spec:** `strategy/feature-specs/story-builder.md`
+**Related:** Discussion [#27](https://github.com/mei0872/best-chance-studio/discussions/27) — non-story content detection design
 **Deliverable:** Standalone API endpoint. Test against the Moose example in FLOW.md — input the 3/18 profile, verify the output hits personality_hook, foster_voice, and family_vision.
 
 ---
