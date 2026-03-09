@@ -53,7 +53,7 @@ BCS receives this and immediately knows what it's working with: two raw photos, 
 
 **`/voice/transcribe` — voice notes become text before scoring begins**
 
-Before BCS runs the score, voice notes are converted to text. A foster who records 15 seconds of observations on their phone instead of typing them out gets the same outcome — and often more honest detail.
+Before BCS runs the score, voice notes are converted to text. A foster who records 15 seconds of observations on their phone instead of typing them out gets the same outcome — and often richer detail.
 
 ```json
 POST /voice/transcribe

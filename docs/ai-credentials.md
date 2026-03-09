@@ -69,7 +69,7 @@ Test the key with a minimal API call before saving. Store in browser's secure st
 
 ## Cost Transparency
 
-The setup flow should include honest cost expectations. Suggested language:
+The setup flow should include clear cost expectations. Suggested language:
 
 > *"Running BCS with AI costs approximately $0.25–$0.50 per dog coaching session. A rescue running 40 dogs per week would spend roughly $10–$20/week on AI. Your API key connects directly to your provider account — BCS never sees your payment details."*
 

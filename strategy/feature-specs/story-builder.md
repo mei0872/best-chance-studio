@@ -79,7 +79,7 @@ Nothing is lost. Nothing resets. The story compounds.
 
   "prior_session": {                      // optional — for session continuity
     "story_version": "number",
-    "coached_description": "string",
+    "coached_story": "string",
     "coaching_tips_tried": ["string"],
     "near_miss_signals": ["string"]
   },
@@ -102,7 +102,7 @@ Nothing is lost. Nothing resets. The story compounds.
   "score_max": 18,
   "rubric_version": "string",
 
-  "coached_description": {
+  "coached_story": {
     "portable": "string",                 // listing-platform-ready, within limits
     "enriched": "string"                  // full version, no character constraint
   },
