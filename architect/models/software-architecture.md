@@ -158,16 +158,16 @@ These data flow questions should be resolved before P-01 and P-02 are built.
 
 ### Stub Files vs FLOW.md Cross-Reference
 
-| Stub File | FLOW.md Step | Contract Verified |
-|-----------|-------------|-------------------|
-| `stubs/bcs-score.json` | Step 2 | [ ] |
-| `stubs/story-build.json` | Step 3 | [ ] |
-| `stubs/photos-curate.json` | Step 4 | [ ] |
-| `stubs/video-coach.json` | Step 5 | [ ] |
-| `stubs/video-export.json` | Step 5 | [ ] |
-| `stubs/voice-transcribe.json` | Step 1 | [ ] |
-| `stubs/coaching-packet.json` | Step 6 | [ ] |
-| `stubs/example-low-*.json` | Scoring edge cases | [ ] |
+| Stub File | FLOW.md Step | Contract Verified | Findings |
+|-----------|-------------|-------------------|----------|
+| `stubs/bcs-score.json` | Step 2 | [x] Partial match | F-01 (tier annotation), F-02 (missing grade), F-03 (missing scoring_tier), F-04/F-05 (field naming vs P-04 spec) |
+| `stubs/story-build.json` | Step 3 | [x] Partial match | F-12 (missing review_required, platform_hints) |
+| `stubs/photos-curate.json` | Step 4 | [x] Partial match | F-13 (flat vs structured selected[], missing rejected[]) |
+| `stubs/video-coach.json` | Step 5 | [x] Match | F-14 (scope differs from H-02 spec — documented, not a bug) |
+| `stubs/video-export.json` | Step 5 | [x] Match | F-15 (WAH-branded URLs in placeholder data) |
+| `stubs/voice-transcribe.json` | Step 1 | [x] Match | Clean. |
+| `stubs/coaching-packet.json` | Step 6 | [x] Partial match | F-09 (missing ai_assisted), F-10 (flat vs two-layer description), F-11 (missing key_asset) |
+| `stubs/example-low-*.json` | Scoring edge cases | [x] Partial match | F-06 (total vs total_score), F-07 (inconsistent grade), F-08 (coaching_actions_triggered not in main stub) |
 
 ### Missing Stubs (Referenced in FLOW.md but no stub file)
 - `/word/check` (Step 2b)
