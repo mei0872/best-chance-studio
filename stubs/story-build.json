@@ -1,5 +1,5 @@
 {
-  "_description": "Builds a coached adoption description by combining raw text, foster notes, and gap context from /bcs/score to target the exact dimensions that scored zero.",
+  "_description": "Builds a coached adoption description by combining the original story, curated content (output of /photos/curate and /video/coach), coaching context (from H-01 checklist), and gap context from /bcs/score to target the exact dimensions that scored zero.",
   "_flow_reference": "See Step 3 in FLOW.md",
   "request": {
     "story": {
@@ -15,11 +15,31 @@
       "video": null,
       "source": "petfinder"
     },
-    "new_content": {
-      "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
-      "voice_notes": [],
-      "photos": [],
-      "videos": []
+    "curated_content": {
+      "selected_photos": [
+        {
+          "url": "petfinder-photo-001.jpg",
+          "order": 1,
+          "reason": "Best available — natural expression, closest to eye contact"
+        }
+      ],
+      "video_coverage": {
+        "what_landed": [],
+        "what_to_improve": ["No video captured yet — shoot fetch drop first"],
+        "agenda_coverage": [],
+        "next_session_priority": "Fetch drop — let Moose initiate. That's the personality hook."
+      },
+      "coaching_context": {
+        "checklist_completed": [
+          "foster_notes_captured",
+          "basic_info_confirmed",
+          "voice_note_transcribed"
+        ],
+        "moments_noted": [
+          "Brings tennis ball every morning to whoever's having coffee — been doing it since week one"
+        ],
+        "shot_agenda_coverage": "No video captured this session — shot agenda pending for next session"
+      }
     },
     "priority_gaps": [
       "personality_hook",
@@ -42,6 +62,7 @@
     }
   },
   "response": {
+    "coached_story": "Moose has a move. The second you sit on the floor \u2014 doesn't matter why \u2014 he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.\n\nHe's three, fully house-trained, great with other dogs and kids. He's been patient in a way that shouldn't be possible \u2014 four months in rescue, and every day he keeps showing up.\n\nHe needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.",
     "coaching_packet": {
       "what_changed": "Pulled the fetch behavior from foster notes and made it the personality hook. Rewrote in first-person foster voice. Closed with the family vision \u2014 the adopter can picture this dog in their living room.",
       "dimensions_improved": [
@@ -52,7 +73,6 @@
       ],
       "estimated_score_delta": "+8"
     },
-    "coached_story": "Moose has a move. The second you sit on the floor \u2014 doesn't matter why \u2014 he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play. He's been doing it since day one, to every single person who walked through the door.\n\nHe's three, fully house-trained, great with other dogs and kids. He's been patient in a way that shouldn't be possible \u2014 four months in rescue, and every day he keeps showing up.\n\nHe needs a family who'll actually let him tire them out. He will find the tennis ball. He will drop it in your lap. The only question is whether you're ready for that.",
     "review_required": true,
     "reformatted_boilerplate": []
   }

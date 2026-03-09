@@ -1,5 +1,5 @@
 # Best Chance Studio — Pull List
-*Last updated: March 8, 2026*
+*Last updated: March 9, 2026*
 
 > Not a job. Not a commitment. Grab something interesting, ship something real.
 > Every item here moves dogs home faster. That's the only metric that matters.
@@ -47,7 +47,7 @@ No coordination overhead. No standups. No pressure.
 ### [G-04] Word Check Tool — `/word/check`
 **What:** A simple tool — paste a dog description, get back flagged words with adoption-proven replacements and a cleaned version.
 **Why it matters:** Language measurably affects adoption speed. This tool surfaces the specific words that hurt and shows exactly what to replace them with. Backed by a 70,733-dog study.
-**Stack:** Plain HTML + vanilla JS. Hardcode the word list from the study. The tool logic is also designed to be callable as `POST /word/check` in the BCS pipeline — G-04 builds the UI; the same logic serves both purposes.
+**Stack:** Plain HTML + vanilla JS. Hardcode the word list from the study. Two modes: (1) standalone paste tool — user pastes a description for spot-checking; (2) callable as `POST /word/check` in the BCS pipeline, where it runs automatically on the extracted story text — no manual paste needed inside a session.
 **Deliverable:** `word-check.html` — self-contained, no build step. Input field, flagged word list with replacements, cleaned output version.
 
 ---
@@ -65,6 +65,23 @@ No coordination overhead. No standups. No pressure.
 **What:** Takes an approved coached description and reformats it for a specific platform — character limits handled, no manual trimming. Supports the Rescue Template Library (see below) — selected templates append after the coached story before formatting.
 **Why it matters:** Petfinder, AdoptAPet, Instagram, and Facebook all have different character limits and conventions. This tool does the reformatting so the foster just copies and pastes.
 **Platforms:** `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegroups`
+**API shape:**
+```
+POST /story/format
+Input:
+  description: string        // the coached story text
+  target: string             // "petfinder" | "adoptapet" | "instagram" | "facebook" | "rescuegroups"
+  templates?: [ { id, text } ]  // optional — rescue-defined boilerplate to append
+
+Output:
+  formatted: string          // the final assembled text, within platform limits
+  char_count: number
+  limit: number
+  status: string             // "within_limit" | "at_limit" | "over_limit"
+  templates_included?: []    // which template ids were appended
+  template_warning?: string  // present if any template pushed output over char limit — names offending template
+```
+**Template handling:** When `templates[]` are provided (by a platform passing rescue-defined boilerplate), they are appended after the coached story before character limits are enforced. Standalone BCS omits `templates[]` — coached story only. Same API, both use cases.
 **Stack:** Plain HTML + vanilla JS. Rule-based character limits per platform.
 **Deliverable:** `story-formatter.html` — paste description, pick platform, select templates to append, get formatted output with character count and status.
 
@@ -74,6 +91,7 @@ No coordination overhead. No standups. No pressure.
 **What:** A rescue-owned library of reusable paragraphs — org boilerplate, transport info, application links, foster-to-adopt offers — that append to listings at export time. Defined once, selected per dog.
 **Why it matters:** Rescues using Petfinder, AdoptAPet, or RescueGroups manually paste the same boilerplate into every listing. This defines it once and appends it automatically. For a rescue placing 100 dogs a year, that's real time saved — and it makes BCS meaningfully more attractive to rescues that aren't on our platform.
 **Platform note:** Platforms that manage rescue branding natively won't need this feature. This is for standalone BCS users.
+**Scope note:** The template library — storing, managing, selecting, and auto-appending rescue templates — is a platform-layer feature. Standalone BCS does not register rescues or persist templates between sessions. What standalone BCS provides: when non-story content is detected in a submitted story, it reformats and returns it cleanly via `reformatted_boilerplate[]` — a natural candidate for a rescue's template library. The platform decides what to do with it.
 **Design rules:**
 - Templates append after the coached story — never before
 - Order follows the `include_templates` array — rescue controls sequencing
@@ -245,27 +263,24 @@ Output: selected[ { url, order, reason } ]
 ```
 POST /story/build
 Input:
-  story{}                  // current published presentation (see /bcs/score input)
-  new_content{}            // optional — new raw material for this version
-  priority_gaps[]          // from /bcs/score response
-  score_context{}          // per-dimension gap detail from /bcs/score
-  platform_hints{}         // optional — platform intelligence layer
+  story{}                   // the original published presentation (for tone/context reference)
+  curated_content {         // output from upstream curation APIs — NOT raw files
+    selected_photos[]       // from /photos/curate output
+    video_coverage{}        // from /video/coach output — what was confirmed captured
+    coaching_context {      // from H-01 checklist — confirmed content pieces, moments noted
+      checklist_completed[] // content pieces confirmed captured
+      moments_noted[]       // specific moments flagged during capture
+      shot_agenda_coverage  // what was asked for vs. what was delivered
+    }
+  }
+  priority_gaps[]           // from /bcs/score
+  score_context{}           // per-dimension gap detail from /bcs/score
+  platform_hints{}          // optional
 
-Output:
-  coached_story            // the coached dog description, ready for review
-  coaching_packet {
-    what_changed           // plain-language summary of what was improved
-    dimensions_improved[]  // which BCS dimensions this story addresses
-    estimated_score_delta  // e.g. "+8"
-  }
-  reformatted_boilerplate[] {  // present only when non-story content was detected
-    type                   // "transport_info" | "uw_rules" | "apply_link" | "org_blurb" | "fta_offer"
-    original               // what was in the submitted story
-    reformatted            // cleaned, consistently structured version
-    template_hint          // "Consider saving this as a Rescue Template Library entry"
-  }
-  review_required: true    // always — nothing publishes without foster approval
+Output: (unchanged — coached_story, coaching_packet, reformatted_boilerplate[], review_required: true)
 ```
+
+**Note:** `curated_content{}` receives the OUTPUT of curation APIs (/photos/curate, /video/coach), not raw uploads. Raw content is processed by those APIs first. story/build focuses on one job: producing the best possible coached description from confirmed, curated material.
 **Boilerplate handling:** When `/bcs/score` detects non-story content (UW rules, transport logistics, org blurb, apply links), `/story/build` receives that context and reformats it — cleaned up and consistently structured — returned alongside the coached story. The rescue sees the clean split immediately. No forced workflow change; the reformatted content becomes a natural candidate for G-07 when they're ready.
 **Stack:** Python or Node + LLM of your choice (GPT-4o recommended).
 **Full spec:** `strategy/feature-specs/story-builder.md`
@@ -304,6 +319,22 @@ Output:
 **Design principle:** Degrades gracefully. No `platform_hints` → solid general coaching based on session history. With `platform_hints` → targeted brief built from real adopter signal. The API never fails because context is absent — it uses what it's given.
 **Stack:** Python or Node + LLM of your choice.
 **Deliverable:** Standalone API endpoint. Test against both Path A (platform-connected) and Path B (standalone with manually logged signals) as described in FLOW.md.
+
+---
+
+### [P-07] Audio Cleanup — `/video/clean-audio`
+**What:** Takes raw capture footage and returns a clean audio track — videographer voice removed, filler words (ums, ands, pauses) cut, background noise reduced.
+**Why it matters:** Raw capture always contains direction talk, instructions during shooting, and ambient noise. This cleans it before production so /video/produce works from the best possible audio.
+**API shape:**
+```
+POST /video/clean-audio
+Input:  { video_url: string, remove_voices?: [ "videographer" ], remove_fillers?: boolean }
+Output: { clean_audio_url: string, clean_video_url: string, edits_made: [ string ] }
+```
+**Stack:** Python + ffmpeg + Whisper (voice identification and removal). Speaker diarization to isolate and remove the videographer's voice.
+**Deliverable:** Standalone API endpoint. Test with a raw capture clip containing direction talk — verify output has clean audio with the dog's natural sounds preserved.
+
+> Grab this task: comment below to claim it. Questions? Start a Discussion.
 
 ---
 

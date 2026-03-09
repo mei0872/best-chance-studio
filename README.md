@@ -121,8 +121,6 @@ BCS              → the complete assembled application — all APIs below work 
                    TikTok, Facebook each optimized simultaneously
 ```
 
-→ [See the full orchestration walkthrough — FLOW.md](FLOW.md)
-
 ---
 
 ## Ways Engineers Can Help the Rescue Community
@@ -133,7 +131,7 @@ Pick a task, build it, ship something real. Every API done well will help hundre
 → [See the full pull list — TASKS.md](TASKS.md)
 
 ### Help us build more tools
-We have more ideas than we have hands.
+We have more ideas than we have hands — and we have funding sources being built that will reward the efforts that build them.
 
 > **We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.**
 
@@ -146,7 +144,7 @@ We have more ideas than we have hands.
 
 BCS is MIT licensed. The code costs nothing. AI features — scoring, story coaching, video analysis — cost something to run. That cost should never land on a rescue.
 
-**For rescues:** Any rescue using any BCS tool draws from a community-funded AI pool — supported by foundations and animal welfare donors through [Open Collective](https://opencollective.com/best-chance-studio). Zero setup, zero billing, regardless of which platform or tool they're using.
+**For rescues:** Any rescue using any BCS tool draws from a community-funded AI pool — supported by foundations and animal welfare donors through Open Collective *(coming soon — opencollective.com/best-chance-studio)*. Zero setup, zero billing, regardless of which platform or tool they're using.
 
 **For charities and foundations:** Your donation funds AI compute directly for rescues using BCS tools. Open Collective handles your representation preferences — anonymous, named, or with your logo — entirely under your control. BCS implementations show a simple "Community-funded" acknowledgment and link back to Open Collective. Nothing more.
 
@@ -155,7 +153,7 @@ BCS is MIT licensed. The code costs nothing. AI features — scoring, story coac
 The charity pool is in progress. We'll update this when it's live.
 
 → [Full funding model and spec — docs/funding.md](docs/funding.md)
-→ [Support BCS on Open Collective](https://opencollective.com/best-chance-studio) *(coming soon)*
+→ Support BCS on Open Collective *(coming soon — opencollective.com/best-chance-studio)*
 
 ---
 

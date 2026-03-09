@@ -19,9 +19,11 @@ This is Moose. Three years old, black lab mix, four months in foster care. Here'
 Two input streams — both optional, both useful for different things:
 
 **`story{}`** — the current published presentation. Whatever is in front of adopters right now.
-Two ways to provide it:
-- **Screen recording:** record a video of the ShelterLuv or Petfinder profile screen. BCS extracts description, photos, YouTube URLs, and attributes from the recording via vision model. No copy-paste needed.
-- **Individual elements:** paste the description, upload photos directly, drop in the YouTube URL, or upload screenshots. Any combination works.
+Four ways to provide it, in order of preference:
+1. **Screen recording** — record a video of the ShelterLuv or Petfinder profile screen. BCS extracts everything via vision model: description, photos, YouTube URLs, and all attributes. Start here for legacy systems where copy-paste isn't practical.
+2. **Screenshots/photos of the profile** — upload screenshots of the published listing. BCS extracts content from the images.
+3. **URLs** — drop in photo links, YouTube URLs, or direct links to the published profile. BCS fetches what it needs.
+4. **Paste text** — last resort for cases where recording or screenshots aren't possible. Paste the description, upload photos directly, drop in the YouTube URL. Any combination works.
 
 **`new_content{}`** — new raw material for building the next version of the story. New photos, new video clips, foster notes, voice observations. This is what gets used alongside the gap analysis to produce the improved story.
 
@@ -205,7 +207,21 @@ BCS passes both the `flagged` list and the `clean_version` into `/story/build` a
 
 ## Step 3: `/story/build` — Find the Story
 
-BCS doesn't just pass the raw text to `/story/build`. It passes the raw text, the foster notes, *and* the gap context from Step 2. That last part is what makes the coaching specific instead of generic.
+Before `/story/build` runs, BCS processes all new raw content through the curation APIs. `/story/build` receives the *output* of those APIs — not raw files.
+
+**Curation pipeline (runs before /story/build):**
+
+```
+New raw photos → /photos/curate → selected_photos[]   ─┐
+New raw video  → /video/coach  → video_coverage{}     ─┤→ curated_content{} → /story/build
+H-01 checklist output          → coaching_context{}   ─┘
+```
+
+- `/photos/curate` selects the strongest photos and generates a shot list — `selected_photos[]` feeds `curated_content`
+- `/video/coach` analyzes what was captured vs. the shot agenda — `video_coverage{}` feeds `curated_content`
+- H-01 checklist output confirms what content pieces were captured and moments flagged during shooting — `coaching_context{}` feeds `curated_content`
+
+BCS doesn't just pass the raw text to `/story/build`. It passes the original story, the curated content (confirmed photo + video assets), *and* the gap context from Step 2. That last part is what makes the coaching specific instead of generic.
 
 The foster notes are the gold here. "Loves fetch" — three words buried in a free-text field — is the detail that becomes the whole story. BCS surfaces it. `/story/build` uses it.
 
@@ -219,11 +235,18 @@ POST /story/build
     "video": null,
     "source": "petfinder"
   },
-  "new_content": {
-    "foster_notes": "Been with us 4 months. Loves fetch. Great with our kids.",
-    "voice_notes": [],
-    "photos": [],
-    "videos": []
+  "curated_content": {
+    "selected_photos": [{"url": "petfinder-photo-001.jpg", "order": 1, "reason": "Best available — natural expression"}],
+    "video_coverage": {
+      "what_landed": [],
+      "agenda_coverage": [],
+      "next_session_priority": "No video yet — shoot fetch drop first"
+    },
+    "coaching_context": {
+      "checklist_completed": ["foster_notes_captured", "basic_info_confirmed"],
+      "moments_noted": ["Brings tennis ball every morning to whoever's having coffee"],
+      "shot_agenda_coverage": "No video captured this session — shot agenda pending"
+    }
   },
   "priority_gaps": ["personality_hook", "foster_voice", "family_vision"],
   "score_context": {
@@ -509,10 +532,26 @@ POST /story/card
 
 ```json
 POST /story/format
-{ "description": "...", "target": "petfinder" }
+{
+  "description": "...",
+  "target": "petfinder",
+  "templates": [              // optional — platform passes rescue-defined boilerplate here
+    { "id": "org-blurb", "text": "Blues City Animal Rescue is a 501(c)(3) foster-based rescue..." },
+    { "id": "apply",     "text": "To apply, visit [rescue application URL]..." }
+  ]
+}
 
-→ { "formatted": "...", "char_count": 847, "limit": 4000, "status": "within_limit" }
+→ {
+    "formatted": "...[coached story]...\n\n[org blurb]\n\n[apply paragraph]",
+    "char_count": 1247,
+    "limit": 4000,
+    "status": "within_limit",
+    "templates_included": ["org-blurb", "apply"],
+    "template_warning": null   // present if any template pushed output over char limit
+  }
 ```
+
+**Platform passes `templates[]` here. Standalone BCS omits `templates[]` — coached story only. Same API, both use cases.**
 
 Platforms: `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegroups`
 

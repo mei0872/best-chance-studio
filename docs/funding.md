@@ -8,7 +8,7 @@
 
 BCS tools are free for rescues. The code is MIT licensed and costs nothing to run. But AI features — scoring, story coaching, video analysis — cost something per session. Our commitment is that cost never lands on a rescue.
 
-We fund it through a community charity pool on [Open Collective](https://opencollective.com/best-chance-studio). Foundations, animal welfare donors, and anyone who cares about rescue dogs can contribute. The pool covers AI costs for rescues using BCS tools — on any platform, through any implementation.
+We fund it through a community charity pool on Open Collective *(coming soon — opencollective.com/best-chance-studio)*. Foundations, animal welfare donors, and anyone who cares about rescue dogs can contribute. The pool covers AI costs for rescues using BCS tools — on any platform, through any implementation.
 
 ---
 
@@ -26,7 +26,7 @@ Any BCS tool drawing from the community pool displays a simple "Community-funded
 **Tax deductibility:**
 Open Collective Foundation acts as fiscal sponsor — a 501(c)(3) organization. Donations are tax-deductible in the US. Open Collective issues receipts automatically.
 
-→ [Donate on Open Collective](https://opencollective.com/best-chance-studio) *(coming soon)*
+→ Donate on Open Collective *(coming soon — opencollective.com/best-chance-studio)*
 
 ---
 
@@ -58,4 +58,4 @@ The charity pool is governed transparently through Open Collective:
 Pool governance follows the same principles as BCS spec governance — community input, maintainer decisions, transparent rationale.
 
 → [BCS Governance — GOVERNANCE.md](GOVERNANCE.md)
-→ [Open Collective page](https://opencollective.com/best-chance-studio) *(coming soon)*
+→ Open Collective page *(coming soon — opencollective.com/best-chance-studio)*
