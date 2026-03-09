@@ -130,7 +130,7 @@ BCS is MIT licensed. The code costs nothing. But AI features cost something to r
 - **Charity funding pool** — we're building a funded AI token pool through [Open Collective](https://opencollective.com), supported by foundations and animal welfare donors. Any rescue using any BCS tool — on any platform, through any implementation — can draw from this pool. Zero setup, zero billing.
 - **For developers and implementors** — if you're building a BCS tool and need to handle AI costs yourself, see `docs/ai-credentials.md` for the BYOK reference implementation.
 
-If you're a **charity or foundation** that cares about rescue dogs: your donation funds AI directly for rescues using BCS tools, wherever they use them. Not for any company. For the dogs.
+If you're a **charity or foundation** that cares about rescue dogs: your donation funds AI directly for rescues using BCS tools, wherever they use them.
 
 The charity funding pool is in progress. We'll update this section when it's live.
 
