@@ -1,198 +1,260 @@
-# Best Chance Studio
+# Best Chance Studio™
+
 *Last updated: March 9, 2026*
 
-Open source coaching tools that give every rescue dog their best chance at adoption.
-
-**Free for every rescue. That includes the AI. We're building a charity-funded pool — supported by foundations and donors — so rescue orgs never pay for the AI that helps their dogs get adopted. No matter where they post, no matter which tools they use.**
-
----
-
-## A Note from Kip, Michele & Beth
-
-We've been fostering dogs since 2019 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
-
-But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
-
-Here's the thing: Kip is absolutely terrible at writing dog descriptions. Always has been. But fostering is a community — everybody pitches in — so he keeps sitting down and doing it anyway. We both know there's a better way. We've known it for years. We just finally decided to build it.
-
-What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. And we will do it with you.
-
-— Kip, Michele & Beth
+> **Tools and coaching to develop the talent you already have — and give every dog their best chance.**
 
 ---
 
 ## tl;dr
 
-The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
-
-**Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free for rescues — including the AI.**
+Best Chance Studio™ (BCS) scores a rescue dog's presentation — photos, description, video, transport clarity, foster availability — and tells the presenter exactly what to fix. Free for every rescue. Forever. The methodology is open, the coaching belongs to the community, and no rescue ever pays.
 
 ---
 
----
+## The Problem
 
-## How BCS Talks About This
+Most rescue dogs don't have bad stories. They have untold ones.
 
-A few terms used throughout this spec — worth understanding before diving in:
+The fosters who know every dog's quirks, the coordinators who've seen a hundred placements, the volunteers who show up every Saturday — that talent already exists inside every rescue. The infrastructure to develop it never did.
 
-**Story** — everything currently published that represents a dog: the description, photos, video, all of it together. Not just the words. The whole presentation. This is what BCS scores and improves.
+A rescue dog who isn't a puppy, purebred, or doodle waits an average of 4–6 months for a home. (Source: internal sample, 250 listings via RescueGroups, March 2026 — we're working to expand this dataset with community contributions.) In that time, the listing that should have told their story sat unchanged. Blurry photo. Two sentences. No video. Nobody taught the presenter to think like a storyteller.
 
-**Session** — a BCS work session to improve a dog's story. Starts with the current story, ends with a better one and a coaching packet.
+That's the problem. Not the dog. The presentation.
 
-**Score** — a diagnostic, not a grade. Tells you where the story is now, which of the 9 dimensions are missing, and what to fix first.
-
-**Coaching packet** — the output of a session: gap analysis, shot list, improvement plan, description draft. What a rescue coordinator reads before Saturday's adoption event.
-
-## What it looks like in practice
-
-**Before BCS:**
-> *"Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch. He is looking for his forever home."*
-> BCS score: **3 / 18**
-
-**After BCS:**
-> *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
-> BCS score: **14 / 18** · Shot list generated · YouTube-ready video produced
-> The video coached from that shot list? Two people watched it, called each other into the room, and said *"that's our dog."*
+> *"Anything over six weeks is outrageous. Why in the world shouldn't we be closer to 13 days?"*
 
 ---
 
-## What Best Chance Studio Is
+## What BCS Does
 
-Coaching that gives every rescue dog their best chance — better photos, better descriptions, better video, and a clear picture of what each dog needs to go home. The scoring rubric is one piece of it. So is the shot list, the video coaching, the story rewrite, and the presenter prep. All of it together moves dogs faster.
+BCS runs a coaching session for every dog that needs one. You don't need an existing presentation to start. You don't need photos, a description, or a video already in hand. You need a dog and someone who cares about that dog.
 
-This design is backed by peer-reviewed research — including a 2019 study of 70,733 dogs linking specific language choices to adoption speed, and a 2020 study on how photo attributes affect how fast dogs get adopted.
+**Two ways in — same destination:**
 
-**The starting point is always what's published right now.** BCS is designed to score your existing presentation — not ask you to fill out a form. Bring in what's already out there: paste the Petfinder description, upload the photos from ShelterLuv, drop in the YouTube link, take a screenshot of the published post. You can even record a quick video of your shelter profile screen and upload that. BCS reads what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there.
+- **Starting with just a dog** — BCS asks you about the dog. What do you notice? What does the dog do? What's the one thing you'd want a family to know? From your answers, BCS builds the story with you and tells you exactly what to capture next.
 
-Then bring in anything new — fresh photos, new video clips, foster notes, voice observations — and BCS builds the next version of the story from there. Going from version 0.1 to version 2.0 of a dog's presentation is what BCS is designed to make easy.
+- **Starting with existing content** — bring what you have: a description, some photos, a video link. BCS scores it against the rubric, shows you exactly what's missing, and gives you research-backed ways to close the gaps.
 
-The APIs are open source primitives. Any platform can use them. MIT licensed. Free forever.
+Either way, the output is the same: a complete coaching packet — specific, actionable, ready to publish.
 
----
+### The 12-Point Rubric
 
-## Start Here Before Picking an API
+BCS scores a dog's presentation across 12 dimensions: photos, description, video, transport clarity, foster availability, and more. Every dimension has a clear standard. Every gap gets a specific fix, ranked by adoption impact.
 
-These APIs work together as a system. An API built without understanding how the pieces connect will fit the spec but miss the point.
+[See the full 12-point rubric](RUBRIC.md)
 
-→ **[Read FLOW.md first](FLOW.md)** — it shows exactly how BCS orchestrates every API, what each one receives, and what it's expected to return. Takes 10 minutes. Saves hours of building in the wrong direction.
+### What a Coaching Session Produces
 
-## The APIs
-
-```
-BCS              → the complete assembled application — all APIs below work together as one tool
-                   start here if you want to build the whole thing: see [BCS-01] in TASKS.md
-
-/bcs/score       → AI-driven scoring — story, photos, and video analyzed
-
-/coaching/packet → dog score + profile → full coaching brief for the presenter
-                   what to fix, shot list (shot_agenda), description draft, live meet tips
-
-/word/check      → paste a description → flagged words + adoption-proven replacements
-                   backed by a 70,733-dog study on what language moves adoptions
-
-/voice/transcribe → record a voice note in-app → Whisper transcription → text into session
-                   no typing required — speak what you know about the dog
-
-/photos/curate   → selects + orders the strongest photos from raw uploads
-
-/story/build     → produces the full coached story and coaching packet
-
-/story/refine    → foster tweaks the generated story until it's right
-                   accept · tweak · start over — nothing publishes without approval
-
-/story/represent → dog didn't place → fresh coaching approach based on what's been tried
-
-/story/card      → approved story → shareable image card for social (1:1 and 4:5)
-
-/story/format    → approved story → platform-formatted output
-                   Petfinder · AdoptAPet · Instagram · Facebook — character limits handled
-
-/video/direct    → real-time coaching during live capture
-                   high bar: AI Director live on your phone — pre-session briefing,
-                   shot agenda tracking, where to stand, when you've got the shot
-
-/video/coach     → analyzes footage post-capture; returns improvement notes
-                   + agenda coverage report: what was captured vs. still missing
-
-/video/produce   → produces the highlight reel (cuts, music, pacing)
-
-/video/export    → YouTube-ready output (format, thumbnail, title, tags)
-                   high bar: multi-platform in one pass — YouTube, Instagram,
-                   TikTok, Facebook each optimized simultaneously
-```
+Here's what one BCS session looks like on a real dog.
 
 ---
 
-## Ways Engineers Can Help the Rescue Community
-
-### Grab something from the pull list
-Pick a task, build it, ship something real. Every API done well will help hundreds — if not thousands — of dogs get to their homes faster. The rescue world thanks you.
-
-→ [See the full pull list — TASKS.md](TASKS.md)
-
-### Help us build more tools
-We have more ideas than we have hands — and we have funding sources being built that will reward the efforts that build them.
-
-> **We're looking for full-time help to build them. If you ship something and can't stop thinking about what comes next — that's the conversation we want to have.**
-
-→ KipMeierhofer@gmail.com
-→ [How the project is governed — GOVERNANCE.md](GOVERNANCE.md)
+**Moose — before:**
+> "Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch."
+>
+> One blurry shelter photo. No video.
+> **BCS score: 4 / 12**
 
 ---
 
-## How BCS Stays Free
+**Moose — after BCS coaching:**
 
-BCS is MIT licensed. The code costs nothing. AI features — scoring, story coaching, video analysis — cost something to run. That cost should never land on a rescue.
+> *Coached story:*
+> "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."
 
-**For rescues:** Any rescue using any BCS tool draws from a community-funded AI pool — supported by foundations and animal welfare donors through Open Collective *(coming soon — opencollective.com/best-chance-studio)*. Zero setup, zero billing, regardless of which platform or tool they're using.
+> *Shot list:*
+> 1. Eye-level, natural light — get on the floor, wait for eye contact
+> 2. Mid-fetch action shot — ball in the air, Moose in motion
+> 3. Calm moment on the couch with foster — the dog people actually bring home
 
-**For charities and foundations:** Your donation funds AI compute directly for rescues using BCS tools. Open Collective handles your representation preferences — anonymous, named, or with your logo — entirely under your control. BCS implementations show a simple "Community-funded" acknowledgment and link back to Open Collective. Nothing more.
+> *Video coaching prompt:*
+> "Fetch is Moose's superpower and it doesn't exist on camera yet. 60 seconds of the tennis ball drop is worth more than any description we can write."
 
-**For engineers:** Any implementation drawing from the pool adds one line: a "Community-funded" badge linking to Open Collective. That's the only funding requirement the spec imposes. Full details in [`docs/funding.md`](docs/funding.md).
+> *Presenter brief:*
+> "Lead with the tennis ball move. Every time. It's the moment that makes people call each other into the room."
 
-The charity pool is in progress. We'll update this when it's live.
+> **BCS score: 9 / 12** — still needs the photos and video. When those land: 11+.
 
-→ [Full funding model and spec — docs/funding.md](docs/funding.md)
-→ Support BCS on Open Collective *(coming soon — opencollective.com/best-chance-studio)*
-→ [Scoring rubric reference — docs/rubric.md](docs/rubric.md)
-→ [How BCS gets smarter over time — docs/intelligence.md](docs/intelligence.md)
-→ [Field reference — docs/data-dictionary.md](docs/data-dictionary.md)
+---
+
+That's what a well-presented dog looks like. The full BCS pipeline includes:
+
+- **12-point rubric** — scores the current presentation against a clear community standard
+- **Gap analysis** — every gap identified and ranked by adoption impact
+- **Story builder** — coached description rewriting, led by what only this dog's presenter knows
+- **Word impact check** — flags language from adoption research that reduces inquiry rates
+- **Shot list** — specific photo and video guidance tailored to this dog
+- **Coaching packet** — everything the presenter needs, in one place, ready to execute
+
+---
+
+## Just You, the Dog, and BCS
+
+You don't need a marketing background. You don't need a camera crew. You don't need to know anything about what makes a good adoption listing.
+
+You need a dog in front of you and BCS in your hand.
+
+BCS guides content capture from the very first step. A first-time volunteer who has never done this before can follow BCS through a session and come out the other side with a story worth publishing — photos, description, video coaching, the whole thing. That's the mission: take the talent that already exists inside every rescue and give it the infrastructure it never had.
+
+Two starting points, same destination:
+
+**Starting from scratch** — just you and the dog. BCS asks the right questions, listens to what you know about this dog, and builds the story with you. You don't have to know what to say. You just have to know the dog.
+
+**Improving what you have** — bring what exists. A description, some photos, a video. BCS scores it against the rubric, shows you exactly what's missing, and gives you research-backed ways to make it better. Not generic advice. Specific to this dog, this listing, this gap.
+
+---
+
+## Platform Collaboration — Where We're Headed
+
+BCS is designed to get smarter over time by collaborating directly with adoption platforms.
+
+**Platform hints** are signals an adoption platform can send back to BCS — insights from real adoption data that make coaching more targeted and timely:
+
+- *Trend insights* — "engagement with outdoor action shots is up 40% this spring"
+- *Seasonal context* — "spring adoption traffic peaks in 3 weeks — March Madness theme week is driving early engagement"
+- *Audience signals* — "adopters searching for this dog's breed are asking about apartment compatibility more than usual right now"
+- *Dog-specific signals* — "3 adopters have viewed this listing and dropped off at the description — here's what the data suggests"
+
+This is the collaboration layer. A rescue volunteer using BCS on a platform that supports platform hints gets coaching that reflects what real adopters are actually responding to right now — not just static research.
+
+Platform hints are a roadmap feature — not available in the current version. But the API is designed to receive them from day one. If you're building an adoption platform and want to explore integration, reach out.
+
+---
+
+## Free. Forever. For Every Rescue.
+
+This is not a goal. It is the constraint the funding model is built around.
+
+> *"Free for rescues is the constraint. The funding model works around it."*
+
+BCS AI and infrastructure costs are covered by animal welfare foundations, corporate sponsors, and individual donors — not rescues. The founder personally seeds early costs. The rescue community doesn't pay. That's the deal, and there's no asterisk.
+
+Every rescue. Every dog. Every presentation. Free.
+
+One note on AI costs: BCS uses your own AI provider account for the coaching features — typically $5–10/month for an active rescue, paid directly to your provider (OpenAI, Anthropic, or local via Ollama — free for technical rescues). We never see it. One account per rescue covers the whole team.
+
+---
+
+## For Funders & Sponsors
+
+### Why fund BCS?
+
+Every dollar you put into BCS directly reduces the time a dog waits for a home. Not theoretically — trackably.
+
+BCS records every presentation completed, every dog coached, and every outcome we can verify. Donors receive automatic quarterly reports:
+
+> *"Your donation funded X presentations this quarter. Y dogs placed."*
+
+No manual reporting requests. No chasing receipts. Built into the platform from day one.
+
+**Fully transparent finances.** All transactions are public via Open Collective. Any funder can see exactly where funds go.
+
+**Measurable, not theoretical.** Foundations and grant programs get the stewardship infrastructure they need — built in, not bolted on later.
+
+### How to fund BCS
+
+🔗 **[Fund BCS on Open Collective](https://opencollective.com/best-chance-studio)**
+
+- Tax-deductible via Open Collective Foundation (501(c)(3) fiscal sponsor)
+- Any amount. Credit card, check, or Donor-Advised Fund (DAF) — all accepted.
+- No minimum. No commitment. Renew based on impact numbers, not promises.
+
+### Sponsorship tiers
+
+**Community Funder** — any amount.
+Listed in this README and in every quarterly impact report. Your contribution is acknowledged in the community that's using these tools.
+
+**BCS Powered By** — named sponsor tier for organizations funding at meaningful scale.
+Logo in README. Named in all impact reports. Early access to anonymized research findings and outcome data from the broader BCS community.
+
+BCS is designed to carry many funders — foundations, corporate giving programs, individual donors, DAF holders. No single funder owns BCS. That's the point. Your contribution sits alongside others who believe the same thing: that the rescue community deserves better tools, and that funding them is a direct line to dogs going home.
+
+### A note for grant program officers
+
+BCS is designed to meet the stewardship standards of serious funders. If you're evaluating this project for a grant:
+
+- The methodology is open and peer-reviewable — [RUBRIC.md](RUBRIC.md), [FLOW.md](FLOW.md)
+- Outcome tracking is built in from the first session — not added for reporting purposes
+- Every certified implementation contributes anonymized outcome data to the community standard
+- Quarterly reports are automatic, not manual — and available to any funder at any time
+
+We're working toward a measurable claim on time-to-adoption impact. We're not there yet — that data builds as BCS is used in the field. We'll report what we know, and we'll be clear about what we're still learning.
+
+---
+
+## License & Trademark
+
+MIT licensed — use the code freely. The BCS™ name and trademark belong to the project.
+
+---
+
+## How to Use BCS
+
+**1. Install**
+Clone the repo or install the package — see [INSTALL.md](INSTALL.md) for setup.
+
+**2. Set up your AI provider**
+BCS uses your own AI provider account for coaching features. Set up takes about 10 minutes:
+- OpenAI, Anthropic, or Ollama (local — free for technical rescues)
+- One account per rescue covers the whole team
+- See [AI-SETUP.md](AI-SETUP.md) for step-by-step instructions
+
+**3. Run a session**
+Start with just a dog — no existing presentation required. BCS guides you from zero.
+See [QUICKSTART.md](QUICKSTART.md) for your first coaching session in under 30 minutes.
+
+**4. Understand the full pipeline**
+BCS is a 14-API orchestration pipeline. Each API is standalone — run the full pipeline or any piece of it. [FLOW.md](FLOW.md) walks the complete flow with real inputs and outputs.
+
+---
+
+## Contributing
+
+The pull list is open. No application. No standups. No coordination overhead.
+
+If something catches your eye — grab it. Build it. If it ships, you'll know it helped place real dogs.
+
+### Three ways in
+
+**Grab & Go** *(2–4 hours)*
+Small, well-scoped tasks. Pick one up any time. Good entry point for new contributors who want to see what BCS is before committing to more.
+→ [TASKS.md — Grab & Go section](TASKS.md#grab-and-go)
+
+**Project** *(1–2 weekends)*
+A meaningful feature or improvement with a clear finish line. More satisfying. Still self-contained.
+→ [TASKS.md — Projects section](TASKS.md#projects)
+
+**Core** *(ongoing)*
+You can't stop thinking about what comes next. That's a different conversation.
+→ Start with [CONTRIBUTING.md](CONTRIBUTING.md), then reach out.
+
+> *"The pull list is how we find each other."*
+
+We have more ideas than hands. If you want to build something that matters — not theoretically, but in a way where you can watch the outcome data — this is the place to do it.
 
 ---
 
 ## The People
 
-**Kip Meierhofer** — Co-founder. 25 years building enterprise systems (Northwestern Mutual). Fostering since 2019. 7 dogs at home. Hundreds of fosters alongside Beth at Blues City. Built this because he's been sitting down to write dog descriptions for 15 years and he's still terrible at it — and there was never anything to help. Building the thing that should have existed years ago.
+**Kip Meierhofer** — co-creator. 25 years building enterprise systems. Fostering since 2019. Seven dogs at home. Hundreds of fosters through the door. Built this because he's been sitting down to write dog descriptions for years and was never any good at it — not for lack of caring, but because nobody ever gave him the tools to do it right. Best Chance Studio is what he wishes he'd had every time he sat down to write a description for a dog who deserved better.
 
-**Michele Meierhofer** — Co-founder. 20+ years marketing leadership. She might be the most dedicated foster mom in the rescue world — she's loved every dog that's come through their door. The brand, the voice, and the heart of everything we build.
+**Michele Meierhofer** — co-creator. 20+ years in marketing. She's loved every dog that's come through their door. Her instincts for what moves people are in every line of this.
 
-**Beth Aversa** — Blues City Animal Rescue, Memphis. ~500 dogs a year. Weekly transport to Chicago, Denver, and 7 East Coast cities. Our first real partner.
-
----
-
-## How Feedback Gets Back to the Community
-
-BCS improves through use — but only if what's learned in the field comes back.
-
-**The principle:** Implementors are responsible for collecting feedback from their users and contributing findings back to the open source community. This is how the spec, rubric, and API design stay grounded in real use rather than assumptions.
-
-**What implementors are encouraged to share back:**
-- Aggregate findings from real rescue and adopter usage — patterns worth acting on, not raw data
-- Rubric proposals backed by adoption outcome data
-- AI cost findings so the spec gets cheaper over time
-
-**How to contribute feedback:**
-- API design or spec gaps → [RFC: API Design & Spec Review](https://github.com/mei0872/best-chance-studio/discussions/17)
-- Rubric improvements → open a `Rubric Proposal` issue
-- General observations → [GitHub Discussions](https://github.com/mei0872/best-chance-studio/discussions)
-- Bugs or spec errors → [GitHub Issues](https://github.com/mei0872/best-chance-studio/issues)
-
-→ Full detail: [CONTRIBUTING.md](CONTRIBUTING.md) · [GOVERNANCE.md](GOVERNANCE.md) · [docs/ai-usage-logging.md](docs/ai-usage-logging.md)
+**Beth Aversa** — Blues City Animal Rescue, Memphis. Roughly 500 dogs a year. Weekly transport runs up the east coast and to Chicago. Our first real rescue partner — the person who made it real. Everything in BCS has been stress-tested against what works in Beth's world.
 
 ---
 
 ## Contact
 
-→ [Browse open issues](../../issues)
+Questions, partnership inquiries, funding conversations, or just want to talk about the problem:
 
-KipMeierhofer@gmail.com
+📧 **KipMeierhofer@gmail.com**
+
+Fund BCS:
+🔗 **[opencollective.com/best-chance-studio](https://opencollective.com/best-chance-studio)**
+
+---
+
+*Best Chance Studio™ — free for every rescue. Forever.*
+*MIT licensed. Community owned. The coaching belongs to the rescue community.*
