@@ -54,7 +54,7 @@ Here's what one BCS session looks like on a real dog.
 > "Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch."
 >
 > One blurry shelter photo. No video.
-> **BCS score: 4 / 12**
+> **BCS score: 3 / 18**
 
 ---
 
@@ -74,7 +74,7 @@ Here's what one BCS session looks like on a real dog.
 > *Presenter brief:*
 > "Lead with the tennis ball move. Every time. It's the moment that makes people call each other into the room."
 
-> **BCS score: 9 / 12** — still needs the photos and video. When those land: 11+.
+> **BCS score: 9 / 18** — still needs the photos and video. When those land: 15 / 18.
 
 ---
 
@@ -209,6 +209,31 @@ See [QUICKSTART.md](QUICKSTART.md) for your first coaching session in under 30 m
 BCS is a 14-API orchestration pipeline. Each API is standalone — run the full pipeline or any piece of it. [FLOW.md](FLOW.md) walks the complete flow with real inputs and outputs.
 
 ---
+
+## For Engineers — Start Here
+
+→ **[Read FLOW.md first](FLOW.md)** — it shows exactly how BCS orchestrates every API, what each one receives, and what it's expected to return. Takes 10 minutes. Saves hours of building in the wrong direction.
+
+The APIs work as a system. Each one is also standalone — run the full pipeline or any piece:
+
+```
+/bcs/score        → AI-driven scoring across 9 dimensions — story, photos, and video analyzed
+/coaching/packet  → dog score + profile → full coaching brief for the presenter
+/word/check       → paste a description → flagged words + adoption-proven replacements
+/voice/transcribe → record a voice note → Whisper transcription → text into session
+/photos/curate    → selects + orders the strongest photos from raw uploads
+/story/build      → produces the full coached story and coaching packet
+/story/refine     → foster tweaks the generated story until it's right
+/story/represent  → dog didn't place → fresh coaching approach based on what's been tried
+/story/card       → approved story → shareable image card for social
+/story/format     → approved story → platform-formatted output (Petfinder, AdoptAPet, Instagram, Facebook)
+/video/direct     → real-time coaching during live capture (high bar — AI Director live on your phone)
+/video/coach      → analyzes footage post-capture; returns improvement notes + agenda coverage
+/video/produce    → produces the highlight reel (cuts, music, pacing)
+/video/export     → YouTube-ready output (format, thumbnail, title, tags)
+```
+
+→ [Full pull list — TASKS.md](TASKS.md)
 
 ## Contributing
 
