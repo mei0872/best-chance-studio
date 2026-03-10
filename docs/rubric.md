@@ -1,6 +1,8 @@
 # BCS Scoring Rubric
 
-*Last updated: March 9, 2026*
+*Last updated: March 10, 2026*
+
+> **This is the technical implementation guide** for engineers building `/bcs/score`. For the community-readable version of the rubric, see [RUBRIC.md](../RUBRIC.md).
 
 The BCS score rates a dog's current published presentation on 9 dimensions, from 0–2 each (total: 0–18).
 This page is the human-readable companion to the `/bcs/score` API. Use it when implementing the scoring logic.
