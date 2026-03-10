@@ -234,6 +234,7 @@ The APIs work as a system. Each one is also standalone — run the full pipeline
 ```
 
 → [Full pull list — TASKS.md](TASKS.md)
+→ [Prompts directory — paste-and-go scoring prompts for ChatGPT/Claude](prompts/README.md)
 
 ## Contributing
 
