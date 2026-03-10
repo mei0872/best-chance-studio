@@ -1,6 +1,8 @@
 # BCS Data Dictionary
 
-*Last updated: March 9, 2026*
+*Last updated: March 10, 2026*
+
+> **This document is for engineers building BCS API implementations.** For the community-readable rubric, see [RUBRIC.md](../RUBRIC.md).
 
 Single source of truth for all field names, types, and valid values used across the BCS spec. When a field name appears in any API request or response, this is the authoritative definition.
 
