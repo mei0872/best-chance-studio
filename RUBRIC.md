@@ -1,228 +1,168 @@
-# The BCS 12-Point Rubric
+# The BCS Scoring Rubric
 
-*Last updated: March 9, 2026*
+*Last updated: March 10, 2026*
 
 > The community standard for rescue dog presentation quality.
-> Every dimension is scored **0** (absent or weak) or **1** (present and strong).
-> Maximum score: **12 / 12**
+> 9 dimensions, scored **0–2** each. Maximum: **18 / 18**.
+> A score of 0 does not mean the presenter failed — it means there is a specific gap with a specific fix.
 
 ---
 
 ## How to Read This Rubric
 
-Each dimension measures one thing a presenter can control. A score of 0 doesn't mean the presenter failed — it means there's a specific gap with a specific fix. That's what BCS coaching is for.
+Each dimension measures one thing a presenter can control. A 0 isn't a verdict on the dog or the presenter — it's a map. Here's exactly what to fix and why it matters.
 
-A dog can go from a 4 to a 9 in one coaching session. The score is not a verdict. It's a map.
+A dog can move from a 3 to an 11 in a single coaching session. The score is not a judgment. It's a starting point.
 
-Scores are assigned by the BCS engine based on submitted materials. Each 0 generates a coaching note. Each coaching note is ranked by expected adoption impact — so the presenter knows what to fix first.
-
----
-
-## The 12 Dimensions
+Scores are assigned by the BCS engine based on submitted materials. Each gap generates a coaching note. Each coaching note is ranked by expected adoption impact — so the presenter knows what to fix first.
 
 ---
 
-### 1. Primary Photo Quality
+## The 9 Dimensions
 
-**What it measures:** Does the main listing photo show the dog in a way that stops a potential adopter mid-scroll?
+---
 
-A strong primary photo is taken at eye level — the photographer got on the floor. The dog is looking toward the camera, in natural or warm indoor light, and the image is sharp enough to see the dog's face clearly. The background doesn't compete with the dog. The moment feels alive, not staged.
+### 1. Personality Hook
 
-A weak primary photo is taken from standing height looking down, in harsh fluorescent light, or is blurry, cropped awkwardly, or shows more kennel than dog. It is the single most common reason a listing goes unclicked.
+**What it measures:** Does the adopter know who this dog IS — not just breed and age, but personality? Is there one specific moment or detail that makes this dog stick in someone's mind?
+
+The best presentation doesn't describe a dog in general. It captures the thing only this dog does. The detail that lives in the foster's head — the morning ritual, the ridiculous habit, the quirk that makes everyone laugh — that's the personality hook. When it makes it onto the page, the dog stops being a listing and starts being a dog. An adopter reads it and thinks: *wait, really?* That's the moment. That's what gets someone to call someone else into the room.
 
 | Score | What it looks like |
 |---|---|
-| **1** | Eye-level, in focus, natural or warm light, dog visible and present — a photo that stops a scroll |
-| **0** | Shot from above, dark, blurry, heavily kenneled, or any photo where the setting competes with the dog |
+| **2** | Specific, memorable, only-this-dog detail. A moment, a behavior, a quirk the foster witnessed firsthand. Makes you feel something. |
+| **1** | Some warmth, but generic. A detail is present but it could describe many dogs of this breed — not only this one. |
+| **0** | Age, breed, sex. That's it. Could describe any dog of this type. Nothing sticks. |
 
-**Why it matters:** The primary photo is the entire listing for most adopters. If it doesn't earn a second look, nothing else matters.
-
----
-
-### 2. Photo Count & Minimum Coverage
-
-**What it measures:** Are there enough photos to give an adopter a real picture of this dog's life?
-
-A strong photo set has at least three quality photos. More is usually better — up to about eight. The exact count matters less than coverage: adopters need to see the dog in more than one moment before they feel confident.
-
-A weak photo set is one photo — or multiple photos that are all the same shot from the same angle in the same location.
-
-| Score | What it looks like |
-|---|---|
-| **1** | Three or more quality photos that show different moments, moods, or settings |
-| **0** | Fewer than three photos, or multiple nearly identical shots that don't expand the adopter's picture of the dog |
-
-**Why it matters:** Adoption research consistently shows that listings with more photos receive more inquiries. Three is the floor. The first photo earns the click. The rest earn the call.
+**Why it matters:** Generic descriptions create generic responses. A detail specific enough to be surprising is specific enough to be remembered — and remembered listings get applications.
 
 ---
 
-### 3. Photo Diversity
+### 2. Visual Impact — Photos
 
-**What it measures:** Do the photos cover the three moments every adopter needs to see — the dog at rest, the dog in motion, and the dog with a person?
+**What it measures:** Do the photos make someone stop scrolling? Dog's face visible? Real light, real expression, real life?
 
-A strong photo set includes a calm moment (the dog you bring home), an active moment (the dog being a dog), and a connection moment (the dog with their foster, a child, or another dog). Together, these give an adopter enough to picture the dog in their life.
-
-A weak photo set shows the dog in only one context — usually sitting still, usually in the same spot — leaving the adopter to guess about everything else.
+The primary photo is the entire listing for most adopters. It earns the click — or it doesn't. A strong photo set isn't about production quality. It's about getting on the floor, waiting for eye contact, and capturing the dog in real light doing real things. Three photos: the face, the body in motion, the dog with a person. Together, they tell a story. Alone, even the best photo leaves an adopter guessing.
 
 | Score | What it looks like |
 |---|---|
-| **1** | Photos span at least two of three contexts: calm, active, connection |
-| **0** | All photos show the dog in a single context or setting — no range, no story arc |
+| **2** | 3+ photos: face-on with eye contact, full body, in motion or with a human. Natural light. Personality is visible. |
+| **1** | 1–2 photos, decent quality, but limited angles or expression. Passable but not compelling. |
+| **0** | Single shot, blurry, kennel background, dog facing away. No eye contact, no personality visible. |
 
-**Why it matters:** Adopters are making an emotional decision, and emotion requires a narrative. One photo is a snapshot. Three varied photos are a story.
+**Why it matters:** Adoption research consistently shows that listings with more quality photos receive more inquiries. The first photo earns the click. The rest earn the call.
 
 ---
 
-### 4. Description Opening Hook
+### 3. Video Presence
 
-**What it measures:** Does the description open with a specific, memorable detail — not the dog's breed, age, or name?
+**What it measures:** Does a video exist? Does it make you feel something in the first 10 seconds?
 
-A strong opening hook puts the reader inside a moment with this dog. It is concrete, specific, and impossible to have written without knowing the animal. It makes a stranger feel something before they've finished the first sentence.
-
-A weak opening leads with the dog's name, age, weight, breed, or a generic statement that could apply to hundreds of dogs ("Moose is a friendly and loving lab mix who would do great in any home").
+Video is the highest-converting media type on rescue listings — and yet the vast majority of rescue dogs are presented without one. A 60-second authentic clip of the dog doing their signature thing is worth more than any description. It doesn't have to be polished. A shaky phone video of a dog dropping a tennis ball in someone's lap is better than a produced clip of a dog sitting still. What matters is that the adopter can see this dog alive and moving before they ever request a meet.
 
 | Score | What it looks like |
 |---|---|
-| **1** | First sentence is a specific detail, behavior, or moment that belongs only to this dog |
-| **0** | First sentence is name/age/breed, a generic personality claim, or anything that could copy-paste onto another listing |
+| **2** | Video exists, dog's personality is visible in the first 10 seconds, authentic and not staged, emotionally engaging. |
+| **1** | Video exists but opens on a wall, or is low-energy, or too long with no hook. The dog is technically visible but the video doesn't pull you in. |
+| **0** | No video. The adopter has no way to see this dog in motion before requesting a meet. |
 
-**Why it matters:** The opening hook is the description's only job. If it doesn't earn the second sentence, it's done. Breed and age are on the listing already — the description has to earn its real estate.
+**Why it matters:** A 60-second authentic video changes everything. Without it, the live meet is the first impression — everything depends on one interaction with no setup.
 
 ---
 
-### 5. Ownable Personality Story
+### 4. Compatibility Clarity
 
-**What it measures:** Does the description contain at least one specific, concrete personality detail that only this dog's presenter could know?
+**What it measures:** Can the right adopter self-identify immediately? And the wrong adopter self-select out? Kids, other dogs, cats, energy level, home type — stated clearly.
 
-A strong personality story is the kind of detail that makes someone reading the listing say "wait, really?" or call someone else into the room. It is not "loves cuddles" or "full of energy." It is the thing this dog does — Moose and the tennis ball drop. The thing you'd tell a friend.
-
-A weak personality story relies on generic positive adjectives — loving, playful, affectionate, sweet — that describe most dogs and distinguish none.
+The best thing a compatibility section can do is help the wrong adopter say no. A returned dog is a failure for everyone — the dog, the foster, the adopter. Clear, specific compatibility information prevents that. "Good with kids" with no context on what "good" looks like tells an adopter almost nothing. The right adopter needs to recognize themselves. The wrong adopter needs the same chance to look elsewhere.
 
 | Score | What it looks like |
 |---|---|
-| **1** | At least one behavior, quirk, or habit that is specific, observable, and belongs to this dog |
-| **0** | Personality described only through generic adjectives with no supporting observation |
+| **2** | Clear, specific, complete. The right adopter knows immediately. The wrong adopter knows too — and that's a feature, not a flaw. |
+| **1** | Some compatibility noted, but incomplete or vague. Missing key requirements like energy level or home type. |
+| **0** | Nothing stated about compatibility or household requirements. The adopter has to guess whether this dog fits their life. |
 
-**Why it matters:** Generic descriptions create generic responses. A detail that's specific enough to be surprising is specific enough to be remembered — and remembered listings get applications.
+**Why it matters:** A wrong adopter who self-selects out saves everyone time and prevents a returned dog. Compatibility clarity is one of the highest-leverage gaps to close.
 
 ---
 
-### 6. Word Impact — Language Check
+### 5. Foster Voice
 
-**What it measures:** Is the description free of language that adoption research has shown to reduce inquiry rates?
+**What it measures:** Does this listing feel like a real person who knows and loves this dog — or does it feel like a form was filled out?
 
-Certain words and phrases consistently lower the response rate on rescue listings — not because they're dishonest, but because they trigger risk aversion in adopters without providing any useful context. BCS flags these and suggests reframes that are equally accurate but more adoption-effective.
-
-Common flagged terms include: "shy," "needs work," "selective with dogs," "not for first-time owners," "requires experienced handler," "resource guards," "reactive," "high energy" (without context), and "would do best as an only dog" (without explanation).
+Adopters aren't just choosing a dog — they're trusting the foster. A listing that carries the foster's voice communicates that someone vouches for this animal personally. Not sentimental — real. The detail only the foster would know. The moment you can't make up. "I've had this dog for six weeks and I still can't sit on the floor without him bringing me something." That's a foster voice moment. So is a video where the foster laughs off-camera at something the dog just did. The test: read it out loud. If it sounds like a brochure, it isn't done.
 
 | Score | What it looks like |
 |---|---|
-| **1** | No adoption-reducing language in the description, or flagged terms are paired with specific context that reframes the trait |
-| **0** | One or more terms from the flagged list appear without context — used as shorthand rather than as an accurate, helpful description |
+| **2** | Personal, warm, specific details only the foster would know. You can feel the relationship between this person and this dog. |
+| **1** | Some personality in the writing, but still leans generic or template-like. You can tell someone tried, but it could still be about any dog. |
+| **0** | Clinical, factual, vet-record language. No human warmth. "He is up to date on vaccines and house trained." |
 
-**Why it matters:** "Shy" ends inquiries. "Biscuit takes about 20 minutes to warm up to someone new — once he does, he's a different dog" opens them. The information is the same. The outcome is not.
+**Why it matters:** A listing with foster voice tells the adopter that a real person who loves this dog wrote it. That trust is what turns an inquiry into an application.
 
 ---
 
-### 7. Video Presence
+### 6. No Surprises
 
-**What it measures:** Is there any video at all in this listing?
+**What it measures:** Are any challenges or special needs communicated clearly — without being scary or unnecessarily disqualifying?
 
-A strong video presence is any video — even a 30-second phone clip taken in the backyard. The bar is existence, not production value.
-
-A weak score here means no video was submitted at all.
+Omitting challenges is one of the most common and most damaging things a listing can do. A returned dog disrupts the adopter, the rescue, and the dog — and often makes the dog harder to place the second time. The fix isn't to hide the challenge. It's to reframe it. "Only dog" is not a flaw — it's a match requirement. "Takes 20 minutes to warm up to someone new" is not scary — it's specific and accurate and gives the right home a reason to say yes.
 
 | Score | What it looks like |
 |---|---|
-| **1** | At least one video clip is present in the submission |
-| **0** | No video submitted |
+| **2** | Any challenges are stated specifically and reframed constructively. The right home recognizes themselves. The wrong home knows to look elsewhere. |
+| **1** | Challenges are mentioned but framed in a way that sounds worse than it is, or buried so deep that an adopter might miss them. |
+| **0** | Challenges omitted entirely — OR framed so negatively the dog sounds unadoptable before anyone meets them. |
 
-**Why it matters:** Video is the highest-converting media type on rescue listings. Listings with video receive significantly more inquiries than listings without — and yet the vast majority of rescue listings have none. (Source: internal sample, RescueGroups, 250 listings, March 2026.) This is the highest-leverage single gap in rescue dog presentation.
+**Why it matters:** Omitting challenges leads to failed placements, returned dogs, and fosters who stop trusting the process. The right reframe keeps the dog safe and the match real.
 
 ---
 
-### 8. Video Personality Capture
+### 7. Story-First Gate
 
-**What it measures:** Does the video show the dog's personality in motion — not just the dog standing still, being held, or sitting in a kennel?
+**What it measures:** Is a coached intro video ready? Can someone feel this dog before they ever request a live meet?
 
-A strong video catches the dog being a dog: playing, moving, interacting with a person, doing the thing only they do. Production quality is not the standard. A shaky phone video of Moose dropping a tennis ball in someone's lap is worth more than a polished clip of a dog sitting calmly in frame.
-
-A weak video shows the dog in a static or constrained setting — in a kennel, held on a leash, or standing still while someone talks at the camera about the dog rather than showing the dog.
+The live meet is the most important moment in the adoption process — and also the most fragile. If the adopter arrives cold, with no emotional connection, no setup, no story, that first impression carries all the weight. A short, coached intro video changes that entirely. The adopter walks in already knowing the dog. Already curious. Already a little bit in love. That's not a small advantage — it's the difference between a good first meeting and a transformative one.
 
 | Score | What it looks like |
 |---|---|
-| **1** | Video captures the dog in motion, in a natural setting, with at least one moment of genuine personality on screen |
-| **0** | Video is static, kennel-based, or the dog is not the active subject of what's on screen |
+| **2** | Short, coached, warm intro video ready — dog's personality is visible in under 60 seconds. The adopter feels this dog before they walk in the door. |
+| **1** | Some intro video exists but uncoached, low energy, or too long without a hook. Better than nothing, but not doing the work it should. |
+| **0** | No intro video. Adopters arrive cold — they have never seen this dog in motion before the first live meet. |
 
-**Why it matters:** A video that shows the dog sitting still is not better than no video — because it consumes the adopter's attention without delivering the emotional return. The video's job is to make the adopter feel something before they've met the dog.
+**Why it matters:** A 60-second authentic video means the live meet starts with context instead of starting from zero. Everything that follows is easier.
 
 ---
 
-### 9. Transport Clarity
+### 8. Presenter Readiness
 
-**What it measures:** Is transport availability, route, cost, and process stated clearly — so an adopter in a different city knows exactly what it takes to bring this dog home?
+**What it measures:** Does the presenter know this dog? Have they read the coaching packet? Do they know the strongest asset and the likely questions?
 
-A strong transport section answers: Is this dog available for transport? Where does the route go? What is the approximate cost? What does the adopter need to do to arrange it?
-
-A weak transport section either omits transport information entirely (common for local-only rescues that don't think to state it), or says only "transport available" with no route, cost, or next step.
+The presenter is the dog's best advocate — and the coaching packet is only useful if they read it. A presenter who walks into a live meet knowing the opening line, knowing the compatibility answers, and knowing the one moment to lead with is a different advocate than someone who read the bio for the first time that morning. The difference isn't talent. It's preparation. BCS prepares the packet. The presenter has to open it.
 
 | Score | What it looks like |
 |---|---|
-| **1** | Transport availability is stated. If available: route or destination regions are named, cost is approximated or referenced, and next step is clear |
-| **0** | No transport information provided, or "transport available" with no supporting detail |
+| **2** | Presenter can speak to specific moments, addresses compatibility questions naturally, and knows what to lead with before the adopter asks. |
+| **1** | Presenter knows the basics but is likely to read from the bio or get caught off guard by compatibility questions. |
+| **0** | Presenter is meeting this dog for the first time during the live meet. No coaching, no preparation, no strongest moment identified. |
 
-**Why it matters:** A significant share of rescue adoptions cross state lines. An adopter in Chicago may be the right home for a dog in Memphis — but if the logistics are invisible, that match never happens. Transport clarity is the last-mile problem of the listing.
+**Why it matters:** The coaching packet exists to be used. A prepared presenter turns a good listing into a great meeting — and great meetings become adoptions.
 
 ---
 
-### 10. Foster Availability Signal
+### 9. Family Vision
 
-**What it measures:** Does the listing communicate whether the foster is available for questions, virtual meets, or in-person introductions — and how to reach them?
+**What it measures:** After seeing this listing — photos, video, description — can the adopter picture this dog in their life? Not "this seems like a nice dog" but "that's my dog."
 
-A strong availability signal tells an adopter that a real person who knows this dog is reachable. It doesn't have to be a calendar. It can be as simple as "foster is available for virtual meets on weekends" or "ask about meeting Moose — we do weekend events monthly."
-
-A weak listing has no signal at all — the adopter submits an inquiry into what feels like a form with no human on the other end.
+The final test for a listing isn't completeness. It's whether someone can close their eyes and see this dog at the end of their bed, in their car, on their couch. Descriptions that tell instead of show almost always fail this test. The dog is described but never pictured. The fix: close with a scene. The dog in the adopter's specific life, not a generic "forever home." A good family vision moment doesn't require much — a single concrete sentence is enough. It just has to be real.
 
 | Score | What it looks like |
 |---|---|
-| **1** | Listing states that the foster is reachable, indicates general availability, or provides a clear path to a real conversation |
-| **0** | No mention of foster availability — listing ends after the description with no human signal |
+| **2** | Listing creates a picture. You can see the dog at the end of your bed, in your car, on your couch. The scene is specific enough to be real. |
+| **1** | Listing is warm but stays abstract. Describes the dog without making you feel the dog. You understand what the dog is like; you can't picture it in your life. |
+| **0** | Listing is invisible. No image forms. No feeling. You read it and feel nothing. |
 
-**Why it matters:** Adopters need to feel there's a person behind the listing before they commit to a conversation. The foster is the dog's best advocate. Signaling their availability reduces drop-off between inquiry and application.
-
----
-
-### 11. Call to Action
-
-**What it measures:** Is there a clear, specific next step for the adopter at the end of the listing?
-
-A strong call to action tells the adopter exactly what to do and what happens next: "Fill out our application at [link]. Beth reviews all applications within 48 hours." Or: "Ask a question below — our foster will respond within a day."
-
-A weak listing simply ends. The adopter reads the whole thing and has no clear path forward.
-
-| Score | What it looks like |
-|---|---|
-| **1** | Listing ends with a specific, actionable next step — apply, ask a question, request a meet — and sets a clear expectation for what happens after |
-| **0** | Listing ends without a CTA — no link, no instruction, no invitation |
-
-**Why it matters:** Inquiry drop-off between "interested" and "applied" is one of the most preventable gaps in rescue adoption. A clear next step removes the one moment where an interested adopter has to figure out what to do on their own.
-
----
-
-### 12. Foster Voice
-
-**What it measures:** Is the presenter's personal connection to this dog visible somewhere in the presentation?
-
-A strong foster voice is the thing that could only have been written by someone who actually knows this dog. It doesn't have to be sentimental — it just has to be real. A detail that shows the presenter as a person, not a form-filler. "I've had Moose for six weeks and I still can't sit on the floor without him bringing me a tennis ball" is a foster voice moment. So is a video where the foster is laughing off-camera at something the dog just did.
-
-A weak or absent foster voice is a listing that reads like it was assembled from a template — technically complete, emotionally inert. The dog is described but the presenter is invisible.
-
-| Score | What it looks like |
-|---|---|
-| **1** | At least one moment in the presentation — written, photo, or video — where the presenter's personal knowledge of and connection to this dog is visible |
-| **0** | Listing is complete but impersonal — the dog is described without any signal that a real person who loves them wrote this |
-
-**Why it matters:** Adopters aren't just choosing a dog — they're trusting the foster. A listing that carries the foster's voice communicates that someone vouches for this animal personally. That trust is what turns an inquiry into an application.
+**Why it matters:** Adoptions are emotional decisions. A listing that creates a picture before the first meeting does more for a dog's chances than any single other element.
 
 ---
 
@@ -230,16 +170,16 @@ A weak or absent foster voice is a listing that reads like it was assembled from
 
 | Score | What it means |
 |---|---|
-| **10–12** | Publication-ready. Minor polish only. This dog has every reasonable chance. |
-| **7–9** | Strong foundation. 1–2 targeted additions close the remaining gaps. |
-| **4–6** | Coachable. Core elements need attention — description, photos, or video missing. BCS coaching session recommended. |
-| **0–3** | Significant gaps across multiple dimensions. Full coaching packet recommended before publication. |
+| **15–18** | Publication-ready. This dog has every reasonable chance. |
+| **10–14** | Strong foundation. 1–2 targeted additions close the remaining gaps. |
+| **6–9** | Coachable. Core elements need attention. BCS coaching session recommended. |
+| **0–5** | Significant gaps across multiple dimensions. Full coaching packet recommended before publication. |
 
 ---
 
 ## On How Scores Work
 
-BCS scores what's submitted — not what the presenter intended to submit or what the dog deserves. A 4 is not a judgment on the dog. It's a starting point for the presenter.
+BCS scores what's submitted — not what the presenter intended to submit or what the dog deserves. A score in the single digits is not a judgment on the dog. It's a starting point for the presenter.
 
 The rubric doesn't care about production value, breed, age, or history. It cares about one thing: does this presentation give this dog their best chance? If the score says no — here's exactly what to fix.
 
