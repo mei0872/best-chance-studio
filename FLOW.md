@@ -1,6 +1,6 @@
 # How BCS Works — The Full Flow
 
-*Last updated: March 9, 2026*
+*Last updated: March 10, 2026*
 
 *A technical walkthrough with real inputs and outputs*
 
@@ -70,7 +70,7 @@ That transcript merges into `foster_notes`. The detail that drives the whole sto
 
 ## Step 2: `/bcs/score` — Read the Gaps
 
-→ **[See the full rubric — rubric-config.json](rubric-config.json)** — 9 dimensions, 0–2 scoring, grade thresholds. (A human-friendly reference is coming via [G-02](https://github.com/mei0872/best-chance-studio/issues) — that's the first task worth claiming.)
+→ **[See the full rubric — rubric-config.json](rubric-config.json)** — 9 dimensions, 0–2 scoring, grade thresholds. → [Community-readable rubric — RUBRIC.md](RUBRIC.md)
 
 **The 9 dimensions BCS scores (0–2 each, 18 points total):**
 - **personality_hook** — does this dog have a specific, memorable moment that makes them real?
