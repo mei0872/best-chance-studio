@@ -2,13 +2,9 @@
 
 *Last updated: March 11, 2026*
 
-> **Tools and coaching to develop the talent you already have — and give every dog their best chance.**
+Open source coaching tools that give every rescue dog their best chance at adoption.
 
----
-
-## tl;dr
-
-Best Chance Studio (BCS) scores a rescue dog's presentation — photos, description, video, transport clarity, foster availability — and tells the presenter exactly what to fix. Free for every rescue. Forever. The methodology is open, the coaching belongs to the community, and no rescue ever pays.
+**Free for every rescue. That includes the AI. We're building a charity-funded pool — supported by foundations and donors — so rescue orgs never pay for the AI that helps their dogs get adopted. No matter where they post, no matter which tools they use.**
 
 ---
 
@@ -25,6 +21,14 @@ Here's the thing: Kip is absolutely terrible at writing dog descriptions. Always
 What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. And we will do it with you.
 
 — Kip, Michele & Beth
+
+---
+
+## tl;dr
+
+The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
+
+**Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free for rescues — including the AI.**
 
 ---
 
@@ -60,41 +64,44 @@ BCS scores a dog's presentation across 9 dimensions — personality, photos, vid
 
 [See the full rubric](RUBRIC.md)
 
-### What a Coaching Session Produces
+### What it looks like in practice
 
-Here's what one BCS session looks like on a real dog.
-
----
-
-**Moose — before:**
-> "Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch."
+**Before BCS:**
+> *"Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch. He is looking for his forever home."*
 >
 > One blurry shelter photo. No video.
 > **BCS score: 3 / 18**
 
----
-
-**Moose — after BCS coaching:**
-
-> *Coached story:*
-> "Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."
-
-> *Shot list:*
-> 1. Eye-level, natural light — get on the floor, wait for eye contact
-> 2. Mid-fetch action shot — ball in the air, Moose in motion
-> 3. Calm moment on the couch with foster — the dog people actually bring home
-
-> *Video coaching prompt:*
-> "Fetch is Moose's superpower and it doesn't exist on camera yet. 60 seconds of the tennis ball drop is worth more than any description we can write."
-
-> *Presenter brief:*
-> "Lead with the tennis ball move. Every time. It's the moment that makes people call each other into the room."
-
-> **BCS score: 9 / 18** — still needs the photos and video. When those land: 15 / 18.
+**After BCS:**
+> *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
+>
+> **BCS score: 14 / 18** · Shot list generated · YouTube-ready video produced
+>
+> The video coached from that shot list? Two people watched it, called each other into the room, and said *"that's our dog."*
 
 ---
 
-That's what a well-presented dog looks like. The full BCS pipeline includes:
+### What Best Chance Studio Is
+
+Coaching that gives every rescue dog their best chance — better photos, better descriptions, better video, and a clear picture of what each dog needs to go home. The scoring rubric is one piece of it. So is the shot list, the video coaching, the story rewrite, and the presenter prep. All of it together moves dogs faster.
+
+This design is backed by peer-reviewed research — including a 2019 study of 70,733 dogs linking specific language choices to adoption speed, and a 2020 study on how photo attributes affect how fast dogs get adopted.
+
+**The starting point is always what's published right now.** BCS is designed to score your existing presentation — not ask you to fill out a form. Bring in what's already out there: paste the Petfinder description, upload the photos from ShelterLuv, drop in the YouTube link. BCS reads what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there.
+
+### A few terms used throughout
+
+**Story** — everything currently published that represents a dog: the description, photos, video, all of it together. Not just the words. The whole presentation. This is what BCS scores and improves.
+
+**Session** — a BCS work session to improve a dog's story. Starts with the current story, ends with a better one and a coaching packet.
+
+**Score** — a diagnostic, not a grade. Tells you where the story is now, which of the 9 dimensions are missing, and what to fix first.
+
+**Coaching packet** — the output of a session: gap analysis, shot list, improvement plan, description draft. What a rescue coordinator reads before Saturday's adoption event.
+
+---
+
+The full BCS pipeline includes:
 
 - **9-dimension rubric** — scores the current presentation against a clear community standard
 - **Gap analysis** — every gap identified and ranked by adoption impact
