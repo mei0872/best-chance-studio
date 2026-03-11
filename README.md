@@ -1,6 +1,6 @@
-# Best Chance Studio™
+# Best Chance Studio
 
-*Last updated: March 10, 2026*
+*Last updated: March 11, 2026*
 
 > **Tools and coaching to develop the talent you already have — and give every dog their best chance.**
 
@@ -8,7 +8,23 @@
 
 ## tl;dr
 
-Best Chance Studio™ (BCS) scores a rescue dog's presentation — photos, description, video, transport clarity, foster availability — and tells the presenter exactly what to fix. Free for every rescue. Forever. The methodology is open, the coaching belongs to the community, and no rescue ever pays.
+Best Chance Studio (BCS) scores a rescue dog's presentation — photos, description, video, transport clarity, foster availability — and tells the presenter exactly what to fix. Free for every rescue. Forever. The methodology is open, the coaching belongs to the community, and no rescue ever pays.
+
+---
+
+## A Note from Kip, Michele & Beth
+
+We've been fostering dogs since 2019 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
+
+But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
+
+Here's the thing: Kip is absolutely terrible at writing dog descriptions. Always has been. But fostering is a community — everybody pitches in — so he keeps sitting down and doing it anyway. We both know there's a better way. We've known it for years. We just finally decided to build it.
+
+**Best Chance Studio will always be free for every rescue. No matter what platform they post on.** The coaching belongs to the rescue community, not to us. That's not a business decision. It's a promise.
+
+What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. And we will do it with you.
+
+— Kip, Michele & Beth
 
 ---
 
@@ -54,7 +70,7 @@ Here's what one BCS session looks like on a real dog.
 > "Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch."
 >
 > One blurry shelter photo. No video.
-> **BCS score: 3 / 18**
+> **BCS score: 4 / 12**
 
 ---
 
@@ -74,7 +90,7 @@ Here's what one BCS session looks like on a real dog.
 > *Presenter brief:*
 > "Lead with the tennis ball move. Every time. It's the moment that makes people call each other into the room."
 
-> **BCS score: 9 / 18** — still needs the photos and video. When those land: 15 / 18.
+> **BCS score: 9 / 12** — still needs the photos and video. When those land: 11+.
 
 ---
 
@@ -112,7 +128,6 @@ BCS is designed to get smarter over time by collaborating directly with adoption
 **Platform hints** are signals an adoption platform can send back to BCS — insights from real adoption data that make coaching more targeted and timely:
 
 - *Trend insights* — "engagement with outdoor action shots is up 40% this spring"
-- *Cultural context* — "short-form videos using [trending audio] are seeing 3× shares this week — consider it for the highlight reel"
 - *Seasonal context* — "spring adoption traffic peaks in 3 weeks — March Madness theme week is driving early engagement"
 - *Audience signals* — "adopters searching for this dog's breed are asking about apartment compatibility more than usual right now"
 - *Dog-specific signals* — "3 adopters have viewed this listing and dropped off at the description — here's what the data suggests"
@@ -184,9 +199,9 @@ We're working toward a measurable claim on time-to-adoption impact. We're not th
 
 ---
 
-## License & Trademark
+## License
 
-MIT licensed — use the code freely. The BCS™ name and trademark belong to the project.
+MIT licensed — use the code freely.
 
 ---
 
@@ -262,11 +277,23 @@ We have more ideas than hands. If you want to build something that matters — n
 
 ---
 
+## Why We Built This
+
+Kip and Michele Meierhofer have fostered roughly 100 dogs a year out of their home in Collierville, TN since 2019. Seven dogs of their own. Weekend after weekend sitting down to write descriptions for dogs who deserved better — no tools, no feedback loop, no coaching on what actually moves an adoption.
+
+Beth Aversa runs Blues City Animal Rescue in Memphis. About 500 dogs a year. Weekly transport runs up the East Coast and into Chicago. She was our first real conversation — and she said the same thing Kip had been feeling for years: the talent to move dogs faster already exists inside every rescue. Nobody ever gave them the infrastructure.
+
+Michele has 20+ years of marketing leadership. Kip spent 25 years building enterprise systems at Northwestern Mutual. They know exactly who adopts and what they need.
+
+This isn't a concept. They've been living it.
+
+---
+
 ## The People
 
 **Kip Meierhofer** — co-creator. 25 years building enterprise systems. Fostering since 2019. Seven dogs at home. Hundreds of fosters through the door. Built this because he's been sitting down to write dog descriptions for years and was never any good at it — not for lack of caring, but because nobody ever gave him the tools to do it right. Best Chance Studio is what he wishes he'd had every time he sat down to write a description for a dog who deserved better.
 
-**Michele Meierhofer** — co-creator. 20+ years in marketing. She's loved every dog that's come through their door. Her instincts for what moves people are in every line of this.
+**Michele Meierhofer** — co-creator. 20+ years in marketing. The brand, the voice, and the heart of everything we build. She's loved every dog that's come through their door — and her instincts for what moves people are in every line of this.
 
 **Beth Aversa** — Blues City Animal Rescue, Memphis. Roughly 500 dogs a year. Weekly transport runs up the east coast and to Chicago. Our first real rescue partner — the person who made it real. Everything in BCS has been stress-tested against what works in Beth's world.
 
@@ -283,5 +310,5 @@ Fund BCS:
 
 ---
 
-*Best Chance Studio™ — free for every rescue. Forever.*
+*Best Chance Studio — free for every rescue. Forever.*
 *MIT licensed. Community owned. The coaching belongs to the rescue community.*
