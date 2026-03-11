@@ -54,11 +54,11 @@ BCS runs a coaching session for every dog that needs one. You don't need an exis
 
 Either way, the output is the same: a complete coaching packet — specific, actionable, ready to publish.
 
-### The 12-Point Rubric
+### The Rubric
 
-BCS scores a dog's presentation across 12 dimensions: photos, description, video, transport clarity, foster availability, and more. Every dimension has a clear standard. Every gap gets a specific fix, ranked by adoption impact.
+BCS scores a dog's presentation across 9 dimensions — personality, photos, video, compatibility, foster voice, and more — on a 0–2 scale. Every dimension has a clear standard. Every gap gets a specific fix, ranked by adoption impact.
 
-[See the full 12-point rubric](RUBRIC.md)
+[See the full rubric](RUBRIC.md)
 
 ### What a Coaching Session Produces
 
@@ -70,7 +70,7 @@ Here's what one BCS session looks like on a real dog.
 > "Moose is a 3 year old lab mix. He is good with other dogs and kids. He loves to play fetch."
 >
 > One blurry shelter photo. No video.
-> **BCS score: 4 / 12**
+> **BCS score: 3 / 18**
 
 ---
 
@@ -90,13 +90,13 @@ Here's what one BCS session looks like on a real dog.
 > *Presenter brief:*
 > "Lead with the tennis ball move. Every time. It's the moment that makes people call each other into the room."
 
-> **BCS score: 9 / 12** — still needs the photos and video. When those land: 11+.
+> **BCS score: 9 / 18** — still needs the photos and video. When those land: 15 / 18.
 
 ---
 
 That's what a well-presented dog looks like. The full BCS pipeline includes:
 
-- **12-point rubric** — scores the current presentation against a clear community standard
+- **9-dimension rubric** — scores the current presentation against a clear community standard
 - **Gap analysis** — every gap identified and ranked by adoption impact
 - **Story builder** — coached description rewriting, led by what only this dog's presenter knows
 - **Word impact check** — flags language from adoption research that reduces inquiry rates
