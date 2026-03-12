@@ -12,11 +12,9 @@ BCS is an orchestration layer. It doesn't just call one API — it reads the gap
 
 ## Step 1: The Foster Submits What They Have
 
-No form to fill out. No checklist. The foster drops in what they have — text, photos, videos, voice notes, written observations — and BCS takes it from there. Whatever they've got. BCS figures out the rest.
+Starting with just a dog — BCS will prompt through upload and capture of information and content about the dog to create post content.
 
-This is Moose. Three years old, black lab mix, four months in foster care. Here's what came in:
-
-Two input streams — both optional, both useful for different things:
+Starting with existing post — If the dog is posted, take a pic or video of the existing post as input into BCS.  BCS scores it against the rubric, shows you exactly what's missing, and executes research-backed ways to post at a much higher level.
 
 **`story{}`** — the current published presentation. Whatever is in front of adopters right now.
 Four ways to provide it, in order of preference:
