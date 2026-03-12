@@ -1,6 +1,6 @@
 # Best Chance Studio
 
-*Last updated: March 11, 2026*
+*Last updated: March 12, 2026*
 
 Open source dog presentation tools that give every rescue dog their best chance at adoption.
 
@@ -125,9 +125,11 @@ Platform hints are a roadmap feature — not available in the current version. B
 
 This is not a goal. It is the constraint the funding model is built around.
 
-BCS AI and infrastructure costs are covered by animal welfare foundations, corporate sponsors, and individual donors — not rescues. The founder personally seeds early costs. The rescue community doesn't pay. That's the deal, and there's no asterisk.
+BCS works through a hosted model: rescue orgs use BCS through a certified platform host — a shelter network, an adoption platform, or a regional rescue coalition running BCS on their behalf. **Hosts cover the AI costs. Rescues pay nothing and configure nothing.**
 
-Every rescue. Every dog. Every presentation. Free.
+AI and infrastructure costs are funded by animal welfare foundations, corporate sponsors, and individual donors. The BCS community is building charity-funded AI pools specifically so certified hosts can cover these costs without ever passing them to rescues. The founder personally seeds early costs. The rescue community doesn't pay. That's the deal, and there's no asterisk.
+
+Every rescue. Every dog. Every presentation. Free — because a host takes on the cost and the governance so rescues never have to.
 
 ---
 
@@ -186,21 +188,34 @@ MIT licensed — use the code freely.
 
 ## How to Use BCS
 
-**1. Install**
-Clone the repo or install the package — see [INSTALL.md](INSTALL.md) for setup.
+**If you're a rescue org:**
+You don't set anything up. Find a certified BCS host — a platform or organization running BCS on your behalf — and use their tools. No accounts. No API keys. No cost. No tech. That's the model.
 
-**2. Set up your AI provider**
-BCS uses your own AI provider account for coaching features. Set up takes about 10 minutes:
-- OpenAI, Anthropic, or Ollama (local — free for technical rescues)
-- One account per rescue covers the whole team
-- See [AI-SETUP.md](AI-SETUP.md) for step-by-step instructions
+**If you're a developer or researcher:**
+Clone the repo and bring your own API key for testing and development. See [INSTALL.md](INSTALL.md) and [AI-SETUP.md](AI-SETUP.md). Never use a rescue org's funded production access for development.
 
-**3. Run a session**
-Start with just a dog — no existing presentation required. BCS guides you from zero.
-See [QUICKSTART.md](QUICKSTART.md) for your first coaching session in under 30 minutes.
+**If you want to host BCS for rescue orgs:**
+You're a platform host. Read the section below — hosting comes with governance responsibilities.
 
-**4. Understand the full pipeline**
+**To understand the full pipeline:**
 BCS is a 14-API orchestration pipeline. Each API is standalone — run the full pipeline or any piece of it. [FLOW.md](FLOW.md) walks the complete flow with real inputs and outputs.
+
+---
+
+## For Platform Hosts
+
+A BCS host is any organization running BCS on behalf of rescue orgs — an adoption platform, a shelter network, a regional rescue coalition, or any group that wants to bring BCS to the rescues they serve.
+
+**Hosts are responsible for:**
+- Covering AI costs for every rescue org they serve (never passing costs to rescues)
+- Verifying that users are legitimate rescue organizations
+- Enforcing usage governance and preventing misuse
+- Keeping BCS free, zero-setup, and zero-burden for every rescue they serve
+
+**The AI cost model:**
+BCS uses AI for coaching features. Hosts pay for it — rescues don't. The BCS community is building charity-funded AI pools so that certified hosts can cover these costs through foundation grants, corporate sponsors, and donor contributions rather than charging rescues. If you're building a host implementation and want to connect with the funding model, reach out.
+
+This is the governance layer that makes "free forever for every rescue" a real promise, not a marketing line.
 
 ---
 
