@@ -2,7 +2,7 @@
 
 *Last updated: March 11, 2026*
 
-Open source coaching tools that give every rescue dog their best chance at adoption.
+Open source dog presentation tools that give every rescue dog their best chance at adoption.
 
 **Free for every rescue. That includes the AI. We're building a charity-funded pool — supported by foundations and donors — so rescue orgs never pay for the AI that helps their dogs get adopted. No matter where they post, no matter which tools they use.**
 
@@ -14,11 +14,9 @@ We've been fostering dogs since 2019 — alongside Beth Aversa at Blues City Ani
 
 But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
 
-Here's the thing: Kip is absolutely terrible at writing dog descriptions. Always has been. But fostering is a community — everybody pitches in — so he keeps sitting down and doing it anyway. We both know there's a better way. We've known it for years. We just finally decided to build it.
+Here's the thing: Kip is terrible at posting dogs.  Pics and video is a pain, and the description never comes out easy. The whole process is always hard, and tedious. But fostering is a community — everybody pitches in — so he keeps sitting down and doing it anyway. We both know there's a better way. We've known it for years. We just finally decided to build it.
 
-**Best Chance Studio will always be free for every rescue. No matter what platform they post on.** The coaching belongs to the rescue community, not to us. That's not a business decision. It's a promise.
-
-What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. And we will do it with you.
+What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. We're very excited!
 
 — Kip, Michele & Beth
 
@@ -26,23 +24,9 @@ What we build here is going to be loved by rescues. It's going to help them get 
 
 ## tl;dr
 
-The average rescue dog who isn't a puppy, purebred, or doodle waits 4–6 months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
+The average rescue dog who isn't a puppy, purebred, or doodle waits months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
 
 **Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free for rescues — including the AI.**
-
----
-
-## The Problem
-
-Most rescue dogs don't have bad stories. They have untold ones.
-
-The fosters who know every dog's quirks, the coordinators who've seen a hundred placements, the volunteers who show up every Saturday — that talent already exists inside every rescue. The infrastructure to develop it never did.
-
-A rescue dog who isn't a puppy, purebred, or doodle waits an average of 4–6 months for a home. (Source: internal sample, 250 listings via RescueGroups, March 2026 — we're working to expand this dataset with community contributions.) In that time, the listing that should have told their story sat unchanged. Blurry photo. Two sentences. No video. Nobody taught the presenter to think like a storyteller.
-
-That's the problem. Not the dog. The presentation.
-
-> *"Anything over six weeks is outrageous. Why in the world shouldn't we be closer to 13 days?"*
 
 ---
 
@@ -54,7 +38,7 @@ BCS runs a coaching session for every dog that needs one. You don't need an exis
 
 - **Starting with just a dog** — BCS asks you about the dog. What do you notice? What does the dog do? What's the one thing you'd want a family to know? From your answers, BCS builds the story with you and tells you exactly what to capture next.
 
-- **Starting with existing content** — bring what you have: a description, some photos, a video link. BCS scores it against the rubric, shows you exactly what's missing, and gives you research-backed ways to close the gaps.
+- **Starting with existing content** — bring what you have: a description, some photos, a video link. BCS scores it against the rubric, shows you exactly what's missing, and gives you research-backed ways to close the gaps. If the dog is posted, take a pic or video of the existing post as input into BCS - we'll make it simple.
 
 Either way, the output is the same: a complete coaching packet — specific, actionable, ready to publish.
 
@@ -75,7 +59,7 @@ BCS scores a dog's presentation across 9 dimensions — personality, photos, vid
 **After BCS:**
 > *"Moose has a move. The second you sit on the floor — doesn't matter why — he finds the nearest tennis ball and drops it in your lap. Not asking. Just assuming you came to play."*
 >
-> **BCS score: 14 / 18** · Shot list generated · YouTube-ready video produced
+> **BCS score: 14 / 18** · Presentation shot list generated · YouTube-ready video produced · Killer New Post 
 >
 > The video coached from that shot list? Two people watched it, called each other into the room, and said *"that's our dog."*
 
@@ -86,8 +70,6 @@ BCS scores a dog's presentation across 9 dimensions — personality, photos, vid
 Coaching that gives every rescue dog their best chance — better photos, better descriptions, better video, and a clear picture of what each dog needs to go home. The scoring rubric is one piece of it. So is the shot list, the video coaching, the story rewrite, and the presenter prep. All of it together moves dogs faster.
 
 This design is backed by peer-reviewed research — including a 2019 study of 70,733 dogs linking specific language choices to adoption speed, and a 2020 study on how photo attributes affect how fast dogs get adopted.
-
-**The starting point is always what's published right now.** BCS is designed to score your existing presentation — not ask you to fill out a form. Bring in what's already out there: paste the Petfinder description, upload the photos from ShelterLuv, drop in the YouTube link. BCS reads what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there.
 
 ### A few terms used throughout
 
@@ -114,17 +96,11 @@ The full BCS pipeline includes:
 
 ## Just You, the Dog, and BCS
 
-You don't need a marketing background. You don't need a camera crew. You don't need to know anything about what makes a good adoption listing.
-
-You need a dog in front of you and BCS in your hand.
-
 BCS guides content capture from the very first step. A first-time volunteer who has never done this before can follow BCS through a session and come out the other side with a story worth publishing — photos, description, video coaching, the whole thing. That's the mission: take the talent that already exists inside every rescue and give it the infrastructure it never had.
 
+BCS is designed to score your existing presentation if you have one, otherwise just you and the dog and your existing content is great. Bring in what's already out there: take pics or video of the existing post details (pics, vids, youtube url, profile, memos). BCS sees what adopters are actually seeing, identifies the exact gaps, and builds an improvement plan from there with new, coached-content capture.
+
 Two starting points, same destination:
-
-**Starting from scratch** — just you and the dog. BCS asks the right questions, listens to what you know about this dog, and builds the story with you. You don't have to know what to say. You just have to know the dog.
-
-**Improving what you have** — bring what exists. A description, some photos, a video. BCS scores it against the rubric, shows you exactly what's missing, and gives you research-backed ways to make it better. Not generic advice. Specific to this dog, this listing, this gap.
 
 ---
 
@@ -149,13 +125,9 @@ Platform hints are a roadmap feature — not available in the current version. B
 
 This is not a goal. It is the constraint the funding model is built around.
 
-> *"Free for rescues is the constraint. The funding model works around it."*
-
 BCS AI and infrastructure costs are covered by animal welfare foundations, corporate sponsors, and individual donors — not rescues. The founder personally seeds early costs. The rescue community doesn't pay. That's the deal, and there's no asterisk.
 
 Every rescue. Every dog. Every presentation. Free.
-
-One note on AI costs: BCS uses your own AI provider account for the coaching features — typically $5–10/month for an active rescue, paid directly to your provider (OpenAI, Anthropic, or local via Ollama — free for technical rescues). We never see it. One account per rescue covers the whole team.
 
 ---
 
@@ -167,7 +139,7 @@ Every dollar you put into BCS directly reduces the time a dog waits for a home. 
 
 BCS records every presentation completed, every dog coached, and every outcome we can verify. Donors receive automatic quarterly reports:
 
-> *"Your donation funded X presentations this quarter. Y dogs placed."*
+> *"Your donation funded X presentations this quarter.  Adoption platforms will eventually report Y dogs placed."*
 
 No manual reporting requests. No chasing receipts. Built into the platform from day one.
 
@@ -281,18 +253,6 @@ You can't stop thinking about what comes next. That's a different conversation.
 > *"The pull list is how we find each other."*
 
 We have more ideas than hands. If you want to build something that matters — not theoretically, but in a way where you can watch the outcome data — this is the place to do it.
-
----
-
-## Why We Built This
-
-Kip and Michele Meierhofer have fostered roughly 100 dogs a year out of their home in Collierville, TN since 2019. Seven dogs of their own. Weekend after weekend sitting down to write descriptions for dogs who deserved better — no tools, no feedback loop, no coaching on what actually moves an adoption.
-
-Beth Aversa runs Blues City Animal Rescue in Memphis. About 500 dogs a year. Weekly transport runs up the East Coast and into Chicago. She was our first real conversation — and she said the same thing Kip had been feeling for years: the talent to move dogs faster already exists inside every rescue. Nobody ever gave them the infrastructure.
-
-Michele has 20+ years of marketing leadership. Kip spent 25 years building enterprise systems at Northwestern Mutual. They know exactly who adopts and what they need.
-
-This isn't a concept. They've been living it.
 
 ---
 
