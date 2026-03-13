@@ -34,19 +34,17 @@ The average rescue dog who isn't a puppy, purebred, or doodle waits months for a
 
 ## Start Here — Pick a Task
 
-These are ready to build right now:
+Good entry points for new contributors — all 13 open issues are linked from [the issues tab](../../issues):
 
 | Issue | What it is | Difficulty |
 |---|---|---|
-| [G-04] Word Check Tool | Flags words that hurt adoption — based on a 70,733-dog study. Simple HTML tool. | Good first issue |
-| [G-05] Story Card Generator | Takes a coached story + photo and generates a shareable image card for Facebook/Instagram. | Good first issue |
-| [G-06] Story Formatter | Reformats an approved description for Petfinder, AdoptAPet, Instagram — respects character limits. | Good first issue |
-| [P-02] Story Builder UI | The interface that wraps the `/story/build` API. Mobile-first, no framework required. | Project |
-| [P-03] Photo Curation API | Selects best photos, identifies visual gaps, generates a targeted shot list. | Project |
+| [#23 — Word Check Tool](../../issues/23) | Flags words that hurt adoption — based on a 70,733-dog study. Simple HTML tool. | Good first issue |
+| [#24 — Story Card Generator](../../issues/24) | Takes a coached story + photo and generates a shareable image card for Facebook/Instagram. | Good first issue |
+| [#25 — Story Formatter](../../issues/25) | Reformats an approved description for Petfinder, AdoptAPet, Instagram — respects character limits. | Good first issue |
+| [#4 — Story Builder UI](../../issues/4) | The interface that wraps the `/story/build` API. Mobile-first, no framework required. | Project |
+| [#5 — Photo Curation API](../../issues/5) | Selects best photos, identifies visual gaps, generates a targeted shot list. | Project |
 
 **Before you build:** Read [FLOW.md](FLOW.md) — it's a full API walkthrough using a real dog (Moose). It shows exactly how every piece connects. Takes 15 minutes and saves hours of guessing.
-
-→ [See all open issues](../../issues)
 
 ---
 
