@@ -1,6 +1,6 @@
 # Best Chance Studio
 
-*Last updated: March 12, 2026*
+*Last updated: March 13, 2026*
 
 Open source dog presentation tools that give every rescue dog their best chance at adoption.
 
@@ -27,6 +27,26 @@ What we build here is going to be loved by rescues. It's going to help them get 
 The average rescue dog who isn't a puppy, purebred, or doodle waits months for a home. The talent to move them faster already exists inside every rescue. It just needs better coaching, better tools, and a standard that every rescue can access.
 
 **Best Chance Studio is that standard. Open source. MIT licensed. Built on research. Free for rescues — including the AI.**
+
+→ **[How it all fits together — FLOW.md](FLOW.md)** — full API walkthrough with real inputs and outputs.
+
+---
+
+## Start Here — Pick a Task
+
+These are ready to build right now:
+
+| Issue | What it is | Difficulty |
+|---|---|---|
+| [G-04] Word Check Tool | Flags words that hurt adoption — based on a 70,733-dog study. Simple HTML tool. | Good first issue |
+| [G-05] Story Card Generator | Takes a coached story + photo and generates a shareable image card for Facebook/Instagram. | Good first issue |
+| [G-06] Story Formatter | Reformats an approved description for Petfinder, AdoptAPet, Instagram — respects character limits. | Good first issue |
+| [P-02] Story Builder UI | The interface that wraps the `/story/build` API. Mobile-first, no framework required. | Project |
+| [P-03] Photo Curation API | Selects best photos, identifies visual gaps, generates a targeted shot list. | Project |
+
+**Before you build:** Read [FLOW.md](FLOW.md) — it's a full API walkthrough using a real dog (Moose). It shows exactly how every piece connects. Takes 15 minutes and saves hours of guessing.
+
+→ [See all open issues](../../issues)
 
 ---
 
@@ -294,3 +314,4 @@ Fund BCS:
 
 *Best Chance Studio — free for every rescue. Forever.*
 *MIT licensed. Community owned. The coaching belongs to the rescue community.*
+
