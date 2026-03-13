@@ -7,6 +7,18 @@ Here's how to show up for them.
 
 ---
 
+## What you're building (and what you're not)
+
+The open source tools in this repo are the **API and logic layer** — the scoring engine, the story builder, the word checker, the photo curator. These are the brain of BCS.
+
+The native mobile app (iOS + Android) that fosters will use in the field is being built separately by the platform team. It calls these APIs.
+
+**Your job as a contributor:** build the APIs and tools to spec, with clean input/output contracts. The mobile shell wraps them. You don't need to build the app — just make sure what you build works correctly when called.
+
+---
+
+---
+
 ## How to Claim a Task
 
 1. Find an issue that looks interesting (browse [open issues](../../issues))
