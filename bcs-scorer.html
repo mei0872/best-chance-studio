@@ -348,6 +348,68 @@ header .subtitle {
 
 .reset-btn:active { background: #FFF7ED; }
 
+/* Export buttons */
+.export-section {
+  margin-bottom: 16px;
+}
+
+.export-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--gray);
+}
+
+.export-row {
+  display: flex;
+  gap: 8px;
+}
+
+.export-btn {
+  flex: 1;
+  padding: 12px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--light-gray);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: center;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s;
+}
+
+.export-btn:active { background: #f9f9f9; }
+.export-btn:hover { border-color: var(--orange); }
+
+.export-btn .export-icon {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+/* Toggle all */
+.toggle-all {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.toggle-all-btn {
+  background: none;
+  border: none;
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle-all-btn:active { opacity: 0.7; }
+
 /* Score bar */
 .score-bar-section {
   background: #fff;
@@ -424,6 +486,9 @@ footer {
     <input type="text" class="dog-name-input" id="dogName" placeholder="Dog's name" autocomplete="off">
   </div>
 
+  <div class="toggle-all" id="toggleAllWrap">
+    <button type="button" class="toggle-all-btn" id="toggleAllBtn">Collapse all</button>
+  </div>
   <div id="dimensions"></div>
 
   <div class="results" id="results">
@@ -441,6 +506,15 @@ footer {
       <div id="gapsList"></div>
     </div>
 
+    <div class="export-section">
+      <div class="export-title">Download score report</div>
+      <div class="export-row">
+        <button type="button" class="export-btn" onclick="exportJSON()"><span class="export-icon">{}</span>JSON</button>
+        <button type="button" class="export-btn" onclick="exportCSV()"><span class="export-icon">&#x1F4CB;</span>CSV</button>
+        <button type="button" class="export-btn" onclick="exportPDF()"><span class="export-icon">&#x1F4C4;</span>PDF</button>
+      </div>
+    </div>
+
     <button class="reset-btn" id="resetBtn">Score another dog</button>
   </div>
 
@@ -454,9 +528,22 @@ var RUBRIC = {"version":"1.0.0","max_score":18,"dimensions":[{"id":"personality_
 
 var scores = {};
 
+var allExpanded = true;
+
 function init() {
   renderDimensions();
   document.getElementById('resetBtn').addEventListener('click', reset);
+  document.getElementById('toggleAllBtn').addEventListener('click', toggleAll);
+}
+
+function toggleAll() {
+  allExpanded = !allExpanded;
+  var dims = document.querySelectorAll('#dimensions .dimension');
+  dims.forEach(function(el) {
+    if (allExpanded) { el.classList.add('open'); }
+    else { el.classList.remove('open'); }
+  });
+  document.getElementById('toggleAllBtn').textContent = allExpanded ? 'Collapse all' : 'Expand all';
 }
 
 function renderDimensions() {
@@ -465,7 +552,7 @@ function renderDimensions() {
 
   RUBRIC.dimensions.forEach(function(dim) {
     var el = document.createElement('div');
-    el.className = 'dimension';
+    el.className = 'dimension open';
     el.id = 'dim-' + dim.id;
 
     var header = document.createElement('div');
@@ -529,9 +616,8 @@ function selectScore(dimId, val) {
   indicator.className = 'score-indicator scored';
   indicator.setAttribute('data-val', val);
 
-  // Auto-advance: close this dimension, open next unscored
+  // Scroll to next unscored dimension
   setTimeout(function() {
-    dimEl.classList.remove('open');
     var nextUnscored = RUBRIC.dimensions.find(function(d) {
       return scores[d.id] === undefined;
     });
@@ -643,18 +729,188 @@ function showResults() {
   // Show results, hide form
   document.getElementById('dimensions').style.display = 'none';
   document.querySelector('.dog-name-section').style.display = 'none';
+  document.getElementById('toggleAllWrap').style.display = 'none';
   document.getElementById('results').classList.add('visible');
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function reset() {
   scores = {};
+  allExpanded = true;
   document.getElementById('dogName').value = '';
   document.getElementById('dimensions').style.display = '';
   document.querySelector('.dog-name-section').style.display = '';
+  document.getElementById('toggleAllWrap').style.display = '';
+  document.getElementById('toggleAllBtn').textContent = 'Collapse all';
   document.getElementById('results').classList.remove('visible');
   renderDimensions();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// --- Export helpers ---
+
+function buildScoreResult() {
+  var total = 0;
+  RUBRIC.dimensions.forEach(function(d) { total += scores[d.id]; });
+  var gradeInfo = getGrade(total);
+  var dogName = document.getElementById('dogName').value.trim() || 'Unknown';
+  var dims = RUBRIC.dimensions.map(function(d) {
+    var val = scores[d.id];
+    return {
+      id: d.id,
+      label: d.label,
+      score: val,
+      max: d.max,
+      gap: val < d.max ? d.scores[val] : null,
+      coaching_actions: val < d.max && d.coaching_actions['score_' + val] ? d.coaching_actions['score_' + val] : []
+    };
+  });
+  var priorityGaps = dims
+    .filter(function(d) { return d.score < d.max; })
+    .sort(function(a, b) { return a.score - b.score; })
+    .slice(0, 3)
+    .map(function(d) { return d.id; });
+
+  return {
+    dog_name: dogName,
+    rubric_version: RUBRIC.version,
+    scored_at: new Date().toISOString(),
+    total_score: total,
+    max_score: RUBRIC.max_score,
+    grade: gradeInfo.grade,
+    grade_label: gradeInfo.label,
+    dimensions: dims,
+    priority_gaps: priorityGaps
+  };
+}
+
+function downloadFile(filename, content, mime) {
+  var blob = new Blob([content], { type: mime });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function exportJSON() {
+  var result = buildScoreResult();
+  var filename = 'bcs-score-' + result.dog_name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.json';
+  downloadFile(filename, JSON.stringify(result, null, 2), 'application/json');
+}
+
+function exportCSV() {
+  var r = buildScoreResult();
+  var rows = [['Dimension', 'Score', 'Max', 'Gap', 'Coaching Actions']];
+  r.dimensions.forEach(function(d) {
+    rows.push([
+      d.label,
+      d.score,
+      d.max,
+      d.gap || '',
+      d.coaching_actions.join(' | ')
+    ]);
+  });
+  rows.push([]);
+  rows.push(['Dog', r.dog_name]);
+  rows.push(['Total Score', r.total_score + ' / ' + r.max_score]);
+  rows.push(['Grade', r.grade + ' — ' + r.grade_label]);
+  rows.push(['Priority Gaps', r.priority_gaps.join(', ')]);
+  rows.push(['Rubric Version', r.rubric_version]);
+  rows.push(['Scored At', r.scored_at]);
+
+  var csv = rows.map(function(row) {
+    return row.map(function(cell) {
+      var s = String(cell);
+      if (s.indexOf(',') !== -1 || s.indexOf('"') !== -1 || s.indexOf('\n') !== -1) {
+        return '"' + s.replace(/"/g, '""') + '"';
+      }
+      return s;
+    }).join(',');
+  }).join('\n');
+
+  var filename = 'bcs-score-' + r.dog_name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.csv';
+  downloadFile(filename, csv, 'text/csv');
+}
+
+function exportPDF() {
+  var r = buildScoreResult();
+  var dogName = r.dog_name;
+  var gaps = r.dimensions
+    .filter(function(d) { return d.score < d.max; })
+    .sort(function(a, b) { return a.score - b.score; })
+    .slice(0, 3);
+
+  var win = window.open('', '_blank');
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BCS Score — ' + dogName + '</title>' +
+    '<style>' +
+    'body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#1E1E2E;max-width:700px;margin:0 auto;padding:40px 24px;line-height:1.5}' +
+    'h1{font-size:24px;margin:0 0 4px;color:#F4622A}' +
+    '.subtitle{color:#6B7280;font-size:14px;margin-bottom:24px}' +
+    '.score-box{text-align:center;padding:24px;border:2px solid #E5E7EB;border-radius:12px;margin-bottom:24px}' +
+    '.big-score{font-size:48px;font-weight:800}' +
+    '.big-max{font-size:18px;color:#6B7280}' +
+    '.grade{display:inline-block;padding:4px 16px;border-radius:8px;font-size:20px;font-weight:700;margin-top:8px}' +
+    '.grade-ap{background:#DCFCE7;color:#166534}.grade-a{background:#D1FAE5;color:#166534}' +
+    '.grade-b{background:#FEF9C3;color:#854D0E}.grade-c{background:#FED7AA;color:#9A3412}' +
+    '.grade-d{background:#FECACA;color:#991B1B}' +
+    '.grade-label{color:#6B7280;font-size:14px;margin-top:8px}' +
+    'table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:14px}' +
+    'th{text-align:left;padding:8px;border-bottom:2px solid #E5E7EB;color:#6B7280;font-size:12px;text-transform:uppercase}' +
+    'td{padding:8px;border-bottom:1px solid #E5E7EB}' +
+    '.s0{color:#DC2626;font-weight:700}.s1{color:#CA8A04;font-weight:700}.s2{color:#16A34A;font-weight:700}' +
+    '.gap-section{margin-bottom:24px}' +
+    '.gap-title{font-size:16px;font-weight:700;color:#F4622A;margin-bottom:12px}' +
+    '.gap-item{padding:12px 0;border-top:1px solid #E5E7EB}' +
+    '.gap-dim{font-weight:600;font-size:15px;margin-bottom:4px}' +
+    '.gap-desc{color:#6B7280;font-size:13px;margin-bottom:8px}' +
+    '.coaching{font-size:13px;padding:2px 0 2px 16px;position:relative}' +
+    '.coaching::before{content:"\\2192";position:absolute;left:0;color:#F4622A}' +
+    'footer{text-align:center;color:#6B7280;font-size:11px;margin-top:32px;padding-top:16px;border-top:1px solid #E5E7EB}' +
+    '@media print{body{padding:20px}@page{margin:0.5in}}' +
+    '</style></head><body>' +
+    '<h1>BCS Score Report — ' + dogName + '</h1>' +
+    '<div class="subtitle">Rubric v' + r.rubric_version + ' &middot; ' + new Date().toLocaleDateString() + '</div>';
+
+  // Score box
+  var gc = r.grade.replace('+', 'p').toLowerCase();
+  html += '<div class="score-box">' +
+    '<div class="big-score">' + r.total_score + '<span class="big-max"> / ' + r.max_score + '</span></div>' +
+    '<div class="grade grade-' + gc.replace('p', 'ap') + '">' + r.grade + '</div>' +
+    '<div class="grade-label">' + r.grade_label + '</div></div>';
+
+  // Dimension table
+  html += '<table><thead><tr><th>Dimension</th><th>Score</th><th>Gap</th></tr></thead><tbody>';
+  r.dimensions.forEach(function(d) {
+    var cls = 's' + d.score;
+    html += '<tr><td>' + d.label + '</td><td class="' + cls + '">' + d.score + '/' + d.max + '</td>' +
+      '<td>' + (d.gap || '—') + '</td></tr>';
+  });
+  html += '</tbody></table>';
+
+  // Top gaps with coaching
+  if (gaps.length > 0) {
+    html += '<div class="gap-section"><div class="gap-title">Top gaps — focus here first</div>';
+    gaps.forEach(function(d) {
+      html += '<div class="gap-item"><div class="gap-dim">' + d.label + '</div>' +
+        '<div class="gap-desc">Score ' + d.score + '/2 — ' + (d.gap || '') + '</div>';
+      d.coaching_actions.forEach(function(a) {
+        html += '<div class="coaching">' + a + '</div>';
+      });
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  html += '<footer>Best Chance Studio — every dog deserves a story that finds their person.</footer>';
+  html += '<script>window.onload=function(){window.print()}<\/script>';
+  html += '</body></html>';
+
+  win.document.write(html);
+  win.document.close();
 }
 
 init();
