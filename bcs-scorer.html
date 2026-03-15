@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCS Scorer</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #F4622A;
+  --gold: #F9A826;
+  --cream: #F9F7F4;
+  --dark: #1E1E2E;
+  --gray: #6B7280;
+  --light-gray: #E5E7EB;
+  --green: #16A34A;
+  --yellow: #CA8A04;
+  --red: #DC2626;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+  padding: 24px 0 16px;
+  border-bottom: 3px solid var(--orange);
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+header .subtitle {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+/* Dog name input */
+.dog-name-section {
+  margin-bottom: 20px;
+}
+
+.dog-name-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid var(--light-gray);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--dark);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.dog-name-input:focus {
+  border-color: var(--orange);
+}
+
+.dog-name-input::placeholder {
+  color: #B0B0B0;
+  font-weight: 400;
+}
+
+/* Dimension scoring */
+.dimension {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.dimension-header {
+  padding: 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dimension-header:active {
+  background: #f5f5f5;
+}
+
+.dim-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.dimension-label {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dim-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.score-indicator {
+  font-size: 13px;
+  font-weight: 700;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--light-gray);
+  color: var(--gray);
+}
+
+.score-indicator.scored { color: #fff; }
+.score-indicator[data-val="0"] { background: var(--red); }
+.score-indicator[data-val="1"] { background: var(--gold); }
+.score-indicator[data-val="2"] { background: var(--green); }
+
+.dimension-chevron {
+  font-size: 14px;
+  color: var(--gray);
+  transition: transform 0.2s;
+}
+
+.dimension.open .dimension-chevron {
+  transform: rotate(180deg);
+}
+
+.dimension-body {
+  display: none;
+  padding: 0 16px 16px;
+}
+
+.dimension.open .dimension-body {
+  display: block;
+}
+
+.dimension-desc {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+/* Score buttons */
+.score-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.score-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 2px solid var(--light-gray);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--dark);
+  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.score-btn:active { background: #f9f9f9; }
+
+.score-btn.selected {
+  border-color: var(--orange);
+  background: #FFF7ED;
+}
+
+.score-btn .btn-badge {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.score-btn .btn-badge[data-score="2"] { background: var(--green); }
+.score-btn .btn-badge[data-score="1"] { background: var(--gold); }
+.score-btn .btn-badge[data-score="0"] { background: var(--red); }
+
+.score-btn .btn-text { padding-top: 3px; }
+
+/* Results section */
+.results {
+  display: none;
+  margin-top: 24px;
+}
+
+.results.visible { display: block; }
+
+.results-header {
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.results-dog-name {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+
+.results-score {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1;
+}
+
+.results-max {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gray);
+}
+
+.results-grade {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.results-grade[data-grade="A+"] { background: #DCFCE7; color: #166534; }
+.results-grade[data-grade="A"]  { background: #D1FAE5; color: #166534; }
+.results-grade[data-grade="B"]  { background: #FEF9C3; color: #854D0E; }
+.results-grade[data-grade="C"]  { background: #FED7AA; color: #9A3412; }
+.results-grade[data-grade="D"]  { background: #FECACA; color: #991B1B; }
+
+.results-label {
+  font-size: 14px;
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+/* Gaps + coaching */
+.gaps-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.gaps-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--orange);
+}
+
+.gap-item {
+  border-top: 1px solid var(--light-gray);
+  padding: 12px 0;
+}
+
+.gap-item:first-of-type { border-top: none; }
+
+.gap-dim-label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.gap-score-text {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+
+.coaching-action {
+  font-size: 13px;
+  color: var(--dark);
+  padding: 4px 0 4px 16px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.coaching-action::before {
+  content: "\2192";
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+}
+
+/* Score again button */
+.reset-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid var(--orange);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--orange);
+  cursor: pointer;
+  text-align: center;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 16px;
+}
+
+.reset-btn:active { background: #FFF7ED; }
+
+/* Export buttons */
+.export-section {
+  margin-bottom: 16px;
+}
+
+.export-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--gray);
+}
+
+.export-row {
+  display: flex;
+  gap: 8px;
+}
+
+.export-btn {
+  flex: 1;
+  padding: 12px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--light-gray);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: center;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s;
+}
+
+.export-btn:active { background: #f9f9f9; }
+.export-btn:hover { border-color: var(--orange); }
+
+.export-btn .export-icon {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+/* Toggle all */
+.toggle-all {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.toggle-all-btn {
+  background: none;
+  border: none;
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle-all-btn:active { opacity: 0.7; }
+
+/* Score bar */
+.score-bar-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.score-bar-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.score-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.score-bar-label {
+  width: 100px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--gray);
+  flex-shrink: 0;
+}
+
+.score-bar-track {
+  flex: 1;
+  height: 8px;
+  background: var(--light-gray);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.score-bar-fill[data-val="0"] { background: var(--red); }
+.score-bar-fill[data-val="1"] { background: var(--gold); }
+.score-bar-fill[data-val="2"] { background: var(--green); }
+
+.score-bar-val {
+  width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 12px;
+  color: var(--gray);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>BCS Scorer</h1>
+    <div class="subtitle">Score a dog's listing across 9 dimensions</div>
+  </header>
+
+  <div class="dog-name-section">
+    <input type="text" class="dog-name-input" id="dogName" placeholder="Dog's name" autocomplete="off">
+  </div>
+
+  <div class="toggle-all" id="toggleAllWrap">
+    <button type="button" class="toggle-all-btn" id="toggleAllBtn">Collapse all</button>
+  </div>
+  <div id="dimensions"></div>
+
+  <div class="results" id="results">
+    <div class="results-header">
+      <div class="results-dog-name" id="resultsDogName"></div>
+      <div class="results-score"><span id="totalScore">0</span><span class="results-max"> / 18</span></div>
+      <div class="results-grade" id="resultsGrade"></div>
+      <div class="results-label" id="resultsLabel"></div>
+    </div>
+
+    <div class="score-bar-section" id="scoreBarSection"></div>
+
+    <div class="gaps-section" id="gapsSection">
+      <div class="gaps-title">Top gaps &mdash; focus here first</div>
+      <div id="gapsList"></div>
+    </div>
+
+    <div class="export-section">
+      <div class="export-title">Download score report</div>
+      <div class="export-row">
+        <button type="button" class="export-btn" onclick="exportJSON()"><span class="export-icon">{}</span>JSON</button>
+        <button type="button" class="export-btn" onclick="exportCSV()"><span class="export-icon">&#x1F4CB;</span>CSV</button>
+        <button type="button" class="export-btn" onclick="exportPDF()"><span class="export-icon">&#x1F4C4;</span>PDF</button>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="resetBtn">Score another dog</button>
+  </div>
+
+  <footer>
+    Best Chance Studio &mdash; every dog deserves a story that finds their person.
+  </footer>
+</div>
+
+<script>
+var RUBRIC = {"version":"1.0.0","max_score":18,"dimensions":[{"id":"personality_hook","label":"Personality Hook","description":"Does the adopter know who this dog IS \u2014 not just breed and age, but personality? Is there one specific moment or detail that makes this dog stick in someone\u2019s mind?","max":2,"weight":1.0,"scores":{"2":"Specific, memorable, only-this-dog detail. Makes you feel something.","1":"Some warmth, but generic. Could describe any dog of this breed.","0":"Age, breed, sex. That\u2019s it."},"coaching_actions":{"score_0":["Ask the foster: \u2018What does this dog do every single morning?\u2019","Ask: \u2018What\u2019s the first thing this dog does when you walk in the door?\u2019","Ask: \u2018What\u2019s something this dog does that you\u2019ve never seen another dog do?\u2019","Ask: \u2018Tell me about the last time this dog made you laugh.\u2019"],"score_1":["The detail is there \u2014 make it the opening line, not buried later","Replace the breed description with the behavior. Lead with the moment.","Name the behavior. \u2018He does this thing...\u2019 is the hook."]}},{"id":"visual_impact","label":"Visual Impact \u2014 Photos","description":"Do the photos make someone stop scrolling? Dog\u2019s face visible? Real light, real expression, real life?","max":2,"weight":1.0,"scores":{"2":"3+ photos: face-on with eye contact, full body, in motion or with a human.","1":"1\u20132 photos, decent quality, but limited angles or expression.","0":"Single shot, blurry, kennel background, dog facing away."},"coaching_actions":{"score_0":["Get on the floor \u2014 eye level with the dog, not looking down","Go outside or near a window. Fluorescent light kills personality.","Wait for eye contact. Don\u2019t take the shot until the dog is looking at the camera.","Take at least 3: face-on, full body, one in motion or with a human"],"score_1":["The photos are decent \u2014 add one action shot that shows personality","Reshoot the lead photo in natural light with eye contact"]}},{"id":"video_presence","label":"Video Presence","description":"Does a video exist? Does it make you feel something in the first 10 seconds?","max":2,"weight":1.0,"scores":{"2":"Video exists, dog\u2019s personality is visible, authentic not staged, emotionally engaging.","1":"Video exists but opens on a wall, or is low-energy, or too long with no hook.","0":"No video."},"coaching_actions":{"score_0":["Record 60 seconds of the behavior you described in the story \u2014 show it, don\u2019t say it","Start the camera before the dog knows it\u2019s rolling. Capture what they actually do.","You don\u2019t need editing. One uncut authentic moment beats a produced clip."],"score_1":["The video exists but needs a hook in the first 5 seconds \u2014 lead with the behavior","Trim to under 90 seconds. If it doesn\u2019t make you feel something, cut it."]}},{"id":"compatibility_clarity","label":"Compatibility Clarity","description":"Can the RIGHT adopter self-identify immediately? And the wrong adopter self-select out? Kids, other dogs, cats, energy level, home type \u2014 stated clearly and honestly.","max":2,"weight":1.0,"scores":{"2":"Clear, honest, specific. Right adopter knows immediately. Wrong adopter knows too.","1":"Some compatibility noted, but incomplete or vague.","0":"Nothing stated \u2014 adopter has to guess."},"coaching_actions":{"score_0":["State clearly: good with kids? Other dogs? Cats? Energy level? Home type?","Think about who SHOULDN\u2019T adopt this dog \u2014 say that honestly too","A wrong adopter who self-selects out saves everyone time"],"score_1":["Good start \u2014 add energy level. High/medium/low. Adopters need to picture their life.","Add home type preference if relevant \u2014 apartment vs. yard, active vs. quiet"]}},{"id":"foster_voice","label":"Foster Voice","description":"Does this listing feel like a real person who knows and loves this dog \u2014 or does it feel like a form was filled out?","max":2,"weight":1.0,"scores":{"2":"Personal, warm, specific details only the foster would know. You can feel the relationship.","1":"Some personality in the writing, but still leans generic or template-like.","0":"Clinical, factual, vet-record language. No human warmth."},"coaching_actions":{"score_0":["Write one sentence only you could write about this dog","What would you tell a friend who asked what this dog is really like?","Read it back out loud. If it sounds like a brochure, start over."],"score_1":["Warmer \u2014 but one more specific detail from your time with this dog makes it land","What\u2019s something this dog did this week that made you smile?"]}},{"id":"no_surprises","label":"No Surprises","description":"Are any challenges or special needs communicated clearly \u2014 without being scary or unnecessarily disqualifying?","max":2,"weight":1.0,"scores":{"2":"Honest, specific, reframed positively. Right home recognizes themselves.","1":"Challenges mentioned but framed in a way that sounds worse than it is.","0":"Challenges omitted entirely, OR framed so negatively the dog sounds unadoptable."},"coaching_actions":{"score_0":["List any challenges honestly \u2014 and then reframe each one positively","The right adopter for a high-energy dog is excited by that, not scared. Frame for them.","\u2018Only dog\u2019 is not a flaw \u2014 it\u2019s a match requirement. Own it."],"score_1":["The challenge is mentioned \u2014 now reframe it. What kind of home would actually love this about the dog?"]}},{"id":"story_first_gate","label":"Story-First Gate","description":"Is a coached intro video ready? Can someone feel this dog before they ever request a live meet?","max":2,"weight":1.0,"scores":{"2":"Short, coached, warm intro video ready \u2014 dog\u2019s personality visible in under 60 seconds.","1":"Some intro video exists but uncoached, low energy, or too long.","0":"No intro video \u2014 adopters arrive cold."},"coaching_actions":{"score_0":["Record a 60-second intro video before any live meets \u2014 adopters should feel this dog before they meet them","Open the camera. Say the dog\u2019s name. Let them come to you. That\u2019s the video.","This doesn\u2019t need to be good. It needs to be real."],"score_1":["The video exists \u2014 coach the presenter to use it as their opening in every live meet"]}},{"id":"presenter_readiness","label":"Presenter Readiness","description":"Does the presenter know this dog? Have they read the coaching packet? Do they know the strongest asset and the likely questions?","max":2,"weight":1.0,"scores":{"2":"Presenter can speak to specific moments, addresses compatibility naturally, knows what to lead with.","1":"Presenter knows the basics but is likely to read from the bio or get caught off guard.","0":"Presenter meeting this dog for the first time on camera."},"coaching_actions":{"score_0":["Read the coaching packet before the live meet \u2014 know the strongest moment, lead with it","Practice the opening line out loud: \u2018The first thing you should know about [name] is...\u2019","Know the likely compatibility questions before they\u2019re asked"],"score_1":["Ready \u2014 remind the presenter to let the adopter talk. Listen for near-miss signals."]}},{"id":"family_vision","label":"Family Vision","description":"After seeing this listing \u2014 photos, video, description \u2014 can the adopter picture this dog in their life? Not \u2018this seems like a nice dog\u2019 but \u2018that\u2019s my dog.\u2019","max":2,"weight":1.0,"scores":{"2":"Listing creates a picture. You can see the dog at the end of your bed, in your car, on your couch.","1":"Listing is warm but stays abstract. Describes the dog without making you feel the dog.","0":"Listing is invisible. No image forms. No feeling."},"coaching_actions":{"score_0":["Close the description with a picture \u2014 the dog in the adopter\u2019s specific life, not a generic home","End with a scene: morning coffee, end of the bed, hiking trail, couch on Sunday","If the adopter can\u2019t picture the dog in their life after reading this, the story isn\u2019t done"],"score_1":["The picture is forming \u2014 sharpen the scene. Specific beats generic every time."]}}],"grade_thresholds":{"A+":{"min":16,"max":18,"label":"Broadcast ready. Present this dog now."},"A":{"min":12,"max":15,"label":"Strong. Minor gaps \u2014 coach on 1\u20132 dimensions before live."},"B":{"min":8,"max":11,"label":"Decent foundation. Real coaching needed on 3\u20134 dimensions."},"C":{"min":5,"max":7,"label":"Significant gaps. Don\u2019t present yet \u2014 story needs work."},"D":{"min":0,"max":4,"label":"Start over. This dog is invisible right now."}}};
+
+var scores = {};
+
+var allExpanded = true;
+
+function init() {
+  renderDimensions();
+  document.getElementById('resetBtn').addEventListener('click', reset);
+  document.getElementById('toggleAllBtn').addEventListener('click', toggleAll);
+}
+
+function toggleAll() {
+  allExpanded = !allExpanded;
+  var dims = document.querySelectorAll('#dimensions .dimension');
+  dims.forEach(function(el) {
+    if (allExpanded) { el.classList.add('open'); }
+    else { el.classList.remove('open'); }
+  });
+  document.getElementById('toggleAllBtn').textContent = allExpanded ? 'Collapse all' : 'Expand all';
+}
+
+function renderDimensions() {
+  var container = document.getElementById('dimensions');
+  container.innerHTML = '';
+
+  RUBRIC.dimensions.forEach(function(dim) {
+    var el = document.createElement('div');
+    el.className = 'dimension open';
+    el.id = 'dim-' + dim.id;
+
+    var header = document.createElement('div');
+    header.className = 'dimension-header';
+    header.innerHTML =
+      '<div class="dim-left"><span class="dimension-label">' + dim.label + '</span></div>' +
+      '<div class="dim-right">' +
+      '<span class="score-indicator" id="indicator-' + dim.id + '">\u2013</span>' +
+      '<span class="dimension-chevron">\u25BC</span></div>';
+    header.addEventListener('click', function() {
+      el.classList.toggle('open');
+    });
+
+    var body = document.createElement('div');
+    body.className = 'dimension-body';
+
+    var desc = document.createElement('div');
+    desc.className = 'dimension-desc';
+    desc.textContent = dim.description;
+    body.appendChild(desc);
+
+    var opts = document.createElement('div');
+    opts.className = 'score-options';
+
+    [2, 1, 0].forEach(function(s) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'score-btn';
+      btn.setAttribute('data-dim', dim.id);
+      btn.setAttribute('data-score', s);
+      btn.innerHTML =
+        '<span class="btn-badge" data-score="' + s + '">' + s + '</span>' +
+        '<span class="btn-text">' + dim.scores[s] + '</span>';
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        selectScore(dim.id, s);
+      });
+      opts.appendChild(btn);
+    });
+
+    body.appendChild(opts);
+    el.appendChild(header);
+    el.appendChild(body);
+    container.appendChild(el);
+  });
+}
+
+function selectScore(dimId, val) {
+  scores[dimId] = val;
+
+  // Update button selection state
+  var dimEl = document.getElementById('dim-' + dimId);
+  var btns = dimEl.querySelectorAll('.score-btn');
+  btns.forEach(function(b) {
+    b.classList.toggle('selected', parseInt(b.getAttribute('data-score')) === val);
+  });
+
+  // Update indicator
+  var indicator = document.getElementById('indicator-' + dimId);
+  indicator.textContent = val;
+  indicator.className = 'score-indicator scored';
+  indicator.setAttribute('data-val', val);
+
+  // Scroll to next unscored dimension
+  setTimeout(function() {
+    var nextUnscored = RUBRIC.dimensions.find(function(d) {
+      return scores[d.id] === undefined;
+    });
+    if (nextUnscored) {
+      var nextEl = document.getElementById('dim-' + nextUnscored.id);
+      nextEl.classList.add('open');
+      nextEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 200);
+
+  checkComplete();
+}
+
+function checkComplete() {
+  var allScored = RUBRIC.dimensions.every(function(d) {
+    return scores[d.id] !== undefined;
+  });
+
+  if (allScored) {
+    setTimeout(showResults, 300);
+  }
+}
+
+function getGrade(total) {
+  var grades = ['A+', 'A', 'B', 'C', 'D'];
+  for (var i = 0; i < grades.length; i++) {
+    var t = RUBRIC.grade_thresholds[grades[i]];
+    if (total >= t.min && total <= t.max) {
+      return { grade: grades[i], label: t.label };
+    }
+  }
+  return { grade: 'D', label: RUBRIC.grade_thresholds['D'].label };
+}
+
+function showResults() {
+  var total = 0;
+  RUBRIC.dimensions.forEach(function(d) {
+    total += scores[d.id];
+  });
+
+  var gradeInfo = getGrade(total);
+  var dogName = document.getElementById('dogName').value.trim() || 'This dog';
+
+  // Header
+  document.getElementById('resultsDogName').textContent = dogName;
+  document.getElementById('totalScore').textContent = total;
+  var gradeEl = document.getElementById('resultsGrade');
+  gradeEl.textContent = gradeInfo.grade;
+  gradeEl.setAttribute('data-grade', gradeInfo.grade);
+  document.getElementById('resultsLabel').textContent = gradeInfo.label;
+
+  // Score bars
+  var barSection = document.getElementById('scoreBarSection');
+  barSection.innerHTML = '<div class="score-bar-title">Score by dimension</div>';
+  RUBRIC.dimensions.forEach(function(d) {
+    var val = scores[d.id];
+    var pct = (val / d.max) * 100;
+    var row = document.createElement('div');
+    row.className = 'score-bar-row';
+    row.innerHTML =
+      '<span class="score-bar-label">' + d.label.replace(/ \u2014.*/, '') + '</span>' +
+      '<div class="score-bar-track"><div class="score-bar-fill" data-val="' + val + '" style="width:' + pct + '%"></div></div>' +
+      '<span class="score-bar-val">' + val + '</span>';
+    barSection.appendChild(row);
+  });
+
+  // Gaps — dimensions scored < max, sorted lowest first, top 3
+  var gaps = RUBRIC.dimensions
+    .filter(function(d) { return scores[d.id] < d.max; })
+    .sort(function(a, b) { return scores[a.id] - scores[b.id]; })
+    .slice(0, 3);
+
+  var gapsList = document.getElementById('gapsList');
+  gapsList.innerHTML = '';
+
+  if (gaps.length === 0) {
+    gapsList.innerHTML = '<div style="padding:8px 0;color:var(--green);font-weight:600;">No gaps \u2014 this listing is broadcast ready.</div>';
+  } else {
+    gaps.forEach(function(dim) {
+      var val = scores[dim.id];
+      var item = document.createElement('div');
+      item.className = 'gap-item';
+
+      var label = document.createElement('div');
+      label.className = 'gap-dim-label';
+      label.textContent = dim.label;
+      item.appendChild(label);
+
+      var scoreText = document.createElement('div');
+      scoreText.className = 'gap-score-text';
+      scoreText.textContent = 'Score ' + val + '/2 \u2014 ' + dim.scores[val];
+      item.appendChild(scoreText);
+
+      // Coaching actions for this score
+      var key = 'score_' + val;
+      if (dim.coaching_actions[key]) {
+        dim.coaching_actions[key].forEach(function(action) {
+          var a = document.createElement('div');
+          a.className = 'coaching-action';
+          a.textContent = action;
+          item.appendChild(a);
+        });
+      }
+
+      gapsList.appendChild(item);
+    });
+  }
+
+  // Show results, hide form
+  document.getElementById('dimensions').style.display = 'none';
+  document.querySelector('.dog-name-section').style.display = 'none';
+  document.getElementById('toggleAllWrap').style.display = 'none';
+  document.getElementById('results').classList.add('visible');
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function reset() {
+  scores = {};
+  allExpanded = true;
+  document.getElementById('dogName').value = '';
+  document.getElementById('dimensions').style.display = '';
+  document.querySelector('.dog-name-section').style.display = '';
+  document.getElementById('toggleAllWrap').style.display = '';
+  document.getElementById('toggleAllBtn').textContent = 'Collapse all';
+  document.getElementById('results').classList.remove('visible');
+  renderDimensions();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// --- Export helpers ---
+
+function buildScoreResult() {
+  var total = 0;
+  RUBRIC.dimensions.forEach(function(d) { total += scores[d.id]; });
+  var gradeInfo = getGrade(total);
+  var dogName = document.getElementById('dogName').value.trim() || 'Unknown';
+  var dims = RUBRIC.dimensions.map(function(d) {
+    var val = scores[d.id];
+    return {
+      id: d.id,
+      label: d.label,
+      score: val,
+      max: d.max,
+      gap: val < d.max ? d.scores[val] : null,
+      coaching_actions: val < d.max && d.coaching_actions['score_' + val] ? d.coaching_actions['score_' + val] : []
+    };
+  });
+  var priorityGaps = dims
+    .filter(function(d) { return d.score < d.max; })
+    .sort(function(a, b) { return a.score - b.score; })
+    .slice(0, 3)
+    .map(function(d) { return d.id; });
+
+  return {
+    dog_name: dogName,
+    rubric_version: RUBRIC.version,
+    scored_at: new Date().toISOString(),
+    total_score: total,
+    max_score: RUBRIC.max_score,
+    grade: gradeInfo.grade,
+    grade_label: gradeInfo.label,
+    dimensions: dims,
+    priority_gaps: priorityGaps
+  };
+}
+
+function downloadFile(filename, content, mime) {
+  var blob = new Blob([content], { type: mime });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function exportJSON() {
+  var result = buildScoreResult();
+  var filename = 'bcs-score-' + result.dog_name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.json';
+  downloadFile(filename, JSON.stringify(result, null, 2), 'application/json');
+}
+
+function exportCSV() {
+  var r = buildScoreResult();
+  var rows = [['Dimension', 'Score', 'Max', 'Gap', 'Coaching Actions']];
+  r.dimensions.forEach(function(d) {
+    rows.push([
+      d.label,
+      d.score,
+      d.max,
+      d.gap || '',
+      d.coaching_actions.join(' | ')
+    ]);
+  });
+  rows.push([]);
+  rows.push(['Dog', r.dog_name]);
+  rows.push(['Total Score', r.total_score + ' / ' + r.max_score]);
+  rows.push(['Grade', r.grade + ' — ' + r.grade_label]);
+  rows.push(['Priority Gaps', r.priority_gaps.join(', ')]);
+  rows.push(['Rubric Version', r.rubric_version]);
+  rows.push(['Scored At', r.scored_at]);
+
+  var csv = rows.map(function(row) {
+    return row.map(function(cell) {
+      var s = String(cell);
+      if (s.indexOf(',') !== -1 || s.indexOf('"') !== -1 || s.indexOf('\n') !== -1) {
+        return '"' + s.replace(/"/g, '""') + '"';
+      }
+      return s;
+    }).join(',');
+  }).join('\n');
+
+  var filename = 'bcs-score-' + r.dog_name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.csv';
+  downloadFile(filename, csv, 'text/csv');
+}
+
+function exportPDF() {
+  var r = buildScoreResult();
+  var dogName = r.dog_name;
+  var gaps = r.dimensions
+    .filter(function(d) { return d.score < d.max; })
+    .sort(function(a, b) { return a.score - b.score; })
+    .slice(0, 3);
+
+  var win = window.open('', '_blank');
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>BCS Score — ' + dogName + '</title>' +
+    '<style>' +
+    'body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#1E1E2E;max-width:700px;margin:0 auto;padding:40px 24px;line-height:1.5}' +
+    'h1{font-size:24px;margin:0 0 4px;color:#F4622A}' +
+    '.subtitle{color:#6B7280;font-size:14px;margin-bottom:24px}' +
+    '.score-box{text-align:center;padding:24px;border:2px solid #E5E7EB;border-radius:12px;margin-bottom:24px}' +
+    '.big-score{font-size:48px;font-weight:800}' +
+    '.big-max{font-size:18px;color:#6B7280}' +
+    '.grade{display:inline-block;padding:4px 16px;border-radius:8px;font-size:20px;font-weight:700;margin-top:8px}' +
+    '.grade-ap{background:#DCFCE7;color:#166534}.grade-a{background:#D1FAE5;color:#166534}' +
+    '.grade-b{background:#FEF9C3;color:#854D0E}.grade-c{background:#FED7AA;color:#9A3412}' +
+    '.grade-d{background:#FECACA;color:#991B1B}' +
+    '.grade-label{color:#6B7280;font-size:14px;margin-top:8px}' +
+    'table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:14px}' +
+    'th{text-align:left;padding:8px;border-bottom:2px solid #E5E7EB;color:#6B7280;font-size:12px;text-transform:uppercase}' +
+    'td{padding:8px;border-bottom:1px solid #E5E7EB}' +
+    '.s0{color:#DC2626;font-weight:700}.s1{color:#CA8A04;font-weight:700}.s2{color:#16A34A;font-weight:700}' +
+    '.gap-section{margin-bottom:24px}' +
+    '.gap-title{font-size:16px;font-weight:700;color:#F4622A;margin-bottom:12px}' +
+    '.gap-item{padding:12px 0;border-top:1px solid #E5E7EB}' +
+    '.gap-dim{font-weight:600;font-size:15px;margin-bottom:4px}' +
+    '.gap-desc{color:#6B7280;font-size:13px;margin-bottom:8px}' +
+    '.coaching{font-size:13px;padding:2px 0 2px 16px;position:relative}' +
+    '.coaching::before{content:"\\2192";position:absolute;left:0;color:#F4622A}' +
+    'footer{text-align:center;color:#6B7280;font-size:11px;margin-top:32px;padding-top:16px;border-top:1px solid #E5E7EB}' +
+    '@media print{body{padding:20px}@page{margin:0.5in}}' +
+    '</style></head><body>' +
+    '<h1>BCS Score Report — ' + dogName + '</h1>' +
+    '<div class="subtitle">Rubric v' + r.rubric_version + ' &middot; ' + new Date().toLocaleDateString() + '</div>';
+
+  // Score box
+  var gc = r.grade.replace('+', 'p').toLowerCase();
+  html += '<div class="score-box">' +
+    '<div class="big-score">' + r.total_score + '<span class="big-max"> / ' + r.max_score + '</span></div>' +
+    '<div class="grade grade-' + gc.replace('p', 'ap') + '">' + r.grade + '</div>' +
+    '<div class="grade-label">' + r.grade_label + '</div></div>';
+
+  // Dimension table
+  html += '<table><thead><tr><th>Dimension</th><th>Score</th><th>Gap</th></tr></thead><tbody>';
+  r.dimensions.forEach(function(d) {
+    var cls = 's' + d.score;
+    html += '<tr><td>' + d.label + '</td><td class="' + cls + '">' + d.score + '/' + d.max + '</td>' +
+      '<td>' + (d.gap || '—') + '</td></tr>';
+  });
+  html += '</tbody></table>';
+
+  // Top gaps with coaching
+  if (gaps.length > 0) {
+    html += '<div class="gap-section"><div class="gap-title">Top gaps — focus here first</div>';
+    gaps.forEach(function(d) {
+      html += '<div class="gap-item"><div class="gap-dim">' + d.label + '</div>' +
+        '<div class="gap-desc">Score ' + d.score + '/2 — ' + (d.gap || '') + '</div>';
+      d.coaching_actions.forEach(function(a) {
+        html += '<div class="coaching">' + a + '</div>';
+      });
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  html += '<footer>Best Chance Studio — every dog deserves a story that finds their person.</footer>';
+  html += '<script>window.onload=function(){window.print()}<\/script>';
+  html += '</body></html>';
+
+  win.document.write(html);
+  win.document.close();
+}
+
+init();
+</script>
+</body>
+</html>
