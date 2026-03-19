@@ -29,7 +29,7 @@ struct ResultsView: View {
 
                     Text(gradeLabel)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.bcsText.opacity(0.6))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }

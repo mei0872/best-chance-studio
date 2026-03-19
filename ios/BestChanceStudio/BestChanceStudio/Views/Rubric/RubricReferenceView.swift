@@ -15,7 +15,7 @@ struct RubricReferenceView: View {
                     // Version info
                     Text("Rubric v\(config.version) · 9 dimensions · max \(config.maxScore)")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.bcsText.opacity(0.5))
 
                     // Dimension cards
                     ForEach(Array(config.dimensions.enumerated()), id: \.element.id) { index, dimension in

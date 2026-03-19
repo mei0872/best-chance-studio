@@ -22,17 +22,17 @@ struct RubricDimensionCardView: View {
 
                     Text(dimension.label)
                         .font(.headline)
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(Color.bcsText)
 
                     Spacer()
 
                     Text("0–\(dimension.max)")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.bcsText.opacity(0.6))
 
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.bcsText.opacity(0.4))
                 }
                 .padding()
             }
@@ -43,7 +43,7 @@ struct RubricDimensionCardView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Text(dimension.description)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.bcsText.opacity(0.6))
 
                     // Score levels
                     ForEach([2, 1, 0], id: \.self) { score in
@@ -57,6 +57,7 @@ struct RubricDimensionCardView: View {
 
                                 Text(dimension.scores[String(score)] ?? "")
                                     .font(.subheadline)
+                                    .foregroundStyle(Color.bcsText)
                             }
 
                             // Coaching actions for this score level

@@ -24,17 +24,17 @@ struct SessionDetailView: View {
 
                     Text(session.gradeLabel)
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.bcsText.opacity(0.6))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
 
                     Text("Scored \(session.scoredAt, style: .date) at \(session.scoredAt, style: .time)")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.bcsText.opacity(0.6))
 
                     Text("Rubric v\(session.rubricVersion)")
                         .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(Color.bcsText.opacity(0.4))
                 }
                 .padding(.top)
 

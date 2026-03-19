@@ -26,7 +26,7 @@ struct ScoreButtonView: View {
 
                 Text(label)
                     .font(.subheadline)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(Color.bcsText)
                     .multilineTextAlignment(.leading)
             }
             .padding(12)

@@ -11,7 +11,7 @@ struct CoachingActionRow: View {
                 .padding(.top, 3)
             Text(action)
                 .font(.subheadline)
-                .foregroundStyle(.primary)
+                .foregroundStyle(Color.bcsText)
         }
     }
 }

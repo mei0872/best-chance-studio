@@ -39,7 +39,7 @@ struct ScorerFlowView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("Dog's Name")
                             .font(.subheadline.bold())
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(Color.bcsText.opacity(0.6))
                         TextField("Enter dog's name", text: $viewModel.dogName)
                             .textFieldStyle(.roundedBorder)
                             .font(.body)
@@ -55,7 +55,7 @@ struct ScorerFlowView: View {
                         HStack {
                             Text("\(scored)/\(total) dimensions scored")
                                 .font(.subheadline)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Color.bcsText.opacity(0.6))
                             Spacer()
                             if scored > 0 && scored < total {
                                 Button("Expand All") {
