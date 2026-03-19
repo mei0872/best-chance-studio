@@ -22,17 +22,17 @@ struct RubricDimensionCardView: View {
 
                     Text(dimension.label)
                         .font(.headline)
-                        .foregroundStyle(Color.bcsText)
+                        .foregroundStyle(.primary)
 
                     Spacer()
 
                     Text("0–\(dimension.max)")
                         .font(.subheadline)
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
 
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundStyle(Color.bcsText.opacity(0.4))
+                        .foregroundStyle(.secondary)
                 }
                 .padding()
             }
@@ -43,7 +43,7 @@ struct RubricDimensionCardView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Text(dimension.description)
                         .font(.subheadline)
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
 
                     // Score levels
                     ForEach([2, 1, 0], id: \.self) { score in
@@ -57,7 +57,7 @@ struct RubricDimensionCardView: View {
 
                                 Text(dimension.scores[String(score)] ?? "")
                                     .font(.subheadline)
-                                    .foregroundStyle(Color.bcsText)
+                                    .foregroundStyle(.primary)
                             }
 
                             // Coaching actions for this score level
@@ -79,7 +79,7 @@ struct RubricDimensionCardView: View {
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .background(Color(.systemBackground))
+        .background(Color.bcsCardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .black.opacity(0.05), radius: 2, y: 1)
     }

@@ -18,18 +18,18 @@ struct ResultsView: View {
                     if !dogName.isEmpty {
                         Text(dogName)
                             .font(.title2.bold())
-                            .foregroundStyle(Color.bcsDark)
+                            .foregroundStyle(.primary)
                     }
 
                     Text("\(totalScore)/\(config.maxScore)")
                         .font(.system(size: 48, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.bcsDark)
+                        .foregroundStyle(.primary)
 
                     GradeBadgeView(grade: grade, size: .large)
 
                     Text(gradeLabel)
                         .font(.subheadline)
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }
@@ -39,7 +39,7 @@ struct ResultsView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Score Breakdown")
                         .font(.title3.bold())
-                        .foregroundStyle(Color.bcsDark)
+                        .foregroundStyle(.primary)
 
                     ForEach(config.dimensions) { dim in
                         ScoreBarView(
@@ -67,7 +67,7 @@ struct ResultsView: View {
                 VStack(spacing: 12) {
                     Text("Export")
                         .font(.title3.bold())
-                        .foregroundStyle(Color.bcsDark)
+                        .foregroundStyle(.primary)
 
                     HStack(spacing: 12) {
                         exportButton(label: "JSON", icon: "doc.text") {

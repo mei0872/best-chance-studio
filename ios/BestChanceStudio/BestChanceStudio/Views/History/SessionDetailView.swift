@@ -14,27 +14,27 @@ struct SessionDetailView: View {
                 VStack(spacing: 8) {
                     Text(dog.name)
                         .font(.title2.bold())
-                        .foregroundStyle(Color.bcsDark)
+                        .foregroundStyle(.primary)
 
                     Text("\(session.totalScore)/\(session.maxScore)")
                         .font(.system(size: 48, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.bcsDark)
+                        .foregroundStyle(.primary)
 
                     GradeBadgeView(grade: session.grade, size: .large)
 
                     Text(session.gradeLabel)
                         .font(.subheadline)
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
 
                     Text("Scored \(session.scoredAt, style: .date) at \(session.scoredAt, style: .time)")
                         .font(.caption)
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
 
                     Text("Rubric v\(session.rubricVersion)")
                         .font(.caption2)
-                        .foregroundStyle(Color.bcsText.opacity(0.4))
+                        .foregroundStyle(.tertiary)
                 }
                 .padding(.top)
 
@@ -42,7 +42,7 @@ struct SessionDetailView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Score Breakdown")
                         .font(.title3.bold())
-                        .foregroundStyle(Color.bcsDark)
+                        .foregroundStyle(.primary)
 
                     ForEach(config.dimensions) { dim in
                         let dimScore = session.dimensionScores.first { $0.dimensionId == dim.id }
@@ -98,7 +98,7 @@ struct SessionDetailView: View {
             }
             .padding()
         }
-        .background(Color.bcsCream)
+        .background(Color.bcsPageBackground)
         .navigationTitle(dog.name)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showShareSheet) {

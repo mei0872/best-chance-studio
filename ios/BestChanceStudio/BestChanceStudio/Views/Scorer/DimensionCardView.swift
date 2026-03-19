@@ -21,7 +21,7 @@ struct DimensionCardView: View {
 
                     Text(dimension.label)
                         .font(.headline)
-                        .foregroundStyle(Color.bcsText)
+                        .foregroundStyle(.primary)
 
                     Spacer()
 
@@ -33,7 +33,7 @@ struct DimensionCardView: View {
 
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundStyle(Color.bcsText.opacity(0.4))
+                        .foregroundStyle(.secondary)
                 }
                 .padding()
             }
@@ -45,7 +45,7 @@ struct DimensionCardView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(dimension.description)
                         .font(.subheadline)
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
                         .padding(.horizontal)
 
                     // Score buttons (2, 1, 0 — highest first)
@@ -63,7 +63,7 @@ struct DimensionCardView: View {
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
         }
-        .background(Color(.systemBackground))
+        .background(Color.bcsCardBackground)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .black.opacity(0.05), radius: 2, y: 1)
     }

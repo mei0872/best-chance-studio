@@ -39,7 +39,7 @@ struct ScorerFlowView: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("Dog's Name")
                             .font(.subheadline.bold())
-                            .foregroundStyle(Color.bcsText.opacity(0.6))
+                            .foregroundStyle(.secondary)
                         TextField("Enter dog's name", text: $viewModel.dogName)
                             .textFieldStyle(.roundedBorder)
                             .font(.body)
@@ -55,7 +55,7 @@ struct ScorerFlowView: View {
                         HStack {
                             Text("\(scored)/\(total) dimensions scored")
                                 .font(.subheadline)
-                                .foregroundStyle(Color.bcsText.opacity(0.6))
+                                .foregroundStyle(.secondary)
                             Spacer()
                             if scored > 0 && scored < total {
                                 Button("Expand All") {
@@ -100,7 +100,7 @@ struct ScorerFlowView: View {
                 }
                 .padding(.bottom, 32)
             }
-            .background(Color.bcsCream)
+            .background(Color.bcsPageBackground)
         }
     }
 
@@ -113,7 +113,7 @@ struct ScorerFlowView: View {
             grade: gradeResult.grade,
             gradeLabel: gradeResult.label
         )
-        .background(Color.bcsCream)
+        .background(Color.bcsPageBackground)
         .onAppear {
             viewModel.saveSession(config: config, modelContext: modelContext)
         }

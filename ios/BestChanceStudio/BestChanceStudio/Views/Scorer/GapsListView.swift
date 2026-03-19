@@ -8,12 +8,12 @@ struct GapsListView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Priority Gaps")
                 .font(.title3.bold())
-                .foregroundStyle(Color.bcsDark)
+                .foregroundStyle(.primary)
 
             if gaps.isEmpty {
                 Text("No gaps — perfect score!")
                     .font(.subheadline)
-                    .foregroundStyle(Color.bcsText.opacity(0.6))
+                    .foregroundStyle(.secondary)
             } else {
                 ForEach(gaps) { dim in
                     let score = scores[dim.id] ?? 0
@@ -24,7 +24,7 @@ struct GapsListView: View {
                         HStack {
                             Text(dim.label)
                                 .font(.headline)
-                                .foregroundStyle(Color.bcsText)
+                                .foregroundStyle(.primary)
                             Spacer()
                             Text("\(score)/\(dim.max)")
                                 .font(.subheadline.bold())
@@ -34,7 +34,7 @@ struct GapsListView: View {
                         if let desc = dim.scores[String(score)] {
                             Text(desc)
                                 .font(.subheadline)
-                                .foregroundStyle(Color.bcsText.opacity(0.6))
+                                .foregroundStyle(.secondary)
                         }
 
                         ForEach(actions, id: \.self) { action in

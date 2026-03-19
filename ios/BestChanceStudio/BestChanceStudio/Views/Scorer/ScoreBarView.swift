@@ -9,7 +9,7 @@ struct ScoreBarView: View {
         HStack(spacing: 12) {
             Text(label)
                 .font(.subheadline)
-                .foregroundStyle(Color.bcsText)
+                .foregroundStyle(.primary)
                 .frame(width: 140, alignment: .leading)
                 .lineLimit(1)
 
@@ -27,7 +27,7 @@ struct ScoreBarView: View {
 
             Text("\(score)/\(maxScore)")
                 .font(.subheadline.monospacedDigit())
-                .foregroundStyle(Color.bcsText.opacity(0.6))
+                .foregroundStyle(.secondary)
                 .frame(width: 30, alignment: .trailing)
         }
         .accessibilityElement(children: .combine)

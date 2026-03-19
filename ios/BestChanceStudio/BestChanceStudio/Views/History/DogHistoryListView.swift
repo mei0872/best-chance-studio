@@ -42,7 +42,7 @@ struct DogHistoryListView: View {
                 if let session = dog.latestSession {
                     Text(session.scoredAt, style: .date)
                         .font(.caption)
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
                 }
             }
 
@@ -52,7 +52,7 @@ struct DogHistoryListView: View {
                 HStack(spacing: 8) {
                     Text("\(session.totalScore)/\(session.maxScore)")
                         .font(.subheadline.monospacedDigit())
-                        .foregroundStyle(Color.bcsText.opacity(0.6))
+                        .foregroundStyle(.secondary)
                     GradeBadgeView(grade: session.grade, size: .small)
                 }
             }
