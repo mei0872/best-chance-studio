@@ -4,8 +4,12 @@ struct SessionDetailView: View {
     let dog: Dog
     let session: ScoringSession
     @Environment(\.rubricConfig) private var config
-    @State private var showShareSheet = false
-    @State private var shareItems: [Any] = []
+    @State private var jsonFileURL: URL?
+    @State private var csvFileURL: URL?
+
+    private var scores: [String: Int] {
+        Dictionary(uniqueKeysWithValues: session.dimensionScores.map { ($0.dimensionId, $0.score) })
+    }
 
     var body: some View {
         ScrollView {
@@ -57,9 +61,6 @@ struct SessionDetailView: View {
                 .background(Color(.systemGray6), in: RoundedRectangle(cornerRadius: 12))
 
                 // Gaps
-                let scores = Dictionary(
-                    uniqueKeysWithValues: session.dimensionScores.map { ($0.dimensionId, $0.score) }
-                )
                 let gaps = config.dimensions
                     .filter { (scores[$0.id] ?? 0) < $0.max }
                     .sorted { (scores[$0.id] ?? 0) < (scores[$1.id] ?? 0) }
@@ -72,26 +73,26 @@ struct SessionDetailView: View {
 
                 // Export
                 HStack(spacing: 12) {
-                    Button {
-                        exportJSON(scores: scores)
-                    } label: {
-                        Label("JSON", systemImage: "doc.text")
-                            .font(.subheadline.bold())
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 12)
-                            .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 10))
-                            .foregroundStyle(.white)
+                    if let url = jsonFileURL {
+                        ShareLink(item: url) {
+                            Label("JSON", systemImage: "doc.text")
+                                .font(.subheadline.bold())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 12)
+                                .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 10))
+                                .foregroundStyle(.white)
+                        }
                     }
 
-                    Button {
-                        exportCSV(scores: scores)
-                    } label: {
-                        Label("CSV", systemImage: "tablecells")
-                            .font(.subheadline.bold())
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 12)
-                            .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 10))
-                            .foregroundStyle(.white)
+                    if let url = csvFileURL {
+                        ShareLink(item: url) {
+                            Label("CSV", systemImage: "tablecells")
+                                .font(.subheadline.bold())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 12)
+                                .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 10))
+                                .foregroundStyle(.white)
+                        }
                     }
                 }
                 .padding()
@@ -101,29 +102,25 @@ struct SessionDetailView: View {
         .background(Color.bcsPageBackground)
         .navigationTitle(dog.name)
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showShareSheet) {
-            ShareSheet(items: shareItems)
+        .onAppear {
+            prepareExportFiles()
         }
     }
 
-    private func exportJSON(scores: [String: Int]) {
-        guard let data = ExportViewModel.buildJSON(
+    private func prepareExportFiles() {
+        let name = dog.name.lowercased().replacingOccurrences(of: " ", with: "-")
+
+        if let data = ExportViewModel.buildJSON(
             dogName: dog.name,
             scores: scores,
             totalScore: session.totalScore,
             grade: session.grade,
             gradeLabel: session.gradeLabel,
             config: config
-        ) else { return }
-
-        let name = dog.name.lowercased().replacingOccurrences(of: " ", with: "-")
-        if let url = ExportViewModel.writeTempFile(name: name, extension: "json", content: data) {
-            shareItems = [url]
-            showShareSheet = true
+        ) {
+            jsonFileURL = ExportViewModel.writeTempFile(name: name, extension: "json", content: data)
         }
-    }
 
-    private func exportCSV(scores: [String: Int]) {
         let csv = ExportViewModel.buildCSV(
             dogName: dog.name,
             scores: scores,
@@ -131,10 +128,6 @@ struct SessionDetailView: View {
             grade: session.grade,
             config: config
         )
-        let name = dog.name.lowercased().replacingOccurrences(of: " ", with: "-")
-        if let url = ExportViewModel.writeTempFile(name: name, extension: "csv", content: csv) {
-            shareItems = [url]
-            showShareSheet = true
-        }
+        csvFileURL = ExportViewModel.writeTempFile(name: name, extension: "csv", content: csv)
     }
 }

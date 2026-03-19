@@ -7,8 +7,8 @@ struct ResultsView: View {
     let grade: String
     let gradeLabel: String
     @Environment(\.rubricConfig) private var config
-    @State private var showShareSheet = false
-    @State private var shareItems: [Any] = []
+    @State private var jsonFileURL: URL?
+    @State private var csvFileURL: URL?
 
     var body: some View {
         ScrollView {
@@ -70,11 +70,26 @@ struct ResultsView: View {
                         .foregroundStyle(.primary)
 
                     HStack(spacing: 12) {
-                        exportButton(label: "JSON", icon: "doc.text") {
-                            exportJSON()
+                        if let url = jsonFileURL {
+                            ShareLink(item: url) {
+                                Label("JSON", systemImage: "doc.text")
+                                    .font(.subheadline.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 10))
+                                    .foregroundStyle(.white)
+                            }
                         }
-                        exportButton(label: "CSV", icon: "tablecells") {
-                            exportCSV()
+
+                        if let url = csvFileURL {
+                            ShareLink(item: url) {
+                                Label("CSV", systemImage: "tablecells")
+                                    .font(.subheadline.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 12)
+                                    .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 10))
+                                    .foregroundStyle(.white)
+                            }
                         }
                     }
                 }
@@ -83,40 +98,25 @@ struct ResultsView: View {
             }
             .padding()
         }
-        .sheet(isPresented: $showShareSheet) {
-            ShareSheet(items: shareItems)
+        .onAppear {
+            prepareExportFiles()
         }
     }
 
-    private func exportButton(label: String, icon: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Label(label, systemImage: icon)
-                .font(.subheadline.bold())
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-                .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 10))
-                .foregroundStyle(.white)
-        }
-    }
+    private func prepareExportFiles() {
+        let name = dogName.isEmpty ? "bcs-score" : dogName.lowercased().replacingOccurrences(of: " ", with: "-")
 
-    private func exportJSON() {
-        guard let data = ExportViewModel.buildJSON(
+        if let data = ExportViewModel.buildJSON(
             dogName: dogName,
             scores: scores,
             totalScore: totalScore,
             grade: grade,
             gradeLabel: gradeLabel,
             config: config
-        ) else { return }
-
-        let name = dogName.isEmpty ? "bcs-score" : dogName.lowercased().replacingOccurrences(of: " ", with: "-")
-        if let url = ExportViewModel.writeTempFile(name: name, extension: "json", content: data) {
-            shareItems = [url]
-            showShareSheet = true
+        ) {
+            jsonFileURL = ExportViewModel.writeTempFile(name: name, extension: "json", content: data)
         }
-    }
 
-    private func exportCSV() {
         let csv = ExportViewModel.buildCSV(
             dogName: dogName,
             scores: scores,
@@ -124,10 +124,6 @@ struct ResultsView: View {
             grade: grade,
             config: config
         )
-        let name = dogName.isEmpty ? "bcs-score" : dogName.lowercased().replacingOccurrences(of: " ", with: "-")
-        if let url = ExportViewModel.writeTempFile(name: name, extension: "csv", content: csv) {
-            shareItems = [url]
-            showShareSheet = true
-        }
+        csvFileURL = ExportViewModel.writeTempFile(name: name, extension: "csv", content: csv)
     }
 }

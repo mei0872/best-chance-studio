@@ -13,6 +13,7 @@ struct BestChanceStudioApp: App {
         WindowGroup {
             ContentView()
                 .environment(rubricConfig)
+                .preferredColorScheme(.light)
         }
         .modelContainer(for: [Dog.self, ScoringSession.self, DimensionScore.self])
     }
