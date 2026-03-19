@@ -1,6 +1,6 @@
 # Contributing to Best Chance Studio
 
-*Last updated: March 8, 2026*
+*Last updated: March 19, 2026*
 
 Welcome. Every item on the pull list has a real dog on the other side of it.
 Here's how to show up for them.
@@ -33,6 +33,16 @@ Working prototype. The thing it says it does, it does.
 For APIs: a test UI or clear `curl` examples. A developer reading the PR should be able to run it in under 5 minutes.
 
 For UIs: LocalStorage is fine for v1. No backend required unless the spec says otherwise.
+
+### Mobile Tasks (G-01-ios, G-02-ios)
+Xcode project builds with zero warnings on iOS 17+ simulator and device. Works fully offline.
+
+- Brand colors applied (`#F4622A`, `#F9A826`, `#F9F7F4`, `#1E1E2E`)
+- Accessibility: VoiceOver labels on all interactive elements, Dynamic Type support
+- `rubric-config.json` bundled and decoded — no hardcoded dimensions
+- Scored dogs persist across app launches (SwiftData)
+- Export formats (JSON, CSV, PDF) match HTML tool output structure
+- No third-party dependencies
 
 ### High Bar Tasks (H-01, H-02, H-03, H-04)
 Working proof of concept. The hard technical problem is solved — it doesn't have to be polished.

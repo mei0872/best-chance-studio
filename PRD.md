@@ -1,6 +1,6 @@
 # Best Chance Studio — Product Requirements Document
 
-*Version 1.0 · March 15, 2026*
+*Version 1.1 · March 19, 2026*
 
 ---
 
@@ -185,6 +185,29 @@ G-04 (Word Check) ──────────────┤           │
 
 G-05 (Story Card) and G-06 (Story Formatter) are standalone — they take approved story text as input and produce formatted output.
 
+### 7.5 Native Mobile Apps
+
+All G-series tools (G-01 through G-06) will ship as native mobile apps in addition to the existing HTML tools. The HTML tools remain canonical — native apps are an additional delivery target, not a replacement.
+
+| Platform | Stack | Minimum Version | Directory | Status |
+|----------|-------|-----------------|-----------|--------|
+| **iOS** | SwiftUI + SwiftData | iOS 17+ | `ios/BestChanceStudio/` | In progress |
+| **Android** | Kotlin + Jetpack Compose + Room | TBD | `android/` | After iOS ships |
+
+**MVP:** G-01 (Scorer) + G-02 (Rubric Reference)
+**Full scope:** G-01 through G-06 on both platforms
+**Distribution:** TestFlight → App Store (iOS), internal testing → Play Store (Android)
+
+**Shared contract:** `rubric-config.json` is bundled in both apps as the single source of truth. Native apps decode it at launch and drive all UI rendering from the config — no hardcoded dimensions.
+
+**Architecture decisions:** [DEC-007](architect/decisions/DEC-007-native-mobile-strategy.md) (platform strategy), [DEC-008](architect/decisions/DEC-008-mobile-persistence.md) (persistence)
+
+**Constraints:**
+- Offline-first — entire app works without connectivity (matches G-series web constraint)
+- Brand colors applied (`#F4622A`, `#F9A826`, `#F9F7F4`, `#1E1E2E`)
+- Accessibility: VoiceOver/TalkBack labels, Dynamic Type / font scaling
+- Export formats match HTML tool output (JSON, CSV, PDF via native Share sheet)
+
 ---
 
 ## 8. Data Model
@@ -227,13 +250,26 @@ intake → scored → coached → pending_review → approved → published
 
 **Critical requirement:** Export prompt must be unavoidable before any storage-clearing action (especially Safari private browsing).
 
+### 8.5 Native Mobile Persistence
+
+On native platforms, web storage APIs (IndexedDB, LocalStorage) are replaced by platform-native equivalents:
+
+| Platform | Storage | Equivalent of |
+|----------|---------|---------------|
+| **iOS** | SwiftData | IndexedDB (structured, queryable, 100MB+) |
+| **Android** | Room | IndexedDB (structured, queryable, 100MB+) |
+
+Entity model: `Dog` → `ScoringSession` → `DimensionScore`. Dogs persist across app launches. Multiple scoring sessions per dog are supported (score → improve → re-score). Export via native Share sheet (iOS) / share intent (Android).
+
+Full decision: [DEC-008](architect/decisions/DEC-008-mobile-persistence.md)
+
 Full data architecture: [`architect/models/data-architecture.md`](architect/models/data-architecture.md)
 
 ---
 
 ## 9. Architecture Decisions
 
-All 6 structural decisions have been made and confirmed by stakeholders.
+All 8 structural decisions have been made and confirmed by stakeholders.
 
 | ID | Decision | Ruling | Impact |
 |----|----------|--------|--------|
@@ -243,6 +279,8 @@ All 6 structural decisions have been made and confirmed by stakeholders.
 | [DEC-004](architect/decisions/DEC-004-orchestration-location.md) | Orchestration | Isomorphic (offline JS + online backend) | Offline never errors. Falls back to rubric coaching. |
 | [DEC-005](architect/decisions/DEC-005-ai-cost-model.md) | AI Cost | Provider abstraction. <$0.50/dog. BYOK. | Two adapters minimum (cloud + Ollama). Implementor pays. |
 | [DEC-006](architect/decisions/DEC-006-offline-media-boundary.md) | Offline Media | Capture + guidance offline. AI processing online. | Client-side photo checks in v1. No service worker v1. |
+| [DEC-007](architect/decisions/DEC-007-native-mobile-strategy.md) | Native Mobile | Native SwiftUI (iOS) + Jetpack Compose (Android). iOS first. | G-01–G-06 on both platforms. MVP = G-01 + G-02. TestFlight → App Store. |
+| [DEC-008](architect/decisions/DEC-008-mobile-persistence.md) | Mobile Persistence | SwiftData (iOS) / Room (Android). Dog → Session → Score. | Replaces IndexedDB on native. Export via Share sheet. |
 
 ---
 
@@ -318,6 +356,19 @@ Test data: [`stubs/example-low-all.json`](stubs/example-low-all.json), [`stubs/e
 
 **Exit criteria:** A rescue can capture video with live coaching, get feedback, produce a reel, and export it — with quality that matches or beats what a skilled volunteer would produce manually.
 
+### Native Mobile — Parallel Workstream
+
+Native mobile app development runs alongside the web phases above. iOS ships first, Android follows.
+
+| Priority | Task | What ships |
+|----------|------|------------|
+| 1 | G-01 iOS (Scorer) | Native SwiftUI scorer with local persistence |
+| 2 | G-02 iOS (Rubric Reference) | Native rubric reference with expandable cards |
+| 3 | G-04–G-06 iOS | Remaining G-series tools ported to iOS |
+| 4 | G-01–G-06 Android | All G-series tools on Android |
+
+**Exit criteria (iOS MVP):** A foster can score a dog on their iPhone, see gaps and coaching actions, save the score, review past dogs, and export results — all offline, all native.
+
 ---
 
 ## 12. Technical Constraints
@@ -334,6 +385,9 @@ Test data: [`stubs/example-low-all.json`](stubs/example-low-all.json), [`stubs/e
 | BYOK (Bring Your Own Key) | All AI-dependent APIs | No central API key. Implementor provides their own. |
 | Provider abstraction | All AI-dependent APIs | Cloud + Ollama minimum. No vendor lock-in. |
 | Export prompt unavoidable | Persistence layer | Data loss prevention, especially Safari. |
+| iOS 17+ minimum | iOS app | Enables SwiftData, modern SwiftUI, latest device APIs. |
+| `rubric-config.json` bundled | Native mobile apps | Same source of truth on all platforms. No hardcoded dimensions. |
+| Native SwiftUI / Jetpack Compose | Native mobile apps | No cross-platform frameworks. Platform-native UX. |
 
 ---
 
@@ -385,7 +439,7 @@ Per-call usage logging required: [`docs/ai-usage-logging.md`](docs/ai-usage-logg
 | [`stubs/coaching-packet.json`](stubs/coaching-packet.json) | North star output contract |
 | [`TASKS.md`](TASKS.md) | Full task pull list with specs |
 | [`docs/platform-hints-schema.md`](docs/platform-hints-schema.md) | Shared intelligence channel schema |
-| [`architect/decisions/`](architect/decisions/) | All 6 architecture decisions (all decided) |
+| [`architect/decisions/`](architect/decisions/) | All 8 architecture decisions (all decided) |
 | [`architect/models/`](architect/models/) | Software, data, technical, and security architecture |
 | [`bcs-example.md`](bcs-example.md) | Real-world example: Moose, 3→14 score transformation |
 
@@ -401,4 +455,4 @@ Per-call usage logging required: [`docs/ai-usage-logging.md`](docs/ai-usage-logg
 
 ---
 
-*This PRD consolidates requirements from FLOW.md, TASKS.md, CONTRIBUTING.md, GOVERNANCE.md, WHY.md, rubric-config.json, all architecture decisions (DEC-001 through DEC-006), all API stub contracts, and the architecture models. It is the single document to read before building or contributing to BCS.*
+*This PRD consolidates requirements from FLOW.md, TASKS.md, CONTRIBUTING.md, GOVERNANCE.md, WHY.md, rubric-config.json, all architecture decisions (DEC-001 through DEC-008), all API stub contracts, and the architecture models. It is the single document to read before building or contributing to BCS.*

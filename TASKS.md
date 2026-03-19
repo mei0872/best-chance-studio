@@ -1,5 +1,5 @@
 # Best Chance Studio — Pull List
-*Last updated: March 8, 2026*
+*Last updated: March 19, 2026*
 
 > Not a job. Not a commitment. Grab something interesting, ship something real.
 > Every item here moves dogs home faster. That's the only metric that matters.
@@ -77,6 +77,30 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 **Platforms:** `petfinder` · `adoptapet` · `instagram` · `facebook` · `rescuegroups`
 **Stack:** Plain HTML + vanilla JS. Rule-based character limits per platform.
 **Deliverable:** `story-formatter.html` — paste description, pick platform, get formatted output with character count and status.
+
+---
+
+## 📱 MOBILE — Native Apps
+*iOS first (SwiftUI + SwiftData, iOS 17+). Android follows after iOS ships.*
+
+---
+
+### [G-01-ios] BCS Scoring Tool — iOS
+**What:** Native iOS port of the BCS Scorer. Score a dog across 9 dimensions, see gaps and coaching actions, save results locally.
+**Why it matters:** Same value as G-01, but with native UX, persistent storage (scores survive across sessions), and native sharing. A foster opens the app, scores a dog, and comes back next week to check progress.
+**Stack:** SwiftUI + SwiftData. iOS 17+. No third-party dependencies.
+**Source of truth:** `rubric-config.json` — bundled in app, decoded at launch.
+**Reference implementation:** `bcs-scorer.html` — behavior must match (scoring flow, auto-advance, results display, export format).
+**Deliverable:** Xcode project at `ios/BestChanceStudio/`. Builds with zero warnings. Works fully offline.
+
+---
+
+### [G-02-ios] BCS Rubric Reference — iOS
+**What:** Native iOS port of the rubric reference. Expandable cards showing all 9 dimensions, score level definitions, and coaching actions.
+**Why it matters:** The coaching reference fosters keep open during scoring. Native version loads instantly, works offline, and integrates with the scorer tab.
+**Stack:** SwiftUI. iOS 17+.
+**Reference implementation:** `bcs-rubric.html`
+**Deliverable:** Rubric Reference tab in the iOS app. Read-only. All 9 dimensions render correctly.
 
 ---
 

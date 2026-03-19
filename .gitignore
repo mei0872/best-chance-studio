@@ -4,3 +4,6 @@ build_app.md
 SETUP_GUIDE.md
 memory/*
 .env
+.DS_Store
+*.xcodeproj/
+DerivedData/
