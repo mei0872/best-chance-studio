@@ -7,3 +7,4 @@ memory/*
 .DS_Store
 *.xcodeproj/
 DerivedData/
+build-number.xcconfig

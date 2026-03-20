@@ -4,6 +4,12 @@ schemes:
     build:
       targets:
         BestChanceStudio: all
+      preActions:
+        - script: |
+            cd "${PROJECT_DIR}"
+            buildNumber=$(date +%Y%m%d%H%M)
+            echo "CURRENT_PROJECT_VERSION = $buildNumber" > build-number.xcconfig
+          settingsTarget: BestChanceStudio
     test:
       targets:
         - BestChanceStudioTests
@@ -19,6 +25,7 @@ settings:
     SWIFT_VERSION: "5.9"
     MARKETING_VERSION: "1.0.0"
     CURRENT_PROJECT_VERSION: 1
+    VERSIONING_SYSTEM: apple-generic
 
 targets:
   BestChanceStudio:
@@ -26,6 +33,9 @@ targets:
     platform: iOS
     sources:
       - BestChanceStudio
+    configFiles:
+      Debug: build-number.xcconfig
+      Release: build-number.xcconfig
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
