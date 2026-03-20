@@ -31,6 +31,11 @@ struct DogHistoryListView: View {
                 }
             }
             .navigationTitle("History")
+            .toolbar {
+                if !dogs.isEmpty {
+                    EditButton()
+                }
+            }
         }
     }
 

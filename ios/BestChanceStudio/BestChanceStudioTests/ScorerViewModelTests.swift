@@ -79,20 +79,45 @@ final class ScorerViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.totalScore, 3)
     }
 
-    func testIsCompleteWhenAllDimensionsScored() {
+    func testIsNotCompleteWithoutName() {
         viewModel.setScore(1, for: "dim_1")
         viewModel.setScore(1, for: "dim_2")
-        XCTAssertFalse(viewModel.isComplete)
+        viewModel.setScore(1, for: "dim_3")
+        XCTAssertFalse(viewModel.isComplete, "Should not be complete without a name")
+        XCTAssertTrue(viewModel.allDimensionsScored)
+    }
 
+    func testIsCompleteWithNameAndAllDimensionsScored() {
+        viewModel.dogName = "Moose"
+        viewModel.setScore(1, for: "dim_1")
+        viewModel.setScore(1, for: "dim_2")
         viewModel.setScore(1, for: "dim_3")
         XCTAssertTrue(viewModel.isComplete)
     }
 
-    func testShowResultsWhenComplete() {
+    func testShowResultsRequiresName() {
+        viewModel.setScore(2, for: "dim_1")
+        viewModel.setScore(2, for: "dim_2")
+        viewModel.setScore(2, for: "dim_3")
+        XCTAssertFalse(viewModel.showResults, "Should not show results without a name")
+    }
+
+    func testShowResultsWhenNameAndAllScoresProvided() {
+        viewModel.dogName = "Biscuit"
         viewModel.setScore(2, for: "dim_1")
         viewModel.setScore(2, for: "dim_2")
         viewModel.setScore(2, for: "dim_3")
         XCTAssertTrue(viewModel.showResults)
+    }
+
+    func testHasValidNameRejectsWhitespace() {
+        viewModel.dogName = "   "
+        XCTAssertFalse(viewModel.hasValidName)
+    }
+
+    func testHasValidNameAcceptsRealName() {
+        viewModel.dogName = "Moose"
+        XCTAssertTrue(viewModel.hasValidName)
     }
 
     // MARK: - Auto-Advance
@@ -123,6 +148,7 @@ final class ScorerViewModelTests: XCTestCase {
     // MARK: - Grade
 
     func testGradeCalculation() {
+        viewModel.dogName = "Moose"
         viewModel.setScore(2, for: "dim_1")
         viewModel.setScore(2, for: "dim_2")
         viewModel.setScore(2, for: "dim_3")
@@ -131,6 +157,7 @@ final class ScorerViewModelTests: XCTestCase {
     }
 
     func testGradeCalculationLowScore() {
+        viewModel.dogName = "Moose"
         viewModel.setScore(0, for: "dim_1")
         viewModel.setScore(0, for: "dim_2")
         viewModel.setScore(1, for: "dim_3")

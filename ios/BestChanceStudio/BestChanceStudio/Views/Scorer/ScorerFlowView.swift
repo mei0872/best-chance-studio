@@ -29,6 +29,13 @@ struct ScorerFlowView: View {
         .onAppear {
             viewModel.configure(with: config)
         }
+        .onChange(of: viewModel.dogName) {
+            if viewModel.isComplete && !viewModel.showResults {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    viewModel.showResults = true
+                }
+            }
+        }
     }
 
     private var scoringView: some View {
@@ -44,6 +51,12 @@ struct ScorerFlowView: View {
                             .textFieldStyle(.roundedBorder)
                             .font(.body)
                             .accessibilityLabel("Dog's name")
+
+                        if viewModel.allDimensionsScored && !viewModel.hasValidName {
+                            Text("Enter the dog's name to see results")
+                                .font(.caption)
+                                .foregroundStyle(.red)
+                        }
                     }
                     .padding(.horizontal)
                     .padding(.top)

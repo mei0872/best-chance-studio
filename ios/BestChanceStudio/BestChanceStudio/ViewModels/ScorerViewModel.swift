@@ -9,9 +9,17 @@ final class ScorerViewModel {
     var showResults: Bool = false
     var sessionSaved: Bool = false
 
-    var isComplete: Bool {
+    var hasValidName: Bool {
+        !dogName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    var allDimensionsScored: Bool {
         guard let config = currentConfig else { return false }
         return scores.count == config.dimensions.count
+    }
+
+    var isComplete: Bool {
+        hasValidName && allDimensionsScored
     }
 
     var totalScore: Int {
