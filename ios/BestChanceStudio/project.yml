@@ -1,4 +1,12 @@
 name: BestChanceStudio
+schemes:
+  BestChanceStudio:
+    build:
+      targets:
+        BestChanceStudio: all
+    test:
+      targets:
+        - BestChanceStudioTests
 options:
   bundleIdPrefix: org.bestchancestudio
   deploymentTarget:
@@ -25,6 +33,7 @@ targets:
         INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         INFOPLIST_KEY_CFBundleDisplayName: "Best Chance Studio"
         PRODUCT_BUNDLE_IDENTIFIER: org.bestchancestudio.app
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
