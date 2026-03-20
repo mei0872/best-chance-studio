@@ -5,6 +5,7 @@ struct ScorerFlowView: View {
     @Environment(\.rubricConfig) private var config
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel = ScorerViewModel()
+    @FocusState private var nameFieldFocused: Bool
 
     var body: some View {
         NavigationStack {
@@ -43,8 +44,10 @@ struct ScorerFlowView: View {
                         TextField("Enter dog's name", text: $viewModel.dogName)
                             .textFieldStyle(.roundedBorder)
                             .font(.body)
+                            .focused($nameFieldFocused)
                             .submitLabel(.done)
                             .onSubmit {
+                                nameFieldFocused = false
                                 if viewModel.isComplete && !viewModel.showResults {
                                     withAnimation(.easeInOut(duration: 0.3)) {
                                         viewModel.showResults = true
@@ -53,22 +56,24 @@ struct ScorerFlowView: View {
                             }
                             .accessibilityLabel("Dog's name")
 
-                        if viewModel.allDimensionsScored && !viewModel.hasValidName {
-                            Text("Enter the dog's name and tap Done")
-                                .font(.caption)
-                                .foregroundStyle(.red)
-                        } else if viewModel.allDimensionsScored && viewModel.hasValidName && !viewModel.showResults {
-                            Button {
-                                withAnimation(.easeInOut(duration: 0.3)) {
-                                    viewModel.showResults = true
+                        if viewModel.allDimensionsScored && !nameFieldFocused {
+                            if !viewModel.hasValidName {
+                                Text("Enter the dog's name to see results")
+                                    .font(.caption)
+                                    .foregroundStyle(.red)
+                            } else if !viewModel.showResults {
+                                Button {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        viewModel.showResults = true
+                                    }
+                                } label: {
+                                    Text("See Results")
+                                        .font(.subheadline.bold())
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 10)
+                                        .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 8))
+                                        .foregroundStyle(.white)
                                 }
-                            } label: {
-                                Text("See Results")
-                                    .font(.subheadline.bold())
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 10)
-                                    .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 8))
-                                    .foregroundStyle(.white)
                             }
                         }
                     }
