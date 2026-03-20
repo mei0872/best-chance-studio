@@ -29,13 +29,6 @@ struct ScorerFlowView: View {
         .onAppear {
             viewModel.configure(with: config)
         }
-        .onChange(of: viewModel.dogName) {
-            if viewModel.isComplete && !viewModel.showResults {
-                withAnimation(.easeInOut(duration: 0.3)) {
-                    viewModel.showResults = true
-                }
-            }
-        }
     }
 
     private var scoringView: some View {
@@ -50,12 +43,33 @@ struct ScorerFlowView: View {
                         TextField("Enter dog's name", text: $viewModel.dogName)
                             .textFieldStyle(.roundedBorder)
                             .font(.body)
+                            .submitLabel(.done)
+                            .onSubmit {
+                                if viewModel.isComplete && !viewModel.showResults {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        viewModel.showResults = true
+                                    }
+                                }
+                            }
                             .accessibilityLabel("Dog's name")
 
                         if viewModel.allDimensionsScored && !viewModel.hasValidName {
-                            Text("Enter the dog's name to see results")
+                            Text("Enter the dog's name and tap Done")
                                 .font(.caption)
                                 .foregroundStyle(.red)
+                        } else if viewModel.allDimensionsScored && viewModel.hasValidName && !viewModel.showResults {
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    viewModel.showResults = true
+                                }
+                            } label: {
+                                Text("See Results")
+                                    .font(.subheadline.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 10)
+                                    .background(Color.bcsOrange, in: RoundedRectangle(cornerRadius: 8))
+                                    .foregroundStyle(.white)
+                            }
                         }
                     }
                     .padding(.horizontal)
