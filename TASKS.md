@@ -81,7 +81,7 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 ---
 
 ## 📱 MOBILE — Native Apps
-*iOS first (SwiftUI + SwiftData, iOS 17+). Android follows after iOS ships.*
+*iOS (SwiftUI + SwiftData, iOS 17+) and Android (Kotlin + Jetpack Compose + Room, API 26+).*
 
 ---
 
@@ -101,6 +101,24 @@ Long term, that revenue doesn't just build equity — it funds the rescues that 
 **Stack:** SwiftUI. iOS 17+.
 **Reference implementation:** `bcs-rubric.html`
 **Deliverable:** Rubric Reference tab in the iOS app. Read-only. All 9 dimensions render correctly.
+
+---
+
+### [G-01-android] BCS Scoring Tool — Android
+**What:** Native Android port of the BCS Scorer. Score a dog across 9 dimensions, see gaps and coaching actions, save results locally.
+**Why it matters:** Same value as G-01, but for Android users. Native UX, persistent storage, native sharing.
+**Stack:** Kotlin + Jetpack Compose + Room. API 26+ (Android 8.0).
+**Source of truth:** `rubric-config.json` — bundled in app, decoded at launch.
+**Reference implementation:** `bcs-scorer.html` and `ios/BestChanceStudio/`.
+**Deliverable:** Android project at `android/BestChanceStudio/`. Builds with zero errors. Works fully offline.
+
+---
+
+### [G-02-android] BCS Rubric Reference — Android
+**What:** Native Android port of the rubric reference. Expandable cards showing all 9 dimensions, score level definitions, and coaching actions.
+**Stack:** Kotlin + Jetpack Compose. API 26+.
+**Reference implementation:** `bcs-rubric.html` and `ios/BestChanceStudio/`.
+**Deliverable:** Rubric Reference tab in the Android app. Read-only. All 9 dimensions render correctly.
 
 ---
 

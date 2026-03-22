@@ -44,6 +44,16 @@ Xcode project builds with zero warnings on iOS 17+ simulator and device. Works f
 - Export formats (JSON, CSV, PDF) match HTML tool output structure
 - No third-party dependencies
 
+### Mobile Tasks (G-01-android, G-02-android)
+`./gradlew assembleDebug` builds with zero errors on API 26+. Works fully offline.
+
+- Brand colors applied (`#F4622A`, `#F9A826`, `#F9F7F4`, `#1E1E2E`)
+- Accessibility: content descriptions on all interactive elements
+- `rubric-config.json` bundled and decoded — no hardcoded dimensions
+- Scored dogs persist across app launches (Room)
+- Export formats (JSON, CSV) match HTML tool output structure
+- MVVM architecture with Hilt DI, Jetpack Compose UI
+
 ### High Bar Tasks (H-01, H-02, H-03, H-04)
 Working proof of concept. The hard technical problem is solved — it doesn't have to be polished.
 

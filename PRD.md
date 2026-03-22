@@ -192,7 +192,7 @@ All G-series tools (G-01 through G-06) will ship as native mobile apps in additi
 | Platform | Stack | Minimum Version | Directory | Status |
 |----------|-------|-----------------|-----------|--------|
 | **iOS** | SwiftUI + SwiftData | iOS 17+ | `ios/BestChanceStudio/` | In progress |
-| **Android** | Kotlin + Jetpack Compose + Room | TBD | `android/` | After iOS ships |
+| **Android** | Kotlin + Jetpack Compose + Room | API 26+ (Android 8.0) | `android/BestChanceStudio/` | In progress |
 
 **MVP:** G-01 (Scorer) + G-02 (Rubric Reference)
 **Full scope:** G-01 through G-06 on both platforms

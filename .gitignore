@@ -9,3 +9,7 @@ memory/*
 DerivedData/
 build-number.xcconfig
 .specstory/
+local.properties
+*.apk
+**/build/
+.gradle/

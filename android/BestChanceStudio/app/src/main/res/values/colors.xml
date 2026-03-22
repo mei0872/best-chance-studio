@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bcs_orange">#FFF4622A</color>
+    <color name="bcs_gold">#FFF9A826</color>
+    <color name="bcs_dark">#FF1E1E2E</color>
+    <color name="bcs_green">#FF16A34A</color>
+    <color name="bcs_red">#FFDC2626</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

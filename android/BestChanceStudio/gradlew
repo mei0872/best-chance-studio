@@ -1,0 +1,8 @@
+#!/bin/sh
+GRADLE_HOME=$(find ~/.gradle/wrapper/dists -name "gradle-*" -type d -maxdepth 3 2>/dev/null | sort -V | tail -1)
+if [ -n "$GRADLE_HOME" ] && [ -x "$GRADLE_HOME/bin/gradle" ]; then
+    exec "$GRADLE_HOME/bin/gradle" "$@"
+else
+    echo "Error: Gradle not found. Open this project in Android Studio first."
+    exit 1
+fi
