@@ -157,21 +157,29 @@ Every rescue. Every dog. Every presentation. Free — because a host takes on th
 
 Every dollar you put into BCS directly reduces the time a dog waits for a home. Not theoretically — trackably.
 
-BCS records every presentation completed, every dog coached, and every outcome we can verify. Donors receive automatic quarterly reports:
+BCS is built to meet the stewardship standards of serious funders from day one. Outcome tracking is built into the platform — not added later for reporting purposes. Foundations and grant programs don't have to chase receipts or request manual reports. The data is there automatically.
 
-> *"Your donation funded X presentations this quarter.  Adoption platforms will eventually report Y dogs placed."*
+**What your funding covers:** BCS uses AI for coaching features — story building, photo coaching, presentation scoring. These AI costs are the only ongoing expense. Hosting organizations use BCS free; rescues use BCS free. The only thing that costs money is the AI that makes it work.
 
-No manual reporting requests. No chasing receipts. Built into the platform from day one.
+BCS records every presentation completed, every dog coached, and every outcome we can verify. Funders receive automatic quarterly reports:
 
-**Fully transparent finances.** All transactions are public via Open Collective. Any funder can see exactly where funds go.
+> *"Your funding powered X BCS sessions this quarter. Y dogs coached. Adoption outcome data builds as BCS is used in the field — we'll report what we know and be clear about what we're still learning."*
 
-**Measurable, not theoretical.** Foundations and grant programs get the stewardship infrastructure they need — built in, not bolted on later.
+**Fully transparent finances.** All transactions are public via Open Collective. Any funder can see exactly where funds go at any time — no request needed.
 
 ### How to fund BCS
 
+**For foundations and grant programs (501(c)(3) path):**
+
+BCS operates under fiscal sponsorship of **Open Collective Foundation** — a registered 501(c)(3) public charity (EIN: 82-2037583). Grants can be made directly to Open Collective Foundation, restricted for Best Chance Studio. This is the cleanest path for foundations whose grant guidelines require a 501(c)(3) recipient.
+
+To make a grant: contact Open Collective Foundation directly at [opencollective.com/foundation](https://opencollective.com/foundation) and reference Best Chance Studio as the restricted project. We're happy to provide any additional documentation a program officer needs.
+
+**For individual donors and corporate giving programs:**
+
 🔗 **[Fund BCS on Open Collective](https://opencollective.com/best-chance-studio)**
 
-- Tax-deductible via Open Collective Foundation (501(c)(3) fiscal sponsor)
+- Tax-deductible via Open Collective Foundation (501(c)(3) fiscal sponsor, EIN: 82-2037583)
 - Any amount. Credit card, check, or Donor-Advised Fund (DAF) — all accepted.
 - No minimum. No commitment. Renew based on impact numbers, not promises.
 
@@ -181,7 +189,7 @@ No manual reporting requests. No chasing receipts. Built into the platform from 
 Listed in this README and in every quarterly impact report. Your contribution is acknowledged in the community that's using these tools.
 
 **BCS Powered By** — named sponsor tier for organizations funding at meaningful scale.
-Logo in README. Named in all impact reports. Early access to anonymized research findings and outcome data from the broader BCS community.
+Logo in README. Named in all impact reports. Early access to anonymized research findings and outcome data from the broader BCS community. Direct line to the BCS team for program questions.
 
 BCS is designed to carry many funders — foundations, corporate giving programs, individual donors, DAF holders. No single funder owns BCS. That's the point. Your contribution sits alongside others who believe the same thing: that the rescue community deserves better tools, and that funding them is a direct line to dogs going home.
 
@@ -189,12 +197,15 @@ BCS is designed to carry many funders — foundations, corporate giving programs
 
 BCS is designed to meet the stewardship standards of serious funders. If you're evaluating this project for a grant:
 
-- The methodology is open and peer-reviewable — [RUBRIC.md](RUBRIC.md), [FLOW.md](FLOW.md)
-- Outcome tracking is built in from the first session — not added for reporting purposes
-- Every certified implementation contributes anonymized outcome data to the community standard
-- Quarterly reports are automatic, not manual — and available to any funder at any time
+- **The methodology is open and peer-reviewable** — [RUBRIC.md](RUBRIC.md), [FLOW.md](FLOW.md). The rubric is grounded in peer-reviewed research including a 2019 study of 70,733 dogs and a 2020 photographic study of 8,332 dogs.
+- **Outcome tracking is built in from the first session** — not added for reporting purposes
+- **Every certified implementation contributes anonymized outcome data** to the community standard
+- **Quarterly reports are automatic** — available to any funder at any time, no request needed
+- **AI costs are tracked per key** — charity-funded AI is scoped exclusively to BCS presentation work. Usage is auditable and separate from any non-BCS platform features.
 
-We're working toward a measurable claim on time-to-adoption impact. We're not there yet — that data builds as BCS is used in the field. We'll report what we know, and we'll be clear about what we're still learning.
+We're working toward a measurable claim on time-to-adoption impact. We're not there yet — that data builds as BCS is used in the field. We'll report what we know, and we'll be clear about what we're still learning. We believe this is the kind of project worth funding before the impact numbers are complete — because the infrastructure to capture those numbers is already in place.
+
+If you'd like to speak with us before making a funding decision, we welcome that conversation: **KipMeierhofer@gmail.com**
 
 ---
 
