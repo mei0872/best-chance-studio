@@ -385,6 +385,21 @@ Output: exported_url, thumbnail_url, suggested_title, suggested_tags, duration_s
 
 ---
 
+---
+
+## 🔁 Recurring — AI QA Review
+*Due monthly on the 1st. Cron fires automatically as a reminder.*
+
+### [R-01] Monthly AI QA Review
+**What:** Spot-check extraction, coaching pass, story builder, and scene recommendations against real output. Tune prompts and config as needed.
+**Process:** See `wag-on-home/project/AI-QA-PROCESS.md` for the full checklist.
+**Next due:** April 23, 2026 (first review — need ~30 uploads of real data first)
+**Standing open items:**
+- [ ] Build presenter thumbs-up/down feedback on extraction result (feeds QA signal)
+- [ ] Quarterly model upgrade check (next: June 2026)
+
+---
+
 ## Background
 
 **Best Chance Studio** is an open source coaching and scoring layer that gives every rescue dog their best possible story, and every presenter the coaching they need to tell it.
