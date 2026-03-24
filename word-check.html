@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Check — Best Chance Studio</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #F4622A;
+  --gold: #F9A826;
+  --cream: #F9F7F4;
+  --dark: #1E1E2E;
+  --gray: #6B7280;
+  --light-gray: #E5E7EB;
+  --green: #16A34A;
+  --green-bg: #DCFCE7;
+  --red: #DC2626;
+  --red-bg: #FEE2E2;
+  --yellow: #CA8A04;
+  --yellow-bg: #FEF9C3;
+  --orange-bg: #FFF7ED;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+  padding: 24px 0 16px;
+  border-bottom: 3px solid var(--orange);
+  margin-bottom: 24px;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+header .subtitle {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+header .study-note {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* Input section */
+.input-section {
+  margin-bottom: 16px;
+}
+
+label.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+textarea#description {
+  width: 100%;
+  min-height: 160px;
+  padding: 14px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 2px solid var(--light-gray);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--dark);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  line-height: 1.6;
+}
+
+textarea#description:focus {
+  border-color: var(--orange);
+}
+
+textarea#description::placeholder {
+  color: #B0B0B0;
+}
+
+.input-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.word-count {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.check-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 12px;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+}
+
+.check-btn:hover { background: #e05520; }
+.check-btn:active { background: #c94c1e; }
+.check-btn:disabled { background: var(--light-gray); color: var(--gray); cursor: default; }
+
+/* Results */
+.results {
+  display: none;
+}
+
+.results.visible {
+  display: block;
+}
+
+/* Summary card */
+.summary-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summary-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.summary-text h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.summary-text p {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+/* Flags section */
+.section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title .count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.count-badge.red { background: var(--red); }
+.count-badge.yellow { background: var(--gold); }
+.count-badge.green { background: var(--green); }
+
+/* Flag items */
+.flag-item {
+  border-top: 1px solid var(--light-gray);
+  padding: 12px 0;
+}
+
+.flag-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.flag-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.flag-word {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.flag-word mark {
+  background: var(--red-bg);
+  color: var(--red);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.impact-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.impact-badge.high {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+.impact-badge.medium {
+  background: var(--yellow-bg);
+  color: var(--yellow);
+}
+
+.flag-reason {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.replacement {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.replacement .arrow {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.replacement .rep-word {
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-bg);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.no-replacement {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gray);
+}
+
+/* Positives section */
+.positive-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.positive-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.positive-tag.found {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.positive-tag.missing {
+  background: var(--light-gray);
+  color: var(--gray);
+}
+
+/* Cleaned output section */
+.cleaned-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.cleaned-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.cleaned-output {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--dark);
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 14px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cleaned-output mark.replaced {
+  background: #DCFCE7;
+  color: var(--green);
+  border-radius: 3px;
+  padding: 0 3px;
+  font-weight: 600;
+}
+
+.cleaned-output mark.flagged-no-rep {
+  background: var(--yellow-bg);
+  color: var(--yellow);
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+.copy-btn {
+  margin-top: 10px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--light-gray);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--dark);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s;
+}
+
+.copy-btn:hover { border-color: var(--orange); }
+.copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+/* No flags state */
+.no-flags {
+  text-align: center;
+  padding: 16px;
+  color: var(--green);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Reset */
+.reset-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 2px solid var(--orange);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--orange);
+  cursor: pointer;
+  text-align: center;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 16px;
+}
+
+.reset-btn:active { background: var(--orange-bg); }
+
+/* API usage hint */
+.api-hint {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.api-hint strong { color: var(--dark); }
+.api-hint code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  background: var(--cream);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 12px;
+  color: var(--gray);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Word Check</h1>
+    <div class="subtitle">Paste a dog description — get flagged words and adoption-proven replacements</div>
+    <div class="study-note">Backed by a 70,733-dog study (PetRescue, 2019 · PMC/NCBI)</div>
+  </header>
+
+  <div id="inputView">
+    <div class="input-section">
+      <label class="field-label" for="description">Dog description</label>
+      <textarea id="description" placeholder="Paste or type a dog's listing description here…" autocomplete="off" spellcheck="false"></textarea>
+      <div class="input-meta">
+        <span class="word-count" id="wordCount">0 words</span>
+      </div>
+    </div>
+    <button type="button" class="check-btn" id="checkBtn" disabled>Check for adoption-hurting words</button>
+  </div>
+
+  <div class="results" id="results">
+    <!-- Summary -->
+    <div class="summary-card" id="summaryCard">
+      <div class="summary-icon" id="summaryIcon"></div>
+      <div class="summary-text">
+        <h2 id="summaryHeadline"></h2>
+        <p id="summaryDetail"></p>
+      </div>
+    </div>
+
+    <!-- Flags -->
+    <div class="section" id="flagsSection" style="display:none">
+      <div class="section-title">
+        <span>Words to fix</span>
+        <span class="count-badge" id="flagCountBadge"></span>
+      </div>
+      <div id="flagsList"></div>
+    </div>
+
+    <!-- Cleaned output -->
+    <div class="cleaned-section" id="cleanedSection" style="display:none">
+      <div class="cleaned-title">Cleaned version</div>
+      <div class="cleaned-output" id="cleanedOutput"></div>
+      <button type="button" class="copy-btn" id="copyBtn">Copy cleaned version</button>
+    </div>
+
+    <!-- Positives -->
+    <div class="section" id="positivesSection">
+      <div class="section-title">
+        <span>High-impact words</span>
+        <span style="font-size:12px;font-weight:400;color:var(--gray);">from the study — green = present, gray = missing</span>
+      </div>
+      <div class="positive-list" id="positiveList"></div>
+    </div>
+
+    <!-- API hint -->
+    <div class="api-hint">
+      <strong>API mode:</strong> This tool is also callable as <code>POST /word/check</code> with <code>{ "description": "…" }</code> — no manual paste needed when running inside a BCS pipeline session.
+    </div>
+
+    <button type="button" class="reset-btn" id="resetBtn">Check another description</button>
+  </div>
+
+  <footer>
+    Best Chance Studio &mdash; every dog deserves a story that finds their person.
+  </footer>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Word list — ported from /src/bcs/apis/word-check.js
+// Based on PMC study of 70,733 dogs (PetRescue, 2019)
+// https://pmc.ncbi.nlm.nih.gov/articles/PMC6680599/
+// ---------------------------------------------------------------------------
+
+var HARM_WORDS = [
+  // id, display word, impact, reason, replacement (null = no direct replacement)
+  { word: 'energetic',      impact: 'high',   replacement: 'active',         reason: 'Signals high-maintenance to adopters; "active" reads as manageable' },
+  { word: 'hyper',          impact: 'high',   replacement: 'playful',        reason: 'Triggers fear of unmanageability' },
+  { word: 'dominant',       impact: 'high',   replacement: null,             reason: 'Signals aggression risk; describe the actual behavior instead' },
+  { word: 'trainable',      impact: 'high',   replacement: 'eager to learn', reason: 'Implies they need a lot of training; flip to "eager to learn"' },
+  { word: 'needs work',     impact: 'high',   replacement: 'still learning', reason: 'Vague and concerning; describe what specifically and how far along' },
+  { word: 'only dog',       impact: 'high',   replacement: null,             reason: 'Frames as limitation; say "thrives as your one and only" instead' },
+  { word: 'working on',     impact: 'medium', replacement: 'learning',       reason: '"Still learning X" sounds more positive than "working on X"' },
+  { word: 'obedient',       impact: 'medium', replacement: 'responsive',     reason: 'Robotic; "responsive" and "listens well" feel more alive' },
+  { word: 'happy-go-lucky', impact: 'medium', replacement: null,             reason: 'Generic filler; replace with a specific behavior or moment' },
+  { word: 'great with kids',impact: 'medium', replacement: null,             reason: 'Vague; specify ages, energy match, supervision needs' },
+  { word: 'forever home',   impact: 'high',   replacement: null,             reason: 'Overused cliché that signals generic listing; say what makes this dog special instead' },
+  { word: 'fur-ever',       impact: 'high',   replacement: null,             reason: 'Same as "forever home" — signals low-effort listing' },
+  { word: 'furever',        impact: 'high',   replacement: null,             reason: 'Same as "forever home" — signals low-effort listing' },
+  { word: 'furbaby',        impact: 'medium', replacement: null,             reason: 'Polarizing; some adopters love it, many find it off-putting' },
+  { word: 'fur baby',       impact: 'medium', replacement: null,             reason: 'Polarizing; some adopters love it, many find it off-putting' },
+  { word: 'loving home',    impact: 'medium', replacement: null,             reason: 'Assumed; every rescue wants a loving home. Cut it.' },
+  { word: 'special needs',  impact: 'medium', replacement: null,             reason: 'If accurate, name the specific need — vagueness creates fear' },
+];
+
+var HELP_WORDS = ['eager', 'gentle', 'clever', 'lively', 'independent', 'quiet', 'active', 'playful'];
+
+// ---------------------------------------------------------------------------
+// Core check function (pure JS, no AI)
+// ---------------------------------------------------------------------------
+
+function checkDescription(text) {
+  var lower = text.toLowerCase();
+  var flags = [];
+  var found = [];
+
+  HARM_WORDS.forEach(function(entry) {
+    if (lower.indexOf(entry.word.toLowerCase()) !== -1) {
+      flags.push({
+        word: entry.word,
+        impact: entry.impact,
+        reason: entry.reason,
+        replacement: entry.replacement,
+        position: lower.indexOf(entry.word.toLowerCase()),
+      });
+    }
+  });
+
+  HELP_WORDS.forEach(function(w) {
+    if (lower.indexOf(w) !== -1) found.push(w);
+  });
+
+  // Sort: high impact first, then position in text
+  flags.sort(function(a, b) {
+    if (a.impact === 'high' && b.impact !== 'high') return -1;
+    if (a.impact !== 'high' && b.impact === 'high') return 1;
+    return a.position - b.position;
+  });
+
+  var missing = HELP_WORDS.filter(function(w) { return found.indexOf(w) === -1; });
+
+  return {
+    flags: flags,
+    positives_found: found,
+    positives_missing: missing,
+    word_count: text.trim().split(/\s+/).filter(Boolean).length,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Build cleaned text — replace flagged words where replacement exists
+// ---------------------------------------------------------------------------
+
+function buildCleaned(text, flags) {
+  var result = text;
+
+  // Sort flags by longest word first to avoid partial-replacement issues
+  var sorted = flags.slice().sort(function(a, b) {
+    return b.word.length - a.word.length;
+  });
+
+  sorted.forEach(function(f) {
+    if (!f.replacement) return; // only replace where we have a direct suggestion
+    var re = new RegExp(escapeRe(f.word), 'gi');
+    result = result.replace(re, f.replacement);
+  });
+
+  return result;
+}
+
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// ---------------------------------------------------------------------------
+// Render highlighted cleaned output (green = replaced, yellow = flagged no-rep)
+// ---------------------------------------------------------------------------
+
+function buildHighlightedClean(cleanedText, originalText, flags) {
+  var result = cleanedText;
+
+  // Mark the replaced words (green) — words that had replacements
+  flags.forEach(function(f) {
+    if (f.replacement) {
+      var re = new RegExp('(' + escapeRe(f.replacement) + ')', 'gi');
+      result = result.replace(re, '<mark class="replaced">$1</mark>');
+    }
+  });
+
+  // Mark words with no replacement still present in cleaned (yellow)
+  flags.forEach(function(f) {
+    if (!f.replacement) {
+      var re = new RegExp('(' + escapeRe(f.word) + ')', 'gi');
+      result = result.replace(re, '<mark class="flagged-no-rep">$1</mark>');
+    }
+  });
+
+  return result;
+}
+
+// ---------------------------------------------------------------------------
+// UI
+// ---------------------------------------------------------------------------
+
+var descriptionEl = document.getElementById('description');
+var wordCountEl   = document.getElementById('wordCount');
+var checkBtn      = document.getElementById('checkBtn');
+var resultsEl     = document.getElementById('results');
+var inputViewEl   = document.getElementById('inputView');
+var resetBtn      = document.getElementById('resetBtn');
+var copyBtn       = document.getElementById('copyBtn');
+
+descriptionEl.addEventListener('input', function() {
+  var words = descriptionEl.value.trim().split(/\s+/).filter(Boolean);
+  wordCountEl.textContent = words.length + ' word' + (words.length === 1 ? '' : 's');
+  checkBtn.disabled = words.length < 1;
+});
+
+checkBtn.addEventListener('click', runCheck);
+resetBtn.addEventListener('click', resetUI);
+copyBtn.addEventListener('click', copyClean);
+
+function runCheck() {
+  var text = descriptionEl.value.trim();
+  if (!text) return;
+
+  var result = checkDescription(text);
+  renderResults(text, result);
+
+  inputViewEl.style.display = 'none';
+  resultsEl.classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderResults(text, result) {
+  var flags = result.flags;
+  var highCount = flags.filter(function(f) { return f.impact === 'high'; }).length;
+  var totalCount = flags.length;
+
+  // Summary
+  var icon, headline, detail;
+  if (totalCount === 0) {
+    icon = '✅';
+    headline = 'No adoption-hurting words found';
+    detail = result.word_count + '-word description — clean.';
+  } else if (highCount > 0) {
+    icon = '⚠️';
+    headline = highCount + ' high-impact ' + (highCount === 1 ? 'word' : 'words') + ' to fix';
+    detail = totalCount + ' total flag' + (totalCount === 1 ? '' : 's') + ' in ' + result.word_count + ' words — high-impact words measurably slow adoption.';
+  } else {
+    icon = '🟡';
+    headline = totalCount + ' medium-impact ' + (totalCount === 1 ? 'word' : 'words') + ' to review';
+    detail = result.word_count + '-word description — no high-impact flags, but some words to reconsider.';
+  }
+
+  document.getElementById('summaryIcon').textContent = icon;
+  document.getElementById('summaryHeadline').textContent = headline;
+  document.getElementById('summaryDetail').textContent = detail;
+
+  // Flags
+  var flagsSection = document.getElementById('flagsSection');
+  var flagsList    = document.getElementById('flagsList');
+  var flagBadge    = document.getElementById('flagCountBadge');
+
+  if (totalCount > 0) {
+    flagBadge.textContent = totalCount;
+    flagBadge.className = 'count-badge ' + (highCount > 0 ? 'red' : 'yellow');
+    flagsList.innerHTML = '';
+
+    flags.forEach(function(f) {
+      var item = document.createElement('div');
+      item.className = 'flag-item';
+
+      var header = document.createElement('div');
+      header.className = 'flag-header';
+
+      var wordEl = document.createElement('span');
+      wordEl.className = 'flag-word';
+      wordEl.innerHTML = '<mark>' + htmlEscape(f.word) + '</mark>';
+
+      var badge = document.createElement('span');
+      badge.className = 'impact-badge ' + f.impact;
+      badge.textContent = f.impact;
+
+      header.appendChild(wordEl);
+      header.appendChild(badge);
+
+      var reason = document.createElement('div');
+      reason.className = 'flag-reason';
+      reason.textContent = f.reason;
+
+      item.appendChild(header);
+      item.appendChild(reason);
+
+      if (f.replacement) {
+        var rep = document.createElement('div');
+        rep.className = 'replacement';
+        rep.innerHTML =
+          'Try: <span class="arrow">→</span> <span class="rep-word">' + htmlEscape(f.replacement) + '</span>';
+        item.appendChild(rep);
+      } else {
+        var noRep = document.createElement('div');
+        noRep.className = 'no-replacement';
+        noRep.textContent = 'No direct swap — rewrite the whole phrase for this dog specifically.';
+        item.appendChild(noRep);
+      }
+
+      flagsList.appendChild(item);
+    });
+
+    flagsSection.style.display = '';
+  } else {
+    flagsSection.style.display = 'none';
+  }
+
+  // Cleaned version
+  var cleanedSection = document.getElementById('cleanedSection');
+  var cleanedEl      = document.getElementById('cleanedOutput');
+  var cleanedText    = buildCleaned(text, flags);
+
+  if (totalCount > 0) {
+    var highlighted = buildHighlightedClean(cleanedText, text, flags);
+    cleanedEl.innerHTML = highlighted;
+    cleanedSection.style.display = '';
+    // Store plain cleaned text for copying
+    copyBtn._cleanText = cleanedText;
+  } else {
+    cleanedSection.style.display = 'none';
+  }
+
+  // Positives
+  var posList = document.getElementById('positiveList');
+  posList.innerHTML = '';
+
+  HELP_WORDS.forEach(function(w) {
+    var tag = document.createElement('span');
+    var found = result.positives_found.indexOf(w) !== -1;
+    tag.className = 'positive-tag ' + (found ? 'found' : 'missing');
+    tag.textContent = (found ? '✓ ' : '') + w;
+    posList.appendChild(tag);
+  });
+}
+
+function copyClean() {
+  var text = copyBtn._cleanText || '';
+  if (!text) return;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      showCopied();
+    }).catch(function() {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); showCopied(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function showCopied() {
+  copyBtn.textContent = '✓ Copied!';
+  copyBtn.classList.add('copied');
+  setTimeout(function() {
+    copyBtn.textContent = 'Copy cleaned version';
+    copyBtn.classList.remove('copied');
+  }, 2000);
+}
+
+function resetUI() {
+  descriptionEl.value = '';
+  wordCountEl.textContent = '0 words';
+  checkBtn.disabled = true;
+  resultsEl.classList.remove('visible');
+  inputViewEl.style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function htmlEscape(s) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ---------------------------------------------------------------------------
+// API mode: POST /word/check
+// When this page is loaded by a BCS pipeline (not a user), it can respond
+// to a postMessage with { description: "..." } and reply with the result.
+// This lets the same file serve both UX and programmatic use.
+// ---------------------------------------------------------------------------
+
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'word-check' && typeof e.data.description === 'string') {
+    var r = checkDescription(e.data.description);
+    var cleaned = buildCleaned(e.data.description, r.flags);
+    e.source.postMessage({
+      type: 'word-check-result',
+      flags: r.flags,
+      flag_count: r.flags.length,
+      positives_found: r.positives_found,
+      positives_missing: r.positives_missing,
+      word_count: r.word_count,
+      cleaned: cleaned,
+    }, e.origin || '*');
+  }
+});
+</script>
+</body>
+</html>
