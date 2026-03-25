@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="last-modified" content="2026-03-25">
+  <meta name="description" content="Best Chance Studio — Story Formatter. Format a coached dog description for Petfinder, AdoptAPet, Instagram, Facebook, or RescueGroups. No signup, no server, works offline.">
+  <title>Story Formatter — Best Chance Studio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #F4622A;
+      --amber: #F9A826;
+      --bg: #F9F7F4;
+      --ink: #1E1E2E;
+      --muted: #6B6B7B;
+      --border: #E2DDD8;
+      --success: #2A9D6E;
+      --warn: #D97706;
+      --danger: #DC2626;
+      --card-bg: #FFFFFF;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 20px 24px 18px;
+    }
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .brand {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+    header h1 {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    header p {
+      font-size: 14px;
+      color: #A0A0B0;
+      line-height: 1.5;
+    }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 16px 80px;
+    }
+
+    /* ── Section labels ── */
+    .step-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+    .card .hint {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Textarea ── */
+    textarea {
+      width: 100%;
+      min-height: 160px;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    textarea:focus { border-color: var(--orange); }
+    textarea::placeholder { color: #BBBBC0; }
+
+    .char-counter-input {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    /* ── Platform grid ── */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .platform-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 14px 10px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, transform 0.1s;
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .platform-btn:active { transform: scale(0.97); }
+    .platform-btn.selected {
+      border-color: var(--orange);
+      background: #FFF3EE;
+    }
+    .platform-btn .plat-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+    .platform-btn .plat-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .platform-btn .plat-limit {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .platform-btn.selected .plat-name { color: var(--orange); }
+
+    /* ── Templates ── */
+    .templates-section { margin-top: 6px; }
+    .template-add-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .template-input {
+      flex: 1;
+      min-width: 0;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type="text"]:focus { border-color: var(--orange); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-secondary {
+      background: var(--ink);
+      color: #fff;
+    }
+    .btn-secondary:hover { opacity: 0.85; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+    .btn-ghost:hover { border-color: var(--muted); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .template-list { display: flex; flex-direction: column; gap: 8px; }
+    .template-item {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+    }
+    .template-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .template-item label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .template-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--orange);
+      cursor: pointer;
+    }
+    .template-item .tmpl-len {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .template-item .tmpl-preview {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-left: 26px;
+      word-break: break-word;
+    }
+    .template-delete {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 4px;
+      transition: color 0.15s;
+      flex-shrink: 0;
+    }
+    .template-delete:hover { color: var(--danger); }
+
+    .empty-templates {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      padding: 8px 0;
+    }
+
+    /* ── Format button ── */
+    .format-row {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 24px;
+    }
+    .btn-format {
+      padding: 14px 40px;
+      font-size: 16px;
+      border-radius: 50px;
+    }
+
+    /* ── Result ── */
+    #result-section { display: none; }
+    #result-section.visible { display: block; }
+
+    .result-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .result-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* Status pill */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .status-within { background: #D1FAE5; color: var(--success); }
+    .status-at     { background: #FEF3C7; color: var(--warn); }
+    .status-over   { background: #FEE2E2; color: var(--danger); }
+
+    /* Char bar */
+    .char-bar-wrapper {
+      margin-bottom: 14px;
+    }
+    .char-bar-track {
+      height: 6px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .char-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.3s ease;
+    }
+    .fill-within { background: var(--success); }
+    .fill-at     { background: var(--warn); }
+    .fill-over   { background: var(--danger); }
+    .char-bar-label {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Warning banners */
+    .warn-banner {
+      background: #FFF7ED;
+      border: 1px solid #FDE68A;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--warn);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .warn-banner strong { color: #92400E; }
+
+    /* Output box */
+    .output-box {
+      position: relative;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink);
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 80px;
+      margin-bottom: 12px;
+    }
+    .copy-btn-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Copy feedback */
+    .copy-feedback {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success);
+      opacity: 0;
+      transition: opacity 0.2s;
+      margin-right: auto;
+      align-self: center;
+    }
+    .copy-feedback.show { opacity: 1; }
+
+    /* Template strip */
+    .template-strip {
+      margin-top: 12px;
+      border-top: 1px dashed var(--border);
+      padding-top: 12px;
+    }
+    .template-strip-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .template-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #F0FDF4;
+      border: 1px solid #86EFAC;
+      border-radius: 50px;
+      padding: 3px 10px;
+      font-size: 12px;
+      color: var(--success);
+      font-weight: 600;
+      margin: 2px 4px 2px 0;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* How it works */
+    .how-it-works {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-top: 20px;
+    }
+    .how-it-works h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .how-it-works ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .how-it-works li {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .how-it-works li .icon { font-size: 16px; flex-shrink: 0; }
+
+    /* Platform info strip */
+    .platform-info {
+      background: #F0F9FF;
+      border: 1px solid #BAE6FD;
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #0369A1;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* API note */
+    .api-note {
+      background: var(--ink);
+      color: #C8C8D8;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .api-note code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--amber);
+      background: rgba(255,255,255,0.08);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    .api-note h3 {
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 16px 24px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--muted); text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      header { padding: 16px; }
+      main { padding: 16px 12px 60px; }
+      .platform-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .btn-format { padding: 13px 28px; font-size: 15px; }
+      .template-add-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">Best Chance Studio</div>
+    <h1>Story Formatter</h1>
+    <p>Paste a coached description. Pick a platform. Get copy-ready output — character limits handled, no manual trimming.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- Step 1: Description -->
+  <div class="step-label">Step 1 — Paste Your Coached Description</div>
+  <div class="card">
+    <h2>Dog Description</h2>
+    <p class="hint">Paste the coached story here — just the dog description, not boilerplate like adoption process or transport info.</p>
+    <textarea id="story-input" placeholder="Moose is the dog who figured out how to open the treat cabinet three days after arriving. He's not food-aggressive about it — he just looks at you, looks at the cabinet, looks back at you, completely unbothered that he's been caught.&#10;&#10;He's a 4-year-old border collie mix, 42 lbs, neutered, up to date on vaccines, crate-trained and house-trained. He's been fostered for 6 weeks with two kids (7 and 10) and a laid-back older lab..."></textarea>
+    <div class="char-counter-input" id="input-char-count">0 characters</div>
+  </div>
+
+  <!-- Step 2: Platform -->
+  <div class="step-label">Step 2 — Choose a Platform</div>
+  <div class="card">
+    <h2>Target Platform</h2>
+    <p class="hint">Each platform has different character limits and conventions. Pick one and the formatter handles the rest.</p>
+    <div class="platform-grid" id="platform-grid">
+      <!-- injected by JS -->
+    </div>
+    <div id="platform-info" class="platform-info" style="display:none;"></div>
+  </div>
+
+  <!-- Step 3: Templates -->
+  <div class="step-label">Step 3 — Add Rescue Templates (Optional)</div>
+  <div class="card">
+    <h2>Rescue Boilerplate Templates</h2>
+    <p class="hint">Add standard paragraphs your rescue uses on every listing — adoption process, transport info, UW rules, links. The formatter appends them after the dog story and tracks the combined character count.</p>
+
+    <div class="templates-section">
+      <div class="template-add-row">
+        <div class="template-input">
+          <input type="text" id="template-name-input" placeholder="Template name (e.g. Adoption Process)" maxlength="60">
+        </div>
+      </div>
+      <div style="margin-bottom:10px;">
+        <textarea id="template-text-input" style="min-height:80px;" placeholder="Paste the boilerplate text here..."></textarea>
+      </div>
+      <div style="display:flex; justify-content:flex-end;">
+        <button class="btn btn-ghost" id="add-template-btn" onclick="addTemplate()">+ Add Template</button>
+      </div>
+
+      <div class="divider" style="margin: 14px 0 10px;"></div>
+
+      <div id="template-list" class="template-list">
+        <div class="empty-templates" id="empty-templates-msg">No templates added yet. Templates are optional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Format button -->
+  <div class="format-row">
+    <button class="btn btn-primary btn-format" id="format-btn" onclick="formatStory()">
+      Format for Platform →
+    </button>
+  </div>
+
+  <!-- Result -->
+  <div id="result-section">
+    <div class="step-label">Result</div>
+    <div class="card">
+      <div class="result-header">
+        <h2 id="result-platform-label">Formatted for Petfinder</h2>
+        <div class="status-pill" id="status-pill">✓ Within Limit</div>
+      </div>
+
+      <div class="char-bar-wrapper">
+        <div class="char-bar-track">
+          <div class="char-bar-fill" id="char-bar" style="width:0%"></div>
+        </div>
+        <div class="char-bar-label">
+          <span id="char-bar-text">0 / 0 characters</span>
+          <span id="char-bar-limit-label"></span>
+        </div>
+      </div>
+
+      <div id="template-warning" class="warn-banner" style="display:none;"></div>
+
+      <div class="output-box" id="output-box"></div>
+
+      <div class="copy-btn-row">
+        <span class="copy-feedback" id="copy-feedback">✓ Copied!</span>
+        <button class="btn btn-ghost" onclick="selectAll()">Select All</button>
+        <button class="btn btn-primary" onclick="copyOutput()">Copy to Clipboard</button>
+      </div>
+
+      <div id="template-strip" class="template-strip" style="display:none;">
+        <div class="template-strip-label">Templates included</div>
+        <div id="template-chips"></div>
+      </div>
+    </div>
+
+    <div class="how-it-works">
+      <h3>How the formatting works</h3>
+      <ul>
+        <li><span class="icon">✂️</span><span><strong>Character limits enforced</strong> — the formatter trims to fit the platform limit. It breaks at sentence boundaries where possible to avoid cutting mid-thought.</span></li>
+        <li><span class="icon">📋</span><span><strong>Templates append after the story</strong> — your rescue boilerplate comes last. The dog's story always gets priority.</span></li>
+        <li><span class="icon">⚠️</span><span><strong>Budget warning</strong> — if templates are long enough to crowd the dog story below ~300 chars, the formatter tells you which template is the problem.</span></li>
+        <li><span class="icon">🔌</span><span><strong>API-compatible</strong> — this tool matches the <code>POST /story/format</code> spec exactly. Platform implementations can call this logic server-side.</span></li>
+      </ul>
+    </div>
+
+    <div class="api-note">
+      <h3>For platform builders — API contract</h3>
+      <p>This tool implements the <code>POST /story/format</code> endpoint spec from <code>TASKS.md</code>. Input: <code>description</code>, <code>target</code>, optional <code>templates[]</code>. Output: <code>formatted</code>, <code>char_count</code>, <code>limit</code>, <code>status</code>, <code>templates_included[]</code>, optional <code>template_warning</code>. Standalone BCS omits <code>templates[]</code> — coached story only. Same logic, both cases.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Best Chance Studio · Open source coaching tools for rescue dogs · <a href="https://github.com/mei0872/best-chance-studio" target="_blank">github.com/mei0872/best-chance-studio</a></p>
+  <p style="margin-top:4px;">Every dog deserves their best chance.</p>
+</footer>
+
+<script>
+  // ── Platform definitions ──────────────────────────────────────────────────
+  const PLATFORMS = [
+    {
+      id: 'petfinder',
+      name: 'Petfinder',
+      icon: '🐾',
+      limit: 4000,
+      notes: 'Petfinder displays the full description on the pet detail page. Aim for 300–600 words for best engagement. Supports basic line breaks.'
+    },
+    {
+      id: 'adoptapet',
+      name: 'AdoptAPet',
+      icon: '🏠',
+      limit: 3000,
+      notes: 'AdoptAPet uses the description on pet profile pages. Plain text with line breaks. Keep the hook in the first 200 chars — that\'s what shows in search results.'
+    },
+    {
+      id: 'instagram',
+      name: 'Instagram',
+      icon: '📷',
+      limit: 2200,
+      notes: 'Instagram captions truncate at ~125 chars in feed — put the hook first. Full caption visible on tap. No clickable links in captions (link in bio).'
+    },
+    {
+      id: 'facebook',
+      name: 'Facebook',
+      icon: '👥',
+      limit: 63206,
+      notes: 'Facebook has a very high character limit (63,206). The practical limit for shareability is ~500–800 chars. This formatter uses 800 chars as the practical guide — anything longer risks lower organic reach.'
+    },
+    {
+      id: 'rescuegroups',
+      name: 'RescueGroups',
+      icon: '🤝',
+      limit: 2000,
+      notes: 'RescueGroups syndicates to multiple platforms. Descriptions are shared as-is. Conservative limit of 2,000 chars ensures compatibility across all syndication targets.'
+    }
+  ];
+
+  // Facebook: use practical limit for formatting guidance
+  const PLATFORM_PRACTICAL_LIMITS = {
+    facebook: 800
+  };
+
+  function getPlatformLimit(platform) {
+    return PLATFORM_PRACTICAL_LIMITS[platform.id] || platform.limit;
+  }
+
+  // ── State ─────────────────────────────────────────────────────────────────
+  let selectedPlatformId = null;
+  let templates = []; // { id, name, text, enabled }
+  let templateCounter = 0;
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function() {
+    renderPlatformGrid();
+    updateInputCharCount();
+    document.getElementById('story-input').addEventListener('input', updateInputCharCount);
+  });
+
+  // ── Platform grid ─────────────────────────────────────────────────────────
+  function renderPlatformGrid() {
+    var grid = document.getElementById('platform-grid');
+    grid.innerHTML = '';
+    PLATFORMS.forEach(function(p) {
+      var btn = document.createElement('button');
+      btn.className = 'platform-btn' + (selectedPlatformId === p.id ? ' selected' : '');
+      btn.setAttribute('aria-pressed', selectedPlatformId === p.id ? 'true' : 'false');
+      btn.innerHTML = '<span class="plat-icon">' + p.icon + '</span>' +
+        '<span class="plat-name">' + p.name + '</span>' +
+        '<span class="plat-limit">' + formatLimit(getPlatformLimit(p)) + ' chars</span>';
+      btn.onclick = function() { selectPlatform(p.id); };
+      grid.appendChild(btn);
+    });
+  }
+
+  function formatLimit(n) {
+    return n >= 1000 ? (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k' : n.toString();
+  }
+
+  function selectPlatform(id) {
+    selectedPlatformId = id;
+    renderPlatformGrid();
+    var platform = PLATFORMS.find(function(p) { return p.id === id; });
+    var infoEl = document.getElementById('platform-info');
+    if (platform) {
+      infoEl.textContent = platform.notes;
+      infoEl.style.display = 'block';
+    }
+  }
+
+  // ── Input char count ──────────────────────────────────────────────────────
+  function updateInputCharCount() {
+    var text = document.getElementById('story-input').value;
+    var el = document.getElementById('input-char-count');
+    el.textContent = text.length.toLocaleString() + ' character' + (text.length === 1 ? '' : 's');
+  }
+
+  // ── Templates ─────────────────────────────────────────────────────────────
+  function addTemplate() {
+    var nameInput = document.getElementById('template-name-input');
+    var textInput = document.getElementById('template-text-input');
+    var name = nameInput.value.trim();
+    var text = textInput.value.trim();
+
+    if (!text) {
+      textInput.focus();
+      return;
+    }
+    if (!name) { name = 'Template ' + (templates.length + 1); }
+
+    var tmpl = { id: 'tmpl_' + (++templateCounter), name: name, text: text, enabled: true };
+    templates.push(tmpl);
+
+    nameInput.value = '';
+    textInput.value = '';
+    nameInput.focus();
+
+    renderTemplateList();
+  }
+
+  function removeTemplate(id) {
+    templates = templates.filter(function(t) { return t.id !== id; });
+    renderTemplateList();
+  }
+
+  function toggleTemplate(id, checked) {
+    var tmpl = templates.find(function(t) { return t.id === id; });
+    if (tmpl) { tmpl.enabled = checked; }
+  }
+
+  function renderTemplateList() {
+    var list = document.getElementById('template-list');
+    var emptyMsg = document.getElementById('empty-templates-msg');
+
+    if (templates.length === 0) {
+      list.innerHTML = '';
+      list.appendChild(emptyMsg);
+      emptyMsg.style.display = 'block';
+      return;
+    }
+
+    emptyMsg.style.display = 'none';
+    list.innerHTML = '';
+
+    templates.forEach(function(tmpl) {
+      var preview = tmpl.text.length > 100 ? tmpl.text.slice(0, 100) + '...' : tmpl.text;
+      var item = document.createElement('div');
+      item.className = 'template-item';
+      item.innerHTML = '<div class="template-item-header">' +
+        '<label><input type="checkbox" ' + (tmpl.enabled ? 'checked' : '') + ' onchange="toggleTemplate(\'' + tmpl.id + '\', this.checked)"> ' +
+        '<span>' + escapeHtml(tmpl.name) + '</span></label>' +
+        '<span class="tmpl-len">' + tmpl.text.length.toLocaleString() + ' chars</span>' +
+        '<button class="template-delete" onclick="removeTemplate(\'' + tmpl.id + '\')" title="Remove template">×</button>' +
+        '</div>' +
+        '<div class="tmpl-preview">' + escapeHtml(preview) + '</div>';
+      list.appendChild(item);
+    });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // ── Core formatting logic ─────────────────────────────────────────────────
+  // Matches the POST /story/format spec in TASKS.md
+
+  function formatStory() {
+    var description = document.getElementById('story-input').value.trim();
+    if (!description) {
+      alert('Please paste a dog description first.');
+      document.getElementById('story-input').focus();
+      return;
+    }
+    if (!selectedPlatformId) {
+      alert('Please select a platform.');
+      return;
+    }
+
+    var platform = PLATFORMS.find(function(p) { return p.id === selectedPlatformId; });
+    var limit = getPlatformLimit(platform);
+    var enabledTemplates = templates.filter(function(t) { return t.enabled; });
+
+    // Build template block
+    var templateBlock = '';
+    if (enabledTemplates.length > 0) {
+      templateBlock = '\n\n' + enabledTemplates.map(function(t) { return t.text.trim(); }).join('\n\n');
+    }
+
+    var templateLength = templateBlock.length;
+    var storyBudget = limit - templateLength;
+
+    var templateWarning = null;
+    var MIN_STORY_BUDGET = 300;
+
+    // Check if templates crowd out the story
+    if (enabledTemplates.length > 0 && storyBudget < MIN_STORY_BUDGET) {
+      // Find the offending template (largest one)
+      var largest = enabledTemplates.reduce(function(a, b) {
+        return a.text.length >= b.text.length ? a : b;
+      });
+      templateWarning = 'Template "' + largest.name + '" is long enough to leave fewer than 300 characters for the dog story. Consider shortening it or unchecking it.';
+      // Still format — give dog story priority, fit as much as possible
+      storyBudget = Math.max(MIN_STORY_BUDGET, limit - templateLength);
+    }
+
+    // Trim story to budget (break at sentence boundaries where possible)
+    var trimmedStory = trimToLimit(description, storyBudget);
+
+    // Assemble final output
+    var formatted = trimmedStory + (enabledTemplates.length > 0 ? templateBlock : '');
+
+    // Enforce hard platform limit (shouldn't be needed, but safety net)
+    if (formatted.length > limit) {
+      formatted = formatted.slice(0, limit);
+    }
+
+    var charCount = formatted.length;
+    var status;
+    if (charCount < limit) { status = 'within_limit'; }
+    else if (charCount === limit) { status = 'at_limit'; }
+    else { status = 'over_limit'; }
+
+    // Display result
+    showResult({
+      formatted: formatted,
+      char_count: charCount,
+      limit: limit,
+      status: status,
+      platform: platform,
+      templates_included: enabledTemplates.map(function(t) { return t.name; }),
+      template_warning: templateWarning
+    });
+  }
+
+  // Trim text to `budget` characters, preferring sentence boundaries
+  function trimToLimit(text, budget) {
+    if (text.length <= budget) { return text; }
+
+    // Try to break at sentence end (. ! ?) within the budget
+    var slice = text.slice(0, budget);
+    var lastSentenceEnd = Math.max(
+      slice.lastIndexOf('. '),
+      slice.lastIndexOf('! '),
+      slice.lastIndexOf('? '),
+      slice.lastIndexOf('.\n'),
+      slice.lastIndexOf('!\n'),
+      slice.lastIndexOf('?\n')
+    );
+
+    if (lastSentenceEnd > budget * 0.6) {
+      // Found a good break point — include the punctuation
+      return slice.slice(0, lastSentenceEnd + 1).trimEnd();
+    }
+
+    // Fallback: break at last space
+    var lastSpace = slice.lastIndexOf(' ');
+    if (lastSpace > budget * 0.7) {
+      return slice.slice(0, lastSpace).trimEnd();
+    }
+
+    // Hard cut
+    return slice.trimEnd();
+  }
+
+  // ── Render result ─────────────────────────────────────────────────────────
+  function showResult(result) {
+    var section = document.getElementById('result-section');
+    section.style.display = 'block';
+    section.classList.add('visible');
+
+    // Platform label
+    document.getElementById('result-platform-label').textContent =
+      'Formatted for ' + result.platform.name;
+
+    // Status pill
+    var pill = document.getElementById('status-pill');
+    pill.className = 'status-pill';
+    if (result.status === 'within_limit') {
+      pill.className += ' status-within';
+      pill.textContent = '✓ Within Limit';
+    } else if (result.status === 'at_limit') {
+      pill.className += ' status-at';
+      pill.textContent = '⚡ At Limit';
+    } else {
+      pill.className += ' status-over';
+      pill.textContent = '⚠ Over Limit';
+    }
+
+    // Char bar
+    var pct = Math.min(100, Math.round((result.char_count / result.limit) * 100));
+    var bar = document.getElementById('char-bar');
+    bar.style.width = pct + '%';
+    bar.className = 'char-bar-fill ' + (
+      result.status === 'within_limit' ? 'fill-within' :
+      result.status === 'at_limit'     ? 'fill-at'     : 'fill-over'
+    );
+
+    document.getElementById('char-bar-text').textContent =
+      result.char_count.toLocaleString() + ' / ' + result.limit.toLocaleString() + ' characters';
+
+    var limitLabel = result.platform.id === 'facebook'
+      ? '(' + result.platform.limit.toLocaleString() + ' max · ' + result.limit.toLocaleString() + ' practical)'
+      : '(limit: ' + result.limit.toLocaleString() + ')';
+    document.getElementById('char-bar-limit-label').textContent = limitLabel;
+
+    // Template warning
+    var warnEl = document.getElementById('template-warning');
+    if (result.template_warning) {
+      warnEl.innerHTML = '<strong>Template too long:</strong> ' + escapeHtml(result.template_warning);
+      warnEl.style.display = 'block';
+    } else {
+      warnEl.style.display = 'none';
+    }
+
+    // Output box
+    document.getElementById('output-box').textContent = result.formatted;
+
+    // Template strip
+    var strip = document.getElementById('template-strip');
+    var chips = document.getElementById('template-chips');
+    if (result.templates_included && result.templates_included.length > 0) {
+      chips.innerHTML = result.templates_included.map(function(name) {
+        return '<span class="template-chip">✓ ' + escapeHtml(name) + '</span>';
+      }).join('');
+      strip.style.display = 'block';
+    } else {
+      strip.style.display = 'none';
+    }
+
+    // Scroll to result
+    setTimeout(function() {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+
+    // Reset copy feedback
+    document.getElementById('copy-feedback').classList.remove('show');
+  }
+
+  // ── Copy / Select ─────────────────────────────────────────────────────────
+  function copyOutput() {
+    var text = document.getElementById('output-box').textContent;
+    if (!text) { return; }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(showCopyFeedback).catch(fallbackCopy.bind(null, text));
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showCopyFeedback();
+    } catch (e) { /* silent */ }
+    document.body.removeChild(ta);
+  }
+
+  function showCopyFeedback() {
+    var el = document.getElementById('copy-feedback');
+    el.classList.add('show');
+    setTimeout(function() { el.classList.remove('show'); }, 2000);
+  }
+
+  function selectAll() {
+    var box = document.getElementById('output-box');
+    var sel = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(box);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  // Allow Enter in template name input to move to textarea
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('template-name-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('template-text-input').focus();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
