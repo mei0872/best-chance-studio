@@ -393,10 +393,12 @@ Output: exported_url, thumbnail_url, suggested_title, suggested_tags, duration_s
 ### [R-01] Monthly AI QA Review
 **What:** Spot-check extraction, coaching pass, story builder, and scene recommendations against real output. Tune prompts and config as needed.
 **Process:** See `wag-on-home/project/AI-QA-PROCESS.md` for the full checklist.
-**Next due:** April 23, 2026 (first review — need ~30 uploads of real data first)
+**Next due:** April 23, 2026 (full checklist — need ~30 uploads of real data first)
+**Last reviewed:** April 1, 2026 — pre-data systems audit. 0 real sessions yet.
+**Findings:** `claude-opus-4-5` → `claude-opus-4-6` upgrade available (zero-code: Railway env var). No urgency (retirement Nov 2026). Flag for June quarterly check.
 **Standing open items:**
 - [ ] Build presenter thumbs-up/down feedback on extraction result (feeds QA signal)
-- [ ] Quarterly model upgrade check (next: June 2026)
+- [ ] Quarterly model upgrade check (next: June 2026 — consider `claude-opus-4-6` at that point)
 
 ---
 
