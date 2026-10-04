@@ -704,7 +704,7 @@ The foster didn't have to figure any of this out. The platform surfaced it, call
 
 A rescue not on a smart platform can still call `/story/represent` — but they're the ones supplying the context. No automatic near-miss signals. No learned patterns.
 
-However, a rescue coordinator who's paying attention can pass in a lot. An adopter who emailed a question and didn't apply. A comment someone left on the Facebook post. Something Beth noticed during a conversation. None of this is automated — but it can be manually added to `near_miss_signals` and the API will use it just as it would a platform-generated signal.
+However, a rescue coordinator who's paying attention can pass in a lot. An adopter who emailed a question and didn't apply. A comment someone left on the Facebook post. Something the rescue's director noticed during a conversation. None of this is automated — but it can be manually added to `near_miss_signals` and the API will use it just as it would a platform-generated signal.
 
 ```json
 POST /story/represent
@@ -717,7 +717,7 @@ POST /story/represent
       "near_miss_signals": [
         "email inquiry asked if he'd be okay in an apartment — never followed up",
         "Facebook comment: 'love him but we have a cat'",
-        "Beth's note: two people asked about his energy level at the event"
+        "The Blues City team's note: two people asked about his energy level at the event"
       ]
     }
   ]

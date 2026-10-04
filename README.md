@@ -4,13 +4,13 @@
 
 Open source dog presentation tools that give every rescue dog their best chance at adoption.
 
-**Free for every rescue. That includes the AI. We're building a charity-funded pool — supported by foundations and donors — so rescue orgs never pay for the AI that helps their dogs get adopted. No matter where they post, no matter which tools they use.**
+**Free for every rescue, no matter where they post or which tools they use.** Running the AI can have its own costs, depending on who hosts it. See [docs/ai-credentials.md](docs/ai-credentials.md).
 
 ---
 
-## A Note from Kip, Michele & Beth
+## A Note from Kip & Michele
 
-We've been fostering dogs since 2019 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
+We've been fostering dogs since 2019 — alongside Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
 
 But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
 
@@ -18,7 +18,7 @@ Here's the thing: Kip is terrible at posting dogs.  Pics and video is a pain, an
 
 What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. We're very excited!
 
-— Kip, Michele & Beth
+— Kip & Michele
 
 ---
 
@@ -139,73 +139,9 @@ Platform hints are a roadmap feature — not available in the current version. B
 
 ---
 
-## Free. Forever. For Every Rescue.
+## Free for rescues
 
-This is not a goal. It is the constraint the funding model is built around.
-
-BCS works through a hosted model: rescue orgs use BCS through a certified platform host — a shelter network, an adoption platform, or a regional rescue coalition running BCS on their behalf. **Hosts cover the AI costs. Rescues pay nothing and configure nothing.**
-
-AI and infrastructure costs are funded by animal welfare foundations, corporate sponsors, and individual donors. The BCS community is building charity-funded AI pools specifically so certified hosts can cover these costs without ever passing them to rescues. The founder personally seeds early costs. The rescue community doesn't pay. That's the deal, and there's no asterisk.
-
-Every rescue. Every dog. Every presentation. Free — because a host takes on the cost and the governance so rescues never have to.
-
----
-
-## For Funders & Sponsors
-
-### Why fund BCS?
-
-Every dollar you put into BCS directly reduces the time a dog waits for a home. Not theoretically — trackably.
-
-BCS is built to meet the stewardship standards of serious funders from day one. Outcome tracking is built into the platform — not added later for reporting purposes. Foundations and grant programs don't have to chase receipts or request manual reports. The data is there automatically.
-
-**What your funding covers:** BCS uses AI for coaching features — story building, photo coaching, presentation scoring. These AI costs are the only ongoing expense. Hosting organizations use BCS free; rescues use BCS free. The only thing that costs money is the AI that makes it work.
-
-BCS records every presentation completed, every dog coached, and every outcome we can verify. Funders receive automatic quarterly reports:
-
-> *"Your funding powered X BCS sessions this quarter. Y dogs coached. Adoption outcome data builds as BCS is used in the field — we'll report what we know and be clear about what we're still learning."*
-
-**Fully transparent finances.** All transactions are public via Open Collective. Any funder can see exactly where funds go at any time — no request needed.
-
-### How to fund BCS
-
-**For foundations and grant programs (501(c)(3) path):**
-
-BCS operates under fiscal sponsorship of **Open Collective Foundation** — a registered 501(c)(3) public charity (EIN: 82-2037583). Grants can be made directly to Open Collective Foundation, restricted for Best Chance Studio. This is the cleanest path for foundations whose grant guidelines require a 501(c)(3) recipient.
-
-To make a grant: contact Open Collective Foundation directly at [opencollective.com/foundation](https://opencollective.com/foundation) and reference Best Chance Studio as the restricted project. We're happy to provide any additional documentation a program officer needs.
-
-**For individual donors and corporate giving programs:**
-
-🔗 **[Fund BCS on Open Collective](https://opencollective.com/best-chance-studio)**
-
-- Tax-deductible via Open Collective Foundation (501(c)(3) fiscal sponsor, EIN: 82-2037583)
-- Any amount. Credit card, check, or Donor-Advised Fund (DAF) — all accepted.
-- No minimum. No commitment. Renew based on impact numbers, not promises.
-
-### Sponsorship tiers
-
-**Community Funder** — any amount.
-Listed in this README and in every quarterly impact report. Your contribution is acknowledged in the community that's using these tools.
-
-**BCS Powered By** — named sponsor tier for organizations funding at meaningful scale.
-Logo in README. Named in all impact reports. Early access to anonymized research findings and outcome data from the broader BCS community. Direct line to the BCS team for program questions.
-
-BCS is designed to carry many funders — foundations, corporate giving programs, individual donors, DAF holders. No single funder owns BCS. That's the point. Your contribution sits alongside others who believe the same thing: that the rescue community deserves better tools, and that funding them is a direct line to dogs going home.
-
-### A note for grant program officers
-
-BCS is designed to meet the stewardship standards of serious funders. If you're evaluating this project for a grant:
-
-- **The methodology is open and peer-reviewable** — [RUBRIC.md](RUBRIC.md), [FLOW.md](FLOW.md). The rubric is grounded in peer-reviewed research including a 2019 study of 70,733 dogs and a 2020 photographic study of 8,332 dogs.
-- **Outcome tracking is built in from the first session** — not added for reporting purposes
-- **Every certified implementation contributes anonymized outcome data** to the community standard
-- **Quarterly reports are automatic** — available to any funder at any time, no request needed
-- **AI costs are tracked per key** — charity-funded AI is scoped exclusively to BCS presentation work. Usage is auditable and separate from any non-BCS platform features.
-
-We're working toward a measurable claim on time-to-adoption impact. We're not there yet — that data builds as BCS is used in the field. We'll report what we know, and we'll be clear about what we're still learning. We believe this is the kind of project worth funding before the impact numbers are complete — because the infrastructure to capture those numbers is already in place.
-
-If you'd like to speak with us before making a funding decision, we welcome that conversation: **KipMeierhofer@gmail.com**
+The kit is free for rescues. Running the AI can have its own costs, depending on who hosts it. See [docs/ai-credentials.md](docs/ai-credentials.md).
 
 ---
 
@@ -242,9 +178,9 @@ A BCS host is any organization running BCS on behalf of rescue orgs — an adopt
 - Keeping BCS free, zero-setup, and zero-burden for every rescue they serve
 
 **The AI cost model:**
-BCS uses AI for coaching features. Hosts pay for it — rescues don't. The BCS community is building charity-funded AI pools so that certified hosts can cover these costs through foundation grants, corporate sponsors, and donor contributions rather than charging rescues. If you're building a host implementation and want to connect with the funding model, reach out.
+BCS uses AI for coaching features. It's free for rescues. We aren't taking donations or sponsorships right now.
 
-This is the governance layer that makes "free forever for every rescue" a real promise, not a marketing line.
+This is the governance layer that makes "free for rescues" a real promise, not a marketing line.
 
 ---
 
@@ -306,21 +242,18 @@ We have more ideas than hands. If you want to build something that matters — n
 
 **Michele Meierhofer** — co-creator. 20+ years in marketing. The brand, the voice, and the heart of everything we build. She's loved every dog that's come through their door — and her instincts for what moves people are in every line of this.
 
-**Beth Aversa** — Blues City Animal Rescue, Memphis. Roughly 500 dogs a year. Weekly transport runs up the east coast and to Chicago. Our first real rescue partner — the person who made it real. Everything in BCS has been stress-tested against what works in Beth's world.
+**Blues City Animal Rescue**, Memphis. Roughly 500 dogs a year. Weekly transport runs up the east coast and to Chicago. Our first real rescue partner. Everything in BCS has been stress-tested against what works at the rescue.
 
 ---
 
 ## Contact
 
-Questions, partnership inquiries, funding conversations, or just want to talk about the problem:
+Questions, partnership inquiries, or just want to talk about the problem:
 
 📧 **KipMeierhofer@gmail.com**
 
-Fund BCS:
-🔗 **[opencollective.com/best-chance-studio](https://opencollective.com/best-chance-studio)**
-
 ---
 
-*Best Chance Studio — free for every rescue. Forever.*
+*Best Chance Studio — free for rescues.*
 *MIT licensed. Community owned. The coaching belongs to the rescue community.*
 

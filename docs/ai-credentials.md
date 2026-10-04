@@ -8,7 +8,7 @@
 
 BCS is built for rescues. AI-powered features should never be a cost burden on the organizations doing the work.
 
-For rescues using any BCS tool, this means zero setup, zero billing, zero friction — regardless of which platform or implementation they're using. The charity pool is for rescues, not tied to any single platform.
+For rescues using any BCS tool, this means zero setup and zero friction — regardless of which platform or implementation they're using.
 
 How that commitment is fulfilled depends on the implementation — but the commitment itself is universal.
 
@@ -85,19 +85,7 @@ A platform may choose to manage AI credentials server-side, making them invisibl
 - The platform absorbs AI costs as part of its service model
 - The BCS spec requirement is still satisfied — credentials exist, are secure, and failures are handled gracefully — just managed at the platform layer instead of the user layer
 
-Our commitment is that any rescue using BCS — on any platform or tool — should never pay for AI out of pocket. The charity pool is the mechanism. Platform implementations that draw from it satisfy this commitment automatically.
-
 This is the implementor's business decision. The spec is silent on pricing models.
-
----
-
-## The Charity Funding Model
-
-BCS maintains a charity AI pool funded through platform partnerships and contributions. When live, this pool will cover AI costs for rescues using BCS tools — on any platform, through any implementation. Free for rescues means free everywhere.
-
-This pool is not a platform feature. It's a commitment to the rescue community that exists independent of any specific implementation or partner. Implementors who draw from the pool on behalf of their rescue users are fulfilling the BCS mission.
-
-Details on pool access and eligibility will be published separately.
 
 ---
 

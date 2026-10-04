@@ -100,7 +100,7 @@ With this: the AI Director knows what the Story Builder knows. The platform's in
 
 Open a PR with:
 - **Title:** what it does (one line)
-- **Description:** which dog it helps — literally, if you can. "This means Beth can score all 40 dogs before Saturday instead of doing it by feel." is the kind of PR description that belongs here.
+- **Description:** which dog it helps — literally, if you can. "This means the rescue's director can score all 40 dogs before Saturday instead of doing it by feel." is the kind of PR description that belongs here.
 
 No formal code review process yet. If it runs and does what it says, we're merging it.
 
