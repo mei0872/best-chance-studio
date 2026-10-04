@@ -212,6 +212,7 @@ If you'd like to speak with us before making a funding decision, we welcome that
 ## License
 
 MIT licensed — use the code freely.
+About the name: see [TRADEMARKS.md](TRADEMARKS.md).
 
 ---
 
