@@ -8,9 +8,9 @@ Open source dog presentation tools that give every rescue dog their best chance 
 
 ---
 
-## A Note from Kip, Michele & Beth
+## A Note from Kip & Michele
 
-We've been fostering dogs since 2019 — alongside Beth Aversa at Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
+We've been fostering dogs since 2019 — alongside Blues City Animal Rescue in Memphis. We love dogs. We have seven of our own and we've fostered hundreds. We're hooked on fostering.
 
 But we both come from systems backgrounds — and when you spend enough time inside a broken system, you can't help but see the problems. Or the opportunities. Depends how you want to look at it.
 
@@ -18,7 +18,7 @@ Here's the thing: Kip is terrible at posting dogs.  Pics and video is a pain, an
 
 What we build here is going to be loved by rescues. It's going to help them get dogs adopted so much faster. We're very excited!
 
-— Kip, Michele & Beth
+— Kip & Michele
 
 ---
 
@@ -139,7 +139,7 @@ Platform hints are a roadmap feature — not available in the current version. B
 
 ---
 
-## Free. Forever. For Every Rescue.
+## Free for rescues
 
 This is not a goal. It is the constraint the funding model is built around.
 
@@ -174,14 +174,6 @@ BCS records every presentation completed, every dog coached, and every outcome w
 BCS operates under fiscal sponsorship of **Open Collective Foundation** — a registered 501(c)(3) public charity (EIN: 82-2037583). Grants can be made directly to Open Collective Foundation, restricted for Best Chance Studio. This is the cleanest path for foundations whose grant guidelines require a 501(c)(3) recipient.
 
 To make a grant: contact Open Collective Foundation directly at [opencollective.com/foundation](https://opencollective.com/foundation) and reference Best Chance Studio as the restricted project. We're happy to provide any additional documentation a program officer needs.
-
-**For individual donors and corporate giving programs:**
-
-🔗 **[Fund BCS on Open Collective](https://opencollective.com/best-chance-studio)**
-
-- Tax-deductible via Open Collective Foundation (501(c)(3) fiscal sponsor, EIN: 82-2037583)
-- Any amount. Credit card, check, or Donor-Advised Fund (DAF) — all accepted.
-- No minimum. No commitment. Renew based on impact numbers, not promises.
 
 ### Sponsorship tiers
 
@@ -244,7 +236,7 @@ A BCS host is any organization running BCS on behalf of rescue orgs — an adopt
 **The AI cost model:**
 BCS uses AI for coaching features. Hosts pay for it — rescues don't. The BCS community is building charity-funded AI pools so that certified hosts can cover these costs through foundation grants, corporate sponsors, and donor contributions rather than charging rescues. If you're building a host implementation and want to connect with the funding model, reach out.
 
-This is the governance layer that makes "free forever for every rescue" a real promise, not a marketing line.
+This is the governance layer that makes "free for rescues" a real promise, not a marketing line.
 
 ---
 
@@ -306,7 +298,7 @@ We have more ideas than hands. If you want to build something that matters — n
 
 **Michele Meierhofer** — co-creator. 20+ years in marketing. The brand, the voice, and the heart of everything we build. She's loved every dog that's come through their door — and her instincts for what moves people are in every line of this.
 
-**Beth Aversa** — Blues City Animal Rescue, Memphis. Roughly 500 dogs a year. Weekly transport runs up the east coast and to Chicago. Our first real rescue partner — the person who made it real. Everything in BCS has been stress-tested against what works in Beth's world.
+**Blues City Animal Rescue**, Memphis. Roughly 500 dogs a year. Weekly transport runs up the east coast and to Chicago. Our first real rescue partner. Everything in BCS has been stress-tested against what works at the rescue.
 
 ---
 
@@ -321,6 +313,6 @@ Fund BCS:
 
 ---
 
-*Best Chance Studio — free for every rescue. Forever.*
+*Best Chance Studio — free for rescues.*
 *MIT licensed. Community owned. The coaching belongs to the rescue community.*
 
