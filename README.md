@@ -141,13 +141,7 @@ Platform hints are a roadmap feature — not available in the current version. B
 
 ## Free for rescues
 
-This is not a goal. It is the constraint the funding model is built around.
-
-BCS works through a hosted model: rescue orgs use BCS through a certified platform host — a shelter network, an adoption platform, or a regional rescue coalition running BCS on their behalf. **Hosts cover the AI costs. Rescues pay nothing and configure nothing.**
-
-Best Chance Studio is free for rescues. We aren't taking donations or sponsorships right now. See [docs/funding.md](docs/funding.md).
-
-Every rescue. Every dog. Every presentation. Free — because a host takes on the cost and the governance so rescues never have to.
+The kit is free for rescues. Running the AI can have its own costs, depending on who hosts it. See [docs/ai-credentials.md](docs/ai-credentials.md).
 
 ---
 
@@ -254,7 +248,7 @@ We have more ideas than hands. If you want to build something that matters — n
 
 ## Contact
 
-Questions, partnership inquiries, funding conversations, or just want to talk about the problem:
+Questions, partnership inquiries, or just want to talk about the problem:
 
 📧 **KipMeierhofer@gmail.com**
 
