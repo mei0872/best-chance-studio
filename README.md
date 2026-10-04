@@ -145,39 +145,9 @@ This is not a goal. It is the constraint the funding model is built around.
 
 BCS works through a hosted model: rescue orgs use BCS through a certified platform host — a shelter network, an adoption platform, or a regional rescue coalition running BCS on their behalf. **Hosts cover the AI costs. Rescues pay nothing and configure nothing.**
 
-AI and infrastructure costs are funded by animal welfare foundations, corporate sponsors, and individual donors. The BCS community is building charity-funded AI pools specifically so certified hosts can cover these costs without ever passing them to rescues. The founder personally seeds early costs. The rescue community doesn't pay. That's the deal, and there's no asterisk.
+Best Chance Studio is free for rescues. We aren't taking donations or sponsorships right now. See [docs/funding.md](docs/funding.md).
 
 Every rescue. Every dog. Every presentation. Free — because a host takes on the cost and the governance so rescues never have to.
-
----
-
-## For Funders & Sponsors
-
-### Why fund BCS?
-
-Every dollar you put into BCS directly reduces the time a dog waits for a home. Not theoretically — trackably.
-
-BCS is built to meet the stewardship standards of serious funders from day one. Outcome tracking is built into the platform — not added later for reporting purposes. Foundations and grant programs don't have to chase receipts or request manual reports. The data is there automatically.
-
-**What your funding covers:** BCS uses AI for coaching features — story building, photo coaching, presentation scoring. These AI costs are the only ongoing expense. Hosting organizations use BCS free; rescues use BCS free. The only thing that costs money is the AI that makes it work.
-
-BCS records every presentation completed, every dog coached, and every outcome we can verify. Funders receive automatic quarterly reports:
-
-> *"Your funding powered X BCS sessions this quarter. Y dogs coached. Adoption outcome data builds as BCS is used in the field — we'll report what we know and be clear about what we're still learning."*
-
-### A note for grant program officers
-
-BCS is designed to meet the stewardship standards of serious funders. If you're evaluating this project for a grant:
-
-- **The methodology is open and peer-reviewable** — [RUBRIC.md](RUBRIC.md), [FLOW.md](FLOW.md). The rubric is grounded in peer-reviewed research including a 2019 study of 70,733 dogs and a 2020 photographic study of 8,332 dogs.
-- **Outcome tracking is built in from the first session** — not added for reporting purposes
-- **Every certified implementation contributes anonymized outcome data** to the community standard
-- **Quarterly reports are automatic** — available to any funder at any time, no request needed
-- **AI costs are tracked per key** — charity-funded AI is scoped exclusively to BCS presentation work. Usage is auditable and separate from any non-BCS platform features.
-
-We're working toward a measurable claim on time-to-adoption impact. We're not there yet — that data builds as BCS is used in the field. We'll report what we know, and we'll be clear about what we're still learning. We believe this is the kind of project worth funding before the impact numbers are complete — because the infrastructure to capture those numbers is already in place.
-
-If you'd like to speak with us before making a funding decision, we welcome that conversation: **KipMeierhofer@gmail.com**
 
 ---
 
@@ -214,7 +184,7 @@ A BCS host is any organization running BCS on behalf of rescue orgs — an adopt
 - Keeping BCS free, zero-setup, and zero-burden for every rescue they serve
 
 **The AI cost model:**
-BCS uses AI for coaching features. Hosts pay for it — rescues don't. The BCS community is building charity-funded AI pools so that certified hosts can cover these costs through foundation grants, corporate sponsors, and donor contributions rather than charging rescues. If you're building a host implementation and want to connect with the funding model, reach out.
+BCS uses AI for coaching features. It's free for rescues. We aren't taking donations or sponsorships right now.
 
 This is the governance layer that makes "free for rescues" a real promise, not a marketing line.
 
