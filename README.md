@@ -4,7 +4,7 @@
 
 Open source dog presentation tools that give every rescue dog their best chance at adoption.
 
-**Free for every rescue. That includes the AI. We're building a charity-funded pool — supported by foundations and donors — so rescue orgs never pay for the AI that helps their dogs get adopted. No matter where they post, no matter which tools they use.**
+**Free for every rescue, no matter where they post or which tools they use.** Running the AI can have its own costs, depending on who hosts it. See [docs/ai-credentials.md](docs/ai-credentials.md).
 
 ---
 
