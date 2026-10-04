@@ -165,26 +165,6 @@ BCS records every presentation completed, every dog coached, and every outcome w
 
 > *"Your funding powered X BCS sessions this quarter. Y dogs coached. Adoption outcome data builds as BCS is used in the field — we'll report what we know and be clear about what we're still learning."*
 
-**Fully transparent finances.** All transactions are public via Open Collective. Any funder can see exactly where funds go at any time — no request needed.
-
-### How to fund BCS
-
-**For foundations and grant programs (501(c)(3) path):**
-
-BCS operates under fiscal sponsorship of **Open Collective Foundation** — a registered 501(c)(3) public charity (EIN: 82-2037583). Grants can be made directly to Open Collective Foundation, restricted for Best Chance Studio. This is the cleanest path for foundations whose grant guidelines require a 501(c)(3) recipient.
-
-To make a grant: contact Open Collective Foundation directly at [opencollective.com/foundation](https://opencollective.com/foundation) and reference Best Chance Studio as the restricted project. We're happy to provide any additional documentation a program officer needs.
-
-### Sponsorship tiers
-
-**Community Funder** — any amount.
-Listed in this README and in every quarterly impact report. Your contribution is acknowledged in the community that's using these tools.
-
-**BCS Powered By** — named sponsor tier for organizations funding at meaningful scale.
-Logo in README. Named in all impact reports. Early access to anonymized research findings and outcome data from the broader BCS community. Direct line to the BCS team for program questions.
-
-BCS is designed to carry many funders — foundations, corporate giving programs, individual donors, DAF holders. No single funder owns BCS. That's the point. Your contribution sits alongside others who believe the same thing: that the rescue community deserves better tools, and that funding them is a direct line to dogs going home.
-
 ### A note for grant program officers
 
 BCS is designed to meet the stewardship standards of serious funders. If you're evaluating this project for a grant:
@@ -307,9 +287,6 @@ We have more ideas than hands. If you want to build something that matters — n
 Questions, partnership inquiries, funding conversations, or just want to talk about the problem:
 
 📧 **KipMeierhofer@gmail.com**
-
-Fund BCS:
-🔗 **[opencollective.com/best-chance-studio](https://opencollective.com/best-chance-studio)**
 
 ---
 

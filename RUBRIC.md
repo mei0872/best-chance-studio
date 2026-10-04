@@ -196,4 +196,4 @@ Proposed changes go through community review before adoption. The standard exist
 ---
 
 *Best Chance Studio™ — the coaching belongs to the rescue community.*
-*MIT licensed. Free for every rescue. Forever.*
+*MIT licensed. Free for rescues.*

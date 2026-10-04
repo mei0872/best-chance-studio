@@ -31,7 +31,7 @@ The code is yours. Fork it, use it, build on it, ship it. If the founding team d
 Best Chance Studio is an open source spec and coaching methodology. Anyone can implement it, build on it, or ship proprietary products on top of it — that's what MIT allows and what we encourage.
 
 **What the spec commits to:**
-- BCS stays free. Forever. For every rescue. No matter what platform they post on.
+- Best Chance Studio is free for rescues.
 - The coaching methodology belongs to the community, not to any one implementor
 - No feature of the BCS spec will ever be pulled behind a paywall
 
